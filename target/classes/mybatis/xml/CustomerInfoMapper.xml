@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.CustomerInfoMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		customer_id AS customerId, customer_name AS customerName, customer_phone AS customerPhone, createtime, modifytime, customer_type AS customerType, createid, modifyid, isDel, customer_sex AS customerSex, shop_id AS shopId, customer_balance AS customerBalance, warm_type AS warmType, backup
+	</sql>
+
+</mapper>

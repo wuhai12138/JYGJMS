@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.ShopMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		shop_id AS shopId, train_id AS trainId, shop_name AS shopName, shop_phone AS shopPhone, shop_address AS shopAddress, createtime, modifytime, createid, modifyid, isDel, longitude, latitude, mobile_phone AS mobilePhone, html, paycode
+	</sql>
+
+</mapper>

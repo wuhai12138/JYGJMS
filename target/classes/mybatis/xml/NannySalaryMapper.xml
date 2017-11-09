@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.NannySalaryMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		salary_id AS salaryId, start_date AS startDate, end_date AS endDate, nanny_id AS nannyId, train_id AS trainId, one_time AS oneTime, free_time AS freeTime, try_time AS tryTime, month_time AS monthTime, contract_time AS contractTime, total_time AS totalTime, total_price AS totalPrice, isDel, createid, modifyid, createtime, modifytime
+	</sql>
+
+</mapper>

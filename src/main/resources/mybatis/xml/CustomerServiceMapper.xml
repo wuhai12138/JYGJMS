@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.CustomerServiceMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		service_id AS serviceId, customer_id AS customerId, train_id AS trainId, one_time AS oneTime, contract_time AS contractTime, try_time AS tryTime, free_time AS freeTime, spend_total AS spendTotal, createtime, modifytime, createid, modifyid, isDel, month_time AS monthTime, start_date AS startDate, end_date AS endDate, total_time AS totalTime
+	</sql>
+
+</mapper>

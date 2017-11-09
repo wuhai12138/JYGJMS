@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.OrderNeedMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		need_id AS needId, need_week AS needWeek, end_time AS endTime, need_back AS needBack, needtime, start_time AS startTime, big_id AS bigId, isDel, createtime, modifytime, createid, modifyid
+	</sql>
+
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.OrderSmallMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		mission_id AS missionId, mission_date AS missionDate, mission_week AS missionWeek, shop_id AS shopId, house_id AS houseId, mission_time AS missionTime, mission_price AS missionPrice, mission_hour AS missionHour, mission_status AS missionStatus, mission_backup AS missionBackup, train_id AS trainId, createtime, modifytime, createid, modifyid, isDel, order_id AS orderId, mission_cost AS missionCost, service_category_one AS serviceCategoryOne, service_category_two AS serviceCategoryTwo, order_type AS orderType, time_value AS timeValue, number, price_id AS priceId, mission_type AS missionType, mission_comment AS missionComment, mission_grade AS missionGrade
+	</sql>
+
+</mapper>
