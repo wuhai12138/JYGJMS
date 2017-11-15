@@ -1,7 +1,5 @@
 package com.summ.controller;
 
-import com.summ.mapper.AdminMapper;
-import com.summ.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +10,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class TestController {
-    @Autowired
-    private AdminMapper adminMapper;
 
+    /**
+     * @param
+     * @return
+     */
     @RequestMapping(value = "/test")
     @ResponseBody
     public String test(){
         System.out.println("hello !");
-        return "Hello World ! admin count :" + adminMapper.getCount();
+        return "Hello World ! admin count :";
     }
 }

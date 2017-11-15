@@ -26,6 +26,17 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--过滤器-->
+    <filter>
+        <filter-name>AccessFilter</filter-name>
+        <filter-class>com.summ.filter.AccessFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
     <!-- Spring监听器 -->
     <listener>
         <description>Spring监听器</description>
