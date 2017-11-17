@@ -2,6 +2,7 @@ package com.summ.aspect;
 
 import com.summ.Consts;
 import com.summ.utils.mongodb.log.LogFactory;
+import com.summ.utils.mongodb.log.impl.OperateLogUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 
@@ -12,6 +13,7 @@ import org.aspectj.lang.annotation.*;
 public class ControllerAspect {
 
     private LogFactory logFactory;
+    private OperateLogUtil operateLogUtil;
 
     public LogFactory getLogFactory() {
         return logFactory;
@@ -33,6 +35,7 @@ public class ControllerAspect {
     @After("aopController()")
     public void afterController(JoinPoint joinPoint) {
         System.out.println("after controller》》》》》》》》》》》");
+//        System.out.println(operateLogUtil.doLog(joinPoint,AspectPosition.Aop_After));
         System.out.println(logFactory.getInstance("operate_log").doLog(joinPoint, AspectPosition.Aop_After));
 //        if (Consts.DEBUG_MODE) {
 //            System.out.println("[debug model] "
@@ -47,8 +50,8 @@ public class ControllerAspect {
      */
     @Before("aopController()")
     public void beforeController(JoinPoint joinPoint) {
-        System.out.println("before controller》》》》》》》》》》》" + joinPoint.toString());
-		System.out.println(logFactory.getInstance("operate_log").doLog(joinPoint, AspectPosition.Aop_Before));
+//        System.out.println("before controller》》》》》》》》》》》" + joinPoint.toString());
+//		System.out.println(logFactory.getInstance("operate_log").doLog(joinPoint, AspectPosition.Aop_Before));
 //		if (Consts.DEBUG_MODE)
 //			System.out.println("[debug model] "
 //					+ logFactory.getInstance("debug_log", "controller").doLog(joinPoint, AspectPosition.Aop_Before));

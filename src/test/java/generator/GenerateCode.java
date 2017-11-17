@@ -53,7 +53,7 @@ public class GenerateCode {
 		 * </p>
 		 */
         cg.setIdType(IdType.AUTO);
-		cg.setTableNames(new String[]{"j_customer"});
+		cg.setTableNames(new String[]{"j_admin"});
 
         /* 生成文件保存位置 */
         cg.setSaveDir("E:\\summ\\MybatisPlusGeneratorModel");

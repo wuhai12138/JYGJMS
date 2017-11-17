@@ -1,6 +1,9 @@
 package com.summ.utils.mongodb.log.impl;
 
 import com.summ.aspect.AspectPosition;
+import com.summ.model.JAdmin;
+import com.summ.utils.JsonUtil;
+import com.summ.utils.StringUtil;
 import com.summ.utils.mongodb.MongoDBUtil;
 import com.summ.utils.mongodb.log.LogUtil;
 import com.summ.utils.mongodb.model.MongoConfig;
@@ -26,6 +29,12 @@ public class OperateLogUtil implements LogUtil {
     OperateLog log;
 
     private Properties operateMapper;
+
+    /**
+     * log map
+     */
+    Map logMap = new HashMap();
+
 
     /**
      * debug mode (set in spring-mvc.xml)
@@ -64,40 +73,55 @@ public class OperateLogUtil implements LogUtil {
 
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();
-//		String target = getTarge(className);
+//        String target = getTarge(className);
 
-        String argList = "";
+//        String paramNames = joinPoint.getSignature()
         Object[] args = joinPoint.getArgs();
-        for (Object arg : args) {
-            argList += arg.toString() + "(" + arg.getClass().getName() + ");";
-        }
+        String argList = "";
 
-//		User admin = (User) request.getAttribute("admin");
-//		BasicModel basicModel = (BasicModel) request.getAttribute("BasicModel");
+        for (Object arg : args) {
+//            argList += arg.toString() + "(" + arg.getClass().getName() + ");";
+            argList = JsonUtil.toJson(arg);
+        }
+        logMap.putAll(JsonUtil.json2Map(argList));
+        System.out.println(">>>>>>>>>>>>>>>>>>>" + logMap);
+
+        JAdmin admin = (JAdmin) request.getAttribute("admin");
 
         String action = getActionType(methodName);
         OperateLog log = null;
         switch (p) {
             case Aop_Before:
-                log = new OperateLog("", "", className, methodName, argList, action, "", "");
+                log = new OperateLog(admin, className, methodName, argList, action, "开始", "");
                 log(log);
                 break;
             case Aop_Return:
-                if (retVal != null)
-                    log = new OperateLog("", "", className, methodName, argList, action, "返回结果",
-                            retVal.toString());
-                else
-                    log = new OperateLog("", "", className, methodName, argList, action, "返回结果", "");
+                if (retVal != null) {
+                    log = new OperateLog(admin, className, methodName, argList, action, "返回结果", retVal.toString());
+                } else {
+                    log = new OperateLog(admin, className, methodName, argList, action, "返回结果", "");
+                }
                 log(log);
                 break;
             case Aop_After:
-                log = new OperateLog("", "", className, methodName, argList, action, "结束", "");
-                log(log);
+                log = new OperateLog(admin, className, methodName, argList, action, "结束", "");
+                logMap.put("dateTime", log.getDateTime());
+                logMap.put("adminId", String.valueOf(log.getAdminId()));
+                logMap.put("className", log.getClassName());
+                logMap.put("methodName", log.getMethodName());
+                logMap.put("argList", log.getArgList());
+                logMap.put("action", log.getAction());
+                logMap.put("status", log.getStatus());
+                logMap.put("retrunDat", log.getRetrunDat());
+                System.out.println(">>>>>>>>>>>log>>>>>>>>" + log);
+                System.out.println(">>>>>>>>>>logMap>>>>>>>>>" + logMap);
+                log(logMap);
                 break;
             case Aop_Throw:
-                log = new OperateLog("", "", className, methodName, argList, action, "异常", "");
+                log = new OperateLog(admin, className, methodName, argList, action, "异常", "");
                 log(log);
                 break;
+            default:
         }
         return log;
     }
@@ -164,6 +188,25 @@ public class OperateLogUtil implements LogUtil {
                     mongoUtil = MongoDBUtil.getInstance(mongoConfig);
                     // mongoUtil.setup();
                     mongoUtil.insert("operate_log", log);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    // if (mongoUtil != null)
+                    // mongoUtil.destory();
+                }
+            }
+        };
+        pool.execute(operateThread);
+    }
+
+    private void log(final Map map) {
+        Thread operateThread = new Thread() {
+            public void run() {
+                MongoDBUtil mongoUtil = null;
+                try {
+                    mongoUtil = MongoDBUtil.getInstance(mongoConfig);
+                    // mongoUtil.setup();
+                    mongoUtil.insert(map,"operate_log");
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {

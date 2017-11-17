@@ -8,6 +8,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.summ.utils.StringUtil;
 import com.summ.utils.mongodb.model.MongoConfig;
 import com.summ.utils.mongodb.model.MongoResponse;
 import org.bson.Document;
@@ -17,6 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -96,9 +98,18 @@ public class MongoDBUtil {
 
 			List<Document> documents = new ArrayList<Document>();
 			documents.add(document);
-
+			System.out.println(">>>>>>>>>>documents>>>>>>>>>>>>" + documents);
 			collection.insertMany(documents);
 		}
+	}
+
+	public void insert(Map map, String collectionName){
+		MongoCollection<Document> collection = mongoDatabase.getCollection(collectionName);
+		Document document= new Document();
+		document.putAll(map);
+		System.out.println(">>>>>>>>>>document>>>>>>>>>>>>" + document);
+		collection.insertOne(document);
+
 	}
 
 	/**

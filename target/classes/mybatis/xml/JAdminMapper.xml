@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JAdminMapper">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+		adminId, adminName, adminPhone, adminType, adminBelong, shopId, trainId, isDel, createTime, modifyTime, createId, modifyId, fieldParam1, fieldParam2, fieldParam3, fieldParam4
+	</sql>
+
+    <select id="getAdminById" resultType="com.summ.model.JAdmin">
+		SELECT *
+		FROM j_admin
+		WHERE adminId = #{id}
+	</select>
+
+</mapper>

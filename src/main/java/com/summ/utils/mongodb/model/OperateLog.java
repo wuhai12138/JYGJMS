@@ -1,6 +1,8 @@
 package com.summ.utils.mongodb.model;
 
 
+import com.summ.model.JAdmin;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,8 +17,6 @@ public class OperateLog {
      * admin's real name
      */
     String adminName;
-    int basicId;
-    String basicRemark;
     String className;
     String methodName;
     String argList;
@@ -24,10 +24,6 @@ public class OperateLog {
      * action:[add,delete,update,query...]
      */
     String action;
-    /**
-     * the object which was treated
-     */
-    String target;
     /**
      * before/after/return action
      */
@@ -38,40 +34,31 @@ public class OperateLog {
      * structure with all fields
      *
      * @param admin
-     * @param basicModel
      * @param className
      * @param methodName
      * @param argList
      * @param action
      * @param retrunDat
      */
-//	public OperateLog(User admin, BasicModel basicModel, String className, String methodName, String argList,
-//			String action, String target, String status, String retrunDat) {
-//		super();
-//		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
-//		this.dateTime = df.format(new Date());
-//		if (admin != null) {
-//			this.adminId = admin.getId();
-//			this.adminName = admin.getRealname();
-//		} else {
-//			this.adminId = -1;
-//			this.adminName = "";
-//		}
-//		if (basicModel != null) {
-//			this.basicId = basicModel.getId();
-//			this.basicRemark = basicModel.getRemark();
-//		} else {
-//			this.basicId = -1;
-//			this.basicRemark = "";
-//		}
-//		this.className = className;
-//		this.methodName = methodName;
-//		this.argList = argList;
-//		this.action = action;
-//		this.target = target;
-//		this.status = status;
-//		this.retrunDat = retrunDat;
-//	}
+	public OperateLog(JAdmin admin, String className, String methodName, String argList,
+                      String action, String status, String retrunDat) {
+		super();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+		this.dateTime = df.format(new Date());
+		if (admin != null) {
+			this.adminId = admin.getAdminId();
+			this.adminName = admin.getAdminName();
+		} else {
+			this.adminId = -1;
+			this.adminName = "";
+		}
+		this.className = className;
+		this.methodName = methodName;
+		this.argList = argList;
+		this.action = action;
+		this.status = status;
+		this.retrunDat = retrunDat;
+	}
 
     /**
      * structured without returnDat
@@ -90,13 +77,10 @@ public class OperateLog {
         this.dateTime = df.format(new Date());
         this.adminId = -1;
         this.adminName = "";
-        this.basicId = -1;
-        this.basicRemark = "";
         this.className = className;
         this.methodName = methodName;
         this.argList = argList;
         this.action = action;
-        this.target = target;
         this.status = status;
     }
 
@@ -106,8 +90,7 @@ public class OperateLog {
 
     @Override
     public String toString() {
-        return dateTime + " " + adminName + action + target + " 状态:" + status + " (用户ID:" + adminId + ", basicId="
-                + basicId + ", basicRemark=" + basicRemark + ", 类名=" + className + ", 方法名=" + methodName + ", 参数列表="
+        return dateTime + " " + adminName + action  + " 状态:" + status + " (用户ID:" + adminId + ", 类名=" + className + ", 方法名=" + methodName + ", 参数列表="
                 + argList + ", 返回值=" + retrunDat + ")";
     }
 
@@ -133,22 +116,6 @@ public class OperateLog {
 
     public void setAdminName(String adminName) {
         this.adminName = adminName;
-    }
-
-    public int getBasicId() {
-        return basicId;
-    }
-
-    public void setBasicId(int basicId) {
-        this.basicId = basicId;
-    }
-
-    public String getBasicRemark() {
-        return basicRemark;
-    }
-
-    public void setBasicRemark(String basicRemark) {
-        this.basicRemark = basicRemark;
     }
 
     public String getClassName() {
@@ -183,13 +150,6 @@ public class OperateLog {
         this.action = action;
     }
 
-    public String getTarget() {
-        return target;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
-    }
 
     public String getStatus() {
         return status;

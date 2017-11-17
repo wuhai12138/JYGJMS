@@ -28,31 +28,6 @@ public class DebugLogUtil implements LogUtil {
 		}
 
 		DebugLog debugLog = null;
-		switch (p) {
-		case Aop_Before:
-			debugLog = new DebugLog(className, methodName, argList, "开始", "", "", layer);
-			log(debugLog);
-			break;
-		case Aop_After:
-			debugLog = new DebugLog(className, methodName, argList, "结束", "", "", layer);
-			log(debugLog);
-			break;
-		case Aop_Return:
-			if (retVal != null)
-				debugLog = new DebugLog(className, methodName, argList, "返回结果", retVal.toString(), "", layer);
-			else
-				debugLog = new DebugLog(className, methodName, argList, "返回结果", "", "", layer);
-			log(debugLog);
-			break;
-		case Aop_Throw:
-			String errorMesg = e.getMessage();
-			for (StackTraceElement item : e.getStackTrace()) {
-				errorMesg += "\r\n" + item.toString();
-			}
-			debugLog = new DebugLog(className, methodName, argList, "异常", "", errorMesg, layer);
-			log(debugLog);
-			break;
-		}
 		return debugLog;
 	}
 
