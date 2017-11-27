@@ -1,6 +1,7 @@
 package com.summ.model;
 
 import java.io.Serializable;
+import java.security.Timestamp;
 import java.util.Date;
 import java.math.BigDecimal;
 
@@ -35,7 +36,7 @@ public class JCustomer implements Serializable {
 	private String customerPhone;
 
 	/** 用户类型1注册2会员3僵尸用户 */
-	private Integer customerType;
+	private Integer customerType = 11;
 
 	/** 1男2女 */
 	private Integer customerSex;
@@ -44,16 +45,16 @@ public class JCustomer implements Serializable {
 	private BigDecimal customerBalance;
 
 	/** 1警告2不警告 */
-	private Integer warnType;
+	private Integer warnType = 15;
 
 	/**  */
 	private String remark;
 
 	/**  */
-	private Date createTime;
+	private Date createTime = new Date();
 
 	/** 是否删除（1为已删除） */
-	private Integer isDel;
+	private Integer isDel = 16;
 
 	/** 1门店2电话咨询3ios4android */
 	private String memberOrigin;
@@ -64,11 +65,48 @@ public class JCustomer implements Serializable {
 	/**  */
 	private Integer memberType;
 
-	/**  */
-	private String fieldParam4;
 
+	@Override
+	public String toString() {
+		return "JCustomer{" +
+				"customerId=" + customerId +
+				", shopId=" + shopId +
+				", customerName='" + customerName + '\'' +
+				", customerPhone='" + customerPhone + '\'' +
+				", customerType=" + customerType +
+				", customerSex=" + customerSex +
+				", customerBalance=" + customerBalance +
+				", warnType=" + warnType +
+				", remark='" + remark + '\'' +
+				", createTime=" + createTime +
+				", isDel=" + isDel +
+				", memberOrigin='" + memberOrigin + '\'' +
+				", memberLevel=" + memberLevel +
+				", memberType=" + memberType +
+				'}';
+	}
 
-	public Integer getCustomerId() {
+    public JCustomer() {
+    }
+
+    public JCustomer(Integer customerId, Integer shopId, String customerName, String customerPhone, Integer customerType, Integer customerSex, BigDecimal customerBalance, Integer warnType, String remark, Date createTime, Integer isDel, String memberOrigin, Integer memberLevel, Integer memberType) {
+        this.customerId = customerId;
+        this.shopId = shopId;
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.customerType = customerType;
+        this.customerSex = customerSex;
+        this.customerBalance = customerBalance;
+        this.warnType = warnType;
+        this.remark = remark;
+        this.createTime = createTime;
+        this.isDel = isDel;
+        this.memberOrigin = memberOrigin;
+        this.memberLevel = memberLevel;
+        this.memberType = memberType;
+    }
+
+    public Integer getCustomerId() {
 		return this.customerId;
 	}
 
@@ -140,15 +178,15 @@ public class JCustomer implements Serializable {
 		this.remark = remark;
 	}
 
-	public Date getCreateTime() {
-		return this.createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public Integer getIsDel() {
+    public Integer getIsDel() {
 		return this.isDel;
 	}
 
@@ -180,12 +218,7 @@ public class JCustomer implements Serializable {
 		this.memberType = memberType;
 	}
 
-	public String getFieldParam4() {
-		return this.fieldParam4;
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
 	}
-
-	public void setFieldParam4(String fieldParam4) {
-		this.fieldParam4 = fieldParam4;
-	}
-
 }

@@ -27,14 +27,17 @@ public class JAdmin implements Serializable {
 	/**  */
 	private String adminName;
 
+	/** 密码 */
+	private String adminPassword;
+
 	/**  */
 	private String adminPhone;
 
 	/** 管理员类型1超级/2财务/3招聘/4培训中心/5门店 */
-	private String adminType;
+	private int adminType;
 
 	/** 归属0超管/1培训中心/2门店 */
-	private String adminBelong;
+	private int adminBelong;
 
 	/**  */
 	private Integer shopId;
@@ -43,31 +46,10 @@ public class JAdmin implements Serializable {
 	private Integer trainId;
 
 	/**  */
-	private Integer isDel;
+	private Integer isDel = 16;
 
 	/**  */
-	private Date createTime;
-
-	/**  */
-	private Date modifyTime;
-
-	/**  */
-	private Integer createId;
-
-	/**  */
-	private Integer modifyId;
-
-	/**  */
-	private String adminPassword;
-
-	/**  */
-	private String fieldParam2;
-
-	/**  */
-	private String fieldParam3;
-
-	/**  */
-	private String fieldParam4;
+	private Date createTime = new Date();
 
 
 	public Integer getAdminId() {
@@ -102,19 +84,19 @@ public class JAdmin implements Serializable {
 		this.adminPhone = adminPhone;
 	}
 
-	public String getAdminType() {
+	public int getAdminType() {
 		return this.adminType;
 	}
 
-	public void setAdminType(String adminType) {
+	public void setAdminType(int adminType) {
 		this.adminType = adminType;
 	}
 
-	public String getAdminBelong() {
+	public int getAdminBelong() {
 		return this.adminBelong;
 	}
 
-	public void setAdminBelong(String adminBelong) {
+	public void setAdminBelong(int adminBelong) {
 		this.adminBelong = adminBelong;
 	}
 
@@ -148,54 +130,6 @@ public class JAdmin implements Serializable {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
-	}
-
-	public Date getModifyTime() {
-		return this.modifyTime;
-	}
-
-	public void setModifyTime(Date modifyTime) {
-		this.modifyTime = modifyTime;
-	}
-
-	public Integer getCreateId() {
-		return this.createId;
-	}
-
-	public void setCreateId(Integer createId) {
-		this.createId = createId;
-	}
-
-	public Integer getModifyId() {
-		return this.modifyId;
-	}
-
-	public void setModifyId(Integer modifyId) {
-		this.modifyId = modifyId;
-	}
-
-	public String getFieldParam2() {
-		return this.fieldParam2;
-	}
-
-	public void setFieldParam2(String fieldParam2) {
-		this.fieldParam2 = fieldParam2;
-	}
-
-	public String getFieldParam3() {
-		return this.fieldParam3;
-	}
-
-	public void setFieldParam3(String fieldParam3) {
-		this.fieldParam3 = fieldParam3;
-	}
-
-	public String getFieldParam4() {
-		return this.fieldParam4;
-	}
-
-	public void setFieldParam4(String fieldParam4) {
-		this.fieldParam4 = fieldParam4;
 	}
 
 }

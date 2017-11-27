@@ -1,5 +1,6 @@
 package com.summ.filter;
 
+import com.alibaba.druid.util.StringUtils;
 import com.summ.mapper.JAdminMapper;
 import com.summ.model.JAdmin;
 import com.summ.utils.StringUtil;
@@ -26,6 +27,9 @@ public class AccessFilter implements Filter {
 
     private String encoding = null;
 
+    private String excludedPage;
+    private String[] excludedPageArray;
+
     public void destroy() {
         encoding = null;
     }
@@ -44,25 +48,31 @@ public class AccessFilter implements Filter {
 //            jAdminMapper = (JAdminMapper) cxt.getBean("jAdminMapper");
 //        }
 
-        int id;
-        if (request.getParameter("id") != null) {
-            id = StringUtil.parseInt(request.getParameter("id"));
-            JAdmin jAdmin = jAdminMapper.getAdminById(id);
-            request.setAttribute("admin", jAdmin);
-        } else {
-            id = 0;
+        boolean isExcludedPage = false;
+        if (((HttpServletRequest) request).getServletPath().equals(excludedPage)) {
+            chain.doFilter(request,response);
+        }else {
+            int id;
+            if (request.getParameter("id") != null) {
+                id = StringUtil.parseInt(request.getParameter("id"));
+                JAdmin jAdmin = jAdminMapper.getAdminById(id);
+                request.setAttribute("admin", jAdmin);
+            } else {
+                id = 0;
+            }
+
+
+            System.out.println("进入过滤器》》》》》》》》》");
+
+            if (id == 0) {
+                String outJson = "{\"code\":\"101\",\"msg\":\"not login in !\"}";
+                httpResponse.getOutputStream().write(outJson.getBytes("UTF-8"));
+                return;
+            }
+
+            chain.doFilter(request, response);
         }
 
-
-        System.out.println("进入过滤器》》》》》》》》》");
-
-        if (id == 0) {
-            String outJson = "{\"code\":\"101\",\"msg\":\"尚未登录\"}";
-            httpResponse.getOutputStream().write(outJson.getBytes("UTF-8"));
-            return;
-        }
-
-        chain.doFilter(request, response);
     }
 
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -71,5 +81,7 @@ public class AccessFilter implements Filter {
         ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(context);
         jAdminMapper = ctx.getBean(JAdminMapper.class);
 
+        //获取需要排除在外的url
+        excludedPage = filterConfig.getInitParameter("excludedPages");
     }
 }

@@ -23,7 +23,7 @@ public class ControllerAspect {
         this.logFactory = logFactory;
     }
 
-    @Pointcut("execution(* com.summ.controller.*Controller*.*(..))")
+    @Pointcut("execution(* com.summ.controller.*.*Controller*.*(..))")
     private void aopController() {
     }
 
@@ -35,8 +35,7 @@ public class ControllerAspect {
     @After("aopController()")
     public void afterController(JoinPoint joinPoint) {
         System.out.println("after controller》》》》》》》》》》》");
-//        System.out.println(operateLogUtil.doLog(joinPoint,AspectPosition.Aop_After));
-        System.out.println(logFactory.getInstance("operate_log").doLog(joinPoint, AspectPosition.Aop_After));
+//        System.out.println(logFactory.getInstance("operate_log").doLog(joinPoint, AspectPosition.Aop_After));
 //        if (Consts.DEBUG_MODE) {
 //            System.out.println("[debug model] "
 //                    + logFactory.getInstance("debug_log", "controller").doLog(joinPoint, AspectPosition.Aop_After));
@@ -65,7 +64,6 @@ public class ControllerAspect {
      */
     @AfterReturning(pointcut = "aopController()", returning = "retVal")
     public void returnController(JoinPoint joinPoint, Object retVal) {
-        System.out.println("after returning》》》》》》》》》》》" + retVal.toString());
 //        System.out.println("after returning》》》》》》》》》》》");
 //		System.out.println(logFactory.getInstance("operate_log").doLog(joinPoint, retVal, AspectPosition.Aop_Return));
 //		if (Consts.DEBUG_MODE)

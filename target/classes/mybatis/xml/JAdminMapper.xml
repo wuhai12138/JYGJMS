@@ -4,13 +4,41 @@
 
     <!-- 通用查询结果列-->
     <sql id="Base_Column_List">
-		adminId, adminName, adminPhone, adminType, adminBelong, shopId, trainId, isDel, createTime, modifyTime, createId, modifyId, fieldParam1, fieldParam2, fieldParam3, fieldParam4
+		adminId, adminName, adminPhone, adminType, adminBelong, shopId, trainId, isDel, createTime, adminPassword
 	</sql>
 
     <select id="getAdminById" resultType="com.summ.model.JAdmin">
 		SELECT *
 		FROM j_admin
 		WHERE adminId = #{id}
+	</select>
+
+    <select id="getAdminList" parameterType="com.summ.model.request.PaginateReq" resultType="com.summ.model.JAdmin">
+		SELECT *
+		FROM j_admin
+		WHERE isDel = 16
+		LIMIT #{page},#{size}
+	</select>
+
+    <select id="getAccess" resultType="com.summ.model.response.AccessRes">
+		SELECT a.accessText,a.accessUrl
+		FROM j_access a
+		LEFT JOIN j_access_dict ad ON a.accessId = ad.accessId
+		LEFT JOIN j_admin adm ON ad.adminTypeId = adm.adminType
+		WHERE adm.adminId = #{0} AND isDel = 16
+	</select>
+
+    <delete id="deleteAdmin" parameterType="com.summ.model.JAdmin">
+		UPDATE j_admin
+		SET isDel = 17
+		WHERE adminId=#{0}
+	</delete>
+
+    <select id="getCount" resultType="java.lang.Integer">
+		SELECT
+        COUNT(*)
+        FROM j_admin
+		WHERE isDel = 16
 	</select>
 
 </mapper>

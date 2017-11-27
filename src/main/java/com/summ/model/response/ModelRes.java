@@ -64,6 +64,7 @@ public class ModelRes {
 
     public interface Status{
         int SUCCESS = 200;
+        int FAILED = 400;
         int ERROR = 500;
     }
 

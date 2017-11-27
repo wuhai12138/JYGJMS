@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JCustomerHouseMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		houseId, customerId, provinceId, cityId, areaId, houseAddress, bedRoom, livingRoom, restRoom, houseArea, createTime, isDel
+	</sql>
+
+	<update id="deleteList" parameterType="java.util.List">
+		UPDATE j_customer_house
+		SET isDel = 17
+		WHERE houseId IN (
+		<foreach collection="list" item="item" index="index" close="" open="" separator=",">
+			#{item}
+		</foreach>
+		)
+	</update>
+
+	<select id="getList" resultType="com.summ.model.JCustomerHouse">
+		SELECT *
+		FROM j_customer_house
+		WHERE
+		customerId = #{0}
+		AND
+		isDel = 16
+	</select>
+	
+</mapper>

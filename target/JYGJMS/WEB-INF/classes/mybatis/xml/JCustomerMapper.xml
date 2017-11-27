@@ -2,9 +2,68 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.summ.mapper.JCustomerMapper">
 
-	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		customerId, shopId, customerName, customerPhone, customerType, customerSex, customerBalance, warnType, remark, createTime, isDel, memberOrigin, memberLevel, memberType, fieldParam4
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+		customerId, shopId, customerName, customerPhone, customerType, customerSex, customerBalance, warnType, remark, createTime, isDel, memberOrigin, memberLevel, memberType
 	</sql>
+
+    <select id="getCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM j_customer
+        WHERE 1=1
+        AND isDel = 16
+        <if test="customerPagReq.customerId != null">
+            AND customerId = #{customerPagReq.customerId}
+        </if>
+        <if test="customerPagReq.customerType != null">
+            AND customerType = #{customerPagReq.customerType}
+        </if>
+        <if test="customerPagReq.shopId != null">
+            AND shopId = #{customerPagReq.shopId}
+        </if>
+        <if test="customerPagReq.customerPhone != null">
+            AND customerPhone LIKE '%${customerPagReq.customerPhone}%'
+        </if>
+        <if test="customerPagReq.customerName != null">
+            AND customerName LIKE '%${customerPagReq.customerName}%'
+        </if>
+
+
+    </select>
+
+    <select id="getCustomerList" parameterType="com.summ.model.request.CustomerPagReq"
+            resultType="com.summ.model.JCustomer">
+        SELECT *
+        FROM j_customer
+        WHERE 1=1
+        AND isDel = 16
+        <if test="customerPagReq.customerId != null">
+            AND customerId = #{customerPagReq.customerId}
+        </if>
+        <if test="customerPagReq.customerType != null">
+            AND customerType = #{customerPagReq.customerType}
+        </if>
+        <if test="customerPagReq.shopId != null">
+            AND shopId = #{customerPagReq.shopId}
+        </if>
+        <if test="customerPagReq.customerPhone != null">
+            AND customerPhone LIKE '%${customerPagReq.customerPhone}%'
+        </if>
+        <if test="customerPagReq.customerName != null">
+            AND customerName LIKE '%${customerPagReq.customerName}%'
+        </if>
+        LIMIT #{customerPagReq.page},#{customerPagReq.size}
+    </select>
+
+    <update id="deleteList" parameterType="java.util.List">
+        UPDATE j_customer
+        SET isDel = 17
+        WHERE customerId IN (
+          <foreach collection="list" item="item" index="index" close="" open="" separator=",">
+              #{item}
+          </foreach>
+        )
+    </update>
 
 </mapper>
