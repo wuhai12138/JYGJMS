@@ -2,28 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.summ.mapper.JCustomerHouseMapper">
 
-	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
 		houseId, customerId, provinceId, cityId, areaId, houseAddress, bedRoom, livingRoom, restRoom, houseArea, createTime, isDel
 	</sql>
 
-	<update id="deleteList" parameterType="java.util.List">
-		UPDATE j_customer_house
-		SET isDel = 17
-		WHERE houseId IN (
-		<foreach collection="list" item="item" index="index" close="" open="" separator=",">
-			#{item}
-		</foreach>
-		)
-	</update>
+    <update id="deleteList" parameterType="java.util.List">
+        UPDATE j_customer_house
+        SET isDel = 17
+        WHERE houseId IN (
+        <foreach collection="list" item="item" index="index" close="" open="" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
 
-	<select id="getList" resultType="com.summ.model.JCustomerHouse">
-		SELECT *
-		FROM j_customer_house
+    <select id="getList" resultType="com.summ.model.response.CustomerHouseRes">
+		SELECT a.*,d1.provinceName AS provinceIdInfo,d2.cityName AS cityIdInfo,d3.areaName AS areaIdInfo,d4.INFO AS
+        isDelInfo
+		FROM j_customer_house a
+		 LEFT JOIN j_province d1 ON a.provinceId = d1.provinceId
+        LEFT JOIN j_city d2 ON a.cityId = d2.cityId
+        LEFT JOIN j_area d3 ON a.areaId = d3.areaId
+        LEFT JOIN j_dict_info d4 ON a.isDel = d4.ID
 		WHERE
 		customerId = #{0}
 		AND
 		isDel = 16
 	</select>
-	
+
 </mapper>

@@ -1,8 +1,11 @@
 package com.summ.model.response;
 
+import com.summ.model.JDictInfo;
 import com.summ.view.ConvertList;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by M.c on 2016/6/9.
@@ -17,6 +20,7 @@ public class ModelRes {
 		this.data = new Object();
 
     }
+
     public ModelRes(Object data) {
         if(data instanceof List){
             this.data = new ConvertList((List)data);
@@ -24,6 +28,8 @@ public class ModelRes {
             this.data = data;
         }
     }
+
+
 
     public ModelRes(int status, String info) {
         this.info = info;

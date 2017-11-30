@@ -2,6 +2,7 @@ package com.summ.mapper;
 
 import com.summ.model.JCustomerHouse;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.summ.model.response.CustomerHouseRes;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface JCustomerHouseMapper extends AutoMapper<JCustomerHouse> {
 
-    List<JCustomerHouse> getList(int CustomerId);
+    List<CustomerHouseRes> getList(int CustomerId);
 
     int deleteList(List<Integer> list);
 }

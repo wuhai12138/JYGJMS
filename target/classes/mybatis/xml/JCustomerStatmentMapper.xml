@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JCustomerStatmentMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		statmentId, customerId, chargeDate, statmentType, chargeMoney, chargeWay, adminId, terminal, status, balance, serialNumber, isDel, remark
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Integer" parameterType="com.summ.model.request.CustomerStatmentReq">
+		SELECT
+		COUNT(*)
+		FROM j_customer_statment
+		WHERE isDel = 16
+		<if test="customerStatmentReq.customerId != null">
+			AND customerId = #{customerStatmentReq.customerId}
+		</if>
+		<if test="customerStatmentReq.statmentType != null">
+			AND statmentType = #{customerStatmentReq.statmentType}
+		</if>
+	</select>
+
+	<select id="getStatmentList" parameterType="com.summ.model.request.CustomerStatmentReq" resultType="com.summ.model.response.CustomerStatmentRes">
+		SELECT a.*,d1.iNFO AS isDelInfo,d2.INFO AS statmentTypeInfo,d3.INFO AS chargeWayInfo,d4.INFO AS terminalInfo,d5.INFO AS statusInfo,d6.customerName AS customerName
+		FROM j_customer_statment a
+		LEFT JOIN j_dict_info d1 ON d1.ID = a.isDel
+		LEFT JOIN j_dict_info d2 ON d2.ID = a.statmentType
+		LEFT JOIN j_dict_info d3 ON d3.ID = a.chargeWay
+		LEFT JOIN j_dict_info d4 ON d4.ID = a.terminal
+		LEFT JOIN j_dict_info d5 ON d5.ID = a.status
+		LEFT JOIN j_customer d6 ON d6.customerId = a.customerId
+		WHERE 1=1
+		AND a.isDel = 16
+		<if test="customerStatmentReq.customerId != null">
+			AND a.customerId = #{customerStatmentReq.customerId}
+		</if>
+		<if test="customerStatmentReq.statmentType != null">
+			AND a.statmentType = #{customerStatmentReq.statmentType}
+		</if>
+		ORDER BY chargeDate DESC
+		LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}
+	</select>
+
+</mapper>

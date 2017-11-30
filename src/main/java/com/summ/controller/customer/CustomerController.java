@@ -29,14 +29,12 @@ public class CustomerController {
 
     @Autowired
     private JCustomerMapper jCustomerMapper;
-    @Autowired
-    private JAreaMapper jAreaMapper;
-    @Autowired
-    private JProvinceMapper jProvinceMapper;
-    @Autowired
-    private JCityMapper jCityMapper;
-    @Autowired
-    private JCustomerHouseMapper jCustomerHouseMapper;
+
+    /**
+     * CRUD for customer
+     * @param jCustomer
+     * @return
+     */
 
     @ResponseBody
     @RequestMapping("/insert")
@@ -82,53 +80,6 @@ public class CustomerController {
             map.put("count",jCustomerMapper.getCount(customerPagReq));
             map.put("list",jCustomerMapper.getCustomerList(customerPagReq));
             return new ModelRes(ModelRes.Status.SUCCESS,"search customer success !",map);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/house/find")
-    public Object findHouse(@RequestBody JCustomerHouse jCustomerHouse){
-        try {
-            List list = jCustomerHouseMapper.getList(jCustomerHouse.getCustomerId());
-            Map map = new HashMap();
-            map.put("list",list);
-            return new ModelRes(ModelRes.Status.SUCCESS,"search house info success !",map);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/house/insert")
-    public Object insertHouse(@RequestBody JCustomerHouse jCustomerHouse){
-        try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"insert house info success !",jCustomerHouseMapper.insert(jCustomerHouse));
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/house/delete")
-    public Object deleteHouse(@RequestBody Map<String,List> map){
-        try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"delete house info success !",jCustomerHouseMapper.deleteList(map.get("houseId")));
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/house/update")
-    public Object updateHouse(@RequestBody JCustomerHouse jCustomerHouse){
-        try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"update house info success !",jCustomerHouseMapper.updateById(jCustomerHouse));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

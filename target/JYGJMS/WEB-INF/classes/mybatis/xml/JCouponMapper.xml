@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JCouponMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		couponId, couponName, couponDetail, couponPrice, isDel, createTime, validTime, couponOrigin
+	</sql>
+
+	<select id="getCouponList" resultType="com.summ.model.JCoupon" parameterType="java.lang.Integer">
+		SELECT couponName
+		FROM j_coupon
+		WHERE couponOrigin = #{0}
+	</select>
+
+</mapper>

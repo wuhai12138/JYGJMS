@@ -11,8 +11,7 @@
         SELECT
         COUNT(*)
         FROM j_customer
-        WHERE 1=1
-        AND isDel = 16
+        WHERE isDel = 16
         <if test="customerPagReq.customerId != null">
             AND customerId = #{customerPagReq.customerId}
         </if>
@@ -33,9 +32,15 @@
     </select>
 
     <select id="getCustomerList" parameterType="com.summ.model.request.CustomerPagReq"
-            resultType="com.summ.model.JCustomer">
-        SELECT *
-        FROM j_customer
+            resultType="com.summ.model.response.CustomerRes">
+        SELECT a.*,d1.INFO AS customerTypeInfo,d2.INFO AS shopIdInfo,d3.INFO AS customerSexInfo,d4.INFO AS
+        warnTypeInfo,d5.INFO AS isDelInfo
+        FROM j_customer a
+        LEFT JOIN j_dict_info d1 ON a.customerType = d1.ID
+        LEFT JOIN j_dict_info d2 ON a.shopId = d2.ID
+        LEFT JOIN j_dict_info d3 ON a.customerSex = d3.ID
+        LEFT JOIN j_dict_info d4 ON a.warnType = d4.ID
+        LEFT JOIN j_dict_info d5 ON a.isDel = d5.ID
         WHERE 1=1
         AND isDel = 16
         <if test="customerPagReq.customerId != null">
@@ -60,9 +65,9 @@
         UPDATE j_customer
         SET isDel = 17
         WHERE customerId IN (
-          <foreach collection="list" item="item" index="index" close="" open="" separator=",">
-              #{item}
-          </foreach>
+        <foreach collection="list" item="item" index="index" close="" open="" separator=",">
+            #{item}
+        </foreach>
         )
     </update>
 

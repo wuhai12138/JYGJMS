@@ -3,6 +3,7 @@ package com.summ.mapper;
 import com.summ.model.JCustomer;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.summ.model.request.CustomerPagReq;
+import com.summ.model.response.CustomerRes;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public interface JCustomerMapper extends AutoMapper<JCustomer> {
 
-    List<JCustomer> getCustomerList(@Param("customerPagReq") CustomerPagReq customerPagReq);
+    List<CustomerRes> getCustomerList(@Param("customerPagReq") CustomerPagReq customerPagReq);
 
     Integer getCount(@Param("customerPagReq") CustomerPagReq customerPagReq);
 

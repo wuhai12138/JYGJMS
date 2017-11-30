@@ -4,6 +4,7 @@ import com.summ.model.JAdmin;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.summ.model.request.PaginateReq;
 import com.summ.model.response.AccessRes;
+import com.summ.model.response.AdminRes;
 
 import java.util.List;
 
@@ -14,12 +15,14 @@ public interface JAdminMapper extends AutoMapper<JAdmin> {
 
     JAdmin getAdminById(Integer id);
 
-    List<JAdmin> getAdminList(PaginateReq paginateReq);
+    List<AdminRes> getAdminList(PaginateReq paginateReq);
 
     List<AccessRes> getAccess(int adminId);
 
     int deleteAdmin(int id);
 
     int getCount();
+
+    int insertStreet ();
 
 }

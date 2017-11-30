@@ -13,9 +13,14 @@
 		WHERE adminId = #{id}
 	</select>
 
-    <select id="getAdminList" parameterType="com.summ.model.request.PaginateReq" resultType="com.summ.model.JAdmin">
-		SELECT *
-		FROM j_admin
+    <select id="getAdminList" parameterType="com.summ.model.request.PaginateReq" resultType="com.summ.model.response.AdminRes">
+		SELECT a.*,d1.INFO AS adminTypeInfo,d2.INFO AS adminBelongInfo,d3.INFO AS shopIdInfo,d4.INFO AS trainIdInfo,d5.INFO AS isDelInfo
+		FROM j_admin a
+		LEFT JOIN j_dict_info d1 ON a.adminType = d1.ID
+		LEFT JOIN j_dict_info d2 ON a.adminBelong = d2.ID
+		LEFT JOIN j_dict_info d3 ON a.shopId = d3.ID
+		LEFT JOIN j_dict_info d4 ON a.trainId = d4.ID
+		LEFT JOIN j_dict_info d5 ON a.isDel = d5.ID
 		WHERE isDel = 16
 		LIMIT #{page},#{size}
 	</select>

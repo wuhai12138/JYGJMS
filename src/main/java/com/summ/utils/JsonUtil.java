@@ -4,6 +4,7 @@ package com.summ.utils;
 import com.alibaba.fastjson.JSON;
 import com.thoughtworks.xstream.XStream;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -105,6 +106,16 @@ public class JsonUtil {
         return null;
     }
 
+    /**
+     * 将list转为key为list的map
+     * @param o
+     * @return
+     */
+    public Object list2map(Object o){
+        Map map = new HashMap();
+        map.put("list",o);
+        return map;
+    }
 
     public static Object getObjectFromXML(String xml, Class tClass) {
         //将从API返回的XML数据映射到Java对象
