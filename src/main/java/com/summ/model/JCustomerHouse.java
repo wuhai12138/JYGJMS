@@ -36,6 +36,8 @@ public class JCustomerHouse implements Serializable {
 	/**  */
 	private Integer areaId;
 
+	private Integer streetId;
+
 	/** 房产地址 */
 	private String houseAddress;
 
@@ -57,6 +59,17 @@ public class JCustomerHouse implements Serializable {
 	/**  */
 	private Integer isDel = 16;
 
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public Integer getStreetId() {
+		return streetId;
+	}
+
+	public void setStreetId(Integer streetId) {
+		this.streetId = streetId;
+	}
 
 	public Integer getHouseId() {
 		return this.houseId;

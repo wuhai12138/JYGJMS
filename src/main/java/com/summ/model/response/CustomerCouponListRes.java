@@ -36,6 +36,22 @@ public class CustomerCouponListRes {
     private Integer isDel = 16;
     private String isDelInfo;
 
+    /**  */
+    private String couponName;
+
+    /**  */
+    private String couponDetail;
+
+    /**  */
+    private Double couponPrice;
+
+    /**  */
+    private Date validTime;
+
+    /**  */
+    private String couponOrigin;
+    private String couponOriginInfo;
+
 
     public Integer getCouponListId() {
         return couponListId;
@@ -131,5 +147,53 @@ public class CustomerCouponListRes {
 
     public void setIsDelInfo(String isDelInfo) {
         this.isDelInfo = isDelInfo;
+    }
+
+    public String getCouponName() {
+        return couponName;
+    }
+
+    public void setCouponName(String couponName) {
+        this.couponName = couponName;
+    }
+
+    public String getCouponDetail() {
+        return couponDetail;
+    }
+
+    public void setCouponDetail(String couponDetail) {
+        this.couponDetail = couponDetail;
+    }
+
+    public Double getCouponPrice() {
+        return couponPrice;
+    }
+
+    public void setCouponPrice(Double couponPrice) {
+        this.couponPrice = couponPrice;
+    }
+
+    public Date getValidTime() {
+        return validTime;
+    }
+
+    public void setValidTime(Date validTime) {
+        this.validTime = validTime;
+    }
+
+    public String getCouponOrigin() {
+        return couponOrigin;
+    }
+
+    public void setCouponOrigin(String couponOrigin) {
+        this.couponOrigin = couponOrigin;
+    }
+
+    public String getCouponOriginInfo() {
+        return couponOriginInfo;
+    }
+
+    public void setCouponOriginInfo(String couponOriginInfo) {
+        this.couponOriginInfo = couponOriginInfo;
     }
 }

@@ -40,10 +40,47 @@ public class TestController {
         try {
             int id = req.getId();
             JAdmin jAdmin = jAdminMapper.getAdminById(id);
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找管理员信息成功", jAdmin);
+            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", jAdmin);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "查找管理员信息失败");
+            return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
+        }
+
+    }
+
+    @RequestMapping(value = "/testOrder")
+    @ResponseBody
+    public Object getTestOrder(@RequestBody TestReq req) {
+        try {
+            Map map = new HashMap();
+            map.put("待生成计划书",4);
+            map.put("预约试工",3);
+            map.put("待生成日程",5);
+            map.put("待签合同",2);
+            Map map1 = new HashMap();
+            map1.put("list",map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", map1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
+        }
+
+    }
+
+    @RequestMapping(value = "/testPublic")
+    @ResponseBody
+    public Object getPublicList(@RequestBody TestReq req) {
+        try {
+            String[] list = {"2017年7月29日 下午13:00 召开管家会议","2017年7月29日 下午13:00 召开管家会议",
+                    "2017年7月29日 下午13:00 召开管家会议","2017年7月29日 下午13:00 召开管家会议",
+                    "2017年7月29日 下午13:00 召开管家会议","2017年7月29日 下午13:00 召开管家会议"};
+            Map map = new HashMap();
+            map.put("list",list);
+            map.put("count",6);
+            return new ModelRes(ModelRes.Status.SUCCESS, "查找公告信息成功", map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "查找公告信息失败");
         }
 
     }

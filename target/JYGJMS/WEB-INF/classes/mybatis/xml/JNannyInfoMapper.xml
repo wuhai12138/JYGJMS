@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JNannyInfoMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		nannyId, nannyAvatar, nannyName, nannySex, nannyStatus, nannyType, nannyLevel, nannyPhone, provinceId, cityId, areaId, streetId, nannyAddress, nannyIdCard, nannyBirthday, nannyAge, nannyAnimalSign, nannyNation,nannyOrigin, nannyHeight, nannyWeight, salaryBank, salaryCard, expectSalary, nannyBuyoutStatus, nannyBuyoutDate, nannyAgencyFees, payment, validDate, remark, createTime, modifyTime, isDel
+	</sql>
+
+	<select id="getCount" parameterType="com.summ.model.request.NannyInfoReq" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM j_nanny_info j
+		WHERE isDel = 16
+		<if test="nannyInfoReq.nannyId != null">
+			AND j.nannyId = #{nannyInfoReq.nannyId}
+		</if>
+		<if test="nannyInfoReq.nannyName != null">
+			AND j.nannyName LIKE ${%nannyInfoReq.nannyName%}
+		</if>
+		<if test="nannyInfoReq.nannyPhone != null">
+			AND j.nannyPhone = #{nannyInfoReq.nannyPhone}
+		</if>
+		<if test="nannyInfoReq.nannyStatus != null">
+			AND j.nannyStatus = #{nannyInfoReq.nannyStatus}
+		</if>
+		<if test="nannyInfoReq.nannyType != null">
+			AND j.nannyType = #{nannyInfoReq.nannyType}
+		</if>
+		<if test="nannyInfoReq.nannyLevel != null">
+			AND j.nannyLevel = #{nannyInfoReq.nannyLevel}
+		</if>
+	</select>
+
+	<select id="getNannyInfoList" parameterType="com.summ.model.request.NannyInfoReq" resultType="com.summ.model.response.NannyListRes">
+		SELECT j.nannyId,j.nannyName,j.nannyPhone,j.createTime,j.nannyStatus,jti.INFO AS nannyStatusInfo,j.nannyAge,j.remark
+		FROM j_nanny_info j
+		LEFT JOIN j_dict_info jti ON j.nannyStatus = jti.ID
+		WHERE j.isDel = 16
+		<if test="nannyInfoReq.nannyId != null">
+			AND j.nannyId = #{nannyInfoReq.nannyId}
+		</if>
+		<if test="nannyInfoReq.nannyName != null">
+			AND j.nannyName LIKE ${%nannyInfoReq.nannyName%}
+		</if>
+		<if test="nannyInfoReq.nannyPhone != null">
+			AND j.nannyPhone = #{nannyInfoReq.nannyPhone}
+		</if>
+		<if test="nannyInfoReq.nannyStatus != null">
+			AND j.nannyStatus = #{nannyInfoReq.nannyStatus}
+		</if>
+		<if test="nannyInfoReq.nannyType != null">
+			AND j.nannyType = #{nannyInfoReq.nannyType}
+		</if>
+		<if test="nannyInfoReq.nannyLevel != null">
+			AND j.nannyLevel = #{nannyInfoReq.nannyLevel}
+		</if>
+		limit #{nannyInfoReq.page},#{nannyInfoReq.size}
+	</select>
+
+	<select id="getNannyBasic" parameterType="java.lang.Integer" resultType="com.summ.model.response.NannyInfoRes">
+		SELECT j.nannyId,j.nannyAvatar,j.createTime,j.nannyName,j.nannyIdCard,j.nannyPhone,j.nannyAge,j.nannySex,d1.INFO AS nannySexInfo,
+				j.provinceId,d2.provinceName AS provinceIdInfo,j.cityId,d3.cityName AS cityIdInfo,j.areaId,d4.areaName AS areaIdInfo,j.streetId,d5.streetName AS streetIdInfo,j.remark
+		FROM j_nanny_info j
+		LEFT JOIN j_dict_info d1 ON d1.ID = j.nannySex
+		LEFT JOIN j_province d2 ON d2.provinceId = j.provinceId
+		LEFT JOIN j_city d3 ON d3.cityId = j.cityId
+		LEFT JOIN j_area d4 ON d4.areaId = j.areaId
+		LEFT JOIN j_street d5 ON d5.streetId = j.streetId
+		WHERE j.nannyId = #{0}
+	</select>
+
+	<select id="getJobData" resultType="com.summ.model.response.NannyInfoRes">
+		SELECT j.nannyId,j.nannyStatus,d1.INFO AS nannyStatusInfo,j.nannyLevel,d2.INFO AS nannyLevelInfo,j.nannyAgencyFees,j.payment,d3.INFO AS paymenyInfo,
+				j.expectSalary,j.validDate,j.salaryCard,j.salaryBank
+		FROM j_nanny_info j
+		LEFT JOIN j_dict_info d1 ON d1.ID = j.nannyStatus
+		LEFT JOIN j_dict_info d2 ON d2.ID = j.nannyLevel
+		LEFT JOIN j_dict_info d3 ON d3.ID = j.payment
+		WHERE j.nannyId = #{0}
+	</select>
+
+	<select id="getNannyOther" resultType="com.summ.model.response.NannyInfoRes">
+		SELECT j.nannyHeight,j.nannyWeight,j.nannyOrigin,d1.INFO AS nannyOriginInfo,j.nannyNation,d2.INFO AS nannyNationInfo,j.nannyAnimalSign,d3.INFO AS nannyAnimalSignInfo,j.nannyEducation,d4.INFO AS nannyEducationInfo
+		FROM j_nanny_info j
+		LEFT JOIN j_dict_info d1 ON d1.ID = j.nannyOrigin
+		LEFT JOIN j_dict_info d2 ON d2.ID = j.nannyNation
+		LEFT JOIN j_dict_info d3 ON d3.ID = j.nannyAnimalSign
+		LEFT JOIN j_dict_info d4 ON d4.ID = j.nannyEducation
+		WHERE j.nannyId = #{0}
+	</select>
+
+
+
+	<select id="getNannyTrain" resultType="com.summ.model.response.NannyTrainRes">
+		SELECT j.trainId,d1.INFO AS trainIdInfo
+		FROM j_nanny_train j
+		LEFT JOIN j_dict_info d1 ON d1.ID= j.trainId
+		WHERE nannyId=#{0}
+	</select>
+
+	<select id="getNannyJobLevel" resultType="com.summ.model.response.NannyJobLevelRes">
+		SELECT j.jobLevelId,d1.INFO AS jobLevelIdInfo
+		FROM j_nanny_job_level j
+		LEFT JOIN j_dict_info d1 ON d1.ID= j.jobLevelId
+		WHERE nannyId=#{0}
+	</select>
+
+	<select id="getNannyReligion" resultType="com.summ.model.response.NannyReligionRes">
+		SELECT j.religionId,d1.INFO AS religionIdInfo
+		FROM j_nanny_religion j
+		LEFT JOIN j_dict_info d1 ON d1.ID= j.religionId
+		WHERE nannyId=#{0}
+	</select>
+	<select id="getNannyCertificate" resultType="com.summ.model.response.NannyCertificateRes">
+		SELECT j.certificateId,d1.INFO AS certificateIdInfo
+		FROM j_nanny_certificate j
+		LEFT JOIN j_dict_info d1 ON d1.ID= j.certificateId
+		WHERE nannyId=#{0}
+	</select>
+	<select id="getNannyLanguage" resultType="com.summ.model.response.NannyLanguageRes">
+		SELECT j.languageId,d1.INFO AS languageIdInfo
+		FROM j_nanny_language j
+		LEFT JOIN j_dict_info d1 ON d1.ID= j.languageId
+		WHERE nannyId=#{0}
+	</select>
+	<select id="getNannyCharacter" resultType="com.summ.model.response.NannyCharacterRes">
+		SELECT j.characterId,d1.INFO AS characterIdInfo
+		FROM j_nanny_character j
+		LEFT JOIN j_dict_info d1 ON d1.ID= j.characterId
+		WHERE nannyId=#{0}
+	</select>
+	<select id="getNannySkill" resultType="com.summ.model.response.NannySkillRes">
+		SELECT j.skillId,d1.INFO AS skillIdInfo
+		FROM j_nanny_skill j
+		LEFT JOIN j_dict_info d1 ON d1.ID= j.skillId
+		WHERE nannyId=#{0}
+	</select>
+
+
+</mapper>

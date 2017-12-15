@@ -23,6 +23,9 @@ public class CustomerHouseRes {
     private Integer areaId;
     private String areaIdInfo;
 
+    private Integer streetId;
+    private String streetIdInfo;
+
     /** 房产地址 */
     private String houseAddress;
 
@@ -44,6 +47,22 @@ public class CustomerHouseRes {
     /**  */
     private Integer isDel = 16;
     private String isDelInfo;
+
+    public Integer getStreetId() {
+        return streetId;
+    }
+
+    public void setStreetId(Integer streetId) {
+        this.streetId = streetId;
+    }
+
+    public String getStreetIdInfo() {
+        return streetIdInfo;
+    }
+
+    public void setStreetIdInfo(String streetIdInfo) {
+        this.streetIdInfo = streetIdInfo;
+    }
 
     public Integer getHouseId() {
         return houseId;

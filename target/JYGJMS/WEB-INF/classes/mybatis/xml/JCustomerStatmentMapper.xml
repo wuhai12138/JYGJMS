@@ -12,16 +12,16 @@
 		COUNT(*)
 		FROM j_customer_statment
 		WHERE isDel = 16
-		<if test="customerStatmentReq.customerId != null">
+		<if test="customerStatmentReq.customerId != 0">
 			AND customerId = #{customerStatmentReq.customerId}
 		</if>
-		<if test="customerStatmentReq.statmentType != null">
+		<if test="customerStatmentReq.statmentType != 0">
 			AND statmentType = #{customerStatmentReq.statmentType}
 		</if>
 	</select>
 
 	<select id="getStatmentList" parameterType="com.summ.model.request.CustomerStatmentReq" resultType="com.summ.model.response.CustomerStatmentRes">
-		SELECT a.*,d1.iNFO AS isDelInfo,d2.INFO AS statmentTypeInfo,d3.INFO AS chargeWayInfo,d4.INFO AS terminalInfo,d5.INFO AS statusInfo,d6.customerName AS customerName
+		SELECT a.*,d1.iNFO AS isDelInfo,d2.INFO AS statmentTypeInfo,d3.INFO AS chargeWayInfo,d4.INFO AS terminalInfo,d5.INFO AS statusInfo,d6.customerName AS customerName,d7.adminName AS adminName
 		FROM j_customer_statment a
 		LEFT JOIN j_dict_info d1 ON d1.ID = a.isDel
 		LEFT JOIN j_dict_info d2 ON d2.ID = a.statmentType
@@ -29,16 +29,19 @@
 		LEFT JOIN j_dict_info d4 ON d4.ID = a.terminal
 		LEFT JOIN j_dict_info d5 ON d5.ID = a.status
 		LEFT JOIN j_customer d6 ON d6.customerId = a.customerId
+		LEFT JOIN j_admin d7 ON d7.adminId = a.adminId
 		WHERE 1=1
 		AND a.isDel = 16
-		<if test="customerStatmentReq.customerId != null">
+		<if test="customerStatmentReq.customerId != 0">
 			AND a.customerId = #{customerStatmentReq.customerId}
 		</if>
-		<if test="customerStatmentReq.statmentType != null">
+		<if test="customerStatmentReq.statmentType != 0">
 			AND a.statmentType = #{customerStatmentReq.statmentType}
 		</if>
-		ORDER BY chargeDate DESC
-		LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}
+		ORDER BY a.chargeDate DESC
+		<if test="customerStatmentReq.size != 0 and customerStatmentReq.statmentType != 0">
+			LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}	
+		</if>
 	</select>
 
 </mapper>

@@ -7,6 +7,7 @@ import com.summ.model.JCustomerStatment;
 import com.summ.model.request.CustomerPagReq;
 import com.summ.model.request.CustomerStatmentReq;
 import com.summ.model.response.ModelRes;
+import com.summ.utils.ExcelUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class CustomerStatmentController {
     public Object insert(@RequestBody JCustomerStatment jCustomerStatment, HttpServletRequest request){
         try {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
-            jCustomerStatment.setCustomerId(jAdmin.getAdminId());
+            jCustomerStatment.setAdminId(jAdmin.getAdminId());
             return new ModelRes(ModelRes.Status.SUCCESS,"add customer statment success !",jCustomerStatmentMapper.insert(jCustomerStatment));
         }catch (Exception e){
             e.printStackTrace();
@@ -71,6 +72,17 @@ public class CustomerStatmentController {
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/export")
+    public String export(@RequestBody CustomerStatmentReq customerStatmentReq){
+        try {
+            return ExcelUtil.ExportCustomerStatment(jCustomerStatmentMapper.getStatmentList(customerStatmentReq));
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 

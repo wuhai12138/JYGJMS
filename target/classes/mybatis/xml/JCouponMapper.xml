@@ -8,7 +8,7 @@
 	</sql>
 
 	<select id="getCouponList" resultType="com.summ.model.JCoupon" parameterType="java.lang.Integer">
-		SELECT couponName
+		SELECT *
 		FROM j_coupon
 		WHERE couponOrigin = #{0}
 	</select>

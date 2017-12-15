@@ -34,16 +34,16 @@ public class JCoupon implements Serializable {
 	private Double couponPrice;
 
 	/**  */
-	private Integer isDel;
-
-	/**  */
-	private Date createTime;
-
-	/**  */
 	private Date validTime;
 
 	/**  */
 	private String couponOrigin;
+
+	/**  */
+	private Integer isDel;
+
+	/**  */
+	private Date createTime;
 
 
 	public Integer getCouponId() {

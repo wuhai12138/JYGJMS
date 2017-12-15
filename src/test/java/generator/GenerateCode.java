@@ -53,8 +53,8 @@ public class GenerateCode {
 		 * </p>
 		 */
         cg.setIdType(IdType.AUTO);
-//		cg.setTableNames(new String[]{"j_dict_type","j_dict_info"});
-        cg.setTableNames(new String[]{"j_street"});
+		cg.setTableNames(new String[]{"j_nanny_info","j_nanny_certificate","j_nanny_character","j_nanny_job_level","j_nanny_language","j_nanny_religion","j_nanny_skill","j_nanny_train"});
+//        cg.setTableNames(new String[]{"j_street"});
 
         /* 生成文件保存位置 */
         cg.setSaveDir("E:\\summ\\MybatisPlusGeneratorModel");

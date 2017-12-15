@@ -38,7 +38,7 @@ public class BasicController {
     private JDictInfoMapper jDictInfoMapper;
 
     /**
-     * 获取省市区列表
+     * 获取省市区街道列表
      *
      * @return
      */

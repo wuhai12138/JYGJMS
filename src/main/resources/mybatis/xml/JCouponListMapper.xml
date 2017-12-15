@@ -13,14 +13,31 @@
 		WHERE couponListId = #{0}
 	</update>
 
-    <select id="getListById" parameterType="java.lang.Integer" resultType="com.summ.model.response.CustomerCouponListRes">
-		SELECT j.*,d1.INFO AS couponStatusInfo,d2.INFO AS shopIdInfo,d3.INFO AS isDelInfo
+    <select id="getListById" parameterType="com.summ.model.request.CustomerCouponReq" resultType="com.summ.model.response.CustomerCouponListRes">
+		SELECT j.*,d1.INFO AS couponStatusInfo,d2.INFO AS shopIdInfo,d3.INFO AS isDelInfo,jc.couponName,jc.couponDetail,jc.couponPrice,jc.validTime,jc.couponOrigin,d4.INFO AS couponOriginInfo
 		FROM j_coupon_list j
+		LEFT JOIN j_coupon jc ON jc.couponId = j.couponId
 		LEFT JOIN  j_dict_info d1 ON d1.ID = j.couponStatus
 		LEFT JOIN  j_dict_info d2 ON d2.ID = j.shopId
 		LEFT JOIN  j_dict_info d3 ON d3.ID = j.isDel
+		LEFT JOIN  j_dict_info d4 ON d4.ID = jc.couponOrigin
+		WHERE j.isDel = 16
+		AND customerId = #{customerCouponReq.customerId}
+		<if test="customerCouponReq.couponStatus != null">
+			AND j.couponStatus = #{customerCouponReq.couponStatus}
+		</if>
+		limit #{customerCouponReq.page},#{customerCouponReq.size}
+	</select>
+
+	<select id="getCount" parameterType="com.summ.model.request.CustomerCouponReq" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*)
+		FROM j_coupon_list
 		WHERE isDel = 16
-		AND customerId = #{0}
+		AND customerId = #{customerCouponReq.customerId}
+		<if test="customerCouponReq.couponStatus != null">
+			AND couponStatus = #{customerCouponReq.couponStatus}
+		</if>
 	</select>
 
 </mapper>

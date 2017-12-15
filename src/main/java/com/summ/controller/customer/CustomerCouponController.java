@@ -4,6 +4,7 @@ import com.summ.mapper.JCouponListMapper;
 import com.summ.mapper.JCouponMapper;
 import com.summ.model.JCoupon;
 import com.summ.model.JCouponList;
+import com.summ.model.request.CustomerCouponReq;
 import com.summ.model.response.ModelRes;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,8 @@ public class CustomerCouponController {
     @RequestMapping("/insert")
     public Object insert(@RequestBody JCouponList jCouponList){
         try {
+            System.out.println(">>>>>>>jCouponList>>>>>>>>>"+jCouponList.getCouponStatus());
+
             return new ModelRes(ModelRes.Status.SUCCESS,"add coupon to customer success !",jCouponListMapper.insert(jCouponList));
         }catch (Exception e){
             e.printStackTrace();
@@ -72,6 +75,9 @@ public class CustomerCouponController {
     @RequestMapping("/update")
     public Object update(@RequestBody JCouponList jCouponList){
         try {
+            JCouponList jCouponList1 = jCouponListMapper.selectById(Long.valueOf(jCouponList.getCouponListId()));
+            System.out.println("<<<<<CouponStatus<<<<<<<"+jCouponList1.getCouponStatus());
+            jCouponList.setCouponStatus(jCouponList1.getCouponStatus());
             return new ModelRes(ModelRes.Status.SUCCESS,"update coupon success !",jCouponListMapper.updateById(jCouponList));
         }catch (Exception e){
             e.printStackTrace();
@@ -81,10 +87,12 @@ public class CustomerCouponController {
 
     @ResponseBody
     @RequestMapping("/find")
-    public Object find(@RequestBody Map<String, Integer> map){
+    public Object find(@RequestBody CustomerCouponReq customerCouponReq){
         try {
+            customerCouponReq.setPage((customerCouponReq.getPage()-1)*customerCouponReq.getSize());
             Map<String,Object> mapList = new HashedMap();
-            mapList.put("list",jCouponListMapper.getListById(map.get("customerId")));
+            mapList.put("list",jCouponListMapper.getListById(customerCouponReq));
+            mapList.put("count",jCouponListMapper.getCount(customerCouponReq));
             return new ModelRes(ModelRes.Status.SUCCESS,"search customer success !",mapList);
         }catch (Exception e){
             e.printStackTrace();
