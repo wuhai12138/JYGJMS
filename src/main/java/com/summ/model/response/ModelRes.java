@@ -72,6 +72,7 @@ public class ModelRes {
         int SUCCESS = 200;
         int FAILED = 400;
         int ERROR = 500;
+        int BUILT = 201;
     }
 
 }

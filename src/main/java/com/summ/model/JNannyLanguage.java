@@ -30,7 +30,7 @@ public class JNannyLanguage implements Serializable {
 	private Integer nannyId;
 
 	/**  */
-	private Integer isDel;
+	private Integer isDel = 16;
 
 
 	public Integer getNannyLangId() {

@@ -9,15 +9,15 @@ public class NannyLanguageRes {
      * languageIdInfo :
      */
 
-    private int languageId;
+    private int nannyLangId;
     private String languageIdInfo;
 
-    public int getLanguageId() {
-        return languageId;
+    public int getNannyLangId() {
+        return nannyLangId;
     }
 
-    public void setLanguageId(int languageId) {
-        this.languageId = languageId;
+    public void setNannyLangId(int nannyLangId) {
+        this.nannyLangId = nannyLangId;
     }
 
     public String getLanguageIdInfo() {

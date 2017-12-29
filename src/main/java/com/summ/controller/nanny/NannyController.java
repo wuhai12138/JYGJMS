@@ -1,18 +1,26 @@
 package com.summ.controller.nanny;
 
-import com.summ.mapper.JNannyInfoMapper;
+import com.summ.Consts;
+import com.summ.controller.basic.AutoMapperController;
+import com.summ.mapper.JNannyShopMapper;
+import com.summ.model.JAdmin;
 import com.summ.model.JNannyInfo;
-import com.summ.model.JNannyTrain;
+import com.summ.model.JNannyShop;
 import com.summ.model.request.NannyInfoReq;
 import com.summ.model.response.*;
+import com.summ.utils.FileUploadUtil;
 import com.summ.utils.IdCardUtil;
+import com.summ.utils.ResponseUtil;
+import com.summ.utils.StringUtil;
 import org.apache.commons.collections.map.HashedMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,9 +33,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/nanny")
-public class NannyController {
-    @Autowired
-    private JNannyInfoMapper jNannyInfoMapper;
+public class NannyController extends AutoMapperController{
 
     /**
      * CRUD for nanny
@@ -37,14 +43,59 @@ public class NannyController {
 
     @ResponseBody
     @RequestMapping("/insert")
-    public Object insert(@RequestBody JNannyInfo jNannyInfo){
+    public Object insert(@RequestBody JNannyInfo jNannyInfo, ServletRequest request){
         try {
+            //根据身份证判断服务师信息是否已录入
+            Map idMap = new HashMap(1);
+            idMap.put("nannyIdCard",jNannyInfo.getNannyIdCard());
+            List<JNannyInfo> idCardNannyInfo =jNannyInfoMapper.selectByMap(idMap);
+            if (idCardNannyInfo.size()>0){
+                //如果已经录入则返回服务师相关信息
+                Map resMap = new HashMap(2);
+                resMap.put("NannyInfoRes",idCardNannyInfo.get(0));
+                resMap.put("NannyShopRes",jNannyInfoMapper.getNannyShop(idCardNannyInfo.get(0).getNannyId()));
+                return new ModelRes(ModelRes.Status.BUILT, "nanny exist", resMap);
+            }
+
+            String fileName = "NA"+System.currentTimeMillis()+".jpg";
+//            if (IdCardUtil.isValidatedAllIdcard(jNannyInfo.getNannyIdCard()) && StringUtil.generateImage(jNannyInfo.getNannyAvatar(),"C:/Users/jygj_7500/Desktop/upload/" + fileName)){
+            //判断身份证是否合法以及照片上传是否成功
             if (IdCardUtil.isValidatedAllIdcard(jNannyInfo.getNannyIdCard())){
+//                if (IdCardUtil.isValidatedAllIdcard(jNannyInfo.getNannyIdCard()) && StringUtil.generateImage(jNannyInfo.getNannyAvatar(), Consts.nannyAvatarUrl + fileName)){
+                //根据身份证生成年龄
                 jNannyInfo.setNannyAge(IdCardUtil.getAgeByIdCard(jNannyInfo.getNannyIdCard()));
+                jNannyInfo.setNannyAvatar(fileName);
                 jNannyInfo.setCreateTime(new Date());
-                return new ModelRes(ModelRes.Status.SUCCESS,"add NannyInfo success !",jNannyInfoMapper.insert(jNannyInfo));
+                //新增服务师
+                jNannyInfoMapper.insert(jNannyInfo);
+                //给服务师添加管理员所属门店
+                JNannyShop jNannyShop = new JNannyShop();
+
+                jNannyShop.setNannyId(((JNannyInfo)jNannyInfoMapper.selectByMap(idMap).get(0)).getNannyId());
+                JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+                jNannyShop.setShopId(jAdmin.getShopId());
+                return new ModelRes(ModelRes.Status.SUCCESS,"search NannyInfo success !",jNannyShopMapper.insert(jNannyShop));
             }else {
-                return new ModelRes(ModelRes.Status.FAILED, "id card err !");
+                return new ModelRes(ModelRes.Status.FAILED, "id card or avatar err !");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/upload")
+    public Object upload(@RequestBody JNannyInfo jNannyInfo){
+        try {
+            String fileName = System.currentTimeMillis()+".jpg";
+            boolean boo = StringUtil.generateImage(jNannyInfo.getNannyAvatar(),"C:/Users/jygj_7500/Desktop/upload/" + fileName);
+            if(boo){
+                JNannyInfo jNannyInfo1 = new JNannyInfo(jNannyInfo.getNannyId(),fileName);
+                jNannyInfoMapper.updateSelectiveById(jNannyInfo1);
+                return  new ModelRes(ModelRes.Status.SUCCESS, "upload success", fileName);
+            }else {
+                return new ModelRes(ModelRes.Status.FAILED, "file err !");
             }
 
         }catch (Exception e){
@@ -53,99 +104,14 @@ public class NannyController {
         }
     }
 
-//    @ResponseBody
-//    @RequestMapping("/delete")
-//    public Object delete(@RequestBody Map<String,List> jNannyInfo){
-//        try {
-//            List list = jNannyInfo.get("NannyInfoId");
-//            System.out.println(">>>>>>>>>>>list>>>>>>>>>>>>" + list);
-//            return new ModelRes(ModelRes.Status.SUCCESS,"delete NannyInfo success !",jNannyInfoMapper.deleteList(list));
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-//        }
-//    }
-
     @ResponseBody
-    @RequestMapping("/update")
-    public Object update(@RequestBody JNannyInfo jNannyInfo){
-        try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"update NannyInfo success !",jNannyInfoMapper.updateById(jNannyInfo));
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/find/list")
+    @RequestMapping("/find")
     public Object find(@RequestBody NannyInfoReq nannyInfoReq){
         try {
             nannyInfoReq.setPage(nannyInfoReq.getSize() * (nannyInfoReq.getPage()-1));
             Map<String,Object> map = new HashedMap();
             map.put("count",jNannyInfoMapper.getCount(nannyInfoReq));
             map.put("list",jNannyInfoMapper.getNannyInfoList(nannyInfoReq));
-            return new ModelRes(ModelRes.Status.SUCCESS,"search NannyInfo success !",map);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/find/basic")
-    public Object findBasicData(@RequestBody JNannyInfo jNannyInfo){
-        try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"search NannyInfo success !",jNannyInfoMapper.getNannyBasic(jNannyInfo.getNannyId()));
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/find/job")
-    public Object findJobData(@RequestBody JNannyInfo jNannyInfo){
-        try {
-            NannyInfoRes nannyInfoRes = jNannyInfoMapper.getJobData(jNannyInfo.getNannyId());
-            List<NannyTrainRes> jNannyTrains = jNannyInfoMapper.getNannyTrain(jNannyInfo.getNannyId());
-            nannyInfoRes.setNannyTrainRes(jNannyTrains);
-            List<NannyJobLevelRes> jobLevelRes = jNannyInfoMapper.getNannyJobLevel(jNannyInfo.getNannyId());
-            nannyInfoRes.setNannyJobLevelRes(jobLevelRes);
-            return new ModelRes(ModelRes.Status.SUCCESS,"search NannyInfo success !",nannyInfoRes);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/find/other")
-    public Object findOtherData(@RequestBody JNannyInfo jNannyInfo){
-        try {
-            int nannyId = jNannyInfo.getNannyId();
-            NannyInfoRes nannyInfoRes = jNannyInfoMapper.getNannyOther(nannyId);
-            List<NannyReligionRes> nannyReligionRes = jNannyInfoMapper.getNannyReligion(nannyId);
-            nannyInfoRes.setNannyReligionRes(nannyReligionRes);
-            List<NannyLanguageRes> nannyLanguageRes = jNannyInfoMapper.getNannyLanguage(nannyId);
-            nannyInfoRes.setNannyLanguageRes(nannyLanguageRes);
-            List<NannySkillRes> nannySkillRes = jNannyInfoMapper.getNannySkill(nannyId);
-            nannyInfoRes.setNannySkillRes(nannySkillRes);
-            List<NannyCharacterRes> nannyCharacterRes = jNannyInfoMapper.getNannyCharacter(nannyId);
-            nannyInfoRes.setNannyCharacterRes(nannyCharacterRes);
-            return new ModelRes(ModelRes.Status.SUCCESS,"search NannyInfo success !",nannyInfoRes);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    @ResponseBody
-    @RequestMapping("/find/certificate")
-    public Object findCertificateData(@RequestBody JNannyInfo jNannyInfo){
-        try {
-            Map map = new HashMap();
-            map.put("certificate",jNannyInfoMapper.getNannyCertificate(jNannyInfo.getNannyId()));
             return new ModelRes(ModelRes.Status.SUCCESS,"search NannyInfo success !",map);
         }catch (Exception e){
             e.printStackTrace();

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -21,21 +22,13 @@ import java.util.Map;
 
 /**
  * Created by jygj_7500 on 17/11/27.
+ * @author
  */
 @Controller
 @RequestMapping("/basic")
-public class BasicController {
+public class BasicController extends AutoMapperController{
 
-    @Autowired
-    private JStreetMapper jStreetMapper;
-    @Autowired
-    private JAreaMapper jAreaMapper;
-    @Autowired
-    private JProvinceMapper jProvinceMapper;
-    @Autowired
-    private JCityMapper jCityMapper;
-    @Autowired
-    private JDictInfoMapper jDictInfoMapper;
+
 
     /**
      * 获取省市区街道列表
@@ -84,15 +77,94 @@ public class BasicController {
     }
 
     @ResponseBody
-    @RequestMapping("/dict")
-    public Object getDict(@RequestBody Map<String, Integer> typeCode) {
+    @RequestMapping(value = "/dict/insert")
+    public Object insertDict(@RequestBody JDictInfo jDictInfo) {
         try {
             Map map = new HashMap();
-            map.put("list", jDictInfoMapper.getList(typeCode.get("typeCode")));
+            map.put("typeCode",jDictInfo.getTypecode());
+            EntityWrapper<JDictInfo> entityWrapper = new EntityWrapper<JDictInfo>();
+            jDictInfo.setDictcode(jDictInfoMapper.selectByMap(map).size()+1);
+            return new ModelRes(ModelRes.Status.SUCCESS, "insert dict info success !", jDictInfoMapper.insert(jDictInfo));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+    /**
+     * 获取有哪些服务师类型等
+     * @param typeCode
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/dict/find")
+    public Object getDict(@RequestBody Map typeCode) {
+        try {
+            Map map = new HashMap();
+            if (typeCode.get("info")!=null){
+                map.put("list", jDictInfoMapper.getList((Integer) typeCode.get("typeCode"), (String) typeCode.get("info")));
+            }else {
+                map.put("list", jDictInfoMapper.getList((Integer) typeCode.get("typeCode"),""));
+            }
             return new ModelRes(ModelRes.Status.SUCCESS, "search address success !", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
         }
     }
+
+    /**
+     * 获取数据字典类型
+     * @param jAccess
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/dict/type")
+    public Object getDictList(@RequestBody JAccess jAccess) {
+        try {
+            return new ModelRes(ModelRes.Status.SUCCESS, "search address success !", jDictTypeMapper.selectTypeList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 获取门店名称字典
+     * @param map
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/shop/dict")
+    public Object getShopDict(@RequestBody Map map) {
+        try {
+            EntityWrapper<JShop> entityWrapper = new EntityWrapper<JShop>();
+            Map map1 = new HashMap();
+            map1.put("list",jShopMapper.selectList(entityWrapper));
+            return new ModelRes(ModelRes.Status.SUCCESS, "search address success !", map1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 获取省籍贯字典
+     * @param map
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/origin/dict")
+    public Object getOriginDict(@RequestBody Map map) {
+        try {
+            EntityWrapper<JProvince> entityWrapper = new EntityWrapper<JProvince>();
+            Map map1 = new HashMap();
+            map1.put("list",jProvinceMapper.selectList(entityWrapper));
+            return new ModelRes(ModelRes.Status.SUCCESS, "search address success !", map1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+
 }

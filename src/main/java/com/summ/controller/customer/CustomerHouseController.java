@@ -1,35 +1,23 @@
 package com.summ.controller.customer;
 
-import com.summ.mapper.JAreaMapper;
-import com.summ.mapper.JCityMapper;
-import com.summ.mapper.JCustomerHouseMapper;
-import com.summ.mapper.JProvinceMapper;
+import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JCustomerHouse;
 import com.summ.model.response.ModelRes;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by jygj_7500 on 17/11/28.
+ *
+ * @author jygj_7500
+ * @date 17/11/28
  */
 @Controller
 @RequestMapping("/customer/house")
-public class CustomerHouseController {
-
-    @Autowired
-    private JAreaMapper jAreaMapper;
-    @Autowired
-    private JProvinceMapper jProvinceMapper;
-    @Autowired
-    private JCityMapper jCityMapper;
-    @Autowired
-    private JCustomerHouseMapper jCustomerHouseMapper;
+public class CustomerHouseController extends AutoMapperController{
 
     /**
      * CRUD for customer house

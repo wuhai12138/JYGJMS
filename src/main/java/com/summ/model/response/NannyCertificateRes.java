@@ -10,15 +10,24 @@ public class NannyCertificateRes {
      * certificateIdInfo :
      */
 
-    private int certificateId;
+    private int nannyCertId;
     private String certificateIdInfo;
+    private String photo;
 
-    public int getCertificateId() {
-        return certificateId;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setCertificateId(int certificateId) {
-        this.certificateId = certificateId;
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public int getNannyCertId() {
+        return nannyCertId;
+    }
+
+    public void setNannyCertId(int nannyCertId) {
+        this.nannyCertId = nannyCertId;
     }
 
     public String getCertificateIdInfo() {

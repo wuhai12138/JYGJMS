@@ -11,15 +11,15 @@ public class NannyTrainRes {
      * trainIdInfo :
      */
 
-    private int trainId;
+    private Integer nannyTrainId;
     private String trainIdInfo;
 
-    public int getTrainId() {
-        return trainId;
+    public Integer getNannyTrainId() {
+        return nannyTrainId;
     }
 
-    public void setTrainId(int trainId) {
-        this.trainId = trainId;
+    public void setNannyTrainId(Integer nannyTrainId) {
+        this.nannyTrainId = nannyTrainId;
     }
 
     public String getTrainIdInfo() {

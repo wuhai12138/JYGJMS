@@ -11,6 +11,9 @@
 		SELECT *
 		FROM j_dict_info
 		WHERE TYPECODE = #{0}
+		<if test="''!=info">
+			AND INFO LIKE "%${info}%"
+		</if>
 	</select>
 
 </mapper>

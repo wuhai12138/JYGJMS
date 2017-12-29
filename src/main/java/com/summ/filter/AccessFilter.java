@@ -3,8 +3,12 @@ package com.summ.filter;
 import com.alibaba.druid.util.StringUtils;
 import com.summ.mapper.JAdminMapper;
 import com.summ.model.JAdmin;
+import com.summ.utils.HttpServletRequestWrapperUtil;
+import com.summ.utils.JsonUtil;
+import com.summ.utils.RequestUtil;
 import com.summ.utils.StringUtil;
 import com.sun.xml.internal.bind.v2.model.core.ID;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -14,7 +18,11 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.*;
 
 /**
  * Created by jygj_7500 on 17/11/13.
@@ -48,10 +56,32 @@ public class AccessFilter implements Filter {
 //            jAdminMapper = (JAdminMapper) cxt.getBean("jAdminMapper");
 //        }
 
+        ServletRequest requestWrapper = null;
+        if (request instanceof HttpServletRequest) {
+            requestWrapper = new HttpServletRequestWrapperUtil((HttpServletRequest) request);
+        }
+
+        //判断请求路径是否是登录请求
         boolean isExcludedPage = false;
-        if (((HttpServletRequest) request).getServletPath().equals(excludedPage)) {
-            chain.doFilter(request,response);
-        }else {
+        if (((HttpServletRequest) requestWrapper).getServletPath().equals(excludedPage)) {
+            String sign =RequestUtil.sign(requestWrapper);
+            System.out.println("sign"+ sign);
+            if(!sign.equals("")){
+                //验证请求参数加密的合法性
+                httpResponse.getOutputStream().write(sign.getBytes("UTF-8"));
+                return;
+            }
+            chain.doFilter(requestWrapper, response);
+        } else {
+            //验证请求参数加密的合法性
+            String sign =RequestUtil.sign(requestWrapper);
+            if(!sign.equals("")){
+                //验证请求参数加密的合法性
+                httpResponse.getOutputStream().write(sign.getBytes("UTF-8"));
+                return;
+            }
+
+            //判断用户id
             int id;
             if (request.getParameter("id") != null) {
                 id = StringUtil.parseInt(request.getParameter("id"));
@@ -60,17 +90,18 @@ public class AccessFilter implements Filter {
             } else {
                 id = 0;
             }
-
-
             System.out.println("进入过滤器》》》》》》》》》");
-
             if (id == 0) {
                 String outJson = "{\"code\":\"101\",\"msg\":\"not login in !\"}";
                 httpResponse.getOutputStream().write(outJson.getBytes("UTF-8"));
                 return;
             }
 
-            chain.doFilter(request, response);
+            if (requestWrapper == null) {
+                chain.doFilter(request, response);
+            } else {
+                chain.doFilter(requestWrapper, response);
+            }
         }
 
     }

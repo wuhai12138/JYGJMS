@@ -9,15 +9,15 @@ public class NannyCharacterRes {
      * characterIdInfo :
      */
 
-    private int characterId;
+    private int nannyChaId;
     private String characterIdInfo;
 
-    public int getCharacterId() {
-        return characterId;
+    public int getNannyChaId() {
+        return nannyChaId;
     }
 
-    public void setCharacterId(int characterId) {
-        this.characterId = characterId;
+    public void setNannyChaId(int nannyChaId) {
+        this.nannyChaId = nannyChaId;
     }
 
     public String getCharacterIdInfo() {

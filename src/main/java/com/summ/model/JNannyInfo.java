@@ -115,6 +115,57 @@ public class JNannyInfo implements Serializable {
 	/**  */
 	private Integer isDel =16;
 
+
+
+
+
+
+	public JNannyInfo() {
+	}
+
+	public JNannyInfo(Integer nannyId, String nannyAvatar) {
+		this.nannyId = nannyId;
+		this.nannyAvatar = nannyAvatar;
+	}
+
+	@Override
+	public String toString() {
+		return "JNannyInfo{" +
+				"nannyId=" + nannyId +
+				", nannyAvatar='" + nannyAvatar + '\'' +
+				", nannyName='" + nannyName + '\'' +
+				", nannySex=" + nannySex +
+				", nannyStatus=" + nannyStatus +
+				", nannyType=" + nannyType +
+				", nannyLevel=" + nannyLevel +
+				", nannyPhone='" + nannyPhone + '\'' +
+				", provinceId=" + provinceId +
+				", cityId=" + cityId +
+				", areaId=" + areaId +
+				", streetId=" + streetId +
+				", nannyAddress='" + nannyAddress + '\'' +
+				", nannyIdCard='" + nannyIdCard + '\'' +
+				", nannyBirthday='" + nannyBirthday + '\'' +
+				", nannyAge=" + nannyAge +
+				", nannyAnimalSign=" + nannyAnimalSign +
+				", nannyNation=" + nannyNation +
+				", nannyOrigin=" + nannyOrigin +
+				", nannyEducation=" + nannyEducation +
+				", nannyHeight='" + nannyHeight + '\'' +
+				", nannyWeight='" + nannyWeight + '\'' +
+				", salaryBank='" + salaryBank + '\'' +
+				", salaryCard=" + salaryCard +
+				", expectSalary=" + expectSalary +
+				", nannyAgencyFees='" + nannyAgencyFees + '\'' +
+				", payment=" + payment +
+				", validDate=" + validDate +
+				", remark='" + remark + '\'' +
+				", createTime=" + createTime +
+				", modifyTime=" + modifyTime +
+				", isDel=" + isDel +
+				'}';
+	}
+
 	public Integer getNannyEducation() {
 		return nannyEducation;
 	}

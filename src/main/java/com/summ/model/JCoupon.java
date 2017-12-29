@@ -40,7 +40,7 @@ public class JCoupon implements Serializable {
 	private String couponOrigin;
 
 	/**  */
-	private Integer isDel;
+	private Integer isDel = 16;
 
 	/**  */
 	private Date createTime;

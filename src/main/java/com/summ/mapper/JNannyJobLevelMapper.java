@@ -1,7 +1,12 @@
 package com.summ.mapper;
 
+import com.summ.model.JDictInfo;
 import com.summ.model.JNannyJobLevel;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.summ.model.response.NannyJobLevelRes;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  *
@@ -9,6 +14,7 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  *
  */
 public interface JNannyJobLevelMapper extends AutoMapper<JNannyJobLevel> {
-
+    List<NannyJobLevelRes> getSelectedLevelList(int nannyId);
+    List<JDictInfo> getUnselectedLevelList(@Param("nannyId") int nannyId, @Param("name") String name);
 
 }

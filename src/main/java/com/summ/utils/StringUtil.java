@@ -3,6 +3,8 @@ package com.summ.utils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -110,25 +112,28 @@ public class StringUtil {
     public static String getMd5Value(String sSecret) {
         try {
             MessageDigest bmd5 = MessageDigest.getInstance("MD5");
-            bmd5.update(sSecret.getBytes());
+            bmd5.update((sSecret).getBytes("UTF-8"));
             int i;
             StringBuffer buf = new StringBuffer();
             byte[] b = bmd5.digest();
             for (int offset = 0; offset < b.length; offset++) {
                 i = b[offset];
-                if (i < 0)
+                if (i < 0) {
                     i += 256;
-                if (i < 16)
+                }
+                if (i < 16) {
                     buf.append("0");
+                }
                 buf.append(Integer.toHexString(i));
             }
             return buf.toString();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
         return "";
     }
-
 
     /**
      * string转int
@@ -266,5 +271,33 @@ public class StringUtil {
      */
     public static String addSingleQuotes(String param) {
         return "\'" + param + "\'";
+    }
+
+    /**
+     * @param imgStr base64编码字符串
+     * @param path   图片路径-具体到文件
+     */
+    public static boolean generateImage(String imgStr, String path) {
+        if (imgStr == null) {
+            return false;
+        }
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            // 解密
+            byte[] b = decoder.decodeBuffer(imgStr);
+            // 处理数据
+            for (int i = 0; i < b.length; ++i) {
+                if (b[i] < 0) {
+                    b[i] += 256;
+                }
+            }
+            OutputStream out = new FileOutputStream(path);
+            out.write(b);
+            out.flush();
+            out.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

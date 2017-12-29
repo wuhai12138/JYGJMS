@@ -2,95 +2,178 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24214970-6283-428d-a3ed-da9e62ca27e1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyCertificateMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyCharacterMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyInfoMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyJobLevelMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyLanguageMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyReligionMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannySkillMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyTrainMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCertificate.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCharacter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyJobLevel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyLanguage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyReligion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannySkill.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyTrain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/request/CustomerCouponReq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/request/NannyInfoReq.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCertificateRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCharacterRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyInfoRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyJobLevelRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyLanguageRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyListRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyReligionRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannySkillRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyTrainRes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/utils/ExcelUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/utils/IdCardUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyCertificateMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyCharacterMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyInfoMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyJobLevelMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyLanguageMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyReligionMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannySkillMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyTrainMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/AutoMapperController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyBasicController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyCertificateController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyJobController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyOtherController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyShopMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JShopMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JTrainMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyShop.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JShop.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JTrain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/request/BaseReq.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyShopRes.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/utils/FileUploadUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/summ/utils/HttpServletRequestWrapperUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyShopMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JShopMapper.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JTrainMapper.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/summ/filter/AccessFilter.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS.war" afterPath="$PROJECT_DIR$/target/JYGJMS.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/Consts.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/Consts.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/TestController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/TestController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/basic/AccessController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/basic/AccessController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/basic/BasicController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/basic/BasicController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerCouponController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerCouponController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerHouseController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerHouseController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerStatmentController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/customer/CustomerStatmentController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JCouponListMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JCouponListMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JCoupon.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JCoupon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JCustomerHouse.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JCustomerHouse.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/CustomerCouponListRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/CustomerCouponListRes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/CustomerHouseRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/CustomerHouseRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/nanny/NannyController.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/controller/nanny/NannyController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/filter/AccessFilter.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/filter/AccessFilter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JDictInfoMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JDictInfoMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JDictTypeMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JDictTypeMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyCharacterMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyCharacterMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyInfoMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyInfoMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyJobLevelMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyJobLevelMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyLanguageMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyLanguageMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyReligionMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyReligionMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannySkillMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannySkillMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyTrainMapper.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/mapper/JNannyTrainMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JNannyInfo.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JNannyInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JNannyTrain.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/JNannyTrain.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/request/NannyInfoReq.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/request/NannyInfoReq.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/request/TestReq.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/request/TestReq.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyCertificateRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyCertificateRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyCharacterRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyCharacterRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyInfoRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyInfoRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyJobLevelRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyJobLevelRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyLanguageRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyLanguageRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyReligionRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyReligionRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannySkillRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannySkillRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyTrainRes.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/model/response/NannyTrainRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/utils/JsonUtil.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/utils/JsonUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/utils/StringUtil.class" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/com/summ/utils/StringUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/Consts.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/Consts.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/TestController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/TestController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/basic/AccessController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/basic/AccessController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/basic/BasicController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/basic/BasicController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerCouponController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerCouponController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerHouseController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerHouseController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerStatmentController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/customer/CustomerStatmentController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JCouponListMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JCouponListMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/JCoupon.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/JCoupon.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/JCustomerHouse.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/JCustomerHouse.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/CustomerCouponListRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/CustomerCouponListRes.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/CustomerHouseRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/CustomerHouseRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/controller/nanny/NannyController.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/controller/nanny/NannyController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JDictInfoMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JDictInfoMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JDictTypeMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JDictTypeMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyCharacterMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyCharacterMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyInfoMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyInfoMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyJobLevelMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyJobLevelMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyLanguageMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyLanguageMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyReligionMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyReligionMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannySkillMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannySkillMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyTrainMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/mapper/JNannyTrainMapper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/JNannyInfo.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/JNannyInfo.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/JNannyTrain.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/JNannyTrain.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/request/NannyInfoReq.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/request/NannyInfoReq.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/request/TestReq.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/request/TestReq.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyCertificateRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyCertificateRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyCharacterRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyCharacterRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyInfoRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyInfoRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyJobLevelRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyJobLevelRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyLanguageRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyLanguageRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyReligionRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyReligionRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannySkillRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannySkillRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyTrainRes.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/model/response/NannyTrainRes.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/utils/JsonUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/utils/JsonUtil.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/summ/utils/StringUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/summ/utils/StringUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/generator/GenerateCode.class" afterPath="$PROJECT_DIR$/target/test-classes/generator/GenerateCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/JYGJMS_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/JYGJMS_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/JYGJMS.iml" afterPath="$PROJECT_DIR$/JYGJMS.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/Consts.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/Consts.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/TestController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/TestController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/AccessController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/AccessController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/BasicController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/BasicController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerCouponController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerCouponController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerHouseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerHouseController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerStatmentController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerStatmentController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JCouponListMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JCouponListMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/filter/AccessFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/filter/AccessFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JDictInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JDictInfoMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JDictTypeMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JDictTypeMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyCharacterMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyCharacterMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyInfoMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyJobLevelMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyJobLevelMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyLanguageMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyLanguageMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyReligionMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyReligionMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannySkillMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannySkillMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyTrainMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyTrainMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JCoupon.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JCoupon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerHouse.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerHouse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerCouponListRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerCouponListRes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerHouseRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerHouseRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCertificate.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCertificate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCharacter.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCharacter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyJobLevel.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyJobLevel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyLanguage.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyLanguage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyReligion.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyReligion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannySkill.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannySkill.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyTrain.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyTrain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/request/NannyInfoReq.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/request/NannyInfoReq.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/request/TestReq.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/request/TestReq.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/ModelRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/ModelRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCertificateRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCertificateRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCharacterRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCharacterRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyInfoRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyInfoRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyJobLevelRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyJobLevelRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyLanguageRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyLanguageRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyReligionRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyReligionRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannySkillRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannySkillRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyTrainRes.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyTrainRes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/utils/JsonUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/utils/JsonUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/utils/RequestUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/utils/RequestUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/summ/utils/StringUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/summ/utils/StringUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JAdminMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JAdminMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponListMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponListMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerHouseMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerHouseMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerStatmentMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerStatmentMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JDictInfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JDictInfoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JDictTypeMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JDictTypeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyCharacterMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyCharacterMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyInfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyInfoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyJobLevelMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyJobLevelMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyLanguageMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyLanguageMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyReligionMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyReligionMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannySkillMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannySkillMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyTrainMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyTrainMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/generator/GenerateCode.java" afterPath="$PROJECT_DIR$/src/test/java/generator/GenerateCode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JAdminMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JAdminMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCouponListMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCouponListMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCouponMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCouponMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCustomerHouseMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCustomerHouseMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCustomerMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCustomerMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCustomerStatmentMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JCustomerStatmentMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JDictInfoMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JDictInfoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JDictTypeMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JDictTypeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyCharacterMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyCharacterMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyInfoMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyInfoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyJobLevelMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyJobLevelMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyLanguageMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyLanguageMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyReligionMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyReligionMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannySkillMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannySkillMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyTrainMapper.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/mybatis/xml/JNannyTrainMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/spring/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/JYGJMS/WEB-INF/classes/spring/spring-mvc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JAdminMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JAdminMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JCouponListMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JCouponListMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JCouponMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JCouponMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JCustomerHouseMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JCustomerHouseMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JCustomerMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JCustomerMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JCustomerStatmentMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JCustomerStatmentMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JDictInfoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JDictInfoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JDictTypeMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JDictTypeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyCharacterMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyCharacterMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyInfoMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyInfoMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyJobLevelMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyJobLevelMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyLanguageMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyLanguageMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyReligionMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyReligionMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannySkillMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannySkillMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyTrainMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/xml/JNannyTrainMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/spring/spring-mvc.xml" afterPath="$PROJECT_DIR$/target/classes/spring/spring-mvc.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -107,11 +190,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NannyController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java">
+      <file leaf-file-name="AccessFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/filter/AccessFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="687">
-              <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+            <state relative-caret-position="188">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -119,55 +202,75 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerController.java">
+      <file leaf-file-name="NannyController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="318">
+              <caret line="61" column="33" lean-forward="true" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JNannyInfoMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyInfoMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JNannyInfoMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyInfoMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="242">
-              <caret line="75" column="42" lean-forward="false" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomerPagReq.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/CustomerPagReq.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JCustomerMapper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JCustomerMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomerRes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerRes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JCustomerMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="35" column="68" lean-forward="false" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="68" />
+              <caret line="12" column="64" lean-forward="true" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
               <folding>
-                <marker date="1511935942507" expanded="true" signature="1431:2628" ph="SELECT a.*,d... j_customer" />
-                <marker date="1511935942507" expanded="true" signature="2712:2924" ph="UPDATE j_cus... " />
+                <marker date="1514537613979" expanded="true" signature="1826:2922" ph="SELECT j.nan... j_nanny_info" />
+                <marker date="1514537613979" expanded="true" signature="3056:3669" ph="SELECT j.nan... j_nanny_info" />
+                <marker date="1514537613979" expanded="true" signature="3764:4167" ph="SELECT j.nan... j_nanny_info" />
+                <marker date="1514537613979" expanded="true" signature="4264:4753" ph="SELECT j.nan... j_nanny_info" />
+                <marker date="1514537613979" expanded="true" signature="4855:5017" ph="SELECT j.nan... j_nanny_shop" />
+                <marker date="1514537613979" expanded="true" signature="5118:5261" ph="SELECT j.nan... j_nanny_train" />
+                <marker date="1514537613979" expanded="true" signature="5365:5515" ph="SELECT j.nan... j_nanny_job_level" />
+                <marker date="1514537613979" expanded="true" signature="5619:5765" ph="SELECT j.nan... j_nanny_religion" />
+                <marker date="1514537613979" expanded="true" signature="5874:6036" ph="SELECT j.nan... j_nanny_certificate" />
+                <marker date="1514537613979" expanded="true" signature="6139:6284" ph="SELECT j.nan... j_nanny_language" />
+                <marker date="1514537613979" expanded="true" signature="6389:6536" ph="SELECT j.nan... j_nanny_character" />
+                <marker date="1514537613979" expanded="true" signature="6633:6770" ph="SELECT j.nan... j_nanny_skill" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelRes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/ModelRes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="73" column="24" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JNannyInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResponseUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/ResponseUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -183,15 +286,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>aspectj</find>
-      <find>aop</find>
-      <find>aspectj.version</find>
-      <find>doLog(JoinPoint joinPoint, Object retVal, AspectPosition p)</find>
-      <find>getTarge</find>
-      <find>target</find>
-      <find>operateMapper</find>
-      <find>mybatis</find>
-      <find>Updating cluster description to</find>
       <find>cluster</find>
       <find>parse</find>
       <find>update</find>
@@ -201,15 +295,42 @@
       <find>customer</find>
       <find>nannyIdCard</find>
       <find>j.ID</find>
-      <find>nannyLevelInfo</find>
       <find>getNannyCertificate</find>
       <find>d1.provinceId</find>
+      <find>private</find>
+      <find>nannyType</find>
+      <find>||</find>
+      <find>paymentInfo</find>
+      <find>nannyLevelInfo</find>
+      <find>payment</find>
+      <find>getNannyBasic</find>
+      <find>nannyJobLevelRes</find>
+      <find>language</find>
+      <find>skill</find>
+      <find>train</find>
+      <find>province</find>
+      <find>shop</find>
+      <find>Obj2Map</find>
+      <find>unselected</find>
+      <find>return json2Map(toJson(obj));</find>
+      <find>LIKE</find>
+      <find>trainId</find>
+      <find>excludedPages</find>
     </findStrings>
     <replaceStrings>
       <replace>“”</replace>
       <replace>&quot;&quot;</replace>
       <replace />
       <replace>NannyInfo</replace>
+      <replace>public</replace>
+      <replace>trainId</replace>
+      <replace>or</replace>
+      <replace>Language</replace>
+      <replace>Skill</replace>
+      <replace>character</replace>
+      <replace>Character</replace>
+      <replace>language</replace>
+      <replace>shopId</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -223,57 +344,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerHouseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JCouponMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JCouponList.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/CouponListRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/CouponListRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/request/CustomerStatmentReq.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerStatmentRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JCustomerStatmentMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerStatment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JAdminMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/utils/ResponseUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JStreet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/request/AddressReq.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/utils/ExcelUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/TestController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JCoupon.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerCouponListRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/request/CustomerCouponReq.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JCouponListMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponListMapper.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/generator/GenerateCode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/NannyController/NannyController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/request/NannyInfoReq.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerHouseRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerHouse.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerHouseMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyListQes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyListRes.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/utils/IdCardUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/gettest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/BasicController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyTrainRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyJobLevelRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerCouponController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyReligionRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyLanguageRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannySkillRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCharacterRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/NannyCertificateRes.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyTrainMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyTrainMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyJobLevelMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyJobLevelMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyReligionMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyReligionMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyLanguageMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyLanguageMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannySkillMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannySkillMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyCharacterMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyCharacterMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCertificateRes.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/Consts.java" />
+        <option value="$PROJECT_DIR$/src/test/java/generator/GenerateCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/AutoMapperController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyCertificateController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/utils/JsonUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyOtherController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/aspect/ControllerAspect.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/request/NannyInfoReq.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JDictInfoMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JDictInfoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/BasicController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/request/BaseReq.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/request/TestReq.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/utils/StringUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/filter/CosDomainFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/utils/HttpServletRequestWrapperUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/TestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyInfoRes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/basic/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/utils/RequestUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/filter/AccessFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyJobController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JCoupon.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCertificate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCharacter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyJobLevel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyLanguage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyReligion.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannyShop.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JNannySkill.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JShop.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/JTrain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyShopRes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/model/response/ModelRes.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyInfoMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyInfoMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerStatmentController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerStatmentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java" />
       </list>
     </option>
   </component>
@@ -404,8 +525,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -428,8 +549,282 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-web:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-web-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-web:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-web-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-web:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-web-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-web:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-web-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-core:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-core-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-core:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-core-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cglib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-core:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-core-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="springframework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cglib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proxy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: org.springframework:spring-core:4.2.5.RELEASE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring-core-4.2.5.RELEASE.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Maven: com.baomidou:mybatis-plus:1.4.7" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis-plus-1.4.7.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.baomidou:mybatis-plus:1.4.7" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis-plus-1.4.7.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="baomidou" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatisplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.baomidou:mybatis-plus:1.4.7" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis-plus-1.4.7.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="baomidou" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatisplus" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Maven: com.baomidou:mybatis-plus:1.4.7" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis-plus-1.4.7.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="baomidou" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -493,6 +888,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -698,11 +1119,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="request" />
+              <option name="myItemId" value="mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -732,7 +1149,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mapper" />
+              <option name="myItemId" value="filter" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -834,13 +1251,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JYGJMS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="summ" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="basic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
@@ -1387,6 +1838,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="24214970-6283-428d-a3ed-da9e62ca27e1" name="Default" comment="" />
@@ -1423,20 +1877,32 @@
       <workItem from="1513129784855" duration="19603000" />
       <workItem from="1513159876730" duration="175000" />
       <workItem from="1513214956538" duration="21940000" />
-      <workItem from="1513303309183" duration="7097000" />
+      <workItem from="1513303309183" duration="7218000" />
+      <workItem from="1513560189914" duration="754000" />
+      <workItem from="1513562034340" duration="14649000" />
+      <workItem from="1513647790626" duration="16896000" />
+      <workItem from="1513733231488" duration="22697000" />
+      <workItem from="1513819880814" duration="8697000" />
+      <workItem from="1513844461518" duration="599000" />
+      <workItem from="1513905858936" duration="21059000" />
+      <workItem from="1514164852197" duration="21394000" />
+      <workItem from="1514252408037" duration="17251000" />
+      <workItem from="1514337451915" duration="23934000" />
+      <workItem from="1514424377793" duration="9332000" />
+      <workItem from="1514511564487" duration="17267000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="357885000" />
+    <option name="totallyTimeSpent" value="532535000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1066" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19895288" sideWeight="0.5042969" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3969957" sideWeight="0.50755167" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.49739778" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1447,19 +1913,20 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26910993" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40665236" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4450262" sideWeight="0.49739778" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41416308" sideWeight="0.49403816" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3329843" sideWeight="0.49570313" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17109375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40987125" sideWeight="0.49244833" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16891892" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1468,7 +1935,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1488,19 +1954,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/summ/controller/TestController.java</url>
-          <line>41</line>
+          <line>66</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerController.java</url>
-          <line>77</line>
+          <line>67</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/summ/controller/basic/BasicController.java</url>
-          <line>49</line>
+          <line>42</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -1510,8 +1976,32 @@
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java</url>
+          <line>90</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyJobController.java</url>
+          <line>34</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java</url>
+          <line>110</line>
+          <properties />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1520,595 +2010,435 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JCouponListMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/mongodb/log/impl/OperateLogUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="132">
+          <caret line="70" column="34" lean-forward="false" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponListMapper.xml">
+    <entry file="jar://$PROJECT_DIR$/../../software/maven/repository/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/bind/annotation/RequestMapping.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="37" column="58" lean-forward="false" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
-          <folding>
-            <marker date="1513072818418" expanded="true" signature="432:497" ph="UPDATE j_cou... " />
-            <marker date="1513072818418" expanded="true" signature="658:1192" ph="SELECT j.*,d... j_coupon_list" />
-            <marker date="1513072818418" expanded="true" signature="658:1371" ph="SELECT j.*,d... j_coupon_list" />
-          </folding>
+        <state relative-caret-position="38">
+          <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/generator/GenerateCode.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/BaseReq.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="64" column="39" lean-forward="true" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+        <state relative-caret-position="110">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/CustomerCouponReq.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/TestReq.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="110">
+          <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyCertificateMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyCertificateController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-264">
+          <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JCouponMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/HttpServletRequestWrapperUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
-          <folding>
-            <marker date="1513063503007" expanded="true" signature="449:501" ph="SELECT * FRO... j_coupon" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/IdCardUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="148" column="26" lean-forward="false" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
+        <state relative-caret-position="132">
+          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mybatis.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyInfoRes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1980">
+          <caret line="244" column="0" lean-forward="false" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/spring-mvc.xml">
+    <entry file="jar://$PROJECT_DIR$/../../software/maven/repository/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/filter/OncePerRequestFilter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-660">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="188">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/gettest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyTrain.java">
+    <entry file="jar://$PROJECT_DIR$/../../software/maven/repository/org/springframework/spring-web/4.2.5.RELEASE/spring-web-4.2.5.RELEASE.jar!/org/springframework/web/filter/CharacterEncodingFilter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        <state relative-caret-position="388">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/AddressReq.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/filter/CosDomainFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="225">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/basic/BasicController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/basic/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="46" column="58" lean-forward="false" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="58" />
+        <state relative-caret-position="454">
+          <caret line="36" column="78" lean-forward="true" selection-start-line="36" selection-start-column="78" selection-end-line="36" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerHouse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JCustomerHouseMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerHouseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="43" column="123" lean-forward="false" selection-start-line="43" selection-start-column="123" selection-end-line="43" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerHouseMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="20" column="134" lean-forward="false" selection-start-line="20" selection-start-column="122" selection-end-line="20" selection-end-column="134" />
-          <folding>
-            <marker date="1513145028116" expanded="true" signature="470:685" ph="UPDATE j_cus... " />
-            <marker date="1513145028116" expanded="true" signature="783:1283" ph="SELECT a.*,d... j_customer_house" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerHouseRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="26" column="32" lean-forward="true" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyListRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyTrainRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCouponList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="38" column="32" lean-forward="false" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../software/maven/repository/com/baomidou/mybatis-plus/1.4.7/mybatis-plus-1.4.7.jar!/com/baomidou/mybatisplus/mapper/BaseMapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerCouponController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyReligion.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/TestController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
-          <caret line="26" column="30" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCertificate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyJobLevelRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <caret line="94" column="29" lean-forward="false" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
           <folding>
-            <element signature="e#270#271#0" expanded="false" />
-            <element signature="e#303#304#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-            <element signature="e#396#397#0" expanded="false" />
-            <element signature="e#437#438#0" expanded="false" />
-            <element signature="e#474#475#0" expanded="false" />
-            <element signature="e#534#535#0" expanded="false" />
-            <element signature="e#586#587#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyLanguageRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCharacterRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannySkillRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/NannyCertificateRes.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyReligionRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="33" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyCertificateRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyInfoMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="45" column="30" lean-forward="false" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1210">
-          <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1822#1823#0" expanded="false" />
-            <element signature="e#1850#1851#0" expanded="false" />
-            <element signature="e#1908#1909#0" expanded="false" />
-            <element signature="e#1951#1952#0" expanded="false" />
-            <element signature="e#1984#1985#0" expanded="false" />
-            <element signature="e#2006#2007#0" expanded="false" />
-            <element signature="e#2052#2053#0" expanded="false" />
-            <element signature="e#2083#2084#0" expanded="false" />
-            <element signature="e#2122#2123#0" expanded="false" />
-            <element signature="e#2151#2152#0" expanded="false" />
-            <element signature="e#2210#2211#0" expanded="false" />
-            <element signature="e#2255#2256#0" expanded="false" />
-            <element signature="e#2287#2288#0" expanded="false" />
-            <element signature="e#2313#2314#0" expanded="false" />
-            <element signature="e#2357#2358#0" expanded="false" />
-            <element signature="e#2386#2387#0" expanded="false" />
-            <element signature="e#2421#2422#0" expanded="false" />
-            <element signature="e#2451#2452#0" expanded="false" />
-            <element signature="e#2502#2503#0" expanded="false" />
-            <element signature="e#2539#2540#0" expanded="false" />
-            <element signature="e#2572#2573#0" expanded="false" />
-            <element signature="e#2600#2601#0" expanded="false" />
-            <element signature="e#2647#2648#0" expanded="false" />
-            <element signature="e#2680#2681#0" expanded="false" />
-            <element signature="e#2713#2714#0" expanded="false" />
-            <element signature="e#2740#2741#0" expanded="false" />
-            <element signature="e#2786#2787#0" expanded="false" />
-            <element signature="e#2817#2818#0" expanded="false" />
-            <element signature="e#2853#2854#0" expanded="false" />
-            <element signature="e#2883#2884#0" expanded="false" />
-            <element signature="e#2935#2936#0" expanded="false" />
-            <element signature="e#2972#2973#0" expanded="false" />
-            <element signature="e#3006#3007#0" expanded="false" />
-            <element signature="e#3034#3035#0" expanded="false" />
-            <element signature="e#3082#3083#0" expanded="false" />
-            <element signature="e#3115#3116#0" expanded="false" />
-            <element signature="e#3150#3151#0" expanded="false" />
-            <element signature="e#3179#3180#0" expanded="false" />
-            <element signature="e#3229#3230#0" expanded="false" />
-            <element signature="e#3264#3265#0" expanded="false" />
-            <element signature="e#3298#3299#0" expanded="false" />
-            <element signature="e#3327#3328#0" expanded="false" />
-            <element signature="e#3376#3377#0" expanded="false" />
-            <element signature="e#3411#3412#0" expanded="false" />
-            <element signature="e#3446#3447#0" expanded="false" />
-            <element signature="e#3475#3476#0" expanded="false" />
-            <element signature="e#3525#3526#0" expanded="false" />
-            <element signature="e#3560#3561#0" expanded="false" />
-            <element signature="e#3591#3592#0" expanded="false" />
-            <element signature="e#3616#3617#0" expanded="false" />
-            <element signature="e#3658#3659#0" expanded="false" />
-            <element signature="e#3685#3686#0" expanded="false" />
-            <element signature="e#3716#3717#0" expanded="false" />
-            <element signature="e#3741#3742#0" expanded="false" />
-            <element signature="e#3783#3784#0" expanded="false" />
-            <element signature="e#3810#3811#0" expanded="false" />
-            <element signature="e#3846#3847#0" expanded="false" />
-            <element signature="e#3877#3878#0" expanded="false" />
-            <element signature="e#3930#3931#0" expanded="false" />
-            <element signature="e#3969#3970#0" expanded="false" />
-            <element signature="e#4004#4005#0" expanded="false" />
-            <element signature="e#4034#4035#0" expanded="false" />
-            <element signature="e#4085#4086#0" expanded="false" />
-            <element signature="e#4122#4123#0" expanded="false" />
-            <element signature="e#4159#4160#0" expanded="false" />
-            <element signature="e#4191#4192#0" expanded="false" />
-            <element signature="e#4246#4247#0" expanded="false" />
-            <element signature="e#4287#4288#0" expanded="false" />
-            <element signature="e#4320#4321#0" expanded="false" />
-            <element signature="e#4347#4348#0" expanded="false" />
-            <element signature="e#4393#4394#0" expanded="false" />
-            <element signature="e#4424#4425#0" expanded="false" />
-            <element signature="e#4464#4465#0" expanded="false" />
-            <element signature="e#4493#4494#0" expanded="false" />
-            <element signature="e#4553#4554#0" expanded="false" />
-            <element signature="e#4598#4599#0" expanded="false" />
-            <element signature="e#4634#4635#0" expanded="false" />
-            <element signature="e#4659#4660#0" expanded="false" />
-            <element signature="e#4711#4712#0" expanded="false" />
-            <element signature="e#4748#4749#0" expanded="false" />
-            <element signature="e#4784#4785#0" expanded="false" />
-            <element signature="e#4809#4810#0" expanded="false" />
-            <element signature="e#4861#4862#0" expanded="false" />
-            <element signature="e#4898#4899#0" expanded="false" />
-            <element signature="e#4933#4934#0" expanded="false" />
-            <element signature="e#4963#4964#0" expanded="false" />
-            <element signature="e#5014#5015#0" expanded="false" />
-            <element signature="e#5051#5052#0" expanded="false" />
-            <element signature="e#5086#5087#0" expanded="false" />
-            <element signature="e#5116#5117#0" expanded="false" />
-            <element signature="e#5167#5168#0" expanded="false" />
-            <element signature="e#5204#5205#0" expanded="false" />
-            <element signature="e#5238#5239#0" expanded="false" />
-            <element signature="e#5267#5268#0" expanded="false" />
-            <element signature="e#5316#5317#0" expanded="false" />
-            <element signature="e#5351#5352#0" expanded="false" />
-            <element signature="e#5386#5387#0" expanded="false" />
-            <element signature="e#5415#5416#0" expanded="false" />
-            <element signature="e#5465#5466#0" expanded="false" />
-            <element signature="e#5500#5501#0" expanded="false" />
-            <element signature="e#5540#5541#0" expanded="false" />
-            <element signature="e#5571#5572#0" expanded="false" />
-            <element signature="e#5628#5629#0" expanded="false" />
-            <element signature="e#5667#5668#0" expanded="false" />
-            <element signature="e#5695#5696#0" expanded="false" />
-            <element signature="e#5721#5722#0" expanded="false" />
-            <element signature="e#5761#5762#0" expanded="false" />
-            <element signature="e#5790#5791#0" expanded="false" />
-            <element signature="e#5821#5822#0" expanded="false" />
-            <element signature="e#5849#5850#0" expanded="false" />
-            <element signature="e#5894#5895#0" expanded="false" />
-            <element signature="e#5927#5928#0" expanded="false" />
-            <element signature="e#5957#5958#0" expanded="false" />
-            <element signature="e#5982#5983#0" expanded="false" />
-            <element signature="e#6023#6024#0" expanded="false" />
-            <element signature="e#6050#6051#0" expanded="false" />
-            <element signature="e#6082#6083#0" expanded="false" />
-            <element signature="e#6111#6112#0" expanded="false" />
-            <element signature="e#6158#6159#0" expanded="false" />
-            <element signature="e#6193#6194#0" expanded="false" />
-            <element signature="e#6225#6226#0" expanded="false" />
-            <element signature="e#6254#6255#0" expanded="false" />
-            <element signature="e#6301#6302#0" expanded="false" />
-            <element signature="e#6336#6337#0" expanded="false" />
-            <element signature="e#6366#6367#0" expanded="false" />
-            <element signature="e#6390#6391#0" expanded="false" />
-            <element signature="e#6430#6431#0" expanded="false" />
-            <element signature="e#6455#6456#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/NannyInfoReq.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding>
-            <element signature="e#833#834#0" expanded="false" />
-            <element signature="e#863#864#0" expanded="false" />
-            <element signature="e#910#911#0" expanded="false" />
-            <element signature="e#948#949#0" expanded="false" />
-            <element signature="e#984#985#0" expanded="false" />
-            <element signature="e#1016#1017#0" expanded="false" />
-            <element signature="e#1066#1067#0" expanded="false" />
-            <element signature="e#1108#1109#0" expanded="false" />
-            <element signature="e#1145#1146#0" expanded="false" />
-            <element signature="e#1178#1179#0" expanded="false" />
-            <element signature="e#1230#1231#0" expanded="false" />
-            <element signature="e#1274#1275#0" expanded="false" />
-            <element signature="e#1313#1314#0" expanded="false" />
-            <element signature="e#1347#1348#0" expanded="false" />
-            <element signature="e#1402#1403#0" expanded="false" />
-            <element signature="e#1448#1449#0" expanded="false" />
-            <element signature="e#1485#1486#0" expanded="false" />
-            <element signature="e#1517#1518#0" expanded="false" />
-            <element signature="e#1568#1569#0" expanded="false" />
-            <element signature="e#1610#1611#0" expanded="false" />
-            <element signature="e#1648#1649#0" expanded="false" />
-            <element signature="e#1681#1682#0" expanded="false" />
-            <element signature="e#1734#1735#0" expanded="false" />
-            <element signature="e#1778#1779#0" expanded="false" />
-            <element signature="e#1806#1807#0" expanded="false" />
-            <element signature="e#1833#1834#0" expanded="false" />
-            <element signature="e#1870#1871#0" expanded="false" />
-            <element signature="e#1902#1903#0" expanded="false" />
-            <element signature="e#1930#1931#0" expanded="false" />
-            <element signature="e#1957#1958#0" expanded="false" />
-            <element signature="e#1994#1995#0" expanded="false" />
-            <element signature="e#2026#2027#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerStatmentRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="31" column="28" lean-forward="false" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerStatment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/CustomerStatmentReq.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JCustomerStatmentMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyInfoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="83" column="27" lean-forward="true" selection-start-line="83" selection-start-column="27" selection-end-line="83" selection-end-column="27" />
-          <folding>
-            <marker date="1513256806935" expanded="true" signature="766:803" ph="SELECT count... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="1582:1783" ph="SELECT * FRO... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="1582:2435" ph="SELECT * FRO... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="1582:2456" ph="SELECT j.nan... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="2584:3182" ph="SELECT j.nan... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="3273:3676" ph="SELECT j.nan... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="3273:3677" ph="SELECT jnt.t... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="3770:4244" ph="SELECT j.nan... j_nanny_info" />
-            <marker date="1513256806935" expanded="true" signature="4341:4471" ph="SELECT j.tra... j_nanny_train" />
-            <marker date="1513256806935" expanded="true" signature="4572:4715" ph="SELECT j.job... j_nanny_job_level" />
-            <marker date="1513256806935" expanded="true" signature="4816:4958" ph="SELECT j.job... j_nanny_job_level" />
-            <marker date="1513256806935" expanded="true" signature="5064:5218" ph="SELECT j.job... j_nanny_job_level" />
-            <marker date="1513256806935" expanded="true" signature="5318:5460" ph="SELECT j.job... j_nanny_job_level" />
-            <marker date="1513256806935" expanded="true" signature="5562:5708" ph="SELECT j.job... j_nanny_job_level" />
-            <marker date="1513256806935" expanded="true" signature="5802:5932" ph="SELECT j.ski... j_nanny_skill" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/ExcelUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="55" column="62" lean-forward="false" selection-start-line="55" selection-start-column="62" selection-end-line="55" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerStatmentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="63" column="26" lean-forward="false" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerStatmentMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="33" column="24" lean-forward="true" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-          <folding>
-            <marker date="1513311131460" expanded="true" signature="975:1998" ph="SELECT a.*,d... j_customer_statment" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JCustomerMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/CustomerRes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JCustomerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="35" column="68" lean-forward="false" selection-start-line="35" selection-start-column="58" selection-end-line="35" selection-end-column="68" />
-          <folding>
-            <marker date="1511935942507" expanded="true" signature="1431:2628" ph="SELECT a.*,d... j_customer" />
-            <marker date="1511935942507" expanded="true" signature="2712:2924" ph="UPDATE j_cus... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
-          <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#getPublicList#0;class#TestController#0" expanded="false" />
+            <element signature="e#5078#5110#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/customer/CustomerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="75" column="42" lean-forward="false" selection-start-line="75" selection-start-column="42" selection-end-line="75" selection-end-column="42" />
+        <state relative-caret-position="564">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyInfoRes.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/RequestUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="730">
+          <caret line="117" column="26" lean-forward="true" selection-start-line="117" selection-start-column="26" selection-end-line="117" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../software/maven/repository/com/baomidou/mybatis-plus/1.4.7/mybatis-plus-1.4.7.jar!/com/baomidou/mybatisplus/mapper/BaseMapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyBasicController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-206">
+          <caret line="26" column="59" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-83">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="48" column="31" lean-forward="true" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-215">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCoupon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="42" column="31" lean-forward="false" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCouponList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-396">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCustomer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-677">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerHouse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-611">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JCustomerStatment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-677">
+          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JDictInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JDictType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCertificate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyCharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyJobLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyLanguage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyReligion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyShop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="59" column="31" lean-forward="false" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
+          <folding>
+            <element signature="e#1086#1087#0" expanded="true" />
+            <element signature="e#1126#1127#0" expanded="true" />
+            <element signature="e#1151#1152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannySkill.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="32" column="31" lean-forward="false" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyTrain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JProvince.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JShop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="51" column="31" lean-forward="false" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JStreet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JTrain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="29" column="11" lean-forward="true" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/NannyShopRes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+          <folding>
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
+            <element signature="e#346#347#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/JsonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-276">
+          <caret line="74" column="36" lean-forward="false" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/utils/ResponseUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/response/ModelRes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="73" column="24" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/xml/JNannyInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="12" column="64" lean-forward="true" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
+          <folding>
+            <marker date="1514537613979" expanded="true" signature="1826:2922" ph="SELECT j.nan... j_nanny_info" />
+            <marker date="1514537613979" expanded="true" signature="3056:3669" ph="SELECT j.nan... j_nanny_info" />
+            <marker date="1514537613979" expanded="true" signature="3764:4167" ph="SELECT j.nan... j_nanny_info" />
+            <marker date="1514537613979" expanded="true" signature="4264:4753" ph="SELECT j.nan... j_nanny_info" />
+            <marker date="1514537613979" expanded="true" signature="4855:5017" ph="SELECT j.nan... j_nanny_shop" />
+            <marker date="1514537613979" expanded="true" signature="5118:5261" ph="SELECT j.nan... j_nanny_train" />
+            <marker date="1514537613979" expanded="true" signature="5365:5515" ph="SELECT j.nan... j_nanny_job_level" />
+            <marker date="1514537613979" expanded="true" signature="5619:5765" ph="SELECT j.nan... j_nanny_religion" />
+            <marker date="1514537613979" expanded="true" signature="5874:6036" ph="SELECT j.nan... j_nanny_certificate" />
+            <marker date="1514537613979" expanded="true" signature="6139:6284" ph="SELECT j.nan... j_nanny_language" />
+            <marker date="1514537613979" expanded="true" signature="6389:6536" ph="SELECT j.nan... j_nanny_character" />
+            <marker date="1514537613979" expanded="true" signature="6633:6770" ph="SELECT j.nan... j_nanny_skill" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/mapper/JNannyInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyJobController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/filter/AccessFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/request/CustomerPagReq.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/basic/AutoMapperController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="301">
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/model/JNannyInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../software/maven/repository/org/springframework/spring-core/4.2.5.RELEASE/spring-core-4.2.5.RELEASE.jar!/org/springframework/cglib/proxy/MethodProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/summ/controller/nanny/NannyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="61" column="33" lean-forward="true" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
           <folding />
         </state>
       </provider>

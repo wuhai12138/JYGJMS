@@ -11,15 +11,15 @@ public class NannyReligionRes {
      * religionIdInfo :
      */
 
-    private int religionId;
+    private int nannyReligId;
     private String religionIdInfo;
 
-    public int getReligionId() {
-        return religionId;
+    public int getNannyReligId() {
+        return nannyReligId;
     }
 
-    public void setReligionId(int religionId) {
-        this.religionId = religionId;
+    public void setNannyReligId(int nannyReligId) {
+        this.nannyReligId = nannyReligId;
     }
 
     public String getReligionIdInfo() {

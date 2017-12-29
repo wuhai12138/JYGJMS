@@ -99,7 +99,7 @@ public class JsonUtil {
      * @param obj 需要转的对象
      * @return
      */
-    public Map<String, Object> Obj2Map(Object obj) {
+    public static Map<String, Object> Obj2Map(Object obj) {
         if (obj != null) {
             return json2Map(toJson(obj));
         }
@@ -111,7 +111,7 @@ public class JsonUtil {
      * @param o
      * @return
      */
-    public Object list2map(Object o){
+    public static Object list2map(Object o){
         Map map = new HashMap();
         map.put("list",o);
         return map;

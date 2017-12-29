@@ -30,7 +30,7 @@ public class JNannySkill implements Serializable {
 	private Integer skillId;
 
 	/**  */
-	private Integer isDel;
+	private Integer isDel = 16;
 
 
 	public Integer getNannySkillId() {

@@ -1,34 +1,27 @@
 package com.summ.controller.customer;
 
-import com.summ.mapper.JCustomerStatmentMapper;
+import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JAdmin;
-import com.summ.model.JCustomer;
 import com.summ.model.JCustomerStatment;
-import com.summ.model.request.CustomerPagReq;
 import com.summ.model.request.CustomerStatmentReq;
 import com.summ.model.response.ModelRes;
 import com.summ.utils.ExcelUtil;
 import org.apache.commons.collections.map.HashedMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Created by jygj_7500 on 17/11/29.
+ *
+ * @author jygj_7500
+ * @date 17/11/29
  */
 @Controller
 @RequestMapping("/customer/statment")
-public class CustomerStatmentController {
-
-    @Autowired
-    private JCustomerStatmentMapper jCustomerStatmentMapper;
+public class CustomerStatmentController extends AutoMapperController{
 
     /**
      * CRUD for customer statment

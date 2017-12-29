@@ -10,15 +10,15 @@ public class NannySkillRes {
      * skillIdInfo :
      */
 
-    private int skillId;
+    private int nannySkillId;
     private String skillIdInfo;
 
-    public int getSkillId() {
-        return skillId;
+    public int getNannySkillId() {
+        return nannySkillId;
     }
 
-    public void setSkillId(int skillId) {
-        this.skillId = skillId;
+    public void setNannySkillId(int nannySkillId) {
+        this.nannySkillId = nannySkillId;
     }
 
     public String getSkillIdInfo() {

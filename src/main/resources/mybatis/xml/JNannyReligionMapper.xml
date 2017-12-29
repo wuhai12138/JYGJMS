@@ -7,4 +7,25 @@
 		nannyReligId, religionId, nannyId, isDel
 	</sql>
 
+	<select id="getSelectedReligion" resultType="com.summ.model.response.NannyReligionRes">
+		SELECT j.nannyReligId,d1.INFO AS religionIdInfo
+		FROM j_nanny_religion j
+		LEFT JOIN j_dict_info d1 ON j.religionId = d1.ID
+		WHERE j.nannyId = #{0}
+	</select>
+
+	<select id="getUnselectedReligion" resultType="com.summ.model.JDictInfo">
+		SELECT ID,INFO
+		FROM
+		j_dict_info
+		WHERE
+		ID NOT IN (
+			SELECT j.religionId
+			FROM
+			j_nanny_religion AS j
+			WHERE j.nannyId = ${nannyId})
+		AND
+		INFO LIKE "%${name}%"
+		AND TYPECODE = 18
+	</select>
 </mapper>

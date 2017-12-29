@@ -12,10 +12,10 @@
 		COUNT(*)
 		FROM j_customer_statment
 		WHERE isDel = 16
-		<if test="customerStatmentReq.customerId != 0">
+		<if test="0 != customerStatmentReq.customerId">
 			AND customerId = #{customerStatmentReq.customerId}
 		</if>
-		<if test="customerStatmentReq.statmentType != 0">
+		<if test="0 != customerStatmentReq.statmentType">
 			AND statmentType = #{customerStatmentReq.statmentType}
 		</if>
 	</select>
@@ -32,14 +32,14 @@
 		LEFT JOIN j_admin d7 ON d7.adminId = a.adminId
 		WHERE 1=1
 		AND a.isDel = 16
-		<if test="customerStatmentReq.customerId != 0">
+		<if test="0 != customerStatmentReq.customerId">
 			AND a.customerId = #{customerStatmentReq.customerId}
 		</if>
-		<if test="customerStatmentReq.statmentType != 0">
+		<if test="0 != customerStatmentReq.statmentType">
 			AND a.statmentType = #{customerStatmentReq.statmentType}
 		</if>
 		ORDER BY a.chargeDate DESC
-		<if test="customerStatmentReq.size != 0 and customerStatmentReq.statmentType != 0">
+		<if test="0 != customerStatmentReq.size and 0 != customerStatmentReq.statmentType">
 			LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}
 		</if>
 	</select>

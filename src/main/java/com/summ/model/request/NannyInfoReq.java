@@ -8,7 +8,7 @@ public class NannyInfoReq {
     private String nannyName;
     private String nannyPhone;
     private Integer nannyStatus;
-    private Integer nannyType;
+    private Integer shopId;
     private Integer nannyLevel;
     private int page;
     private int size;
@@ -20,11 +20,20 @@ public class NannyInfoReq {
                 ", nannyName='" + nannyName + '\'' +
                 ", nannyPhone='" + nannyPhone + '\'' +
                 ", nannyStatus=" + nannyStatus +
-                ", nannyType=" + nannyType +
+                ", shopId=" + shopId +
                 ", nannyLevel=" + nannyLevel +
                 ", page=" + page +
                 ", size=" + size +
                 '}';
+    }
+
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
     }
 
     public Integer getNannyId() {
@@ -57,14 +66,6 @@ public class NannyInfoReq {
 
     public void setNannyStatus(Integer nannyStatus) {
         this.nannyStatus = nannyStatus;
-    }
-
-    public Integer getNannyType() {
-        return nannyType;
-    }
-
-    public void setNannyType(Integer nannyType) {
-        this.nannyType = nannyType;
     }
 
     public Integer getNannyLevel() {

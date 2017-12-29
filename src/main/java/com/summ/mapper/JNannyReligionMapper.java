@@ -1,7 +1,13 @@
 package com.summ.mapper;
 
+import com.summ.model.JDictInfo;
 import com.summ.model.JNannyReligion;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.summ.model.response.NannyJobLevelRes;
+import com.summ.model.response.NannyReligionRes;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  *
@@ -9,6 +15,7 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  *
  */
 public interface JNannyReligionMapper extends AutoMapper<JNannyReligion> {
-
+    List<NannyReligionRes> getSelectedReligion(int nannyId);
+    List<JDictInfo> getUnselectedReligion(@Param("nannyId") int nannyId, @Param("name") String name);
 
 }

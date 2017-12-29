@@ -1,4 +1,5 @@
 package com.summ.model.response;
+import com.google.gson.annotations.SerializedName;
 import com.summ.model.*;
 
 import java.math.BigDecimal;
@@ -136,13 +137,22 @@ public class NannyInfoRes {
     private Integer isDel;
     private String isDelInfo;
 
-    private List<NannyTrainRes> nannyTrainRes;
+//    private List<NannyTrainRes> nannyTrainRes;
     private List<NannyJobLevelRes> nannyJobLevelRes;
     private List<NannyReligionRes> nannyReligionRes;
     private List<NannyLanguageRes> nannyLanguageRes;
     private List<NannySkillRes> nannySkillRes;
     private List<NannyCharacterRes> nannyCharacterRes;
     private List<NannyCertificateRes> nannyCertificateRes;
+    private List<NannyShopRes> nannyShopRes;
+
+    public List<NannyShopRes> getNannyShopRes() {
+        return nannyShopRes;
+    }
+
+    public void setNannyShopRes(List<NannyShopRes> nannyShopRes) {
+        this.nannyShopRes = nannyShopRes;
+    }
 
     public String getNannyAnimalSignInfo() {
         return nannyAnimalSignInfo;
@@ -230,14 +240,6 @@ public class NannyInfoRes {
 
     public void setNannyJobLevelRes(List<NannyJobLevelRes> nannyJobLevelRes) {
         this.nannyJobLevelRes = nannyJobLevelRes;
-    }
-
-    public List<NannyTrainRes> getNannyTrainRes() {
-        return nannyTrainRes;
-    }
-
-    public void setNannyTrainRes(List<NannyTrainRes> nannyTrainRes) {
-        this.nannyTrainRes = nannyTrainRes;
     }
 
     public NannyInfoRes() {

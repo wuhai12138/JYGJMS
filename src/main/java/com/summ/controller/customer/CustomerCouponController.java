@@ -1,32 +1,25 @@
 package com.summ.controller.customer;
 
-import com.summ.mapper.JCouponListMapper;
-import com.summ.mapper.JCouponMapper;
-import com.summ.model.JCoupon;
+import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JCouponList;
 import com.summ.model.request.CustomerCouponReq;
 import com.summ.model.response.ModelRes;
 import org.apache.commons.collections.map.HashedMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by jygj_7500 on 17/11/28.
+ *
+ * @author jygj_7500
+ * @date 17/11/28
  */
 @Controller
 @RequestMapping("/customer/coupon")
-public class CustomerCouponController {
-
-    @Autowired
-    private JCouponMapper jCouponMapper;
-    @Autowired
-    private JCouponListMapper jCouponListMapper;
+public class CustomerCouponController extends AutoMapperController{
 
     /**
      * CRUD for customer coupon

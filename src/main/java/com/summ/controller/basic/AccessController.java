@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.summ.mapper.JAccessMapper;
 import com.summ.model.JAccess;
 import com.summ.model.JAdmin;
+import com.summ.model.JDictType;
 import com.summ.model.response.ModelRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/access")
-public class AccessController {
+public class AccessController extends AutoMapperController{
 
-    @Autowired
-    private JAccessMapper jAccessMapper;
 
     @ResponseBody
     @RequestMapping("/insert")

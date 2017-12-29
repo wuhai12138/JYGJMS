@@ -10,15 +10,15 @@ public class NannyJobLevelRes {
      * jobLevelIdInfo :
      */
 
-    private int jobLevelId;
+    private int nannyJobLevelId;
     private String jobLevelIdInfo;
 
-    public int getJobLevelId() {
-        return jobLevelId;
+    public int getNannyJobLevelId() {
+        return nannyJobLevelId;
     }
 
-    public void setJobLevelId(int jobLevelId) {
-        this.jobLevelId = jobLevelId;
+    public void setNannyJobLevelId(int nannyJobLevelId) {
+        this.nannyJobLevelId = nannyJobLevelId;
     }
 
     public String getJobLevelIdInfo() {

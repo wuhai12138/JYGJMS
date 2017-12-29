@@ -33,7 +33,7 @@ public class JNannyCertificate implements Serializable {
 	private Integer certificateId;
 
 	/**  */
-	private Integer isDel;
+	private Integer isDel = 16;
 
 
 	public Integer getNannyCertId() {

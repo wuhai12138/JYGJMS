@@ -2,6 +2,11 @@ package com.summ.mapper;
 
 import com.summ.model.JNannyTrain;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.summ.model.JTrain;
+import com.summ.model.response.NannyTrainRes;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  *
@@ -10,5 +15,7 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  */
 public interface JNannyTrainMapper extends AutoMapper<JNannyTrain> {
 
+    List<JTrain> getUnselectedTrainList(@Param("nannyId") int nannyId, @Param("trainName") String trainName);
 
+    List<NannyTrainRes> getSelectedTrainList(int nannyId);
 }

@@ -39,6 +39,12 @@ public interface JNannyInfoMapper extends AutoMapper<JNannyInfo> {
     NannyInfoRes getNannyBasic(int id);
 
     /**
+     * 更新服务师基本信息
+     * @param jNannyInfo
+     * @return
+     */
+    Integer updateNannyBasic(@Param("jNannyInfo") JNannyInfo jNannyInfo);
+    /**
      * 获取服务师其他信息
      * @param id
      * @return
@@ -53,11 +59,11 @@ public interface JNannyInfoMapper extends AutoMapper<JNannyInfo> {
     NannyInfoRes getJobData(int id);
 
     /**
-     * 服务师培训中心
+     * 服务师门店
      * @param id
      * @return
      */
-    List<NannyTrainRes> getNannyTrain(int id);
+    List<NannyShopRes> getNannyShop(int id);
 
     /**
      * 服务师工种
