@@ -43,10 +43,12 @@ public class JShop implements Serializable {
 	private String shopUrl;
 
 	/**  */
-	private String longitude;
+	private double longitude;
 
 	/**  */
-	private String latitude;
+	private double latitude;
+
+	private Integer staring;
 
 	/**  */
 	private Integer isDel = 16;
@@ -57,6 +59,23 @@ public class JShop implements Serializable {
 	/**  */
 	private Date modifyTime;
 
+	private double distance=0;
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public Integer getStaring() {
+		return staring;
+	}
+
+	public void setStaring(Integer staring) {
+		this.staring = staring;
+	}
 
 	public Integer getShopId() {
 		return this.shopId;
@@ -114,19 +133,19 @@ public class JShop implements Serializable {
 		this.shopUrl = shopUrl;
 	}
 
-	public String getLongitude() {
-		return this.longitude;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
-	public String getLatitude() {
-		return this.latitude;
+	public double getLatitude() {
+		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 

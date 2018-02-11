@@ -1,21 +1,49 @@
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.summ.controller.basic.AutoMapperController;
+import com.summ.model.JOrderContract;
+import com.summ.model.JShop;
+import com.summ.model.response.TimeAndWeekRes;
+import com.summ.utils.DateUtil;
+import com.summ.utils.NannyWorkTimeUtil;
 import com.summ.utils.StringUtil;
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.bson.Document;
+import org.omg.PortableInterceptor.INACTIVE;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by jygj_7500 on 17/11/17.
  */
 public class DocumentTest {
 
-    public static void main(String[] args) {
-        Document document = new Document();
-        Map map = new HashMap();
-        String mapString = "{'id':1,'name':'summ'}";
-        map.put("id",1);
-        map.put("name","summ");
-        document.putAll(map);
-        System.out.println(document);
+    public static void main(String[] args) throws ParseException {
+////        Long test = Long.valueOf(140737488355328) ;
+//        BigDecimal bigDecimal = new BigDecimal(200);
+//        BigDecimal bigDecimal1 = new BigDecimal(200);
+////        System.out.println("sss"+bigDecimal.subtract(bigDecimal1));
+//        System.out.println("aaaaaa>>>" + bigDecimal.compareTo(bigDecimal1));
+//
+//        StringBuffer stringBuffer = new StringBuffer();
+//        stringBuffer.append(String.valueOf(System.currentTimeMillis()));
+//        stringBuffer.append(48);
+//        stringBuffer.append(152);
+//        System.out.println("bbbbbbbbbb" + stringBuffer.toString());
+//        System.out.println("cc" + String.valueOf(System.currentTimeMillis() + 48 + 152 + Math.random() * 10000));
+//
+//        List<Integer> mylist = Arrays.asList(1, 2, 3);
+//        List<String> list = new ArrayList<String>();
+//        for (int i = 0; i < mylist.size() - 1; i++) {
+//            for (int j = i + 1; j < mylist.size(); j++) {
+//                list.add(mylist.get(i) + ":" + mylist.get(j));
+//            }
+//        }
+//        List<TimeAndWeekRes> timeAndWeekResList = NannyWorkTimeUtil.value2TimeAndWeekRes(281474976710654L);
+//        for (int i=0;i<timeAndWeekResList.size();i++){
+//            System.out.println(timeAndWeekResList.get(i).toString());
+//        }
     }
 }

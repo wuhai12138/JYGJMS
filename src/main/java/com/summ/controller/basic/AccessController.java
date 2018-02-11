@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by jygj_7500 on 17/11/22.
+ *前端页面显示模块
+ * @author jygj_7500
+ * @date 17/11/22
  */
 @Controller
 @RequestMapping("/access")
@@ -35,7 +37,7 @@ public class AccessController extends AutoMapperController{
     @RequestMapping("/delete")
     public Object delete(@RequestBody JAccess jAccess){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"delete access success !",jAccessMapper.deleteSelective(jAccessMapper.selectOne(jAccess)));
+            return new ModelRes(ModelRes.Status.SUCCESS,"delete access success !",jAccessMapper.deleteById(Long.valueOf(jAccess.getAccessId())));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -46,7 +48,7 @@ public class AccessController extends AutoMapperController{
     @RequestMapping("/update")
     public Object update(@RequestBody JAccess jAccess){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"update access success !",jAccessMapper.updateById(jAccess));
+            return new ModelRes(ModelRes.Status.SUCCESS,"update access success !",jAccessMapper.updateSelectiveById(jAccess));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -58,7 +60,7 @@ public class AccessController extends AutoMapperController{
     public Object find(@RequestBody JAccess jAccess){
         try {
             EntityWrapper<JAccess> entityWrapper = null;
-            return new ModelRes(ModelRes.Status.SUCCESS,"search administrator success !",jAccessMapper.selectList(entityWrapper));
+            return new ModelRes(ModelRes.Status.SUCCESS,"search administrator success !",jAccessMapper.getListOrderBySort());
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

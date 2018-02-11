@@ -29,8 +29,9 @@
 		SELECT a.accessText,a.accessUrl
 		FROM j_access a
 		LEFT JOIN j_access_dict ad ON a.accessId = ad.accessId
-		LEFT JOIN j_admin adm ON ad.adminTypeId = adm.adminType
-		WHERE adm.adminId = #{0} AND isDel = 16
+		LEFT JOIN j_admin_type jat ON jat.adminTypeId = ad.adminTypeId
+		WHERE jat.id = #{0}
+		ORDER BY a.sort
 	</select>
 
     <delete id="deleteAdmin" parameterType="com.summ.model.JAdmin">

@@ -1,6 +1,7 @@
 package com.summ.model;
 
 import java.io.Serializable;
+import java.security.Signature;
 import java.security.Timestamp;
 import java.util.Date;
 import java.math.BigDecimal;
@@ -104,9 +105,15 @@ public class JCustomer implements Serializable {
         this.memberOrigin = memberOrigin;
         this.memberLevel = memberLevel;
         this.memberType = memberType;
+
     }
 
-    public Integer getCustomerId() {
+	public JCustomer(Integer customerId, BigDecimal customerBalance) {
+		this.customerId = customerId;
+		this.customerBalance = customerBalance;
+	}
+
+	public Integer getCustomerId() {
 		return this.customerId;
 	}
 

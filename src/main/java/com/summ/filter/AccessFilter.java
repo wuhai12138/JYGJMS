@@ -9,6 +9,7 @@ import com.summ.utils.RequestUtil;
 import com.summ.utils.StringUtil;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.apache.commons.io.IOUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,7 @@ public class AccessFilter implements Filter {
     private String encoding = null;
 
     private String excludedPage;
+    private String excludedPageAliPayCallback;
     private String[] excludedPageArray;
 
     public void destroy() {
@@ -56,26 +58,24 @@ public class AccessFilter implements Filter {
 //            jAdminMapper = (JAdminMapper) cxt.getBean("jAdminMapper");
 //        }
 
-        ServletRequest requestWrapper = null;
-        if (request instanceof HttpServletRequest) {
-            requestWrapper = new HttpServletRequestWrapperUtil((HttpServletRequest) request);
-        }
-
         //判断请求路径是否是登录请求
         boolean isExcludedPage = false;
-        if (((HttpServletRequest) requestWrapper).getServletPath().equals(excludedPage)) {
-            String sign =RequestUtil.sign(requestWrapper);
-            System.out.println("sign"+ sign);
-            if(!sign.equals("")){
-                //验证请求参数加密的合法性
-                httpResponse.getOutputStream().write(sign.getBytes("UTF-8"));
-                return;
+        for (String page : excludedPageArray) {
+            if (((HttpServletRequest) request).getServletPath().equals(page)) {
+                isExcludedPage = true;
+                break;
             }
-            chain.doFilter(requestWrapper, response);
+        }
+        if (isExcludedPage) {
+            chain.doFilter(request, response);
+
         } else {
-            //验证请求参数加密的合法性
-            String sign =RequestUtil.sign(requestWrapper);
-            if(!sign.equals("")){
+            ServletRequest requestWrapper = null;
+            if (request instanceof HttpServletRequest) {
+                requestWrapper = new HttpServletRequestWrapperUtil((HttpServletRequest) request);
+            }
+            String sign = RequestUtil.sign(requestWrapper);
+            if (!sign.equals("")) {
                 //验证请求参数加密的合法性
                 httpResponse.getOutputStream().write(sign.getBytes("UTF-8"));
                 return;
@@ -104,15 +104,19 @@ public class AccessFilter implements Filter {
             }
         }
 
+
     }
 
     public void init(FilterConfig filterConfig) throws ServletException {
+        //获取需要排除在外的url
+        excludedPage = filterConfig.getInitParameter("excludedPages");
+        excludedPageArray = excludedPage.split(",");
+
+
         this.encoding = filterConfig.getInitParameter("encoding");
         ServletContext context = filterConfig.getServletContext();
         ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(context);
         jAdminMapper = ctx.getBean(JAdminMapper.class);
 
-        //获取需要排除在外的url
-        excludedPage = filterConfig.getInitParameter("excludedPages");
     }
 }

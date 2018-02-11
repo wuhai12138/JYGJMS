@@ -10,19 +10,44 @@ import java.util.List;
 
 /**
  * JAdmin 表数据库控制层接口
+ * @author jygj_7500
  */
 public interface JAdminMapper extends AutoMapper<JAdmin> {
 
+
+
+    /**
+     * 根据id查找
+     * @param id
+     * @return
+     */
     JAdmin getAdminById(Integer id);
 
+    /**
+     * 获取列表
+     * @param paginateReq
+     * @return
+     */
     List<AdminRes> getAdminList(PaginateReq paginateReq);
 
-    List<AccessRes> getAccess(int adminId);
+    /**
+     * 获取该管理员权限页面列表
+     * @param id
+     * @return
+     */
+    List<AccessRes> getAccess(int id);
 
+    /**
+     * 逻辑删除
+     * @param id
+     * @return
+     */
     int deleteAdmin(int id);
 
+    /**
+     * 获取总数
+     * @return
+     */
     int getCount();
-
-    int insertStreet ();
 
 }

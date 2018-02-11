@@ -28,18 +28,28 @@ public class JCustomerHouse implements Serializable {
 	private Integer customerId;
 
 	/**  */
-	private Integer provinceId = 1;
+	private Integer serviceId=0;
 
 	/**  */
-	private Integer cityId = 1;
+	private Integer provinceId;
+
+	/**  */
+	private Integer cityId;
 
 	/**  */
 	private Integer areaId;
 
+	/**  */
 	private Integer streetId;
 
 	/** 房产地址 */
 	private String houseAddress;
+
+	/** 地址经度 */
+	private Double longitude;
+
+	/** 地址纬度 */
+	private Double latitude;
 
 	/**  */
 	private Integer bedRoom;
@@ -54,22 +64,11 @@ public class JCustomerHouse implements Serializable {
 	private String houseArea;
 
 	/**  */
-	private Date createTime = new Date();
+	private Date createTime=new Date();
 
 	/**  */
-	private Integer isDel = 16;
+	private Integer isDel=16;
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
-	}
-
-	public Integer getStreetId() {
-		return streetId;
-	}
-
-	public void setStreetId(Integer streetId) {
-		this.streetId = streetId;
-	}
 
 	public Integer getHouseId() {
 		return this.houseId;
@@ -85,6 +84,14 @@ public class JCustomerHouse implements Serializable {
 
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
+	}
+
+	public Integer getServiceId() {
+		return this.serviceId;
+	}
+
+	public void setServiceId(Integer serviceId) {
+		this.serviceId = serviceId;
 	}
 
 	public Integer getProvinceId() {
@@ -111,12 +118,36 @@ public class JCustomerHouse implements Serializable {
 		this.areaId = areaId;
 	}
 
+	public Integer getStreetId() {
+		return this.streetId;
+	}
+
+	public void setStreetId(Integer streetId) {
+		this.streetId = streetId;
+	}
+
 	public String getHouseAddress() {
 		return this.houseAddress;
 	}
 
 	public void setHouseAddress(String houseAddress) {
 		this.houseAddress = houseAddress;
+	}
+
+	public Double getLongitude() {
+		return this.longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return this.latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
 	}
 
 	public Integer getBedRoom() {

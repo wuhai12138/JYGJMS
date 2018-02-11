@@ -6,7 +6,7 @@ package com.summ.model.request;
 public class CustomerStatmentReq {
 
     private int customerId;
-    private int statmentType;
+    private int statmentCustomerType;
     private int page;
     private int size;
 
@@ -18,12 +18,12 @@ public class CustomerStatmentReq {
         this.customerId = customerId;
     }
 
-    public int getStatmentType() {
-        return statmentType;
+    public int getStatmentCustomerType() {
+        return statmentCustomerType;
     }
 
-    public void setStatmentType(int statmentType) {
-        this.statmentType = statmentType;
+    public void setStatmentCustomerType(int statmentCustomerType) {
+        this.statmentCustomerType = statmentCustomerType;
     }
 
     public int getPage() {

@@ -2,6 +2,9 @@ package com.summ.mapper;
 
 import com.summ.model.JShop;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.summ.utils.JsonUtil;
+
+import java.util.List;
 
 /**
  *
@@ -9,6 +12,5 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  *
  */
 public interface JShopMapper extends AutoMapper<JShop> {
-
-
+    List<JShop> getShopList();
 }

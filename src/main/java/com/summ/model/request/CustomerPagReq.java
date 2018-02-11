@@ -4,6 +4,7 @@ package com.summ.model.request;
  * Created by jygj_7500 on 17/11/20.
  */
 public class CustomerPagReq {
+    private Integer adminId;
     private Integer customerId;
     private Integer shopId;
     private String customerPhone;
@@ -15,7 +16,8 @@ public class CustomerPagReq {
     @Override
     public String toString() {
         return "CustomerPagReq{" +
-                "customerId=" + customerId +
+                "adminId=" + adminId +
+                ", customerId=" + customerId +
                 ", shopId=" + shopId +
                 ", customerPhone='" + customerPhone + '\'' +
                 ", customerName='" + customerName + '\'' +
@@ -23,6 +25,14 @@ public class CustomerPagReq {
                 ", page=" + page +
                 ", size=" + size +
                 '}';
+    }
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
     public String getCustomerPhone() {

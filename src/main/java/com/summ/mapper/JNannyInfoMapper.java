@@ -107,4 +107,6 @@ public interface JNannyInfoMapper extends AutoMapper<JNannyInfo> {
      */
     List<NannySkillRes> getNannySkill(int id);
 
+    List<OrderTempNannyRes> getOrderTempNannyList(Integer orderId,String nannyName);
+
 }

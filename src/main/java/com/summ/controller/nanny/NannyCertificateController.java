@@ -3,8 +3,10 @@ package com.summ.controller.nanny;
 import com.summ.Consts;
 import com.summ.controller.basic.AutoMapperController;
 import com.summ.mapper.JNannyCertificateMapper;
+import com.summ.model.JDictInfo;
 import com.summ.model.JNannyCertificate;
 import com.summ.model.JNannyInfo;
+import com.summ.model.JNannyLanguage;
 import com.summ.model.response.ModelRes;
 import com.summ.model.response.NannyCertificateRes;
 import com.summ.utils.StringUtil;
@@ -58,9 +60,27 @@ public class NannyCertificateController extends AutoMapperController {
 
     @ResponseBody
     @RequestMapping("/insert")
-    public Object insert(@RequestBody JNannyCertificate jNannyCertificate) {
+    public Object insert(@RequestBody Map map) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "add NannyInfo success !", jNannyCertificateMapper.insert(jNannyCertificate));
+            Integer languageId = (Integer) map.get("id");
+            if(languageId==0){
+                //新增数据字典
+                JDictInfo jDictInfo = new JDictInfo();
+                jDictInfo.setTypecode(21);
+                jDictInfo.setInfo((String) map.get("info"));
+                jDictInfoMapper.insert(jDictInfo);
+
+                //插入服务师技能表
+                JNannyCertificate jNannyCertificate = new JNannyCertificate();
+                jNannyCertificate.setNannyId((Integer) map.get("nannyId"));
+                jNannyCertificate.setCertificateId(jDictInfo.getId());
+                return new ModelRes(ModelRes.Status.SUCCESS,"update NannyInfo success !",jNannyCertificateMapper.insert(jNannyCertificate));
+            }else {
+                JNannyCertificate jNannyCertificate = new JNannyCertificate();
+                jNannyCertificate.setNannyId((Integer) map.get("nannyId"));
+                jNannyCertificate.setCertificateId((Integer) map.get("id"));
+                return new ModelRes(ModelRes.Status.SUCCESS,"update NannyInfo success !",jNannyCertificateMapper.insert(jNannyCertificate));
+            }
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -68,6 +88,7 @@ public class NannyCertificateController extends AutoMapperController {
         }
     }
 
+    //上传证件照
     @ResponseBody
     @RequestMapping("/upload")
     public Object upload(@RequestBody JNannyCertificate jNannyCertificate) {

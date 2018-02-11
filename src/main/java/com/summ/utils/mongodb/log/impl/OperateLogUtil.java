@@ -77,12 +77,13 @@ public class OperateLogUtil implements LogUtil {
 
 //        String paramNames = joinPoint.getSignature()
         Object[] args = joinPoint.getArgs();
-        String argList = "";
+        String argList = JsonUtil.toJson(args[0]);
 
-        for (Object arg : args) {
-//            argList += arg.toString() + "(" + arg.getClass().getName() + ");";
-            argList = JsonUtil.toJson(arg);
-        }
+//        for (Object arg : args) {
+////            argList += arg.toString() + "(" + arg.getClass().getName() + ");";
+//            argList = JsonUtil.toJson(arg);
+//        }
+
         logMap.putAll(JsonUtil.json2Map(argList));
         System.out.println(">>>>>>>>>>>>>>>>>>>" + logMap);
 
@@ -200,6 +201,7 @@ public class OperateLogUtil implements LogUtil {
     }
 
     private void log(final Map map) {
+        System.out.println("");
         Thread operateThread = new Thread() {
             public void run() {
                 MongoDBUtil mongoUtil = null;

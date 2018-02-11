@@ -127,6 +127,9 @@ public class NannyInfoRes {
     /**  */
     private String remark;
 
+    private Integer hot;
+    private String hotInfo;
+
     /**  */
     private Date createTime;
 
@@ -145,6 +148,22 @@ public class NannyInfoRes {
     private List<NannyCharacterRes> nannyCharacterRes;
     private List<NannyCertificateRes> nannyCertificateRes;
     private List<NannyShopRes> nannyShopRes;
+
+    public String getHotInfo() {
+        return hotInfo;
+    }
+
+    public void setHotInfo(String hotInfo) {
+        this.hotInfo = hotInfo;
+    }
+
+    public Integer getHot() {
+        return hot;
+    }
+
+    public void setHot(Integer hot) {
+        this.hot = hot;
+    }
 
     public List<NannyShopRes> getNannyShopRes() {
         return nannyShopRes;

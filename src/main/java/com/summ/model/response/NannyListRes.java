@@ -13,7 +13,25 @@ public class NannyListRes {
     private Integer nannyStatus;
     private String nannyStatusInfo;
     private Integer nannyAge;
+    private Integer hot;
+    private String hotInfo;
     private String remark;
+
+    public Integer getHot() {
+        return hot;
+    }
+
+    public void setHot(Integer hot) {
+        this.hot = hot;
+    }
+
+    public String getHotInfo() {
+        return hotInfo;
+    }
+
+    public void setHotInfo(String hotInfo) {
+        this.hotInfo = hotInfo;
+    }
 
     public Integer getNannyId() {
         return nannyId;

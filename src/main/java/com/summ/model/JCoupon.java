@@ -1,6 +1,7 @@
 package com.summ.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotations.IdType;
@@ -31,7 +32,7 @@ public class JCoupon implements Serializable {
 	private String couponDetail;
 
 	/**  */
-	private Double couponPrice;
+	private BigDecimal couponPrice;
 
 	/**  */
 	private Date validTime;
@@ -70,11 +71,11 @@ public class JCoupon implements Serializable {
 		this.couponDetail = couponDetail;
 	}
 
-	public Double getCouponPrice() {
-		return this.couponPrice;
+	public BigDecimal getCouponPrice() {
+		return couponPrice;
 	}
 
-	public void setCouponPrice(Double couponPrice) {
+	public void setCouponPrice(BigDecimal couponPrice) {
 		this.couponPrice = couponPrice;
 	}
 

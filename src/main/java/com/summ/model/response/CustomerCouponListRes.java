@@ -1,5 +1,8 @@
 package com.summ.model.response;
 
+import com.sun.tools.internal.xjc.reader.dtd.bindinfo.BIAttribute;
+
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -43,7 +46,7 @@ public class CustomerCouponListRes {
     private String couponDetail;
 
     /**  */
-    private Double couponPrice;
+    private BigDecimal couponPrice;
 
     /**  */
     private Date validTime;
@@ -165,11 +168,11 @@ public class CustomerCouponListRes {
         this.couponDetail = couponDetail;
     }
 
-    public Double getCouponPrice() {
+    public BigDecimal getCouponPrice() {
         return couponPrice;
     }
 
-    public void setCouponPrice(Double couponPrice) {
+    public void setCouponPrice(BigDecimal couponPrice) {
         this.couponPrice = couponPrice;
     }
 

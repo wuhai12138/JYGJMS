@@ -4,6 +4,7 @@ import com.summ.model.response.CustomerStatmentRes;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.RichTextString;
 
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
@@ -38,10 +39,10 @@ public class ExcelUtil {
         for (int i = 0; i < list.size(); i++){
             HSSFRow hssfRow = sheet.createRow(i+1);
 
-            hssfRow.createCell(0).setCellValue(list.get(i).getStatmentId());
+            hssfRow.createCell(0).setCellValue(list.get(i).getStatmentCustomer());
             hssfRow.createCell(1).setCellValue(simpleDateFormat.format(list.get(i).getChargeDate()));
-            hssfRow.createCell(2).setCellValue(list.get(i).getStatmentType());
-            hssfRow.createCell(3).setCellValue(list.get(i).getChargeMoney());
+            hssfRow.createCell(2).setCellValue(list.get(i).getStatmentCustomerType());
+            hssfRow.createCell(3).setCellValue((RichTextString) list.get(i).getChargeMoney());
             hssfRow.createCell(4).setCellValue(list.get(i).getChargeWayInfo());
             hssfRow.createCell(5).setCellValue(list.get(i).getAdminName());
             hssfRow.createCell(6).setCellValue(list.get(i).getTerminalInfo());

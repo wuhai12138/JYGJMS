@@ -14,4 +14,6 @@ public interface JCouponMapper extends AutoMapper<JCoupon> {
 
     List<JCoupon> getCouponList(int couponOri);
 
+    JCoupon getCouponByCouponListId(int couponListId);
+
 }

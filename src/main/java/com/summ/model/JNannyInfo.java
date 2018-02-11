@@ -41,7 +41,7 @@ public class JNannyInfo implements Serializable {
 	private Integer nannyType;
 
 	/** 3星4星5星 */
-	private Integer nannyLevel =3;
+	private Integer nannyLevel = 84;
 
 	/**  */
 	private String nannyPhone;
@@ -69,15 +69,15 @@ public class JNannyInfo implements Serializable {
 	/**  */
 	private Integer nannyAge;
 
-	/** 属相 */
-	private Integer nannyAnimalSign;
+	/** 属相 默认为暂无 */
+	private Integer nannyAnimalSign=126;
 
-	/**  */
-	private Integer nannyNation;
+	/**  民族 默认为暂无 */
+	private Integer nannyNation=125;
 
-	private Integer nannyOrigin;
+	private Integer nannyOrigin=36;
 
-	private Integer nannyEducation;
+	private Integer nannyEducation=101;
 
 	/**  */
 	private String nannyHeight;
@@ -98,7 +98,7 @@ public class JNannyInfo implements Serializable {
 	private String nannyAgencyFees;
 
 	/** 支付方式 */
-	private int payment;
+	private int payment=127;
 
 	/** 有效期 */
 	private Date validDate;
@@ -115,10 +115,19 @@ public class JNannyInfo implements Serializable {
 	/**  */
 	private Integer isDel =16;
 
+	/** 服务师是否常用168（常用）169（不常用） */
+	private Integer hot=169;
 
+	/** 服务师押金*/
+	private Integer nannyCashPledge;
 
+	public Integer getNannyCashPledge() {
+		return nannyCashPledge;
+	}
 
-
+	public void setNannyCashPledge(Integer nannyCashPledge) {
+		this.nannyCashPledge = nannyCashPledge;
+	}
 
 	public JNannyInfo() {
 	}
@@ -164,6 +173,14 @@ public class JNannyInfo implements Serializable {
 				", modifyTime=" + modifyTime +
 				", isDel=" + isDel +
 				'}';
+	}
+
+	public Integer getHot() {
+		return hot;
+	}
+
+	public void setHot(Integer hot) {
+		this.hot = hot;
 	}
 
 	public Integer getNannyEducation() {

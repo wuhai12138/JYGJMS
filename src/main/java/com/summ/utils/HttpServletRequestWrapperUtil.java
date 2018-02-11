@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
+ * 用于解决http请求中body只能获取一次的情况。过滤器中使用。
  * Created by jygj_7500 on 17/12/27.
  */
 public class HttpServletRequestWrapperUtil extends HttpServletRequestWrapper {

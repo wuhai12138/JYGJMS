@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JCustomerFeedbackMapper">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        feedbackId, content, customerId, createDate, department, status, noteAdmin, isDel
+    </sql>
+
+    <select id="getCustomerFeedbackCount" parameterType="com.summ.model.request.CustomerFeedbackReq"
+            resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM j_customer_feedback j
+        WHERE j.isDel = 16
+        <if test="0 != customerFeedbackReq.department">
+            AND j.department = #{customerFeedbackReq.department}
+        </if>
+    </select>
+
+    <select id="getCustomerFeedbackList" parameterType="com.summ.model.request.CustomerFeedbackReq"
+            resultType="com.summ.model.response.CustomerFeedbackRes">
+        SELECT j.*,jc.customerName,jc.customerPhone,d1.INFO AS departmentInfo,d2.INFO AS statusInfo
+        FROM j_customer_feedback j
+        LEFT JOIN j_customer jc ON j.customerId = jc.customerId
+        LEFT JOIN j_dict_info d1 ON d1.ID = j.department
+        LEFT JOIN j_dict_info d2 ON d2.ID = j.`status`
+        WHERE j.isDel=16
+        <if test="0 != customerFeedbackReq.department">
+            AND j.department = #{customerFeedbackReq.department}
+        </if>
+        LIMIT #{customerFeedbackReq.page},#{customerFeedbackReq.size}
+    </select>
+
+    <select id="getCustomerFeedbackDetail" parameterType="java.lang.Integer"
+            resultType="com.summ.model.response.CustomerFeedbackRes">
+        SELECT j.*,jc.customerName,jc.customerPhone,d1.INFO AS departmentInfo,d2.INFO AS statusInfo
+        FROM j_customer_feedback j
+        LEFT JOIN j_customer jc ON j.customerId = jc.customerId
+        LEFT JOIN j_dict_info d1 ON d1.ID = j.department
+        LEFT JOIN j_dict_info d2 ON d2.ID = j.`status`
+        WHERE j.isDel=16
+        AND j.feedbackId=#{0}
+    </select>
+
+</mapper>

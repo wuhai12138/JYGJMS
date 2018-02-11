@@ -7,4 +7,9 @@
 		accessId, accessText, accessUrl
 	</sql>
 
+	<select id="getListOrderBySort" resultType="com.summ.model.JAccess">
+		SELECT *
+		FROM j_access
+		ORDER BY sort
+	</select>
 </mapper>

@@ -1,0 +1,104 @@
+package com.summ.controller.customer;
+
+import com.summ.controller.basic.AutoMapperController;
+import com.summ.model.JAdmin;
+import com.summ.model.JCustomerFeedback;
+import com.summ.model.JCustomerFeedbackFollow;
+import com.summ.model.request.CustomerFeedbackReq;
+import com.summ.model.response.CustomerFeedbackFollowRes;
+import com.summ.model.response.CustomerFeedbackRes;
+import com.summ.model.response.ModelRes;
+import org.apache.commons.collections.map.HashedMap;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.ServletRequest;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by jygj_7500 on 18/1/27.
+ */
+@Controller
+@RequestMapping("/customer/feedback")
+public class CustomerFeedbackController extends AutoMapperController{
+
+    @ResponseBody
+    @RequestMapping(value = "/insert")
+    public Object insert(@RequestBody JCustomerFeedback jCustomerFeedback, ServletRequest request) {
+        try {
+            JAdmin admin = (JAdmin) request.getAttribute("admin");
+            jCustomerFeedback.setNoteAdmin(admin.getAdminId());
+            return new ModelRes(ModelRes.Status.SUCCESS, "添加客户反馈 !",jCustomerFeedbackMapper.insert(jCustomerFeedback) );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/find")
+    public Object find(@RequestBody CustomerFeedbackReq customerFeedbackRes,ServletRequest request) {
+        try {
+            JAdmin admin = (JAdmin) request.getAttribute("admin");
+            customerFeedbackRes.setPage((customerFeedbackRes.getPage()-1)*customerFeedbackRes.getSize());
+            Map map = new HashedMap();
+            map.put("count",jCustomerFeedbackMapper.getCustomerFeedbackCount(customerFeedbackRes));
+            map.put("list",jCustomerFeedbackMapper.getCustomerFeedbackList(customerFeedbackRes));
+            return new ModelRes(ModelRes.Status.SUCCESS, "查找客户反馈列表 !",map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/update")
+    public Object update(@RequestBody JCustomerFeedback jCustomerFeedback) {
+        try {
+            return new ModelRes(ModelRes.Status.SUCCESS, "更新客户反馈 !",jCustomerFeedbackMapper.updateSelectiveById(jCustomerFeedback));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 客户反馈详情以及管理员跟踪记录的列表
+     * @param jCustomerFeedback
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/follow/find")
+    public Object detail(@RequestBody JCustomerFeedback jCustomerFeedback) {
+        try {
+            CustomerFeedbackRes customerFeedbackRes = jCustomerFeedbackMapper.getCustomerFeedbackDetail(jCustomerFeedback.getFeedbackId());
+            List<CustomerFeedbackFollowRes> list = jCustomerFeedbackFollowMapper.getCustomerFeedbackFollowList(jCustomerFeedback.getFeedbackId());
+            if (list.size()>0){
+                customerFeedbackRes.setCustomerFeedbackFollowResList(list);
+            }
+            return new ModelRes(ModelRes.Status.SUCCESS, "查找客户反馈详情 !",customerFeedbackRes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/follow/insert")
+    public Object detail(@RequestBody JCustomerFeedbackFollow jCustomerFeedbackFollow,ServletRequest request) {
+        try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+            jCustomerFeedbackFollow.setAdminId(jAdmin.getAdminId());
+            return new ModelRes(ModelRes.Status.SUCCESS, "添加反馈跟踪 !",jCustomerFeedbackFollowMapper.insert(jCustomerFeedbackFollow));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+
+
+}

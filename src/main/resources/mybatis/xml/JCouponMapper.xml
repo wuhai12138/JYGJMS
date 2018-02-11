@@ -13,4 +13,11 @@
 		WHERE couponOrigin = #{0}
 	</select>
 
+	<select id="getCouponByCouponListId" resultType="com.summ.model.JCoupon">
+		SELECT j.*
+		FROM j_coupon j
+		LEFT JOIN j_coupon_list jcl ON jcl.couponId = j.couponId
+		WHERE jcl.couponListId = #{0}
+	</select>
+
 </mapper>

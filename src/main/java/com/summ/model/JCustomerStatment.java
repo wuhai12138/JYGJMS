@@ -25,49 +25,124 @@ public class JCustomerStatment implements Serializable {
 	@TableId(type = IdType.AUTO)
 	private Integer statmentId;
 
+	/** 系统订单号*/
+	private String statmentCustomer;
+
 	/**  */
 	private Integer customerId;
 
 	/**  */
-	private Date chargeDate = new Date();
+	private Integer goodsId;
 
 	/**  */
-	private Integer statmentType;
+	private Integer houseId;
 
 	/**  */
-	private Double chargeMoney;
+	private Integer orderId;
+
+	/** 订单类型 */
+	private Integer orderType;
+
+	/** 日程Id */
+	private Integer scheduleId;
 
 	/**  */
+	private Integer shopId;
+
+	/** 服务时间（几点到几点） */
+	private String serviceTime;
+
+	/** 服务时长 */
+	private Double serviceTimeLength;
+
+	/** 服务日期 */
+	private Date serviceDate;
+
+	/** 支付日期 */
+	private Date chargeDate;
+
+	/** 客户对账单类型 */
+	private Integer statmentCustomerType;
+
+	/** 支付金额 */
+	private BigDecimal chargeMoney;
+
+	/** 充值方式 */
 	private Integer chargeWay;
 
 	/**  */
 	private Integer adminId;
 
-	/**  */
+	/** 终端 */
 	private Integer terminal;
 
-	/**  */
+	/** 状态 */
 	private Integer status;
 
 	/** 余额 */
 	private BigDecimal balance;
 
-	/**  */
-	private Integer serialNumber;
-
-	/**  */
-	private Integer isDel = 16;
+	/** 流水号 */
+	private String serialNumber;
 
 	/**  */
 	private String remark;
 
+	/**  */
+	private String withdrawlCard;
+
+	/**  */
+	private String withdrawlBank;
+
+	public JCustomerStatment() {
+	}
+
+	public JCustomerStatment(String statmentCustomer, Integer customerId, Integer goodsId, Integer houseId, Integer orderId, Integer orderType, Integer scheduleId, Integer shopId, String serviceTime, Double serviceTimeLength, Date serviceDate, Date chargeDate, Integer statmentCustomerType, BigDecimal chargeMoney, Integer chargeWay, Integer adminId, Integer terminal, Integer status, BigDecimal balance, String serialNumber, String remark) {
+		this.statmentCustomer = statmentCustomer;
+		this.customerId = customerId;
+		this.goodsId = goodsId;
+		this.houseId = houseId;
+		this.orderId = orderId;
+		this.orderType = orderType;
+		this.scheduleId = scheduleId;
+		this.shopId = shopId;
+		this.serviceTime = serviceTime;
+		this.serviceTimeLength = serviceTimeLength;
+		this.serviceDate = serviceDate;
+		this.chargeDate = chargeDate;
+		this.statmentCustomerType = statmentCustomerType;
+		this.chargeMoney = chargeMoney;
+		this.chargeWay = chargeWay;
+		this.adminId = adminId;
+		this.terminal = terminal;
+		this.status = status;
+		this.balance = balance;
+		this.serialNumber = serialNumber;
+		this.remark = remark;
+	}
+
+	public Integer getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(Integer orderType) {
+		this.orderType = orderType;
+	}
 
 	public Integer getStatmentId() {
-		return this.statmentId;
+		return statmentId;
 	}
 
 	public void setStatmentId(Integer statmentId) {
 		this.statmentId = statmentId;
+	}
+
+	public String getStatmentCustomer() {
+		return this.statmentCustomer;
+	}
+
+	public void setStatmentCustomer(String statmentCustomer) {
+		this.statmentCustomer = statmentCustomer;
 	}
 
 	public Integer getCustomerId() {
@@ -78,6 +153,70 @@ public class JCustomerStatment implements Serializable {
 		this.customerId = customerId;
 	}
 
+	public Integer getGoodsId() {
+		return this.goodsId;
+	}
+
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
+	}
+
+	public Integer getHouseId() {
+		return this.houseId;
+	}
+
+	public void setHouseId(Integer houseId) {
+		this.houseId = houseId;
+	}
+
+	public Integer getOrderId() {
+		return this.orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public Integer getScheduleId() {
+		return this.scheduleId;
+	}
+
+	public void setScheduleId(Integer scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+
+	public Integer getShopId() {
+		return this.shopId;
+	}
+
+	public void setShopId(Integer shopId) {
+		this.shopId = shopId;
+	}
+
+	public String getServiceTime() {
+		return this.serviceTime;
+	}
+
+	public void setServiceTime(String serviceTime) {
+		this.serviceTime = serviceTime;
+	}
+
+	public Double getServiceTimeLength() {
+		return this.serviceTimeLength;
+	}
+
+	public void setServiceTimeLength(Double serviceTimeLength) {
+		this.serviceTimeLength = serviceTimeLength;
+	}
+
+	public Date getServiceDate() {
+		return this.serviceDate;
+	}
+
+	public void setServiceDate(Date serviceDate) {
+		this.serviceDate = serviceDate;
+	}
+
 	public Date getChargeDate() {
 		return this.chargeDate;
 	}
@@ -86,19 +225,19 @@ public class JCustomerStatment implements Serializable {
 		this.chargeDate = chargeDate;
 	}
 
-	public Integer getStatmentType() {
-		return this.statmentType;
+	public Integer getStatmentCustomerType() {
+		return this.statmentCustomerType;
 	}
 
-	public void setStatmentType(Integer statmentType) {
-		this.statmentType = statmentType;
+	public void setStatmentCustomerType(Integer statmentCustomerType) {
+		this.statmentCustomerType = statmentCustomerType;
 	}
 
-	public Double getChargeMoney() {
+	public BigDecimal getChargeMoney() {
 		return this.chargeMoney;
 	}
 
-	public void setChargeMoney(Double chargeMoney) {
+	public void setChargeMoney(BigDecimal chargeMoney) {
 		this.chargeMoney = chargeMoney;
 	}
 
@@ -142,20 +281,12 @@ public class JCustomerStatment implements Serializable {
 		this.balance = balance;
 	}
 
-	public Integer getSerialNumber() {
+	public String getSerialNumber() {
 		return this.serialNumber;
 	}
 
-	public void setSerialNumber(Integer serialNumber) {
+	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
-	}
-
-	public Integer getIsDel() {
-		return this.isDel;
-	}
-
-	public void setIsDel(Integer isDel) {
-		this.isDel = isDel;
 	}
 
 	public String getRemark() {
@@ -164,6 +295,22 @@ public class JCustomerStatment implements Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getWithdrawlCard() {
+		return this.withdrawlCard;
+	}
+
+	public void setWithdrawlCard(String withdrawlCard) {
+		this.withdrawlCard = withdrawlCard;
+	}
+
+	public String getWithdrawlBank() {
+		return this.withdrawlBank;
+	}
+
+	public void setWithdrawlBank(String withdrawlBank) {
+		this.withdrawlBank = withdrawlBank;
 	}
 
 }

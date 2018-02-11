@@ -43,9 +43,6 @@ public class JAdmin implements Serializable {
 	private Integer shopId;
 
 	/**  */
-	private Integer trainId;
-
-	/**  */
 	private Integer isDel = 16;
 
 	/**  */
@@ -106,14 +103,6 @@ public class JAdmin implements Serializable {
 
 	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
-	}
-
-	public Integer getTrainId() {
-		return this.trainId;
-	}
-
-	public void setTrainId(Integer trainId) {
-		this.trainId = trainId;
 	}
 
 	public Integer getIsDel() {

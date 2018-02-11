@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JOrderScheduleMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		scheduleId, orderId, statmentId, unitPrice, totalPrice, cost, statmentStatus, payStatus, startTime, endTime, clockTime, completedTime, suspendTime, cancelTime, week
+	</sql>
+
+	<select id="getScheduleCount" parameterType="com.summ.model.request.OrderScheduleReq" resultType="java.lang.Integer">
+		SELECT COUNT(jos.scheduleId)
+		FROM j_order_schedule jos
+		LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = jos.scheduleId
+		LEFT JOIN j_nanny_info jni ON jni.nannyId = jsn.nannyId
+		WHERE jos.orderId = #{orderScheduleReq.orderId}
+		AND jos.orderType=#{orderScheduleReq.orderType}
+		AND jos.scheduleDate &gt; #{orderScheduleReq.scheduleDateBefore}
+		AND jos.scheduleDate &lt; #{orderScheduleReq.scheduleDateAfter}
+		<if test="0 != orderScheduleReq.scheduleStatus">
+			AND jos.scheduleStatus = #{orderScheduleReq.scheduleStatus}
+		</if>
+		<if test="0 != orderScheduleReq.payStatus">
+			AND jos.payStatus = #{orderScheduleReq.payStatus}
+		</if>
+	</select>
+
+	<select id="getScheduleList" parameterType="com.summ.model.request.OrderScheduleReq" resultType="com.summ.model.response.OrderScheduleRes">
+		SELECT jos.*,d1.INFO AS scheduleStatusInfo,d2.INFO AS payStatusInfo,jsn.nannyId,jni.nannyName,jni.nannyPhone,d3.INFO AS nannyCurrentPayment,jgc.price AS scheduleCurrentPrice
+		FROM j_order_schedule jos
+		LEFT JOIN j_dict_info d1 ON d1.ID = jos.scheduleStatus
+		LEFT JOIN j_dict_info d2 ON d2.ID = jos.payStatus
+		LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = jos.scheduleId
+		LEFT JOIN j_nanny_info jni ON jni.nannyId = jsn.nannyId
+		LEFT JOIN j_dict_info d3 ON d3.ID = jni.nannyLevel
+		LEFT JOIN j_order_contract joc ON joc.orderId = jos.orderId
+		LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joc.goodsId
+		WHERE jos.orderId = #{orderScheduleReq.orderId}
+		AND jos.orderType=#{orderScheduleReq.orderType}
+		AND jos.scheduleDate &gt; #{orderScheduleReq.scheduleDateBefore}
+		AND jos.scheduleDate &lt; #{orderScheduleReq.scheduleDateAfter}
+		<if test="0 != orderScheduleReq.scheduleStatus">
+			AND jos.scheduleStatus = #{orderScheduleReq.scheduleStatus}
+		</if>
+		<if test="0 != orderScheduleReq.payStatus">
+			AND jos.payStatus = #{orderScheduleReq.payStatus}
+		</if>
+		LIMIT #{orderScheduleReq.page},#{orderScheduleReq.size}
+
+	</select>
+
+	<select id="getScheduleListByList" parameterType="java.util.List" resultType="com.summ.model.response.OrderScheduleRes">
+		SELECT jos.*,d1.INFO AS scheduleStatusInfo,d2.INFO AS payStatusInfo,jsn.nannyId,jni.nannyName,jni.nannyPhone,d3.INFO AS nannyCurrentPayment,jgc.price AS scheduleCurrentPrice
+		FROM j_order_schedule jos
+		LEFT JOIN j_dict_info d1 ON d1.ID = jos.scheduleStatus
+		LEFT JOIN j_dict_info d2 ON d2.ID = jos.payStatus
+		LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = jos.scheduleId
+		LEFT JOIN j_nanny_info jni ON jni.nannyId = jsn.nannyId
+		LEFT JOIN j_dict_info d3 ON d3.ID = jni.nannyLevel
+		LEFT JOIN j_order_contract joc ON joc.orderId = jos.orderId
+		LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joc.goodsId
+		WHERE jos.scheduleId IN
+		<foreach collection="list" item="item" index="index" close=")" open="(" separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="signNannySchedule" parameterType="java.util.Map" resultType="com.summ.model.JOrderSchedule">
+		SELECT
+		j.*
+		FROM
+		j_order_schedule j
+		LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = j.scheduleId
+		LEFT JOIN j_order_contract joc ON joc.orderId = j.orderId
+		WHERE
+		jsn.nannyId = #{map.nannyId}
+		AND j.scheduleStatus != 155
+		AND j.scheduleDate &gt; #{map.startDate}
+		AND j.scheduleDate &lt; #{map.endDate}
+		<foreach collection="map.longList" index="index" item="item" open=" AND " separator=" &amp; j.timeValue != 0 AND " close=" &amp; j.timeValue != 0">
+			#{item}
+		</foreach>
+		<foreach collection="map.weekList" index="index" item="item" open=" AND j.weekday IN (" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="getTempScheduleList" parameterType="java.lang.Integer" resultType="com.summ.model.response.OrderScheduleRes">
+		SELECT j.*,jsn.nannyId,jsn.supplierId,d1.INFO AS scheduleStatusInfo,d2.INFO AS payStatusInfo
+		FROM j_order_schedule j
+		LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId=j.scheduleId
+		LEFT JOIN j_dict_info d1 ON d1.ID = j.scheduleStatus
+		LEFT JOIN j_dict_info d2 ON d2.ID = j.payStatus
+		WHERE j.orderId=#{0}
+		AND j.orderType=164
+	</select>
+
+	<select id="getTempScheduleListByList" parameterType="java.util.List" resultType="com.summ.model.response.OrderScheduleRes">
+		SELECT jos.*,jsn.nannyId,jsn.supplierId
+		FROM j_order_schedule jos
+		LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = jos.scheduleId
+		LEFT JOIN j_order_temp jot ON jot.orderId = jos.orderId
+		WHERE jos.scheduleId IN
+		<foreach collection="list" item="item" index="index" close=")" open="(" separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+</mapper>

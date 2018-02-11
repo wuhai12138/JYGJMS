@@ -10,47 +10,76 @@ public class CustomerStatmentRes {
 
     private Integer statmentId;
 
+    private String statmentCustomer;
+
     /**  */
     private Integer customerId;
 
     /**  */
-    private Date chargeDate = new Date();
+    private Integer goodsId;
 
     /**  */
-    private Integer statmentType;
-    private String statmentTypeInfo;
+    private Integer houseId;
 
     /**  */
-    private Double chargeMoney;
+    private Integer orderId;
+
+    /** 日程Id */
+    private Integer scheduleId;
 
     /**  */
+    private Integer shopId;
+
+    /** 服务时间（几点到几点） */
+    private String serviceTime;
+
+    /** 服务时长 */
+    private Double serviceTimeLength;
+
+    /** 服务日期 */
+    private Date serviceDate;
+
+    /** 支付日期 */
+    private Date chargeDate;
+
+    /** 客户对账单类型 */
+    private Integer statmentCustomerType;
+
+    /** 支付金额 */
+    private BigDecimal chargeMoney;
+
+    /** 充值方式 */
     private Integer chargeWay;
-    private String chargeWayInfo;
 
     /**  */
     private Integer adminId;
-    private String adminName;
 
-    /**  */
+    /** 终端 */
     private Integer terminal;
-    private String terminalInfo;
 
-    /**  */
+    /** 状态 */
     private Integer status;
-    private String statusInfo;
 
     /** 余额 */
     private BigDecimal balance;
 
-    /**  */
+    /** 流水号 */
     private Integer serialNumber;
 
     /**  */
-    private Integer isDel;
-    private String isDelInfo;
+    private String remark;
 
     /**  */
-    private String remark;
+    private String withdrawlCard;
+
+    /**  */
+    private String withdrawlBank;
+
+    private String statusInfo;
+    private String terminalInfo;
+    private String adminName;
+    private String chargeWayInfo;
+    private String statmentCustomerTypeInfo;
 
     public Integer getStatmentId() {
         return statmentId;
@@ -58,6 +87,14 @@ public class CustomerStatmentRes {
 
     public void setStatmentId(Integer statmentId) {
         this.statmentId = statmentId;
+    }
+
+    public String getStatmentCustomer() {
+        return statmentCustomer;
+    }
+
+    public void setStatmentCustomer(String statmentCustomer) {
+        this.statmentCustomer = statmentCustomer;
     }
 
     public Integer getCustomerId() {
@@ -68,6 +105,70 @@ public class CustomerStatmentRes {
         this.customerId = customerId;
     }
 
+    public Integer getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public Integer getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
+
+    public void setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getServiceTime() {
+        return serviceTime;
+    }
+
+    public void setServiceTime(String serviceTime) {
+        this.serviceTime = serviceTime;
+    }
+
+    public Double getServiceTimeLength() {
+        return serviceTimeLength;
+    }
+
+    public void setServiceTimeLength(Double serviceTimeLength) {
+        this.serviceTimeLength = serviceTimeLength;
+    }
+
+    public Date getServiceDate() {
+        return serviceDate;
+    }
+
+    public void setServiceDate(Date serviceDate) {
+        this.serviceDate = serviceDate;
+    }
+
     public Date getChargeDate() {
         return chargeDate;
     }
@@ -76,27 +177,19 @@ public class CustomerStatmentRes {
         this.chargeDate = chargeDate;
     }
 
-    public Integer getStatmentType() {
-        return statmentType;
+    public Integer getStatmentCustomerType() {
+        return statmentCustomerType;
     }
 
-    public void setStatmentType(Integer statmentType) {
-        this.statmentType = statmentType;
+    public void setStatmentCustomerType(Integer statmentCustomerType) {
+        this.statmentCustomerType = statmentCustomerType;
     }
 
-    public String getStatmentTypeInfo() {
-        return statmentTypeInfo;
-    }
-
-    public void setStatmentTypeInfo(String statmentTypeInfo) {
-        this.statmentTypeInfo = statmentTypeInfo;
-    }
-
-    public Double getChargeMoney() {
+    public BigDecimal getChargeMoney() {
         return chargeMoney;
     }
 
-    public void setChargeMoney(Double chargeMoney) {
+    public void setChargeMoney(BigDecimal chargeMoney) {
         this.chargeMoney = chargeMoney;
     }
 
@@ -108,28 +201,12 @@ public class CustomerStatmentRes {
         this.chargeWay = chargeWay;
     }
 
-    public String getChargeWayInfo() {
-        return chargeWayInfo;
-    }
-
-    public void setChargeWayInfo(String chargeWayInfo) {
-        this.chargeWayInfo = chargeWayInfo;
-    }
-
     public Integer getAdminId() {
         return adminId;
     }
 
     public void setAdminId(Integer adminId) {
         this.adminId = adminId;
-    }
-
-    public String getAdminName() {
-        return adminName;
-    }
-
-    public void setAdminName(String adminName) {
-        this.adminName = adminName;
     }
 
     public Integer getTerminal() {
@@ -140,28 +217,12 @@ public class CustomerStatmentRes {
         this.terminal = terminal;
     }
 
-    public String getTerminalInfo() {
-        return terminalInfo;
-    }
-
-    public void setTerminalInfo(String terminalInfo) {
-        this.terminalInfo = terminalInfo;
-    }
-
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public String getStatusInfo() {
-        return statusInfo;
-    }
-
-    public void setStatusInfo(String statusInfo) {
-        this.statusInfo = statusInfo;
     }
 
     public BigDecimal getBalance() {
@@ -180,27 +241,67 @@ public class CustomerStatmentRes {
         this.serialNumber = serialNumber;
     }
 
-    public Integer getIsDel() {
-        return isDel;
-    }
-
-    public void setIsDel(Integer isDel) {
-        this.isDel = isDel;
-    }
-
-    public String getIsDelInfo() {
-        return isDelInfo;
-    }
-
-    public void setIsDelInfo(String isDelInfo) {
-        this.isDelInfo = isDelInfo;
-    }
-
     public String getRemark() {
         return remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getWithdrawlCard() {
+        return withdrawlCard;
+    }
+
+    public void setWithdrawlCard(String withdrawlCard) {
+        this.withdrawlCard = withdrawlCard;
+    }
+
+    public String getWithdrawlBank() {
+        return withdrawlBank;
+    }
+
+    public void setWithdrawlBank(String withdrawlBank) {
+        this.withdrawlBank = withdrawlBank;
+    }
+
+    public String getStatusInfo() {
+        return statusInfo;
+    }
+
+    public void setStatusInfo(String statusInfo) {
+        this.statusInfo = statusInfo;
+    }
+
+    public String getTerminalInfo() {
+        return terminalInfo;
+    }
+
+    public void setTerminalInfo(String terminalInfo) {
+        this.terminalInfo = terminalInfo;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    public String getChargeWayInfo() {
+        return chargeWayInfo;
+    }
+
+    public void setChargeWayInfo(String chargeWayInfo) {
+        this.chargeWayInfo = chargeWayInfo;
+    }
+
+    public String getStatmentCustomerTypeInfo() {
+        return statmentCustomerTypeInfo;
+    }
+
+    public void setStatmentCustomerTypeInfo(String statmentCustomerTypeInfo) {
+        this.statmentCustomerTypeInfo = statmentCustomerTypeInfo;
     }
 }

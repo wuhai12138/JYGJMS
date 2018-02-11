@@ -48,6 +48,26 @@ public class CustomerHouseRes {
     private Integer isDel = 16;
     private String isDelInfo;
 
+    /**服务计划书信息*/
+    private Integer serviceId;
+    private String ServiceDetail;
+
+    public Integer getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public String getServiceDetail() {
+        return ServiceDetail;
+    }
+
+    public void setServiceDetail(String serviceDetail) {
+        ServiceDetail = serviceDetail;
+    }
+
     public Integer getStreetId() {
         return streetId;
     }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +29,6 @@ import java.util.Map;
 @Controller
 @RequestMapping("/basic")
 public class BasicController extends AutoMapperController{
-
-
 
     /**
      * 获取省市区街道列表
@@ -76,6 +76,11 @@ public class BasicController extends AutoMapperController{
         }
     }
 
+    /**
+     * 增加某个类型的字典信息
+     * @param jDictInfo
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/dict/insert")
     public Object insertDict(@RequestBody JDictInfo jDictInfo) {
@@ -91,7 +96,7 @@ public class BasicController extends AutoMapperController{
         }
     }
     /**
-     * 获取有哪些服务师类型等
+     * 获取指定类型有哪些信息
      * @param typeCode
      * @return
      */
@@ -135,12 +140,10 @@ public class BasicController extends AutoMapperController{
      */
     @ResponseBody
     @RequestMapping(value = "/shop/dict")
-    public Object getShopDict(@RequestBody Map map) {
+    public Object getShopDict(@RequestBody Map map, ServletRequest request) {
         try {
-            EntityWrapper<JShop> entityWrapper = new EntityWrapper<JShop>();
-            Map map1 = new HashMap();
-            map1.put("list",jShopMapper.selectList(entityWrapper));
-            return new ModelRes(ModelRes.Status.SUCCESS, "search address success !", map1);
+            JAdmin admin = (JAdmin) request.getAttribute("admin");
+            return new ModelRes(ModelRes.Status.SUCCESS, "search address success !", ResponseUtil.List2Map(jAdminShopMapper.getList(admin.getAdminId())));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

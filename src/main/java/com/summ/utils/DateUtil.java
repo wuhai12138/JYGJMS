@@ -78,7 +78,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static String dateAndday(Date date){
-		String[] weekOfDays = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+		String[] weekOfDays = {"周天", "周一", "周二", "周三", "周四", "周五", "周六"};
 		Calendar calendar = Calendar.getInstance();
 		if(date != null){
 			calendar.setTime(date);
@@ -110,6 +110,7 @@ public class DateUtil {
 
 	/**
 	 *  获取一段日期内所有的星期week
+	 *  0表示星期天，1表示星期一，以此类推
 	 * @param week
 	 * @param start
 	 * @param over

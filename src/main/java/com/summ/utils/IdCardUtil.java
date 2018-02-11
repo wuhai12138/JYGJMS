@@ -229,26 +229,26 @@ public class IdCardUtil {
             return false;
         }
 
-        // 获取第18位
-        String idcard18Code = idcard.substring(17, 18);
-
-        char c[] = idcard17.toCharArray();
-
-        int bit[] = converCharToInt(c);
-
-        int sum17 = 0;
-
-        sum17 = getPowerSum(bit);
-
-        // 将和值与11取模得到余数进行校验码判断
-        String checkCode = getCheckCodeBySum(sum17);
-        if (null == checkCode) {
-            return false;
-        }
-        // 将身份证的第18位与算出来的校码进行匹配，不相等就为假
-        if (!idcard18Code.equalsIgnoreCase(checkCode)) {
-            return false;
-        }
+        // 获取第18位.暂时校验第十八位
+//        String idcard18Code = idcard.substring(17, 18);
+//
+//        char c[] = idcard17.toCharArray();
+//
+//        int bit[] = converCharToInt(c);
+//
+//        int sum17 = 0;
+//
+//        sum17 = getPowerSum(bit);
+//
+//        // 将和值与11取模得到余数进行校验码判断
+//        String checkCode = getCheckCodeBySum(sum17);
+//        if (null == checkCode) {
+//            return false;
+//        }
+//        // 将身份证的第18位与算出来的校码进行匹配，不相等就为假
+//        if (!idcard18Code.equalsIgnoreCase(checkCode)) {
+//            return false;
+//        }
 
         return true;
     }

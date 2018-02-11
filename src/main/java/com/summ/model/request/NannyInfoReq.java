@@ -1,9 +1,12 @@
 package com.summ.model.request;
 
+import com.alibaba.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
+
 /**
  * Created by jygj_7500 on 17/12/13.
  */
 public class NannyInfoReq {
+    private Integer adminId;
     private Integer nannyId;
     private String nannyName;
     private String nannyPhone;
@@ -27,6 +30,13 @@ public class NannyInfoReq {
                 '}';
     }
 
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
 
     public Integer getShopId() {
         return shopId;

@@ -1,12 +1,14 @@
 package com.summ.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.summ.controller.basic.AutoMapperController;
 import com.summ.mapper.JAdminMapper;
 import com.summ.mapper.JStreetMapper;
-import com.summ.model.JAdmin;
-import com.summ.model.JStreet;
+import com.summ.model.*;
 import com.summ.model.request.TestReq;
 import com.summ.model.response.ModelRes;
+import com.summ.utils.DateUtil;
 import com.summ.utils.JsonUtil;
 import com.summ.utils.RequestUtil;
 import com.summ.utils.StringUtil;
@@ -23,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
+import java.awt.event.FocusEvent;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +39,7 @@ import java.util.regex.Pattern;
  * Created by jygj_7500 on 17/11/8.
  */
 @Controller
-public class TestController {
+public class TestController extends AutoMapperController{
 
     @Autowired
     private JAdminMapper jAdminMapper;
@@ -45,8 +48,10 @@ public class TestController {
 
     @RequestMapping(value = "/test")
     @ResponseBody
-    public Object getAdminById(@RequestBody TestReq req) {
+    public Object getAdminById(@RequestBody Map map,@RequestBody Map shop) {
         try {
+            System.out.println(map.get("test"));
+            System.out.println(shop.get("shop"));
             return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,19 +64,35 @@ public class TestController {
      * @param
      * @return
      */
-//    @RequestMapping(value = "/test")
-//    @ResponseBody
-//    public Object getAdminById(@RequestBody TestReq req) {
-//        try {
-//            int id = req.getId();
-//            JAdmin jAdmin = jAdminMapper.getAdminById(id);
-//            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", jAdmin);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
-//        }
-//
-//    }
+    @RequestMapping(value = "/test1")
+    @ResponseBody
+    public Object test(@RequestBody Map req) {
+        try {
+            EntityWrapper<JShop> entityWrapper = new EntityWrapper<JShop>();
+            List<JShop> shopList = jShopMapper.selectList(entityWrapper);
+            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", shopList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
+        }
+
+    }
+
+    @RequestMapping(value = "/timedic")
+    @ResponseBody
+    public Object timedic(@RequestBody TestReq req) {
+        try {
+            String sql = "select time from j_nanny_work_time_dic";
+            AASql aaSql = new AASql();
+            aaSql.setSql(sql);
+            List<String> list = jNannyWorkTimeDicMapper.test(aaSql);
+            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
+        }
+
+    }
 
 //    @RequestMapping(value = "/testOrder")
 //    @ResponseBody

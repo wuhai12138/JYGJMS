@@ -71,7 +71,7 @@ public class CustomerCouponController extends AutoMapperController{
             JCouponList jCouponList1 = jCouponListMapper.selectById(Long.valueOf(jCouponList.getCouponListId()));
             System.out.println("<<<<<CouponStatus<<<<<<<"+jCouponList1.getCouponStatus());
             jCouponList.setCouponStatus(jCouponList1.getCouponStatus());
-            return new ModelRes(ModelRes.Status.SUCCESS,"update coupon success !",jCouponListMapper.updateById(jCouponList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"update coupon success !",jCouponListMapper.updateSelectiveById(jCouponList));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

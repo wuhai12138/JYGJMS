@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper.JNannyWorkTimeMapper">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+		workTimeId, nannyId, monday, tuesday, wednesday, thursday, friday, saturday, sunday, remark, isDel
+	</sql>
+
+    <select id="signNannyWorkTime" parameterType="java.util.Map" resultType="com.summ.model.JNannyInfo">
+        SELECT nannyId
+        FROM j_nanny_work_time
+        WHERE nannyId = #{map.nannyId}
+        <if test="'周一' == map.monday">
+            <foreach collection="map.longList" index="index" item="item" open=" AND "
+                     separator=" &amp; monday != 0 AND " close=" &amp; monday != 0">
+                #{item}
+            </foreach>
+        </if>
+        <if test="'周二' == map.tuesday">
+            <foreach collection="map.longList" index="index" item="item" open=" AND "
+                     separator=" &amp; tuesday != 0 AND " close=" &amp; tuesday != 0">
+                #{item}
+            </foreach>
+        </if>
+        <if test="'周三' == map.wednesday">
+            <foreach collection="map.longList" index="index" item="item" open=" AND "
+                     separator=" &amp; wednesday != 0 AND " close=" &amp; wednesday != 0">
+                #{item}
+            </foreach>
+        </if>
+        <if test="'周四' == map.thursday">
+            <foreach collection="map.longList" index="index" item="item" open=" AND "
+                     separator=" &amp; thursday != 0 AND " close=" &amp; thursday != 0">
+                #{item}
+            </foreach>
+        </if>
+        <if test="'周五' == map.friday">
+            <foreach collection="map.longList" index="index" item="item" open=" AND "
+                     separator=" &amp; friday != 0 AND " close=" &amp; friday != 0">
+                #{item}
+            </foreach>
+        </if>
+        <if test="'周六' == map.saturday">
+            <foreach collection="map.longList" index="index" item="item" open=" AND "
+                     separator=" &amp; saturday != 0 AND " close=" &amp; saturday != 0">
+                #{item}
+            </foreach>
+        </if>
+        <if test="'周天' == map.sunday">
+            <foreach collection="map.longList" index="index" item="item" open=" AND "
+                     separator=" &amp; sunday != 0 AND " close=" &amp; sunday != 0">
+                #{item}
+            </foreach>
+        </if>
+
+    </select>
+
+    <select id="getHotNannyScheduleTime" parameterType="com.summ.model.request.NannyWortTimeByOrderReq"
+            resultType="com.summ.model.response.TimeAndWeekRes">
+        SELECT
+        j.startTime AS startId,
+        j.endTime AS endId,
+        j.startTimeValue AS start,
+        j.endTimeValue AS 'end',
+        j.weekday AS week
+        FROM
+        j_order_schedule j
+        LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = j.scheduleId
+        WHERE
+        j.scheduleDate &gt; #{startDate}
+        AND j.scheduleDate &lt; #{endDate}
+        AND j.scheduleStatus != 156
+        AND jsn.nannyId = #{nannyId}
+
+    </select>
+
+    <select id="getHotNannyWorkTime" resultType="com.summ.model.response.NannyHotWorkTImeRes">
+		SELECT
+	      j.monday,
+	      j.tuesday,
+	      j.wednesday,
+	      j.thursday,
+	      j.friday,
+	      j.saturday,
+	      j.sunday,
+	      jni.nannyName,
+	      jni.nannyPhone,
+	      jni.nannyId
+		FROM
+	      j_nanny_work_time j
+		LEFT JOIN j_nanny_info jni ON jni.nannyId = j.nannyId
+		WHERE
+	jni.hot = 168
+	</select>
+
+</mapper>

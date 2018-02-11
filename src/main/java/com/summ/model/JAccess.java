@@ -28,6 +28,16 @@ public class JAccess implements Serializable {
 	/**  */
 	private String accessUrl;
 
+	private Integer sort;
+
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
 
 	public Integer getAccessId() {
 		return this.accessId;

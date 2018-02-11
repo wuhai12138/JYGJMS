@@ -1,14 +1,28 @@
 package com.summ.controller.basic;
 
 import com.summ.mapper.*;
-import com.summ.model.JNannyTrain;
-import com.summ.model.JShop;
+import com.summ.model.*;
+import com.summ.utils.mongodb.MongoDBUtil;
+import com.summ.utils.mongodb.model.MongoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
- * Created by jygj_7500 on 17/12/18.
+ *
+ * @author jygj_7500
+ * @date 17/12/18
  */
 public class AutoMapperController {
+    public static MongoDBUtil mongoDBUtil;
+
+    public MongoConfig mongoConfig = new MongoConfig();
+
+    @Autowired
+    public JAdminTypeMapper jAdminTypeMapper;
+    @Autowired
+    public JAccessDictMapper jAccessDictMapper;
+    @Autowired
+    public JAdminMapper jAdminMapper;
     @Autowired
     public JCouponMapper jCouponMapper;
     @Autowired
@@ -53,6 +67,35 @@ public class AutoMapperController {
     public JShopMapper jShopMapper;
     @Autowired
     public JNannyShopMapper jNannyShopMapper;
-
+    @Autowired
+    public JAdminShopMapper jAdminShopMapper;
+    @Autowired
+    public JCustomerServiceMapper jCustomerServiceMapper;
+    @Autowired
+    public JOrderContractMapper jOrderContractMapper;
+    @Autowired
+    public JNannyWorkTimeMapper jNannyWorkTimeMapper;
+    @Autowired
+    public JNannyWorkTimeDicMapper jNannyWorkTimeDicMapper;
+    @Autowired
+    public JOrderScheduleMapper jOrderScheduleMapper;
+    @Autowired
+    public  JScheduleNannyMapper jScheduleNannyMapper;
+    @Autowired
+    public JGoodsContractMapper jGoodsContractMapper;
+    @Autowired
+    public JOrderTempMapper jOrderTempMapper;
+    @Autowired
+    public JNannyStatmentMapper jNannyStatmentMapper;
+    @Autowired
+    public JCustomerFeedbackMapper jCustomerFeedbackMapper;
+    @Autowired
+    public JCustomerFeedbackFollowMapper jCustomerFeedbackFollowMapper;
+    @Autowired
+    public JGoodsCostMapper jGoodsCostMapper;
+    @Autowired
+    public JSupplierMapper jSupplierMapper;
+    @Autowired
+    public JSupplierStatmentMapper jSupplierStatmentMapper;
 
 }

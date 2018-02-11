@@ -27,6 +27,7 @@ public class JDictInfo implements Serializable {
 	private Integer typecode;
 
 	/**  */
+//	@TableId(type = IdType.AUTO)
 	private Integer dictcode;
 
 	/**  */

@@ -8,16 +8,18 @@
 	</sql>
 
     <select id="getCount" parameterType="com.summ.model.request.NannyInfoReq" resultType="java.lang.Integer">
-        SELECT count(*)
+        SELECT count(DISTINCT j.nannyId)
         FROM j_nanny_info j
---         LEFT JOIN j_nanny_shop jns ON j.nannyId = jns.nannyId
+        LEFT JOIN j_nanny_shop jns ON j.nannyId = jns.nannyId
+        <if test="0 == nannyInfoReq.shopId">
+            LEFT JOIN j_admin_shop jas ON jas.shopId = jns.shopId
+        </if>
         WHERE j.isDel = 16
         <if test="0 != nannyInfoReq.nannyId">
             AND j.nannyId = #{nannyInfoReq.nannyId}
         </if>
         <if test="'' != nannyInfoReq.nannyName">
             AND j.nannyName LIKE concat(concat('%',#{nannyInfoReq.nannyName}),'%')
-
         </if>
         <if test="'' != nannyInfoReq.nannyPhone">
             AND j.nannyPhone = #{nannyInfoReq.nannyPhone}
@@ -27,6 +29,9 @@
         </if>
         <if test="0 != nannyInfoReq.shopId">
             AND jns.shopId = #{nannyInfoReq.shopId}
+        </if>
+        <if test="0 == nannyInfoReq.shopId">
+            AND jas.adminId = #{nannyInfoReq.adminId}
         </if>
         <if test="0 != nannyInfoReq.nannyLevel">
             AND j.nannyLevel = #{nannyInfoReq.nannyLevel}
@@ -36,10 +41,14 @@
     <select id="getNannyInfoList" parameterType="com.summ.model.request.NannyInfoReq"
             resultType="com.summ.model.response.NannyListRes">
         SELECT j.nannyId,j.nannyName,j.nannyPhone,j.createTime,j.nannyStatus,jti.INFO AS
-        nannyStatusInfo,j.nannyAge,j.remark
+        nannyStatusInfo,j.nannyAge,j.remark,j.hot,d2.INFO AS hotInfo
         FROM j_nanny_info j
         LEFT JOIN j_dict_info jti ON j.nannyStatus = jti.ID
---         LEFT JOIN j_nanny_shop jns ON j.nannyId = jns.nannyId
+        LEFT JOIN j_dict_info d2 ON j.hot = d2.ID
+        LEFT JOIN j_nanny_shop jns ON j.nannyId = jns.nannyId
+        <if test="0 == nannyInfoReq.shopId">
+            LEFT JOIN j_admin_shop jas ON jas.shopId = jns.shopId
+        </if>
         WHERE j.isDel = 16
         <if test="0 != nannyInfoReq.nannyId">
             AND j.nannyId = #{nannyInfoReq.nannyId}
@@ -53,12 +62,16 @@
         <if test="0 != nannyInfoReq.nannyStatus">
             AND j.nannyStatus = #{nannyInfoReq.nannyStatus}
         </if>
+        <if test="0 == nannyInfoReq.shopId">
+            AND jas.adminId = #{nannyInfoReq.adminId}
+        </if>
         <if test="0 != nannyInfoReq.shopId">
             AND jns.shopId = #{nannyInfoReq.shopId}
         </if>
         <if test="0 != nannyInfoReq.nannyLevel">
             AND j.nannyLevel = #{nannyInfoReq.nannyLevel}
         </if>
+        GROUP BY j.nannyId
         limit #{nannyInfoReq.page},#{nannyInfoReq.size}
     </select>
 
@@ -77,11 +90,12 @@
 
     <select id="getJobData" resultType="com.summ.model.response.NannyInfoRes">
 		SELECT j.nannyId,j.nannyStatus,d1.INFO AS nannyStatusInfo,j.nannyLevel,d2.INFO AS nannyLevelInfo,j.nannyAgencyFees,j.payment,d3.INFO AS paymentInfo,
-				j.expectSalary,j.validDate,j.salaryCard,j.salaryBank
+				j.expectSalary,j.validDate,j.salaryCard,j.salaryBank,j.hot,d4.INFO AS hotInfo
 		FROM j_nanny_info j
 		LEFT JOIN j_dict_info d1 ON d1.ID = j.nannyStatus
 		LEFT JOIN j_dict_info d2 ON d2.ID = j.nannyLevel
 		LEFT JOIN j_dict_info d3 ON d3.ID = j.payment
+		LEFT JOIN j_dict_info d4 ON d4.ID = j.hot
 		WHERE j.nannyId = #{0}
 	</select>
 
@@ -146,6 +160,18 @@
 		LEFT JOIN j_dict_info d1 ON d1.ID= j.skillId
 		WHERE j.nannyId=#{0}
 	</select>
+
+    <select id="getOrderTempNannyList" resultType="com.summ.model.response.OrderTempNannyRes">
+        SELECT jni.nannyId,jni.nannyName,jni.nannyPhone,jdi.INFO AS nannyUnitPrice
+        FROM j_nanny_info jni
+        LEFT JOIN j_dict_info jdi ON jdi.ID=jni.nannyLevel
+        LEFT JOIN j_nanny_job_level jnjl ON jnjl.nannyId = jni.nannyId
+        LEFT JOIN j_nanny_job_level_goods jnjlg ON jnjlg.jobLevelId=jnjl.jobLevelId
+        LEFT JOIN j_order_temp jot ON jot.goodsId = jnjlg.goodsId
+        WHERE jot.orderId=#{0}
+        AND jni.nannyName LIKE concat(concat('%',#{1}),'%')
+        GROUP BY jni.nannyId
+    </select>
 
 
 </mapper>

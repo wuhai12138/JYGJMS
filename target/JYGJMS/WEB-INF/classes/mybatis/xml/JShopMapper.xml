@@ -7,4 +7,10 @@
 		shopId, trainId, shopName, shopPhone, shopAddress, shopPayCode, shopUrl, longitude, latitude, isDel, createTime, modifyTime
 	</sql>
 
+	<select id="getShopList" resultType="com.summ.model.JShop">
+		SELECT *
+		FROM j_shop
+		ORDER BY staring DESC
+	</select>
+
 </mapper>

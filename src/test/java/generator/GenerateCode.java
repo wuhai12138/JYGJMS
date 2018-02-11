@@ -16,6 +16,7 @@ import java.util.Properties;
  */
 public class GenerateCode {
 
+
     /* 生成代码包名 */
     private static final String PACKAGE_NAME = "com.summ";
 
@@ -53,8 +54,8 @@ public class GenerateCode {
 		 * </p>
 		 */
         cg.setIdType(IdType.AUTO);
-//		cg.setTableNames(new String[]{"j_train","j_shop"});
-        cg.setTableNames(new String[]{"j_nanny_shop"});
+        cg.setTableNames(new String[]{"j_supplier_statment"});
+//		cg.setTableNames(new String[]{"j_supplier","j_nanny_job_level_goods"});
 
         /* 生成文件保存位置 */
         cg.setSaveDir("E:\\summ\\MybatisPlusGeneratorModel");

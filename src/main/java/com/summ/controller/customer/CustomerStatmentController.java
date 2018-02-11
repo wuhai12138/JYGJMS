@@ -29,24 +29,13 @@ public class CustomerStatmentController extends AutoMapperController{
      * @return
      */
 
-    @ResponseBody
-    @RequestMapping("/insert")
-    public Object insert(@RequestBody JCustomerStatment jCustomerStatment, HttpServletRequest request){
-        try {
-            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
-            jCustomerStatment.setAdminId(jAdmin.getAdminId());
-            return new ModelRes(ModelRes.Status.SUCCESS,"add customer statment success !",jCustomerStatmentMapper.insert(jCustomerStatment));
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
 //    @ResponseBody
-//    @RequestMapping("/update")
-//    public Object update(@RequestBody JCustomer jCustomer){
+//    @RequestMapping("/insert")
+//    public Object insert(@RequestBody JCustomerStatment jCustomerStatment, HttpServletRequest request){
 //        try {
-//            return new ModelRes(ModelRes.Status.SUCCESS,"update customer success !",jCustomerMapper.updateById(jCustomer));
+//            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+//            jCustomerStatment.setAdminId(jAdmin.getAdminId());
+//            return new ModelRes(ModelRes.Status.SUCCESS,"add customer statment success !",jCustomerStatmentMapper.insert(jCustomerStatment));
 //        }catch (Exception e){
 //            e.printStackTrace();
 //            return new ModelRes(ModelRes.Status.ERROR, "server err !");

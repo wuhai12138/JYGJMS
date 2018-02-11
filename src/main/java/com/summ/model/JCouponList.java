@@ -39,7 +39,7 @@ public class JCouponList implements Serializable {
 	private Integer couponStatus = 32;
 
 	/**  */
-	private Integer missionId;
+	private Integer orderId;
 
 	/**  */
 	private Date createTime = new Date();
@@ -96,12 +96,12 @@ public class JCouponList implements Serializable {
 		this.couponStatus = couponStatus;
 	}
 
-	public Integer getMissionId() {
-		return this.missionId;
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public void setMissionId(Integer missionId) {
-		this.missionId = missionId;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
 	public Date getCreateTime() {

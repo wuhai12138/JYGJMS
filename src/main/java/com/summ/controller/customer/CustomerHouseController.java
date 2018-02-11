@@ -2,7 +2,12 @@ package com.summ.controller.customer;
 
 import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JCustomerHouse;
+import com.summ.model.response.CustomerHouseRes;
 import com.summ.model.response.ModelRes;
+import com.summ.utils.ResponseUtil;
+import com.summ.utils.mongodb.MongoDBUtil;
+import com.summ.utils.mongodb.model.MongoConfig;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +34,14 @@ public class CustomerHouseController extends AutoMapperController{
     @RequestMapping("/find")
     public Object findHouse(@RequestBody JCustomerHouse jCustomerHouse){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"search house info success !",new ModelRes(jCustomerHouseMapper.getList(jCustomerHouse.getCustomerId())));
+            mongoDBUtil = MongoDBUtil.getInstance(mongoConfig);
+            List<CustomerHouseRes> customerHouseResList = jCustomerHouseMapper.getList(jCustomerHouse.getCustomerId());
+            for (CustomerHouseRes customerHouseRes : customerHouseResList){
+                Map map = new HashedMap();
+                map.put("serviceId",customerHouseRes.getServiceId());
+                customerHouseRes.setServiceDetail(mongoDBUtil.query("customer_service",map));
+            }
+            return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !", ResponseUtil.List2Map(customerHouseResList));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -40,7 +52,7 @@ public class CustomerHouseController extends AutoMapperController{
     @RequestMapping("/insert")
     public Object insertHouse(@RequestBody JCustomerHouse jCustomerHouse){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"insert house info success !",jCustomerHouseMapper.insert(jCustomerHouse));
+            return new ModelRes(ModelRes.Status.SUCCESS,"insert customer house info success !",jCustomerHouseMapper.insert(jCustomerHouse));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -51,7 +63,7 @@ public class CustomerHouseController extends AutoMapperController{
     @RequestMapping("/delete")
     public Object deleteHouse(@RequestBody Map<String,List> map){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"delete house info success !",jCustomerHouseMapper.deleteList(map.get("houseId")));
+            return new ModelRes(ModelRes.Status.SUCCESS,"delete customer house info success !",jCustomerHouseMapper.deleteList(map.get("houseId")));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -62,7 +74,7 @@ public class CustomerHouseController extends AutoMapperController{
     @RequestMapping("/update")
     public Object updateHouse(@RequestBody JCustomerHouse jCustomerHouse){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"update house info success !",jCustomerHouseMapper.updateById(jCustomerHouse));
+            return new ModelRes(ModelRes.Status.SUCCESS,"update customer house info success !",jCustomerHouseMapper.updateSelectiveById(jCustomerHouse));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
