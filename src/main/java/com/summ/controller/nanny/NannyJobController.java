@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author jygj_7500
@@ -66,6 +64,56 @@ public class NannyJobController extends AutoMapperController {
     @RequestMapping("/update")
     public Object updateJobData(@RequestBody JNannyInfo jNannyInfo) {
         try {
+            /**如果要更新服务师为培训成功，则判断该服务师的健康证照片、身份证正反面照片是否上传。*/
+            if (jNannyInfo.getNannyStatus() == 56) {
+                List<NannyCertificateRes> list = jNannyInfoMapper.getNannyCertificate(jNannyInfo.getNannyId());
+                for (NannyCertificateRes nannyCertificateRes : list) {
+                    if (nannyCertificateRes.getCertificateId() == 109 || nannyCertificateRes.getCertificateId() == 189 || nannyCertificateRes.getCertificateId() == 190) {
+                        if (nannyCertificateRes.getPhoto() == null) {
+                            return new ModelRes(ModelRes.Status.FAILED, "服务师" + nannyCertificateRes.getCertificateIdInfo() + "未上传");
+                        }
+                    } else {
+                        return new ModelRes(ModelRes.Status.FAILED, "服务师健康证、身份证未上传");
+                    }
+                }
+                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+            } else {
+                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 服务师离职
+     * @param
+     * @param jNannyInfo
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/dimission")
+    public Object dimission(@RequestBody JNannyInfo jNannyInfo) {
+        try {
+            jNannyInfo.setNannyStatus(57);
+            jNannyInfo.setDimissionTime(new Date());
+            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 服务师升星级
+     * @param jNannyInfo
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/levelUp")
+    public Object levelUp(@RequestBody JNannyInfo jNannyInfo) {
+        try {
             return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,21 +132,21 @@ public class NannyJobController extends AutoMapperController {
     @RequestMapping("/shop/insert")
     public Object shopInsert(@RequestBody Map map, ServletRequest request) {
         try {
-            Integer shopId = (Integer) map.get("shopId");
+            List<Integer> shopIdList = (List<Integer>) map.get("shopId");
             Integer nannyId = (Integer) map.get("nannyId");
-            Map map1 = new HashMap();
-            map1.put("shopId",shopId);
-            map1.put("nannyId",nannyId);
-            if (jNannyShopMapper.selectByMap(map1).size()<=0){
+
+            List<JNannyShop> jNannyShopList = new ArrayList<JNannyShop>();
+            for (Integer id : shopIdList) {
                 JNannyShop jNannyShop = new JNannyShop();
                 jNannyShop.setNannyId(nannyId);
-                jNannyShop.setShopId(shopId);
-                jNannyShopMapper.insert(jNannyShop);
-            }else {
-                return new ModelRes(ModelRes.Status.FAILED, "该服务师不能重复添加同一门店 !",null );
+                jNannyShop.setShopId(id);
+                jNannyShopList.add(jNannyShop);
             }
-
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !",null );
+            Map map1 = new HashMap();
+            map1.put("nannyId", nannyId);
+            jNannyShopMapper.deleteByMap(map1);
+            jNannyShopMapper.insertBatch(jNannyShopList);
+            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", null);
 
         } catch (Exception e) {
             e.printStackTrace();

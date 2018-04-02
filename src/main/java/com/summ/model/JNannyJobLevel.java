@@ -50,7 +50,7 @@ public class JNannyJobLevel implements Serializable {
 	}
 
 	public Integer getJobLevelId() {
-		return this.jobLevelId;
+		return jobLevelId;
 	}
 
 	public void setJobLevelId(Integer jobLevelId) {

@@ -26,7 +26,7 @@
 				WHERE jnjl.nannyId = ${nannyId})
 			AND
 			INFO LIKE "%${name}%"
-			AND TYPECODE = 22
+			AND TYPECODE=22
 	</select>
 
 </mapper>

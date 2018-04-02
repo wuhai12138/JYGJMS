@@ -54,15 +54,34 @@ public class JShop implements Serializable {
 	private Integer isDel = 16;
 
 	/**  */
-	private Date createTime;
+	private Date createTime=new Date();
 
 	/**  */
 	private Date modifyTime;
 
 	private double distance=0;
 
+	private String shopMobile;
+
 	public double getDistance() {
 		return distance;
+	}
+
+
+	public JShop(Integer shopId, String shopName) {
+		this.shopId = shopId;
+		this.shopName = shopName;
+	}
+
+	public JShop() {
+	}
+
+	public String getShopMobile() {
+		return shopMobile;
+	}
+
+	public void setShopMobile(String shopMobile) {
+		this.shopMobile = shopMobile;
 	}
 
 	public void setDistance(double distance) {

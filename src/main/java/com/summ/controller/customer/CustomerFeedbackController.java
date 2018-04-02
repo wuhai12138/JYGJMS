@@ -3,6 +3,7 @@ package com.summ.controller.customer;
 import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JAdmin;
 import com.summ.model.JCustomerFeedback;
+import com.summ.model.JCustomerFeedbackDepartment;
 import com.summ.model.JCustomerFeedbackFollow;
 import com.summ.model.request.CustomerFeedbackReq;
 import com.summ.model.response.CustomerFeedbackFollowRes;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,11 +29,26 @@ public class CustomerFeedbackController extends AutoMapperController{
 
     @ResponseBody
     @RequestMapping(value = "/insert")
-    public Object insert(@RequestBody JCustomerFeedback jCustomerFeedback, ServletRequest request) {
+    public Object insert(@RequestBody Map map, ServletRequest request) {
         try {
             JAdmin admin = (JAdmin) request.getAttribute("admin");
+            String content = (String) map.get("content");
+            Integer customerId = (Integer) map.get("customerId");
+            List<Integer> list = (List<Integer>) map.get("department");
+
+            JCustomerFeedback jCustomerFeedback = new JCustomerFeedback();
+            jCustomerFeedback.setContent(content);
+            jCustomerFeedback.setCustomerId(customerId);
             jCustomerFeedback.setNoteAdmin(admin.getAdminId());
-            return new ModelRes(ModelRes.Status.SUCCESS, "添加客户反馈 !",jCustomerFeedbackMapper.insert(jCustomerFeedback) );
+            jCustomerFeedbackMapper.insert(jCustomerFeedback);
+
+            List<JCustomerFeedbackDepartment> jCustomerFeedbackList = new ArrayList<JCustomerFeedbackDepartment>();
+            for (Integer ii : list){
+                JCustomerFeedbackDepartment jCustomerFeedbackDepartment = new JCustomerFeedbackDepartment(jCustomerFeedback.getFeedbackId(),ii);
+                jCustomerFeedbackList.add(jCustomerFeedbackDepartment);
+            }
+            jCustomerFeedbackDepartmentMapper.insertBatch(jCustomerFeedbackList);
+            return new ModelRes(ModelRes.Status.SUCCESS, "添加客户反馈 !",null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

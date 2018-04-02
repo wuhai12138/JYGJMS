@@ -71,6 +71,13 @@ public class JNannyStatment implements Serializable {
 	/**  */
 	private String remark;
 
+	/**奖励原因*/
+	private Integer reason;
+
+	private Integer adminId;
+
+
+
 	public JNannyStatment() {
 	}
 
@@ -90,6 +97,21 @@ public class JNannyStatment implements Serializable {
 		this.serviceTimeLength = serviceTimeLength;
 		this.serviceDate = serviceDate;
 		this.remark = remark;
+	}
+
+	public Integer getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(Integer adminId) {
+		this.adminId = adminId;
+	}
+	public Integer getReason() {
+		return reason;
+	}
+
+	public void setReason(Integer reason) {
+		this.reason = reason;
 	}
 
 	public Date getCreateDate() {

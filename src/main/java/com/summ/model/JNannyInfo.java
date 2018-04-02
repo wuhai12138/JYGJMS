@@ -112,22 +112,22 @@ public class JNannyInfo implements Serializable {
 	/**  */
 	private Date modifyTime = new Date();
 
+	/**离职时间*/
+	private Date dimissionTime;
+
 	/**  */
 	private Integer isDel =16;
 
 	/** 服务师是否常用168（常用）169（不常用） */
 	private Integer hot=169;
 
+	/**服务师案件数量*/
+	private Integer caseload = 0;
+
+
 	/** 服务师押金*/
-	private Integer nannyCashPledge;
+	private BigDecimal nannyCashPledge=new BigDecimal(0);
 
-	public Integer getNannyCashPledge() {
-		return nannyCashPledge;
-	}
-
-	public void setNannyCashPledge(Integer nannyCashPledge) {
-		this.nannyCashPledge = nannyCashPledge;
-	}
 
 	public JNannyInfo() {
 	}
@@ -173,6 +173,30 @@ public class JNannyInfo implements Serializable {
 				", modifyTime=" + modifyTime +
 				", isDel=" + isDel +
 				'}';
+	}
+
+	public Date getDimissionTime() {
+		return dimissionTime;
+	}
+
+	public void setDimissionTime(Date dimissionTime) {
+		this.dimissionTime = dimissionTime;
+	}
+
+	public Integer getCaseload() {
+		return caseload;
+	}
+
+	public void setCaseload(Integer caseload) {
+		this.caseload = caseload;
+	}
+
+	public BigDecimal getNannyCashPledge() {
+		return nannyCashPledge;
+	}
+
+	public void setNannyCashPledge(BigDecimal nannyCashPledge) {
+		this.nannyCashPledge = nannyCashPledge;
 	}
 
 	public Integer getHot() {

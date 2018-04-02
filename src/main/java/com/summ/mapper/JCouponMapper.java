@@ -2,6 +2,8 @@ package com.summ.mapper;
 
 import com.summ.model.JCoupon;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.summ.model.response.CouponRes;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  */
 public interface JCouponMapper extends AutoMapper<JCoupon> {
 
-    List<JCoupon> getCouponList(int couponOri);
+    List<CouponRes> getCouponList(@Param("couponOri") int couponOri);
 
     JCoupon getCouponByCouponListId(int couponListId);
 

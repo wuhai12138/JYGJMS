@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
- *
  * @author jygj_7500
  * @date 17/12/18
  */
@@ -80,7 +79,7 @@ public class AutoMapperController {
     @Autowired
     public JOrderScheduleMapper jOrderScheduleMapper;
     @Autowired
-    public  JScheduleNannyMapper jScheduleNannyMapper;
+    public JScheduleNannyMapper jScheduleNannyMapper;
     @Autowired
     public JGoodsContractMapper jGoodsContractMapper;
     @Autowired
@@ -97,5 +96,30 @@ public class AutoMapperController {
     public JSupplierMapper jSupplierMapper;
     @Autowired
     public JSupplierStatmentMapper jSupplierStatmentMapper;
-
+    @Autowired
+    public JTeacherMapper jTeacherMapper;
+    @Autowired
+    public JTeacherShopMapper jTeacherShopMapper;
+    @Autowired
+    public JTeacherWorkTimeMapper jTeacherWorkTimeMapper;
+    @Autowired
+    public JReportSalaryMapper jReportSalaryMapper;
+    @Autowired
+    public JLeaguerMapper jLeaguerMapper;
+    @Autowired
+    public JLeaguerShopMapper jLeaguerShopMapper;
+    @Autowired
+    public JLeaguerInvoiceMapper jLeaguerInvoiceMapper;
+    @Autowired
+    public JSupplierInvoiceMapper jSupplierInvoiceMapper;
+    @Autowired
+    public JCustomerInvoiceMapper jCustomerInvoiceMapper;
+    @Autowired
+    public JNannyCashPledgeRecordMapper jNannyCashPledgeRecordMapper;
+    @Autowired
+    public JNannyCaseMapper jNannyCaseMapper;
+    @Autowired
+    public JNannyInsuranceMapper jNannyInsuranceMapper;
+    @Autowired
+    public JCustomerFeedbackDepartmentMapper jCustomerFeedbackDepartmentMapper;
 }

@@ -13,6 +13,8 @@ public class NannyStatmentDetailRes {
 
     /**  */
     private Integer nannyId;
+    private String nannyName;
+    private String nannyPhone;
 
     /**  */
     private Integer scheduleId;
@@ -60,6 +62,60 @@ public class NannyStatmentDetailRes {
 
     /**  */
     private String remark;
+
+    private Integer reason;
+    private String reasonInfo;
+
+    private Integer adminId;
+    private String adminName;
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    public Integer getReason() {
+        return reason;
+    }
+
+    public void setReason(Integer reason) {
+        this.reason = reason;
+    }
+
+    public String getReasonInfo() {
+        return reasonInfo;
+    }
+
+    public void setReasonInfo(String reasonInfo) {
+        this.reasonInfo = reasonInfo;
+    }
+
+    public String getNannyName() {
+        return nannyName;
+    }
+
+    public void setNannyName(String nannyName) {
+        this.nannyName = nannyName;
+    }
+
+    public String getNannyPhone() {
+        return nannyPhone;
+    }
+
+    public void setNannyPhone(String nannyPhone) {
+        this.nannyPhone = nannyPhone;
+    }
 
     public Integer getStatmentId() {
         return statmentId;

@@ -4,11 +4,13 @@ import com.summ.model.JNannyStatment;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.summ.model.request.NannyStatmentDetailReq;
 import com.summ.model.request.NannyStatmentReq;
+import com.summ.model.request.NannyStatmentRewardsAndPunishmentsReq;
 import com.summ.model.response.NannyStatmentDetailRes;
 import com.summ.model.response.NannyStatmentRes;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,8 +21,16 @@ public interface JNannyStatmentMapper extends AutoMapper<JNannyStatment> {
 
     List<NannyStatmentRes> getNannyStatmentList(@Param("nannyStatmentReq") NannyStatmentReq nannyStatmentReq);
 
+    Integer getNannyStatmentListCount(@Param("nannyStatmentReq") NannyStatmentReq nannyStatmentReq);
+
     List<NannyStatmentDetailRes> getNannyStatmentDetail(@Param("nannyStatmentDetailReq") NannyStatmentDetailReq nannyStatmentDetailReq);
 
     Integer getNannyStatmentDetailCount(@Param("nannyStatmentDetailReq") NannyStatmentDetailReq nannyStatmentDetailReq);
+
+    List<NannyStatmentDetailRes> getNannyStatmentRewardsAndPunishmentsDetail(@Param("map") Map map);
+
+    Integer getNannyStatmentRewardsAndPunishmentsDetailCount(@Param("map") Map map);
+
+
 
 }

@@ -76,7 +76,7 @@
     </select>
 
     <select id="getNannyBasic" parameterType="java.lang.Integer" resultType="com.summ.model.response.NannyInfoRes">
-		SELECT j.nannyId,j.nannyAvatar,j.createTime,j.nannyName,j.nannyIdCard,j.nannyPhone,j.nannyAge,j.nannySex,d1.INFO AS nannySexInfo,
+		SELECT j.nannyId,j.nannyAvatar,j.createTime,j.nannyName,j.nannyIdCard,j.nannyPhone,j.nannyAge,j.nannySex,d1.INFO AS nannySexInfo,j.validDate,
 				j.provinceId,d2.provinceName AS provinceIdInfo,j.cityId,d3.cityName AS cityIdInfo,j.areaId,d4.areaName AS areaIdInfo,j.streetId,d5.streetName AS streetIdInfo,j.nannyAddress,j.remark
 		FROM j_nanny_info j
 		LEFT JOIN j_dict_info d1 ON d1.ID = j.nannySex
@@ -110,7 +110,7 @@
 	</select>
 
     <select id="getNannyShop" resultType="com.summ.model.response.NannyShopRes">
-        SELECT j.nannyShopId,d1.shopName AS shopName,j.nannyId
+        SELECT j.nannyShopId,d1.shopName AS shopName,j.nannyId,j.shopId
         FROM j_nanny_shop j
         LEFT JOIN j_shop d1 ON d1.shopId= j.shopId
         WHERE j.nannyId=#{0}
@@ -137,7 +137,7 @@
 		WHERE j.nannyId=#{0}
 	</select>
     <select id="getNannyCertificate" resultType="com.summ.model.response.NannyCertificateRes">
-		SELECT j.nannyCertId,d1.INFO AS certificateIdInfo,j.photo
+		SELECT j.nannyCertId,d1.INFO AS certificateIdInfo,j.photo,j.certificateId
 		FROM j_nanny_certificate j
 		LEFT JOIN j_dict_info d1 ON d1.ID= j.certificateId
 		WHERE j.nannyId=#{0}

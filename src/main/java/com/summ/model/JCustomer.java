@@ -28,7 +28,7 @@ public class JCustomer implements Serializable {
 	private Integer customerId;
 
 	/**  */
-	private Integer shopId;
+	private Integer shopId=1;
 
 	/**  */
 	private String customerName;
@@ -43,7 +43,7 @@ public class JCustomer implements Serializable {
 	private Integer customerSex;
 
 	/**  */
-	private BigDecimal customerBalance;
+	private BigDecimal customerBalance=new BigDecimal(0);
 
 	/** 1警告2不警告 */
 	private Integer warnType = 15;
@@ -52,7 +52,7 @@ public class JCustomer implements Serializable {
 	private String remark;
 
 	/**  */
-	private Date createTime = new Date();
+	private Date createTime;
 
 	/** 是否删除（1为已删除） */
 	private Integer isDel = 16;

@@ -3,9 +3,14 @@ package com.summ.controller.nanny;
 import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JAdmin;
 import com.summ.model.JNannyInfo;
+import com.summ.model.JNannyStatment;
 import com.summ.model.request.NannyStatmentDetailReq;
 import com.summ.model.request.NannyStatmentReq;
+import com.summ.model.request.NannyStatmentRewardsAndPunishmentsReq;
 import com.summ.model.response.ModelRes;
+import com.summ.model.response.NannyStatmentRes;
+import com.summ.utils.JsonUtil;
+import com.summ.utils.OrderUtil;
 import com.summ.utils.ResponseUtil;
 import com.sun.org.apache.regexp.internal.RE;
 import org.apache.commons.collections.map.HashedMap;
@@ -15,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletRequest;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,14 +31,48 @@ import java.util.Map;
 @RequestMapping("/nanny/statment")
 public class NannyStatmentController extends AutoMapperController{
 
+    /**
+     * 门店工资明细
+     * @param nannyStatmentReq
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/find/list")
-    public Object updateJobData(@RequestBody NannyStatmentReq nannyStatmentReq, ServletRequest request) {
+    public Object findList(@RequestBody NannyStatmentReq nannyStatmentReq, ServletRequest request) {
         try {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
             nannyStatmentReq.setAdminId(jAdmin.getAdminId());
             nannyStatmentReq.setPage(nannyStatmentReq.getSize() * (nannyStatmentReq.getPage()-1));
-            return new ModelRes(ModelRes.Status.SUCCESS, "get Nanny statment list success !", ResponseUtil.List2Map(jNannyStatmentMapper.getNannyStatmentList(nannyStatmentReq)));
+            List<NannyStatmentRes> nannyStatmentResList = jNannyStatmentMapper.getNannyStatmentList(nannyStatmentReq);
+            for (NannyStatmentRes nannyStatmentRes : nannyStatmentResList){
+                nannyStatmentRes.setTotalTimes(nannyStatmentRes.getOrderContractTimes()+nannyStatmentRes.getOrderTempTimes()+nannyStatmentRes.getOrderGrouponTimes());
+                nannyStatmentRes.setTotalSalary(nannyStatmentRes.getOrderContractMoney().add(nannyStatmentRes.getOrderTempMoney()).add(nannyStatmentRes.getOrderGrouponMoney()));
+                nannyStatmentRes.setRealSalary(nannyStatmentRes.getTotalSalary().add(nannyStatmentRes.getReward()).subtract(nannyStatmentRes.getOrderRefund()));
+            }
+            return new ModelRes(ModelRes.Status.SUCCESS, "get Nanny statment list success !", ResponseUtil.List2Map(nannyStatmentResList,200));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 服务师对账单明细
+     * @param nannyStatmentDetailReq
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/find/detail")
+    public Object findDetail(@RequestBody NannyStatmentDetailReq nannyStatmentDetailReq, ServletRequest request) {
+        try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+            nannyStatmentDetailReq.setAdminId(jAdmin.getAdminId());
+            nannyStatmentDetailReq.setPage(nannyStatmentDetailReq.getSize() * (nannyStatmentDetailReq.getPage()-1));
+            Map<String, Object> map = new HashedMap();
+            map.put("count", jNannyStatmentMapper.getNannyStatmentDetailCount(nannyStatmentDetailReq));
+            map.put("list", jNannyStatmentMapper.getNannyStatmentDetail(nannyStatmentDetailReq));
+            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -39,13 +80,32 @@ public class NannyStatmentController extends AutoMapperController{
     }
 
     @ResponseBody
-    @RequestMapping("/find/detail")
-    public Object updateJobData(@RequestBody NannyStatmentDetailReq nannyStatmentDetailReq) {
+    @RequestMapping("/insert")
+    public Object insert(@RequestBody JNannyStatment jNannyStatment, ServletRequest request) {
         try {
-            nannyStatmentDetailReq.setPage(nannyStatmentDetailReq.getSize() * (nannyStatmentDetailReq.getPage()-1));
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+            jNannyStatment.setAdminId(jAdmin.getAdminId());
+            jNannyStatment.setStatmentNanny(OrderUtil.generateStamentNumber(jNannyStatment.getNannyId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyStatmentMapper.insertSelective(jNannyStatment));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/RewardsAndPunishments/find")
+    public Object RewardsAndPunishments(@RequestBody NannyStatmentRewardsAndPunishmentsReq nannyStatmentRewardsAndPunishmentsReq, ServletRequest request) {
+        try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+            nannyStatmentRewardsAndPunishmentsReq.setAdminId(jAdmin.getAdminId());
+            nannyStatmentRewardsAndPunishmentsReq.setPage(nannyStatmentRewardsAndPunishmentsReq.getSize() * (nannyStatmentRewardsAndPunishmentsReq.getPage()-1));
             Map<String, Object> map = new HashedMap();
-            map.put("count", jNannyStatmentMapper.getNannyStatmentDetailCount(nannyStatmentDetailReq));
-            map.put("list", jNannyStatmentMapper.getNannyStatmentDetail(nannyStatmentDetailReq));
+            Map map1 = JsonUtil.Obj2Map(nannyStatmentRewardsAndPunishmentsReq);
+            map1.put("startDate",new Date((Long) map1.get("startDate")));
+            map1.put("endDate",new Date((Long) map1.get("endDate")));
+            map.put("count", jNannyStatmentMapper.getNannyStatmentRewardsAndPunishmentsDetailCount(map1));
+            map.put("list", jNannyStatmentMapper.getNannyStatmentRewardsAndPunishmentsDetail(map1));
             return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", map);
         } catch (Exception e) {
             e.printStackTrace();

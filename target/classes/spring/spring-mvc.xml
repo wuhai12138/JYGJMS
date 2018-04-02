@@ -77,12 +77,20 @@
     <!--</mvc:interceptors>-->
 
     <!--<context:property-placeholder location="classpath: /mongo.properties"/>-->
+    <!--<bean id="mongoConfig" class="com.summ.utils.mongodb.model.MongoConfig">-->
+        <!--<property name="SERVER_ADDR" value="192.168.1.148"/>-->
+        <!--<property name="SERVER_PORT" value="27017"/>-->
+        <!--<property name="USER_NAME" value="logger"/>-->
+        <!--<property name="DB_NAME" value="log"/>-->
+        <!--<property name="DB_PWD" value="123"/>-->
+    <!--</bean>-->
+    <context:property-placeholder location="classpath:mongo.properties"/>
     <bean id="mongoConfig" class="com.summ.utils.mongodb.model.MongoConfig">
-        <property name="SERVER_ADDR" value="192.168.1.148"/>
-        <property name="SERVER_PORT" value="27017"/>
-        <property name="USER_NAME" value="logger"/>
-        <property name="DB_NAME" value="log"/>
-        <property name="DB_PWD" value="123"/>
+        <property name="SERVER_ADDR" value="${mongo_addr}"/>
+        <property name="SERVER_PORT" value="${mongo_port}"/>
+        <property name="USER_NAME" value="${mongo_user}"/>
+        <property name="DB_NAME" value="${mongo_db}"/>
+        <property name="DB_PWD" value="${mongo_pwd}"/>
     </bean>
 
     <bean id="logFactory" class="com.summ.utils.mongodb.log.LogFactory">

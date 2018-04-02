@@ -7,4 +7,28 @@
 		shopId, trainId, shopName, shopPhone, shopAddress, shopPayCode, shopUrl, longitude, latitude, isDel, createTime, modifyTime
 	</sql>
 
+	<select id="getAllShop" resultType="com.summ.model.JShop">
+		SELECT *
+		FROM j_shop
+		ORDER BY staring DESC
+	</select>
+
+	<select id="getShopList" parameterType="com.summ.model.request.ShopReq" resultType="com.summ.model.JShop">
+		SELECT js.*
+		FROM j_shop js
+		<if test="0==shopReq.shopId">
+			LEFT JOIN j_admin_shop jas ON jas.shopId = js.shopId
+		</if>
+		WHERE js.isDel=16
+		AND js.shopName LIKE concat(concat('%',#{shopReq.shopName}),'%')
+		AND js.shopAddress LIKE concat(concat('%',#{shopReq.shopAddress}),'%')
+		AND js.shopPhone LIKE concat(concat('%',#{shopReq.shopPhone}),'%')
+		<if test="0==shopReq.shopId">
+			AND jas.adminId=#{shopReq.adminId}
+		</if>
+		<if test="0!=shopReq.shopId">
+			AND js.shopId=#{shopReq.shopId}
+		</if>
+	</select>
+
 </mapper>

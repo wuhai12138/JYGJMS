@@ -136,6 +136,9 @@ public class NannyInfoRes {
     /**  */
     private Date modifyTime;
 
+    /**离职时间*/
+    private Date dimissionTime;
+
     /**  */
     private Integer isDel;
     private String isDelInfo;
@@ -148,6 +151,14 @@ public class NannyInfoRes {
     private List<NannyCharacterRes> nannyCharacterRes;
     private List<NannyCertificateRes> nannyCertificateRes;
     private List<NannyShopRes> nannyShopRes;
+
+    public Date getDimissionTime() {
+        return dimissionTime;
+    }
+
+    public void setDimissionTime(Date dimissionTime) {
+        this.dimissionTime = dimissionTime;
+    }
 
     public String getHotInfo() {
         return hotInfo;

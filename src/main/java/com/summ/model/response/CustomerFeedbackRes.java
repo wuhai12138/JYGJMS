@@ -24,9 +24,6 @@ public class CustomerFeedbackRes {
     /**  */
     private Date createDate = new Date();
 
-    /** 处理部门id */
-    private String department;
-
     /** 状态 */
     private Integer status;
 
@@ -38,9 +35,18 @@ public class CustomerFeedbackRes {
 
     private String customerName;
     private String customerPhone;
-    private String departmentInfo;
     private String statusInfo;
+    List<CustomerFeedbackDepartmentRes> customerFeedbackDepartmentResList;
     private List<CustomerFeedbackFollowRes> customerFeedbackFollowResList;
+
+
+    public List<CustomerFeedbackDepartmentRes> getCustomerFeedbackDepartmentResList() {
+        return customerFeedbackDepartmentResList;
+    }
+
+    public void setCustomerFeedbackDepartmentResList(List<CustomerFeedbackDepartmentRes> customerFeedbackDepartmentResList) {
+        this.customerFeedbackDepartmentResList = customerFeedbackDepartmentResList;
+    }
 
     public List<CustomerFeedbackFollowRes> getCustomerFeedbackFollowResList() {
         return customerFeedbackFollowResList;
@@ -82,14 +88,6 @@ public class CustomerFeedbackRes {
         this.createDate = createDate;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -128,14 +126,6 @@ public class CustomerFeedbackRes {
 
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
-    }
-
-    public String getDepartmentInfo() {
-        return departmentInfo;
-    }
-
-    public void setDepartmentInfo(String departmentInfo) {
-        this.departmentInfo = departmentInfo;
     }
 
     public String getStatusInfo() {

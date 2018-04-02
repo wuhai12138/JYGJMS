@@ -34,11 +34,13 @@ public class JCoupon implements Serializable {
 	/**  */
 	private BigDecimal couponPrice;
 
+	private BigDecimal orderMiniPrice;
+
 	/**  */
 	private Date validTime;
 
 	/**  */
-	private String couponOrigin;
+	private Integer couponOrigin;
 
 	/**  */
 	private Integer isDel = 16;
@@ -46,6 +48,13 @@ public class JCoupon implements Serializable {
 	/**  */
 	private Date createTime;
 
+	public BigDecimal getOrderMiniPrice() {
+		return orderMiniPrice;
+	}
+
+	public void setOrderMiniPrice(BigDecimal orderMiniPrice) {
+		this.orderMiniPrice = orderMiniPrice;
+	}
 
 	public Integer getCouponId() {
 		return this.couponId;
@@ -103,12 +112,11 @@ public class JCoupon implements Serializable {
 		this.validTime = validTime;
 	}
 
-	public String getCouponOrigin() {
-		return this.couponOrigin;
+	public Integer getCouponOrigin() {
+		return couponOrigin;
 	}
 
-	public void setCouponOrigin(String couponOrigin) {
+	public void setCouponOrigin(Integer couponOrigin) {
 		this.couponOrigin = couponOrigin;
 	}
-
 }

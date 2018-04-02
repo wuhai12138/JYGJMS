@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,7 @@ public class AdminController extends AutoMapperController {
         try {
             Map map1 = new HashMap();
             map1.put("adminName", admin.getAdminName());
+            map1.put("isDel",16);
             List<JAdmin> jAdminList = jAdminMapper.selectByMap(map1);
             if (jAdminList.size() < 1) {
                 return new ModelRes(ModelRes.Status.SUCCESS, "无此用户，请重新输入 !", null);
@@ -83,6 +85,7 @@ public class AdminController extends AutoMapperController {
         try {
             Map map = new HashMap();
             map.put("adminName", jAdmin.getAdminName());
+            map.put("isDel",16);
             if (jAdminMapper.selectByMap(map).size() > 0) {
                 return new ModelRes(ModelRes.Status.FAILED, "管理员姓名重复 !");
             } else {
@@ -107,11 +110,13 @@ public class AdminController extends AutoMapperController {
 
     @ResponseBody
     @RequestMapping("/find")
-    public Object find(@RequestBody PaginateReq paginateReq) {
+    public Object find(@RequestBody PaginateReq paginateReq, ServletRequest request) {
         try {
+            JAdmin admin = (JAdmin) request.getAttribute("admin");
+            paginateReq.setAdminId(admin.getAdminId());
             paginateReq.setPage(paginateReq.getSize() * (paginateReq.getPage() - 1));
             Map<String, Object> map = new HashedMap();
-            map.put("count", jAdminMapper.getCount());
+            map.put("count", jAdminMapper.getCount(paginateReq));
             map.put("list", jAdminMapper.getAdminList(paginateReq));
             return new ModelRes(ModelRes.Status.SUCCESS, "search administrator success !", map);
         } catch (Exception e) {
@@ -131,17 +136,4 @@ public class AdminController extends AutoMapperController {
         }
     }
 
-    @ResponseBody
-    @RequestMapping("/shop/find")
-    public Object findShop(@RequestBody JAdmin jAdmin) {
-        try {
-            Map map = new HashMap();
-            map.put("adminId",jAdmin.getAdminId());
-
-            return new ModelRes(ModelRes.Status.SUCCESS, "delete administrator success !", ResponseUtil.List2Map(jAdminShopMapper.getList(jAdmin.getAdminId())));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
 }

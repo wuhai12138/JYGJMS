@@ -34,7 +34,7 @@ public class JGoodsCost implements Serializable {
 	private BigDecimal cost;
 
 	/**  */
-	private Integer idDel;
+	private Integer idDel=16;
 
 	public JGoodsCost(Integer goodsId) {
 		this.goodsId = goodsId;

@@ -2,46 +2,203 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.summ.mapper.JCustomerStatmentMapper">
 
-	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
-		statmentId, customerId, chargeDate, statmentType, chargeMoney, chargeWay, adminId, terminal, status, balance, serialNumber, isDel, remark
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+		 statmentCustomer, customerId, chargeDate, statmentCustomerType, chargeMoney, chargeWay, adminId, terminal, status, balance, serialNumber, remark, card, bank
 	</sql>
 
-	<select id="getCount" resultType="java.lang.Integer" parameterType="com.summ.model.request.CustomerStatmentReq">
-		SELECT
-		COUNT(*)
-		FROM j_customer_statment
-		WHERE isDel = 16
-		<if test="0 != customerStatmentReq.customerId">
-			AND customerId = #{customerStatmentReq.customerId}
-		</if>
-		<if test="0 != customerStatmentReq.statmentType">
-			AND statmentType = #{customerStatmentReq.statmentType}
-		</if>
-	</select>
+    <select id="getCount" resultType="java.lang.Integer" parameterType="com.summ.model.request.CustomerStatmentReq">
+        SELECT
+        COUNT(*)
+        FROM j_customer_statment
+        WHERE 1=1
+        <if test="0 != customerStatmentReq.customerId">
+            AND customerId = #{customerStatmentReq.customerId}
+        </if>
+        <if test="0 != customerStatmentReq.statmentCustomerType">
+            AND statmentCustomerType = #{customerStatmentReq.statmentCustomerType}
+        </if>
+    </select>
 
-	<select id="getStatmentList" parameterType="com.summ.model.request.CustomerStatmentReq" resultType="com.summ.model.response.CustomerStatmentRes">
-		SELECT a.*,d1.iNFO AS isDelInfo,d2.INFO AS statmentTypeInfo,d3.INFO AS chargeWayInfo,d4.INFO AS terminalInfo,d5.INFO AS statusInfo,d6.customerName AS customerName,d7.adminName AS adminName
-		FROM j_customer_statment a
-		LEFT JOIN j_dict_info d1 ON d1.ID = a.isDel
-		LEFT JOIN j_dict_info d2 ON d2.ID = a.statmentType
-		LEFT JOIN j_dict_info d3 ON d3.ID = a.chargeWay
-		LEFT JOIN j_dict_info d4 ON d4.ID = a.terminal
-		LEFT JOIN j_dict_info d5 ON d5.ID = a.status
-		LEFT JOIN j_customer d6 ON d6.customerId = a.customerId
-		LEFT JOIN j_admin d7 ON d7.adminId = a.adminId
-		WHERE 1=1
-		AND a.isDel = 16
-		<if test="0 != customerStatmentReq.customerId">
-			AND a.customerId = #{customerStatmentReq.customerId}
-		</if>
-		<if test="0 != customerStatmentReq.statmentType">
-			AND a.statmentType = #{customerStatmentReq.statmentType}
-		</if>
-		ORDER BY a.chargeDate DESC
-		<if test="0 != customerStatmentReq.size and 0 != customerStatmentReq.statmentType">
-			LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}
-		</if>
-	</select>
+    <select id="getStatmentList" parameterType="com.summ.model.request.CustomerStatmentReq"
+            resultType="com.summ.model.response.CustomerStatmentRes">
+        SELECT a.*,d2.INFO AS statmentCustomerTypeInfo,d3.INFO AS chargeWayInfo,d4.INFO AS
+        terminalInfo,d5.INFO AS statusInfo,d6.customerName AS customerName,d6.customerPhone,d7.adminName AS adminName
+        FROM j_customer_statment a
+        LEFT JOIN j_dict_info d2 ON d2.ID = a.statmentCustomerType
+        LEFT JOIN j_dict_info d3 ON d3.ID = a.chargeWay
+        LEFT JOIN j_dict_info d4 ON d4.ID = a.terminal
+        LEFT JOIN j_dict_info d5 ON d5.ID = a.status
+        LEFT JOIN j_customer d6 ON d6.customerId = a.customerId
+        LEFT JOIN j_admin d7 ON d7.adminId = a.adminId
+        WHERE 1=1
+        <if test="0 != customerStatmentReq.customerId">
+            AND a.customerId = #{customerStatmentReq.customerId}
+        </if>
+        <if test="0 != customerStatmentReq.statmentCustomerType">
+            AND a.statmentCustomerType = #{customerStatmentReq.statmentCustomerType}
+        </if>
+        ORDER BY a.chargeDate DESC
+        LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}
+    </select>
+
+    <select id="getCustomerRechargeMoney" resultType="java.math.BigDecimal">
+        SELECT SUM(chargeMoney)
+        FROM j_customer_statment
+        WHERE customerId=#{0}
+        AND chargeDate &gt; #{1}
+        AND chargeDate &lt; #{2}
+    </select>
+
+    <select id="getReportCustomerRecharge" parameterType="java.util.Map"
+            resultType="com.summ.model.response.ReportCustomerRechargeRes">
+        SELECT
+        j.shopId,
+        js.shopName,
+        SUM(
+        CASE j.chargeWay
+        WHEN 44 THEN
+        j.chargeMoney
+        ELSE
+        0
+        END
+        ) AS 'aliPay',
+        SUM(
+        CASE j.chargeWay
+        WHEN 45 THEN
+        j.chargeMoney
+        ELSE
+        0
+        END
+        ) AS 'WeiXin',
+        SUM(
+        CASE j.chargeWay
+        WHEN 127 THEN
+        j.chargeMoney
+        ELSE
+        0
+        END
+        ) AS 'cash',
+        SUM(
+        CASE j.chargeWay
+        WHEN 209 THEN
+        j.chargeMoney
+        ELSE
+        0
+        END
+        ) AS 'card',
+        SUM(j.chargeMoney) AS 'totalCharge',
+        SUM(jc.customerBalance) AS totalBalance
+        FROM
+        j_customer_statment j
+        LEFT JOIN j_shop js ON js.shopId = j.shopId
+        LEFT JOIN j_customer jc ON jc.customerId = j.customerId
+        WHERE
+        j.statmentCustomerType = 38
+        AND j.chargeDate &gt; #{map.startDate}
+        AND j.chargeDate &lt; #{map.endDate}
+        AND j.shopId IN
+        <foreach collection="map.list" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="getReportCustomerRechargeCount" parameterType="java.util.Map"
+            resultType="java.lang.Integer">
+        SELECT
+        count(DISTINCT j.shopId)
+        FROM
+        j_customer_statment j
+        LEFT JOIN j_shop js ON js.shopId = j.shopId
+        LEFT JOIN j_customer jc ON jc.customerId = j.customerId
+        WHERE
+        j.statmentCustomerType = 38
+        AND j.chargeDate &gt; #{map.startDate}
+        AND j.chargeDate &lt; #{map.endDate}
+        AND j.shopId IN
+        <foreach collection="map.list" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+    <select id="getCustomerRechargeDetail" parameterType="com.summ.model.request.CustomerStatmentReq"
+            resultType="com.summ.model.response.CustomerStatmentRes">
+        SELECT a.*,d2.INFO AS statmentCustomerTypeInfo,d3.INFO AS chargeWayInfo,d4.INFO AS
+        terminalInfo,d5.INFO AS statusInfo,d6.customerName AS customerName,d6.customerPhone,d7.adminName AS adminName,js.shopName
+        FROM j_customer_statment a
+        LEFT JOIN j_dict_info d2 ON d2.ID = a.statmentCustomerType
+        LEFT JOIN j_dict_info d3 ON d3.ID = a.chargeWay
+        LEFT JOIN j_dict_info d4 ON d4.ID = a.terminal
+        LEFT JOIN j_dict_info d5 ON d5.ID = a.status
+        LEFT JOIN j_customer d6 ON d6.customerId = a.customerId
+        LEFT JOIN j_admin d7 ON d7.adminId = a.adminId
+        LEFT JOIN j_shop js ON js.shopId=a.shopId
+        <if test="0 == customerStatmentReq.shopId">
+            LEFT JOIN j_admin_shop jas2 ON jas2.shopId=a.shopId
+        </if>
+        WHERE a.statmentCustomerType = 38
+        AND d6.customerName LIKE concat(concat('%',#{customerStatmentReq.customerName}),'%')
+        AND d6.customerPhone LIKE concat(concat('%',#{customerStatmentReq.customerPhone}),'%')
+        AND a.serialNumber LIKE concat(concat('%',#{customerStatmentReq.serialNumber}),'%')
+        AND a.chargeDate &gt; #{customerStatmentReq.startDate}
+        AND a.chargeDate &lt; #{customerStatmentReq.endDate}
+        <if test="0 != customerStatmentReq.customerId">
+            AND a.customerId = #{customerStatmentReq.customerId}
+        </if>
+        <if test="0 != customerStatmentReq.shopId">
+            AND a.shopId = #{customerStatmentReq.shopId}
+        </if>
+        <if test="0 != customerStatmentReq.chargeWay">
+            AND a.chargeWay = #{customerStatmentReq.chargeWay}
+        </if>
+        <if test="0 != customerStatmentReq.terminal">
+            AND a.terminal = #{customerStatmentReq.terminal}
+        </if>
+        <if test="0 == customerStatmentReq.shopId">
+            AND jas2.adminId = #{customerStatmentReq.adminId}
+        </if>
+        ORDER BY a.chargeDate DESC
+        LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}
+    </select>
+
+    <select id="getCustomerRechargeDetailCount" parameterType="com.summ.model.request.CustomerStatmentReq"
+            resultType="java.lang.Integer">
+        SELECT COUNT(a.statmentId)
+        FROM j_customer_statment a
+        LEFT JOIN j_dict_info d2 ON d2.ID = a.statmentCustomerType
+        LEFT JOIN j_dict_info d3 ON d3.ID = a.chargeWay
+        LEFT JOIN j_dict_info d4 ON d4.ID = a.terminal
+        LEFT JOIN j_dict_info d5 ON d5.ID = a.status
+        LEFT JOIN j_customer d6 ON d6.customerId = a.customerId
+        LEFT JOIN j_admin d7 ON d7.adminId = a.adminId
+        LEFT JOIN j_shop js ON js.shopId=a.shopId
+        <if test="0 == customerStatmentReq.shopId">
+            LEFT JOIN j_admin_shop jas2 ON jas2.shopId=a.shopId
+        </if>
+        WHERE a.statmentCustomerType = 38
+        AND d6.customerName LIKE concat(concat('%',#{customerStatmentReq.customerName}),'%')
+        AND d6.customerPhone LIKE concat(concat('%',#{customerStatmentReq.customerPhone}),'%')
+        AND a.serialNumber LIKE concat(concat('%',#{customerStatmentReq.serialNumber}),'%')
+        AND a.chargeDate &gt; #{customerStatmentReq.startDate}
+        AND a.chargeDate &lt; #{customerStatmentReq.endDate}
+        <if test="0 != customerStatmentReq.customerId">
+            AND a.customerId = #{customerStatmentReq.customerId}
+        </if>
+        <if test="0 != customerStatmentReq.shopId">
+            AND a.shopId = #{customerStatmentReq.shopId}
+        </if>
+        <if test="0 != customerStatmentReq.chargeWay">
+            AND a.chargeWay = #{customerStatmentReq.chargeWay}
+        </if>
+        <if test="0 != customerStatmentReq.terminal">
+            AND a.terminal = #{customerStatmentReq.terminal}
+        </if>
+        <if test="0 == customerStatmentReq.shopId">
+            AND jas2.adminId = #{customerStatmentReq.adminId}
+        </if>
+    </select>
 
 </mapper>

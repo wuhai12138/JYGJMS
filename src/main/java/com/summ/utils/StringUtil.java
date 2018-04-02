@@ -84,6 +84,22 @@ public class StringUtil {
         return df.format(doubleNum);
     }
 
+    /**
+     * 将int型用0补全为定长度的字符串
+     *
+     * @param a 需要解析的double
+     * @param length  返回的字符串长度
+     * @return
+     */
+    public static String changeIntegerLenght(Integer a, Integer length) {
+        String str = a.toString();
+        StringBuilder stringBuilder = new StringBuilder(str);
+        for (int i=0;i<length-str.length();i++){
+            stringBuilder.insert(0,"0");
+        }
+        return stringBuilder.toString();
+    }
+
 
     /**
      * 去除String中的某一个字符

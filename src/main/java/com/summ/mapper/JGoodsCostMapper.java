@@ -14,5 +14,4 @@ import java.util.List;
 public interface JGoodsCostMapper extends AutoMapper<JGoodsCost> {
     List<OrderTempSupplierRes> getSupplierList(Integer orderId,String supplierName);
 
-
 }

@@ -1,14 +1,96 @@
 package com.summ.model.request;
 
+import java.util.Date;
+
 /**
  * Created by jygj_7500 on 17/11/29.
  */
 public class CustomerStatmentReq {
+    private Integer customerId;
+    private String customerName;
+    private String customerPhone;
+    private String serialNumber;
+    private Date startDate;
+    private Date endDate;
+    private Integer shopId;
+    private Integer chargeWay;
+    private Integer terminal;
+    private Integer statmentCustomerType;
+    private Integer page;
+    private Integer size;
+    private Integer adminId;
 
-    private int customerId;
-    private int statmentCustomerType;
-    private int page;
-    private int size;
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public Integer getChargeWay() {
+        return chargeWay;
+    }
+
+    public void setChargeWay(Integer chargeWay) {
+        this.chargeWay = chargeWay;
+    }
+
+    public Integer getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Integer terminal) {
+        this.terminal = terminal;
+    }
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
 
     public int getCustomerId() {
         return customerId;

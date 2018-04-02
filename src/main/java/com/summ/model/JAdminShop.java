@@ -29,6 +29,13 @@ public class JAdminShop implements Serializable {
 	/**  */
 	private Integer shopId;
 
+	public JAdminShop(Integer adminId, Integer shopId) {
+		this.adminId = adminId;
+		this.shopId = shopId;
+	}
+
+	public JAdminShop() {
+	}
 
 	public Integer getId() {
 		return this.id;

@@ -36,7 +36,7 @@ public class JOrderSchedule implements Serializable {
 	private Date scheduleDate;
 
 	/** 单价 */
-	private BigDecimal unitPrice;
+	private BigDecimal unitPrice=new BigDecimal(0);
 
 	/** 总价 */
 	private BigDecimal totalPrice=new BigDecimal(0);

@@ -13,6 +13,7 @@ public class NannyStatmentRes {
     private String nannyName;
     private String nannyPhone;
     private String shopName;
+    private Integer shopId;
     private String NannyUnitPrice;
     private BigDecimal  orderContractMoney;
     private Double orderContractTimes;
@@ -20,9 +21,57 @@ public class NannyStatmentRes {
     private Double orderTempTimes;
     private BigDecimal  orderGrouponMoney;
     private Double orderGrouponTimes;
+    /**合计工资*/
+    private BigDecimal totalSalary;
+    /**合计工时*/
+    private Double totalTimes;
+    /** 个人所得税 */
+    private BigDecimal IndividualIncomeTax;
+    /** 实际发放工资 */
+    private BigDecimal realSalary;
     private BigDecimal reward;
     private BigDecimal punishment;
     private BigDecimal orderRefund;
+
+    public BigDecimal getRealSalary() {
+        return realSalary;
+    }
+
+    public void setRealSalary(BigDecimal realSalary) {
+        this.realSalary = realSalary;
+    }
+
+    public BigDecimal getIndividualIncomeTax() {
+        return IndividualIncomeTax;
+    }
+
+    public void setIndividualIncomeTax(BigDecimal individualIncomeTax) {
+        IndividualIncomeTax = individualIncomeTax;
+    }
+
+    public BigDecimal getTotalSalary() {
+        return totalSalary;
+    }
+
+    public void setTotalSalary(BigDecimal totalSalary) {
+        this.totalSalary = totalSalary;
+    }
+
+    public Double getTotalTimes() {
+        return totalTimes;
+    }
+
+    public void setTotalTimes(Double totalTimes) {
+        this.totalTimes = totalTimes;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
 
     public Integer getNannyId() {
         return nannyId;

@@ -9,6 +9,15 @@ public class OrderTempChargeReq {
     private Integer couponListId;
     private Integer customerId;
     private BigDecimal cost;
+    private String serialNumber="";
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
 
     public BigDecimal getCost() {
         return cost;

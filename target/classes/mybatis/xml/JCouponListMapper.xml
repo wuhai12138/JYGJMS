@@ -4,7 +4,7 @@
 
     <!-- 通用查询结果列-->
     <sql id="Base_Column_List">
-		couponListId, couponCode, couponId, shopId, customerId, couponStatus, missionId, createTime, isDel
+		couponListId, couponCode, couponId, shopId, customerId, couponStatus, orderId, createTime, isDel
 	</sql>
 
     <update id="deleteCoupon" parameterType="java.lang.Integer">

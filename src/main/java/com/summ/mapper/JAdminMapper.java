@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.summ.model.request.PaginateReq;
 import com.summ.model.response.AccessRes;
 import com.summ.model.response.AdminRes;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface JAdminMapper extends AutoMapper<JAdmin> {
      * @param paginateReq
      * @return
      */
-    List<AdminRes> getAdminList(PaginateReq paginateReq);
+    List<AdminRes> getAdminList(@Param("paginateReq") PaginateReq paginateReq);
 
     /**
      * 获取该管理员权限页面列表
@@ -48,6 +49,6 @@ public interface JAdminMapper extends AutoMapper<JAdmin> {
      * 获取总数
      * @return
      */
-    int getCount();
+    int getCount(@Param("paginateReq") PaginateReq paginateReq);
 
 }

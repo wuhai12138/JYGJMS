@@ -121,11 +121,13 @@ public class OrderTempScheduleController extends AutoMapperController {
                 jScheduleNanny.setSupplierId(1);
                 jScheduleNanny.setNannyId(nannyId);
             }
+            if (type == -1) {
+                /**此处验证带教工时*/
+                //...
+            }
             JOrderSchedule jOrderSchedule = new JOrderSchedule();
             jOrderSchedule.setOrderId(jOrderTemp.getOrderId());
             jOrderSchedule.setOrderType(164);
-            jOrderSchedule.setUnitPrice(jOrderTemp.getUnitPrice());
-            jOrderSchedule.setTotalPrice(jOrderTemp.getTotalPrice());
             jOrderSchedule.setScheduleDate(jOrderTemp.getOrderDate());
             jOrderSchedule.setStartTime(jOrderTemp.getStartTime());
             jOrderSchedule.setEndTime(jOrderTemp.getEndTime());
@@ -137,7 +139,13 @@ public class OrderTempScheduleController extends AutoMapperController {
 
             /**生成日程服务师*/
             jScheduleNanny.setNannyId(nannyId);
-            jScheduleNanny.setSupplierId(nannyId);
+            if (type == 1) {
+                jScheduleNanny.setSupplierId(type);
+            } else if (type == -1) {
+                jScheduleNanny.setSupplierId(type);
+            } else {
+                jScheduleNanny.setSupplierId(nannyId);
+            }
             jScheduleNanny.setScheduleId(jOrderSchedule.getScheduleId());
             jScheduleNannyMapper.insertSelective(jScheduleNanny);
 
@@ -169,6 +177,9 @@ public class OrderTempScheduleController extends AutoMapperController {
                         orderScheduleRes.setCost(new BigDecimal(jDictInfo.getInfo()).multiply(new BigDecimal(String.valueOf((orderScheduleRes.getEndTime() - orderScheduleRes.getStartTime()) / 2f))).setScale(2));
                         orderScheduleRes.setNannyName(jNannyInfo.getNannyName());
                         orderScheduleRes.setNannyPhone(jNannyInfo.getNannyPhone());
+                    } else if (orderScheduleRes.getSupplierId() == -1) {
+                        /**此处验证带教工时*/
+                        //...
                     } else {
                         JSupplier jSupplier = jSupplierMapper.selectById(Long.valueOf(orderScheduleRes.getSupplierId()));
                         Map map = new HashMap();
@@ -182,14 +193,6 @@ public class OrderTempScheduleController extends AutoMapperController {
                     }
                 }
             }
-
-            for (int i = 0; i < orderScheduleResList.size(); i++) {
-
-                if (orderScheduleResList.get(i).getCost().compareTo(new BigDecimal(0)) == 0) {
-
-                    orderScheduleResList.get(i).setCost(new BigDecimal(orderScheduleResList.get(i).getNannyCurrentPayment()).multiply(new BigDecimal(String.valueOf((orderScheduleResList.get(i).getEndTime() - orderScheduleResList.get(i).getStartTime()) / 2f))).setScale(2));
-                }
-            }
             Map map = ResponseUtil.List2Map(orderScheduleResList);
             map.put("count", jOrderScheduleMapper.getScheduleCount(orderScheduleReq));
             return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", map);
@@ -201,16 +204,17 @@ public class OrderTempScheduleController extends AutoMapperController {
 
     /**
      * 取消
+     *
      * @return
      */
     @ResponseBody
     @RequestMapping("/cancel")
-    public Object cancel(@RequestBody Map<String,List<Integer>> jOrderScheduleList){
+    public Object cancel(@RequestBody Map<String, List<Integer>> jOrderScheduleList) {
         try {
             List<Integer> list = jOrderScheduleList.get("list");
             List<JOrderSchedule> orderScheduleList = new ArrayList<JOrderSchedule>();
 
-            for (int i=0;i<list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
                 JOrderSchedule jOrderSchedule = new JOrderSchedule();
                 jOrderSchedule.setScheduleStatus(155);
                 jOrderSchedule.setScheduleId(list.get(i));
@@ -358,7 +362,7 @@ public class OrderTempScheduleController extends AutoMapperController {
                 Map map = new HashedMap();
                 map.put("scheduleId", orderScheduleRes.getScheduleId());
                 List<JScheduleNanny> jScheduleNannyList = jScheduleNannyMapper.selectByMap(map);
-                JNannyStatment jNannyStatment = new JNannyStatment(OrderUtil.generateStamentNumber(48, 166),
+                JNannyStatment jNannyStatment = new JNannyStatment(OrderUtil.generateStamentNumber(orderScheduleRes.getNannyId()),
                         jScheduleNannyList.get(0).getNannyId(),
                         orderScheduleRes.getScheduleId(), orderScheduleRes.getOrderId(),
                         jOrderTemp.getShopId(), jOrderTemp.getHouseId(), jOrderTemp.getCustomerId(),
@@ -367,7 +371,7 @@ public class OrderTempScheduleController extends AutoMapperController {
                 jNannyStatmentList.add(jNannyStatment);
 
             } else {
-                JSupplierStatment jSupplierStatment = new JSupplierStatment(OrderUtil.generateStamentNumber(48, 166),
+                JSupplierStatment jSupplierStatment = new JSupplierStatment(OrderUtil.generateStamentNumber(orderScheduleRes.getNannyId()),
                         orderScheduleRes.getSupplierId(), orderScheduleRes.getScheduleId(), orderScheduleRes.getOrderId(),
                         jOrderTemp.getShopId(), jOrderTemp.getHouseId(), jOrderTemp.getCustomerId(), 174, orderScheduleRes.getCost(),
                         164, jOrderTemp.getGoodsId(), serviceTime, serviceTimeLength, orderScheduleRes.getScheduleDate(), new Date(), "");
@@ -375,10 +379,10 @@ public class OrderTempScheduleController extends AutoMapperController {
             }
         }
 
-        if (jNannyStatmentList.size()>0){
+        if (jNannyStatmentList.size() > 0) {
             jNannyStatmentMapper.insertBatch(jNannyStatmentList);
         }
-        if (jSupplierStatmentList.size()>0){
+        if (jSupplierStatmentList.size() > 0) {
             jSupplierStatmentMapper.insertBatch(jSupplierStatmentList);
         }
         return new ModelRes(ModelRes.Status.SUCCESS, "", null);

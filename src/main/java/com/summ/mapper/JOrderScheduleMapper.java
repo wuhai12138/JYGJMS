@@ -4,7 +4,10 @@ import com.summ.model.JNannyInfo;
 import com.summ.model.JOrderSchedule;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
 import com.summ.model.request.OrderScheduleReq;
+import com.summ.model.request.ScheduleReq;
+import com.summ.model.response.CustomerBalanceWarnRes;
 import com.summ.model.response.OrderScheduleRes;
+import com.summ.model.response.ScheduleRes;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,4 +31,24 @@ public interface JOrderScheduleMapper extends AutoMapper<JOrderSchedule> {
     List<OrderScheduleRes> getTempScheduleList(int orderId);
 
     List<OrderScheduleRes> getTempScheduleListByList(List<Integer> list);
+
+    /**
+     * 日程综合模块接口
+     * @param scheduleReq
+     * @return
+     */
+    List<ScheduleRes> getContractScheduleList(@Param("scheduleReq") ScheduleReq scheduleReq);
+    Integer getContractScheduleListCount(@Param("scheduleReq") ScheduleReq scheduleReq);
+    List<ScheduleRes> getAllTempScheduleList(@Param("scheduleReq") ScheduleReq scheduleReq);
+    Integer getAllTempScheduleListCount(@Param("scheduleReq") ScheduleReq scheduleReq);
+
+    /**
+     * 客户余额提醒表
+     * @param
+     */
+    List<CustomerBalanceWarnRes> getCustomerScheduleSum(@Param("scheduleReq") ScheduleReq scheduleReq);
+    Integer getCustomerScheduleSumCount(@Param("scheduleReq") ScheduleReq scheduleReq);
+    List<CustomerBalanceWarnRes> getCustomerSchedule(@Param("scheduleReq") ScheduleReq scheduleReq);
+
+
 }

@@ -7,10 +7,14 @@
 		couponId, couponName, couponDetail, couponPrice, isDel, createTime, validTime, couponOrigin
 	</sql>
 
-	<select id="getCouponList" resultType="com.summ.model.JCoupon" parameterType="java.lang.Integer">
-		SELECT *
-		FROM j_coupon
-		WHERE couponOrigin = #{0}
+	<select id="getCouponList" resultType="com.summ.model.response.CouponRes" parameterType="java.lang.Integer">
+		SELECT j.*,jdi.INFO AS couponOriginInfo
+		FROM j_coupon j
+		LEFT JOIN j_dict_info jdi ON jdi.ID = j.couponOrigin
+		WHERE 1=1
+		<if test="0 != couponOri">
+			j.couponOrigin = #{0}
+		</if>
 	</select>
 
 	<select id="getCouponByCouponListId" resultType="com.summ.model.JCoupon">

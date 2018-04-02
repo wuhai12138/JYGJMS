@@ -68,6 +68,7 @@
         <if test="'' != customerPagReq.customerName">
             AND a.customerName LIKE concat(concat('%',#{customerPagReq.customerName}),'%')
         </if>
+        ORDER BY a.createTime DESC
         LIMIT #{customerPagReq.page},#{customerPagReq.size}
     </select>
 

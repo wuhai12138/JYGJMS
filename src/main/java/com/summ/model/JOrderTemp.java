@@ -67,7 +67,7 @@ public class JOrderTemp implements Serializable {
 	private BigDecimal totalPrice;
 
 	/** 优惠金额 */
-	private BigDecimal discount;
+	private BigDecimal discount=new BigDecimal(0);
 
 	private Integer couponListId;
 

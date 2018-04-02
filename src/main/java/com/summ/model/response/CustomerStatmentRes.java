@@ -64,7 +64,7 @@ public class CustomerStatmentRes {
     private BigDecimal balance;
 
     /** 流水号 */
-    private Integer serialNumber;
+    private String serialNumber;
 
     /**  */
     private String remark;
@@ -80,6 +80,25 @@ public class CustomerStatmentRes {
     private String adminName;
     private String chargeWayInfo;
     private String statmentCustomerTypeInfo;
+    private String customerName;
+    private String customerPhone;
+    private String shopName;
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
 
     public Integer getStatmentId() {
         return statmentId;
@@ -233,11 +252,11 @@ public class CustomerStatmentRes {
         this.balance = balance;
     }
 
-    public Integer getSerialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(Integer serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 

@@ -33,9 +33,6 @@ public class JCustomerFeedback implements Serializable {
 	/**  */
 	private Date createDate = new Date();
 
-	/** 处理部门id */
-	private String department;
-
 	/** 状态 */
 	private Integer status=170;
 
@@ -45,6 +42,24 @@ public class JCustomerFeedback implements Serializable {
 	/**  */
 	private Integer isDel=16;
 
+	public JCustomerFeedback() {
+	}
+
+	public JCustomerFeedback(Integer feedbackId, String content, Integer customerId, Date createDate,  Integer status, Integer noteAdmin, Integer isDel) {
+		this.feedbackId = feedbackId;
+		this.content = content;
+		this.customerId = customerId;
+		this.createDate = createDate;
+		this.status = status;
+		this.noteAdmin = noteAdmin;
+		this.isDel = isDel;
+	}
+
+	public JCustomerFeedback(String content, Integer customerId, Integer noteAdmin) {
+		this.content = content;
+		this.customerId = customerId;
+		this.noteAdmin = noteAdmin;
+	}
 
 	public Integer getFeedbackId() {
 		return this.feedbackId;
@@ -76,14 +91,6 @@ public class JCustomerFeedback implements Serializable {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	public String getDepartment() {
-		return this.department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
 	}
 
 	public Integer getStatus() {

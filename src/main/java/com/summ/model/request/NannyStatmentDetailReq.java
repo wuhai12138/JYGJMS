@@ -10,8 +10,35 @@ public class NannyStatmentDetailReq {
     private Date startDate;
     private Date endDate;
     private Integer shopId;
+    private Integer statmentNannyType;
     private Integer page;
     private Integer size;
+    private Integer adminId;
+    private Integer reason;
+
+    public Integer getReason() {
+        return reason;
+    }
+
+    public void setReason(Integer reason) {
+        this.reason = reason;
+    }
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
+
+    public Integer getStatmentNannyType() {
+        return statmentNannyType;
+    }
+
+    public void setStatmentNannyType(Integer statmentNannyType) {
+        this.statmentNannyType = statmentNannyType;
+    }
 
     public Integer getNannyId() {
         return nannyId;

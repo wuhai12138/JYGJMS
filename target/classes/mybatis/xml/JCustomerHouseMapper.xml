@@ -29,7 +29,7 @@
 		WHERE
 		customerId = #{0}
 		AND
-		isDel = 16
+		a.isDel = 16
 	</select>
 
 </mapper>

@@ -1,6 +1,5 @@
 package com.summ.model.request;
 
-import com.alibaba.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 
 /**
  * Created by jygj_7500 on 17/12/13.

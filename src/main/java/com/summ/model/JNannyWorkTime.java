@@ -27,31 +27,31 @@ public class JNannyWorkTime implements Serializable {
 	private Integer nannyId;
 
 	/**  */
-	private Long monday;
+	private Long monday=0L;
 
 	/**  */
-	private Long tuesday;
+	private Long tuesday=0L;
 
 	/**  */
-	private Long wednesday;
+	private Long wednesday=0L;
 
 	/**  */
-	private Long thursday;
+	private Long thursday=0L;
 
 	/**  */
-	private Long friday;
+	private Long friday=0L;
 
 	/**  */
-	private Long saturday;
+	private Long saturday=0L;
 
 	/**  */
-	private Long sunday;
+	private Long sunday=0L;
 
 	/**  */
-	private String remark;
+	private String remark="";
 
 	/**  */
-	private Integer isDel;
+	private Integer isDel=16;
 
 
 	public Integer getWorkTimeId() {

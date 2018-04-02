@@ -8,6 +8,7 @@ import java.util.Date;
 public class NannyStatmentReq {
     private Date startDate;
     private Date endDate;
+    private Integer statmentNannyType;
     private Integer nannyId;
     private String nannyName;
     private String nannyPhone;
@@ -15,6 +16,14 @@ public class NannyStatmentReq {
     private Integer page;
     private Integer size;
     private Integer adminId;
+
+    public Integer getStatmentNannyType() {
+        return statmentNannyType;
+    }
+
+    public void setStatmentNannyType(Integer statmentNannyType) {
+        this.statmentNannyType = statmentNannyType;
+    }
 
     public Integer getAdminId() {
         return adminId;

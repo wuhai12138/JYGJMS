@@ -37,9 +37,11 @@ public class JScheduleNanny implements Serializable {
 	/**  */
 	private Integer staring=3;
 
-	public JScheduleNanny(Integer scheduleId, Integer nannyId) {
+	public JScheduleNanny(Integer scheduleId, Integer nannyId, Integer supplierId) {
 		this.scheduleId = scheduleId;
 		this.nannyId = nannyId;
+		this.supplierId=supplierId;
+
 	}
 
 	public JScheduleNanny() {

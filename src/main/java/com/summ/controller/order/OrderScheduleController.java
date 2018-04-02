@@ -49,17 +49,18 @@ public class OrderScheduleController extends AutoMapperController {
 
             List<Long> orderIdList = (List<Long>) reqMap.get("orderId");
             Integer nannyId = (Integer) reqMap.get("nannyId");
-            Date startDate = (Date) reqMap.get("startDate");
-            Date endDate = (Date) reqMap.get("endDate");
+            Date startDate = new Date((Long) reqMap.get("startDate"));
+            Date endDate =new Date((Long) reqMap.get("endDate"));
+            Integer scheduleType = (Integer) reqMap.get("scheduleType");
 
             /**验证服务师工时*/
             //获取合同订单列表
             List<JOrderContract> jOrderContractList = jOrderContractMapper.selectBatchIds(orderIdList);
             //目前只使用验证一个订单，所以日期只需改变数组第一个订单的时间
             jOrderContractList.get(0).setStartDate(startDate);
-            jOrderContractList.get(0).setEndDate(endDate);
+            jOrderContractList.get(0).setEndDate(new Date(endDate.getTime()+1));
             //连接mongodb数据库
-            mongoDBUtil = MongoDBUtil.getInstance(new MongoConfig("192.168.1.148", 27017, "logger", "log", "123"));
+            mongoDBUtil = MongoDBUtil.getInstance(new MongoConfig());
 
             //存储订单列表对应的星期列表和时间列表和日期列表
             List<Date> startDateLIst = new ArrayList<Date>();
@@ -67,6 +68,17 @@ public class OrderScheduleController extends AutoMapperController {
             List<List<Map>> weeksList = new ArrayList<List<Map>>();
             List<List<Long>> timesList = new ArrayList<List<Long>>();
             for (int i = 0; i < jOrderContractList.size(); i++) {
+                /**根据配单类型更新合同订单状态*/
+                if (scheduleType==179){
+                    //试工中
+                    jOrderContractList.get(i).setOrderStatus(143);
+                }
+                if (scheduleType==180){
+                    //开工中
+                    jOrderContractList.get(i).setOrderStatus(149);
+                }
+
+
                 Map mongoMap = new HashedMap();
                 mongoMap.put("serviceId", jOrderContractList.get(i).getServiceId());
                 Map mapJson = JsonUtil.json2Map(mongoDBUtil.query("customer_service", mongoMap));
@@ -174,7 +186,7 @@ public class OrderScheduleController extends AutoMapperController {
                 //根据服务计划书去MongoDB获取计划书详情json
                 Map mapMongo = new HashedMap();
                 mapMongo.put("serviceId", jCustomerService.get(0).getServiceId());
-                mongoDBUtil = MongoDBUtil.getInstance(new MongoConfig("192.168.1.148", 27017, "logger", "log", "123"));
+                mongoDBUtil = MongoDBUtil.getInstance(new MongoConfig());
                 String serviceJson = mongoDBUtil.query("customer_service", mapMongo);
                 //解析json
                 Map mapJson = JsonUtil.json2Map(serviceJson);
@@ -195,6 +207,7 @@ public class OrderScheduleController extends AutoMapperController {
                                 for (int j = 0; j < dateList.size(); j++) {
                                     //日程信息
                                     JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                                    jOrderSchedule.setOrderType(163);
                                     jOrderSchedule.setScheduleStatus(152);
                                     jOrderSchedule.setPayStatus(157);
                                     jOrderSchedule.setStartTime((Integer) times.get(k).get("startId"));
@@ -226,6 +239,7 @@ public class OrderScheduleController extends AutoMapperController {
                                 for (int j = 0; j < dateList.size(); j++) {
                                     //日程信息
                                     JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                                    jOrderSchedule.setOrderType(163);
                                     jOrderSchedule.setScheduleStatus(152);
                                     jOrderSchedule.setPayStatus(157);
                                     jOrderSchedule.setStartTime((Integer) times.get(k).get("startId"));
@@ -249,6 +263,7 @@ public class OrderScheduleController extends AutoMapperController {
                                 for (int j = 0; j < dateList.size(); j++) {
                                     //日程信息
                                     JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                                    jOrderSchedule.setOrderType(163);
                                     jOrderSchedule.setScheduleStatus(152);
                                     jOrderSchedule.setPayStatus(157);
                                     jOrderSchedule.setStartTime((Integer) times.get(k).get("startId"));
@@ -272,6 +287,7 @@ public class OrderScheduleController extends AutoMapperController {
                                 for (int j = 0; j < dateList.size(); j++) {
                                     //日程信息
                                     JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                                    jOrderSchedule.setOrderType(163);
                                     jOrderSchedule.setScheduleStatus(152);
                                     jOrderSchedule.setPayStatus(157);
                                     jOrderSchedule.setStartTime((Integer) times.get(k).get("startId"));
@@ -295,6 +311,7 @@ public class OrderScheduleController extends AutoMapperController {
                                 for (int j = 0; j < dateList.size(); j++) {
                                     //日程信息
                                     JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                                    jOrderSchedule.setOrderType(163);
                                     jOrderSchedule.setScheduleStatus(152);
                                     jOrderSchedule.setPayStatus(157);
                                     jOrderSchedule.setStartTime((Integer) times.get(k).get("startId"));
@@ -318,6 +335,7 @@ public class OrderScheduleController extends AutoMapperController {
                                 for (int j = 0; j < dateList.size(); j++) {
                                     //日程信息
                                     JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                                    jOrderSchedule.setOrderType(163);
                                     jOrderSchedule.setScheduleStatus(152);
                                     jOrderSchedule.setPayStatus(157);
                                     jOrderSchedule.setStartTime((Integer) times.get(k).get("startId"));
@@ -341,6 +359,7 @@ public class OrderScheduleController extends AutoMapperController {
                                 for (int j = 0; j < dateList.size(); j++) {
                                     //日程信息
                                     JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                                    jOrderSchedule.setOrderType(163);
                                     jOrderSchedule.setScheduleStatus(152);
                                     jOrderSchedule.setPayStatus(157);
                                     jOrderSchedule.setStartTime((Integer) times.get(k).get("startId"));
@@ -367,10 +386,12 @@ public class OrderScheduleController extends AutoMapperController {
             jOrderScheduleMapper.insertBatch(orderScheduleList);
             //添加日程的服务师
             for (int i = 0; i < orderScheduleList.size(); i++) {
-                JScheduleNanny jScheduleNanny = new JScheduleNanny(orderScheduleList.get(i).getScheduleId(),nannyId);
+                JScheduleNanny jScheduleNanny = new JScheduleNanny(orderScheduleList.get(i).getScheduleId(),nannyId,1);
                 scheduleNannyList.add(jScheduleNanny);
             }
             jScheduleNannyMapper.insertBatch(scheduleNannyList);
+            //更新订单状态
+            jOrderContractMapper.updateBatchById(jOrderContractList);
 
             return new ModelRes(ModelRes.Status.SUCCESS, "日程添加成功 !", null);
         } catch (Exception e) {
@@ -483,25 +504,79 @@ public class OrderScheduleController extends AutoMapperController {
     }
 
     /**
-     * 完工
-     * @param jOrderScheduleList
+     * 完工日程并生成服务师对账单
+     * @param list
      * @return
      */
     @ResponseBody
     @RequestMapping("/complete")
-    public Object complete(@RequestBody Map<String,List<Integer>> jOrderScheduleList){
+    public Object complete(@RequestBody Map<String,List<Integer>> list){
         try {
-            List<Integer> list = jOrderScheduleList.get("list");
-            List<JOrderSchedule> orderScheduleList = new ArrayList<JOrderSchedule>();
+            //服务师对账单列表
+            List<JNannyStatment> jNannyStatmentList = new ArrayList<JNannyStatment>();
 
-            for (int i=0;i<list.size();i++){
-                JOrderSchedule jOrderSchedule = new JOrderSchedule();
-                jOrderSchedule.setScheduleId(list.get(i));
-                jOrderSchedule.setScheduleStatus(156);
-                jOrderSchedule.setCompletedTime(new Date());
-                orderScheduleList.add(jOrderSchedule);
+            //根据日程id列表查出日程信息
+            List<Integer> integerList =list.get("list");
+            List<OrderScheduleRes> orderScheduleResList =jOrderScheduleMapper.getScheduleListByList(integerList);
+
+            //判断支付状态
+            for (int i =0;i<orderScheduleResList.size();i++){
+                if (orderScheduleResList.get(i).getPayStatus()==158){
+                    return new ModelRes(ModelRes.Status.FAILED, "有订单已结算 !", null);
+                }
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
+
+            //存放并循环更新客户余额
+            //获取客户初始余额
+            JOrderContract jOrderContractBalance = jOrderContractMapper.selectById(Long.valueOf(orderScheduleResList.get(0).getOrderId()));
+            JCustomer jCustomer = jCustomerMapper.selectById(Long.valueOf(jOrderContractBalance.getCustomerId()));
+
+            //判断日程价格和服务师薪资是否需要实时计算
+            for (int i =0;i<orderScheduleResList.size();i++){
+                //判断服务师工资是否为0，是则实时计算出服务师当前工资
+                if (orderScheduleResList.get(i).getCost().compareTo(new BigDecimal(0))==0){
+                    orderScheduleResList.get(i).setCost(new BigDecimal(orderScheduleResList.get(i).getNannyCurrentPayment()).multiply(new BigDecimal(String.valueOf((orderScheduleResList.get(i).getEndTime()-orderScheduleResList.get(i).getStartTime()) / 2f))).setScale(2));
+                }
+            }
+
+
+            for (int i=0;i<orderScheduleResList.size();i++){
+
+                //新增客户对账单
+                JOrderContract jOrderContract = jOrderContractMapper.selectById(Long.valueOf(orderScheduleResList.get(i).getOrderId()));
+                String serviceTime = orderScheduleResList.get(i).getStartTimeValue()+"-"+orderScheduleResList.get(i).getEndTimeValue();
+                Double serviceTimeLength = Double.valueOf((orderScheduleResList.get(i).getEndTime() - orderScheduleResList.get(i).getStartTime()) / 2f);
+
+
+                //新增服务师对账单
+                Map map = new HashedMap();
+                map.put("scheduleId",orderScheduleResList.get(i).getScheduleId());
+                List<JScheduleNanny> jScheduleNannyList = jScheduleNannyMapper.selectByMap(map);
+                JNannyStatment jNannyStatment = new JNannyStatment(OrderUtil.generateStamentNumber(jCustomer.getCustomerId()),jScheduleNannyList.get(0).getNannyId(),
+                        orderScheduleResList.get(i).getScheduleId(),orderScheduleResList.get(i).getOrderId(),
+                        jOrderContract.getShopId(),jOrderContract.getHouseId(),jOrderContract.getCustomerId(),
+                        162,orderScheduleResList.get(i).getCost(),163,jOrderContract.getShopId(), serviceTime, serviceTimeLength,
+                        orderScheduleResList.get(i).getScheduleDate(),"");
+                jNannyStatmentList.add(jNannyStatment);
+
+
+
+            }
+            jNannyStatmentMapper.insertBatch(jNannyStatmentList);
+
+            //更新完工时间以及日程状态
+            List<JOrderSchedule> jOrderScheduleList = new ArrayList<JOrderSchedule>();
+            for (int i=0;i<orderScheduleResList.size();i++){
+                JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                jOrderSchedule.setScheduleId(orderScheduleResList.get(i).getScheduleId());
+                jOrderSchedule.setScheduleStatus(156);
+                jOrderScheduleList.add(jOrderSchedule);
+            }
+            jOrderScheduleMapper.updateBatchById(jOrderScheduleList);
+
+
+
+            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -509,7 +584,7 @@ public class OrderScheduleController extends AutoMapperController {
     }
 
     /**
-     * 结算
+     * 结算日程并生成客户对账单
      * @return
      */
     @ResponseBody
@@ -525,10 +600,13 @@ public class OrderScheduleController extends AutoMapperController {
             List<Integer> integerList =list.get("list");
             List<OrderScheduleRes> orderScheduleResList =jOrderScheduleMapper.getScheduleListByList(integerList);
 
-            //判断支付状态
+            //判断支付状态和日程状态
             for (int i =0;i<orderScheduleResList.size();i++){
                 if (orderScheduleResList.get(i).getPayStatus()==158){
-                    return new ModelRes(ModelRes.Status.FAILED, "有订单已结算 !", null);
+                    return new ModelRes(ModelRes.Status.FAILED, "有日程已结算 !", orderScheduleResList.get(i));
+                }
+                if (orderScheduleResList.get(i).getScheduleStatus()==156){
+                    return new ModelRes(ModelRes.Status.FAILED, "有日程未完工 !", orderScheduleResList.get(i));
                 }
             }
 
@@ -553,8 +631,7 @@ public class OrderScheduleController extends AutoMapperController {
 
             //客户对账单列表
             List<JCustomerStatment> jCustomerStatmentList = new ArrayList<JCustomerStatment>();
-            //服务师对账单列表
-            List<JNannyStatment> jNannyStatmentList = new ArrayList<JNannyStatment>();
+
             for (int i=0;i<orderScheduleResList.size();i++){
 
                 //计算客户余额
@@ -569,7 +646,7 @@ public class OrderScheduleController extends AutoMapperController {
                 Double serviceTimeLength = Double.valueOf((orderScheduleResList.get(i).getEndTime() - orderScheduleResList.get(i).getStartTime()) / 2f);
 
 
-                JCustomerStatment jCustomerStatment = new JCustomerStatment(OrderUtil.generateStamentNumber(48,39),
+                JCustomerStatment jCustomerStatment = new JCustomerStatment(OrderUtil.generateStamentNumber(jCustomer.getCustomerId()),
                         jOrderContract.getCustomerId(),jOrderContract.getGoodsId(), jOrderContract.getHouseId(),
                         jOrderContract.getOrderId(),163,orderScheduleResList.get(i).getScheduleId(),
                         jOrderContract.getShopId(), serviceTime, serviceTimeLength,
@@ -577,28 +654,14 @@ public class OrderScheduleController extends AutoMapperController {
                         48, adminId, 49, 53, customerBalance,
                         "", "");
                 jCustomerStatmentList.add(jCustomerStatment);
-                //新增服务师对账单
-                Map map = new HashedMap();
-                map.put("scheduleId",orderScheduleResList.get(i).getScheduleId());
-                List<JScheduleNanny> jScheduleNannyList = jScheduleNannyMapper.selectByMap(map);
-                JNannyStatment jNannyStatment = new JNannyStatment(OrderUtil.generateStamentNumber(48,162),jScheduleNannyList.get(0).getNannyId(),
-                        orderScheduleResList.get(i).getScheduleId(),orderScheduleResList.get(i).getOrderId(),
-                        jOrderContract.getShopId(),jOrderContract.getHouseId(),jOrderContract.getCustomerId(),
-                        162,orderScheduleResList.get(i).getCost(),163,jOrderContract.getShopId(), serviceTime, serviceTimeLength,
-                        orderScheduleResList.get(i).getScheduleDate(),"");
-                jNannyStatmentList.add(jNannyStatment);
-
-
-
             }
             jCustomerStatmentMapper.insertBatch(jCustomerStatmentList);
-            jNannyStatmentMapper.insertBatch(jNannyStatmentList);
 
             //修改客户账户余额
             jCustomer.setCustomerBalance(customerBalance);
             jCustomerMapper.updateSelectiveById(jCustomer);
 
-            //更新完工时间以及日程状态
+            //更新日程支付状态
             List<JOrderSchedule> jOrderScheduleList = new ArrayList<JOrderSchedule>();
             for (int i=0;i<orderScheduleResList.size();i++){
                 JOrderSchedule jOrderSchedule = new JOrderSchedule();

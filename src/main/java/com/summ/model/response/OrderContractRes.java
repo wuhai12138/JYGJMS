@@ -48,8 +48,17 @@ public class OrderContractRes {
     private String orderStatusInfo;
     private String customerPhone;
     private String service;
+    private Integer serviceId;
     private String needString;
     private String shopName;
+
+    public Integer getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
+    }
 
     public Integer getSupplierId() {
         return supplierId;

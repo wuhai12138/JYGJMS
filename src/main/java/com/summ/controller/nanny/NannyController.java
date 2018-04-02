@@ -48,11 +48,17 @@ public class NannyController extends AutoMapperController {
             idMap.put("nannyIdCard", jNannyInfo.getNannyIdCard());
             List<JNannyInfo> idCardNannyInfo = jNannyInfoMapper.selectByMap(idMap);
             if (idCardNannyInfo.size() > 0) {
+                Map map1 = new HashMap();
+                map1.put("shopId",map.get("shopId"));
+                map1.put("nannyId",idCardNannyInfo.get(0).getNannyId());
+                if (jNannyShopMapper.selectByMap(map1).size()>0){
+                    return new ModelRes(ModelRes.Status.FAILED, "该服务师不能重复添加同一门店 !",null );
+                }
                 //如果已经录入则返回服务师相关信息
                 Map resMap = new HashMap(2);
                 resMap.put("NannyInfoRes", idCardNannyInfo.get(0));
                 resMap.put("NannyShopRes", jNannyInfoMapper.getNannyShop(idCardNannyInfo.get(0).getNannyId()));
-                return new ModelRes(ModelRes.Status.BUILT, "nanny exist", resMap);
+                return new ModelRes(ModelRes.Status.BUILT, "服务师已存在", resMap);
             }
             String fileName = "NA" + System.currentTimeMillis() + ".jpg";
 //            if (IdCardUtil.isValidatedAllIdcard(jNannyInfo.getNannyIdCard()) && StringUtil.generateImage(jNannyInfo.getNannyAvatar(),"C:/Users/jygj_7500/Desktop/upload/" + fileName)){
@@ -68,8 +74,8 @@ public class NannyController extends AutoMapperController {
                     jNannyInfoMapper.insert(jNannyInfo);
                     //给服务师添加管理员所属门店
                     JNannyShop jNannyShop = new JNannyShop();
-                    jNannyShop.setNannyId(((JNannyInfo) jNannyInfoMapper.selectByMap(idMap).get(0)).getNannyId());
                     jNannyShop.setShopId((Integer) map.get("shopId"));
+                    jNannyShop.setNannyId(jNannyInfo.getNannyId());
                     return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insert(jNannyShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, " avatar err !");
@@ -84,7 +90,7 @@ public class NannyController extends AutoMapperController {
                     jNannyInfoMapper.insert(jNannyInfo);
                     //给服务师添加管理员所属门店
                     JNannyShop jNannyShop = new JNannyShop();
-                    jNannyShop.setNannyId(((JNannyInfo) jNannyInfoMapper.selectByMap(idMap).get(0)).getNannyId());
+                    jNannyShop.setNannyId(jNannyInfo.getNannyId());
                     jNannyShop.setShopId((Integer) map.get("shopId"));
                     return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insert(jNannyShop));
                 } else {
@@ -103,7 +109,7 @@ public class NannyController extends AutoMapperController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/upload")
+    @RequestMapping("/update")
     public Object upload(@RequestBody JNannyInfo jNannyInfo) {
         try {
             return new ModelRes(ModelRes.Status.SUCCESS, "upload success", jNannyInfoMapper.updateSelectiveById(jNannyInfo));

@@ -13,6 +13,15 @@ public class NannyCertificateRes {
     private int nannyCertId;
     private String certificateIdInfo;
     private String photo;
+    private Integer certificateId;
+
+    public Integer getCertificateId() {
+        return certificateId;
+    }
+
+    public void setCertificateId(Integer certificateId) {
+        this.certificateId = certificateId;
+    }
 
     public String getPhoto() {
         return photo;

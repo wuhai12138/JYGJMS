@@ -7,6 +7,15 @@ public class NannyShopRes {
     private Integer nannyId;
     private Integer nannyShopId;
     private String shopName;
+    private Integer shopId;
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
 
     public Integer getNannyId() {
         return nannyId;
