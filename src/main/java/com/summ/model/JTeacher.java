@@ -35,7 +35,7 @@ public class JTeacher implements Serializable {
 	private Integer teacherSex;
 
 	/**  */
-	private Integer teacherStatus=55;
+	private Integer teacherStatus;
 
 	/**  */
 	private Integer teacherType;
@@ -74,13 +74,13 @@ public class JTeacher implements Serializable {
 	private Integer teacherAge;
 
 	/** 属相 */
-	private Integer teacherAnimalSign=126;
+	private Integer teacherAnimalSign;
 
 	/**  */
-	private Integer teacherNation=125;
+	private Integer teacherNation;
 
 	/** 籍贯 */
-	private Integer teacherOrigin=36;
+	private Integer teacherOrigin;
 
 	/**  */
 	private String teacherHeight;
@@ -89,7 +89,7 @@ public class JTeacher implements Serializable {
 	private String teacherWeight;
 
 	/**  */
-	private Integer teacherEducation=101;
+	private Integer teacherEducation;
 
 	/** 开户行 */
 	private String salaryBank;
@@ -122,7 +122,7 @@ public class JTeacher implements Serializable {
 	private Date modifyTime;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 
 	public Integer getTeacherId() {

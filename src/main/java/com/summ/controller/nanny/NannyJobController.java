@@ -176,12 +176,12 @@ public class NannyJobController extends AutoMapperController {
                 JNannyJobLevel jNannyJobLevel = new JNannyJobLevel();
                 jNannyJobLevel.setNannyId((Integer) map.get("nannyId"));
                 jNannyJobLevel.setJobLevelId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.insert(jNannyJobLevel));
+                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.insertSelective(jNannyJobLevel));
             } else {
                 JNannyJobLevel jNannyJobLevel = new JNannyJobLevel();
                 jNannyJobLevel.setNannyId((Integer) map.get("nannyId"));
                 jNannyJobLevel.setJobLevelId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.insert(jNannyJobLevel));
+                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.insertSelective(jNannyJobLevel));
             }
         } catch (Exception e) {
             e.printStackTrace();

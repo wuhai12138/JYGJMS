@@ -26,7 +26,7 @@ public class AdminShopController extends AutoMapperController{
             Map map = new HashMap();
             map.put("adminId",jAdmin.getAdminId());
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "delete administrator success !", ResponseUtil.List2Map(jAdminShopMapper.getList(jAdmin.getAdminId())));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", ResponseUtil.List2Map(jAdminShopMapper.getList(jAdmin.getAdminId())));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -52,7 +52,7 @@ public class AdminShopController extends AutoMapperController{
             jAdminShopMapper.deleteByMap(map1);
             jAdminShopMapper.insertBatch(jAdminShopList);
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "delete administrator success !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

@@ -19,7 +19,7 @@ import java.util.Map;
 public interface JNannyWorkTimeMapper extends AutoMapper<JNannyWorkTime> {
     List<JNannyInfo> signNannyWorkTime(@Param("map") Map map);
 
-    List<NannyHotWorkTImeRes> getHotNannyWorkTime();
+    List<NannyHotWorkTImeRes> getHotNannyWorkTime(@Param("nannyWortTimeByOrderReq") NannyWortTimeByOrderReq nannyWortTimeByOrderReq);
 
     List<TimeAndWeekRes> getHotNannyScheduleTime(NannyWortTimeByOrderReq nannyWortTimeByOrderReq);
 

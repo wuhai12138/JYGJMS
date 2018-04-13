@@ -11,6 +11,8 @@ public class CustomerHouseRes {
     /**  */
     private Integer customerId;
 
+    private Integer shopId;
+    private String shopName;
     /**  */
     private Integer provinceId = 1;
     private String provinceIdInfo;
@@ -41,6 +43,17 @@ public class CustomerHouseRes {
     /** 面积 */
     private String houseArea;
 
+    private Integer propertyId;
+    private String propertyName;
+
+    /**
+     * 房产类型
+     */
+    private Integer houseType;
+
+    /**  */
+    private Integer createId;
+
     /**  */
     private Date createTime = new Date();
 
@@ -51,6 +64,54 @@ public class CustomerHouseRes {
     /**服务计划书信息*/
     private Integer serviceId;
     private String ServiceDetail;
+
+    public Integer getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(Integer propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public Integer getHouseType() {
+        return houseType;
+    }
+
+    public void setHouseType(Integer houseType) {
+        this.houseType = houseType;
+    }
+
+    public Integer getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
 
     public Integer getServiceId() {
         return serviceId;

@@ -25,7 +25,7 @@ public class JCouponList implements Serializable {
 	private Integer couponListId;
 
 	/**  */
-	private String couponCode = "";
+	private String couponCode;
 
 	/**  */
 	private Integer couponId;
@@ -36,16 +36,16 @@ public class JCouponList implements Serializable {
 	/**  */
 	private Integer customerId;
 
-	private Integer couponStatus = 32;
+	private Integer couponStatus;
 
 	/**  */
 	private Integer orderId;
 
 	/**  */
-	private Date createTime = new Date();
+	private Date createTime;
 
 	/**  */
-	private Integer isDel = 16;
+	private Integer isDel;
 
 
 	public Integer getCouponListId() {

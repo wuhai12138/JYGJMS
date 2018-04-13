@@ -7,14 +7,16 @@
 		couponId, couponName, couponDetail, couponPrice, isDel, createTime, validTime, couponOrigin
 	</sql>
 
-	<select id="getCouponList" resultType="com.summ.model.response.CouponRes" parameterType="java.lang.Integer">
+	<select id="getCouponList" resultType="com.summ.model.response.CouponRes">
 		SELECT j.*,jdi.INFO AS couponOriginInfo
 		FROM j_coupon j
 		LEFT JOIN j_dict_info jdi ON jdi.ID = j.couponOrigin
-		WHERE 1=1
-		<if test="0 != couponOri">
-			j.couponOrigin = #{0}
+		WHERE j.isDel=16
+		<if test="0 != couponReq.couponOrigin">
+			and j.couponOrigin = #{couponReq.couponOrigin}
 		</if>
+		AND j.couponName LIKE concat("%",concat(#{couponReq.couponName},"%"))
+		limit #{couponReq.page},#{couponReq.size}
 	</select>
 
 	<select id="getCouponByCouponListId" resultType="com.summ.model.JCoupon">

@@ -27,18 +27,19 @@ public class CustomerCouponController extends AutoMapperController{
      * @return
      */
 
-    @ResponseBody
-    @RequestMapping("/list")
-    public Object insert(@RequestBody Map<String,Integer> map){
-        try {
-            Map couponMap = new HashMap();
-            couponMap.put("list",jCouponMapper.getCouponList(map.get("couponOrigin")));
-            return new ModelRes(ModelRes.Status.SUCCESS,"get coupon list success !",couponMap);
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
+//    @ResponseBody
+//    @RequestMapping("/list")
+//    public Object insert(@RequestBody Map<String,Integer> map){
+//        try {
+//            Map couponMap = new HashMap();
+//
+//            couponMap.put("list",jCouponMapper.getCouponList(map.get("couponOrigin"),map.get("couponName")));
+//            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",couponMap);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+//        }
+//    }
 
     @ResponseBody
     @RequestMapping("/insert")
@@ -46,7 +47,7 @@ public class CustomerCouponController extends AutoMapperController{
         try {
             System.out.println(">>>>>>>jCouponList>>>>>>>>>"+jCouponList.getCouponStatus());
 
-            return new ModelRes(ModelRes.Status.SUCCESS,"add coupon to customer success !",jCouponListMapper.insert(jCouponList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCouponListMapper.insertSelective(jCouponList));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -57,7 +58,7 @@ public class CustomerCouponController extends AutoMapperController{
     @RequestMapping("/delete")
     public Object delete(@RequestBody Map<String,Integer> map){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"delete coupon success !",jCouponListMapper.deleteCoupon(map.get("couponListId")));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCouponListMapper.deleteCoupon(map.get("couponListId")));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -71,7 +72,7 @@ public class CustomerCouponController extends AutoMapperController{
             JCouponList jCouponList1 = jCouponListMapper.selectById(Long.valueOf(jCouponList.getCouponListId()));
             System.out.println("<<<<<CouponStatus<<<<<<<"+jCouponList1.getCouponStatus());
             jCouponList.setCouponStatus(jCouponList1.getCouponStatus());
-            return new ModelRes(ModelRes.Status.SUCCESS,"update coupon success !",jCouponListMapper.updateSelectiveById(jCouponList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCouponListMapper.updateSelectiveById(jCouponList));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -86,7 +87,7 @@ public class CustomerCouponController extends AutoMapperController{
             Map<String,Object> mapList = new HashedMap();
             mapList.put("list",jCouponListMapper.getListById(customerCouponReq));
             mapList.put("count",jCouponListMapper.getCount(customerCouponReq));
-            return new ModelRes(ModelRes.Status.SUCCESS,"search customer success !",mapList);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",mapList);
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

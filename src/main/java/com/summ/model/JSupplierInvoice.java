@@ -47,10 +47,10 @@ public class JSupplierInvoice implements Serializable {
 	private String email;
 
 	/**  */
-	private Date createTime=new Date();
+	private Date createTime;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 
 	public Integer getInvoiceId() {

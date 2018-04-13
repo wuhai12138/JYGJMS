@@ -42,7 +42,7 @@ public class AdminTypeController extends AutoMapperController{
             }
             jDictInfo.setTypecode(1);
             jDictInfo.setDictcode(jDictInfoList.size()+1);
-            return new ModelRes(ModelRes.Status.SUCCESS, "",jDictInfoMapper.insert(jDictInfo));
+            return new ModelRes(ModelRes.Status.SUCCESS, "",jDictInfoMapper.insertSelective(jDictInfo));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -102,7 +102,11 @@ public class AdminTypeController extends AutoMapperController{
     public Object delete(@RequestBody JDictInfo jDictInfo) {
         try {
             jDictInfo.setIsDel(17);
-            return new ModelRes(ModelRes.Status.SUCCESS, "",jDictInfoMapper.updateSelectiveById(jDictInfo));
+            jDictInfoMapper.updateSelectiveById(jDictInfo);
+            Map map = new HashMap();
+            map.put("adminTypeId",jDictInfo.getId());
+            jAdminTypeMapper.deleteByMap(map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "",null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

@@ -38,6 +38,9 @@ public class JOrderContract implements Serializable {
 	/**  */
 	private Integer orderStatus;
 
+	/** 订单关闭状态（默认未关闭） */
+	private Integer orderCloseStatus;
+
 	/**  */
 	private Date startDate;
 
@@ -54,13 +57,54 @@ public class JOrderContract implements Serializable {
 	private Integer teacherId;
 
 	/**  */
-	private Date createTime=new Date();
+	private Integer createId;
+
+	/**  */
+	private Date createTime;
+
+	/**  */
+	private Integer modifyId;
+
+	/**  */
+	private Date modifyTime;
 
 	/**  */
 	private String remark;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
+
+	public Integer getOrderCloseStatus() {
+		return orderCloseStatus;
+	}
+
+	public void setOrderCloseStatus(Integer orderCloseStatus) {
+		this.orderCloseStatus = orderCloseStatus;
+	}
+
+	public Integer getCreateId() {
+		return createId;
+	}
+
+	public void setCreateId(Integer createId) {
+		this.createId = createId;
+	}
+
+	public Integer getModifyId() {
+		return modifyId;
+	}
+
+	public void setModifyId(Integer modifyId) {
+		this.modifyId = modifyId;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
 
 	public Integer getSupplierId() {
 		return supplierId;

@@ -89,7 +89,7 @@ public class BasicController extends AutoMapperController{
             map.put("typeCode",jDictInfo.getTypecode());
             EntityWrapper<JDictInfo> entityWrapper = new EntityWrapper<JDictInfo>();
             jDictInfo.setDictcode(jDictInfoMapper.selectByMap(map).size()+1);
-            return new ModelRes(ModelRes.Status.SUCCESS, "insert dict info success !", jDictInfoMapper.insert(jDictInfo));
+            return new ModelRes(ModelRes.Status.SUCCESS, "insert dict info success !", jDictInfoMapper.insertSelective(jDictInfo));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

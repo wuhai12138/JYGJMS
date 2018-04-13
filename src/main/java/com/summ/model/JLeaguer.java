@@ -37,16 +37,16 @@ public class JLeaguer implements Serializable {
 	private String contect;
 
 	/**  */
-	private Integer leaguerStatus=182;
+	private Integer leaguerStatus;
 
 	/**  */
 	private String contacter;
 
 	/**  */
-	private Integer provinceId=1;
+	private Integer provinceId;
 
 	/**  */
-	private Integer cityId=1;
+	private Integer cityId;
 
 	/**  */
 	private Integer areaId;
@@ -94,10 +94,10 @@ public class JLeaguer implements Serializable {
 	private String idCardAfter;
 
 	/**  */
-	private Date createTime=new Date();
+	private Date createTime;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 
 	public Integer getLeaguerId() {

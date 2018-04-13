@@ -45,11 +45,14 @@ public class OrderTempController extends AutoMapperController{
      */
     @ResponseBody
     @RequestMapping("/insert")
-    public Object insert(@RequestBody JOrderTemp jOrderTemp) {
+    public Object insert(@RequestBody JOrderTemp jOrderTemp,ServletRequest request) {
         try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
             JGoodsContract jGoodsContract = jGoodsContractMapper.selectById(Long.valueOf(jOrderTemp.getGoodsId()));
             jOrderTemp.setUnitPrice(jGoodsContract.getPrice());
             jOrderTemp.setTotalPrice(jGoodsContract.getPrice().multiply(new BigDecimal(jOrderTemp.getServiceAmount())));
+            jOrderTemp.setCreateId(jAdmin.getAdminId());
+            jOrderTemp.setCreateTime(new Date());
             jOrderTempMapper.insertSelective(jOrderTemp);
 
             /**发送短信给门店手机号*/
@@ -57,7 +60,7 @@ public class OrderTempController extends AutoMapperController{
             JCustomer jCustomer = jCustomerMapper.selectById(Long.valueOf(jOrderTemp.getCustomerId()));
             SendSMSUtil.notifyShop(jCustomer.getCustomerPhone(),jShop.getShopMobile(),jCustomer.getCustomerName());
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -68,7 +71,7 @@ public class OrderTempController extends AutoMapperController{
     @RequestMapping("/update")
     public Object update(@RequestBody JOrderTemp jOrderTemp) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderTempMapper.updateSelectiveById(jOrderTemp));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", jOrderTempMapper.updateSelectiveById(jOrderTemp));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -103,7 +106,7 @@ public class OrderTempController extends AutoMapperController{
             PayDataRes payDataRes = new PayDataRes(jCustomer.getCustomerId(),jCustomer.getCustomerName(),jCustomer.getCustomerPhone(),
                     jCustomer.getCustomerBalance(),cost);
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", payDataRes);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", payDataRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -138,7 +141,6 @@ public class OrderTempController extends AutoMapperController{
                 jCoupon = jCouponMapper.getCouponByCouponListId(orderTempChargeReq.getCouponListId());
             }
             JCustomer jCustomer = jCustomerMapper.selectById(Long.valueOf(jOrderTempList.get(0).getCustomerId()));
-            JShop jShop = jShopMapper.selectById(Long.valueOf(jCustomer.getShopId()));
             if (orderTempChargeReq.getCost().compareTo(jCoupon.getOrderMiniPrice()) <0){
                 return new ModelRes(ModelRes.Status.FAILED, "订单总额不符合优惠券规范，请重选 !");
             }
@@ -148,6 +150,17 @@ public class OrderTempController extends AutoMapperController{
             if(orderTempChargeReq.getChargeType()==48||orderTempChargeReq.getChargeType()==127||orderTempChargeReq.getChargeType()==209){
                 /**针对每个订单，更新折扣金额，支付金额，支付状态，优惠券id，新增对账单*/
                 for (JOrderTemp jOrderTemp : jOrderTempList){
+                    Map map=new HashMap();
+                    map.put("orderId",jOrderTemp.getOrderId());
+                    map.put("orderType",164);
+                    List<JOrderSchedule> jOrderScheduleList = jOrderScheduleMapper.selectByMap(map);
+                    if (jOrderScheduleList.size()>0){
+                        for (JOrderSchedule jOrderSchedule : jOrderScheduleList){
+                            jOrderSchedule.setPayStatus(158);
+                        }
+                        jOrderScheduleMapper.updateBatchById(jOrderScheduleList);
+                    }
+
                     /**更新订单信息*/
                     BigDecimal discount = jCoupon.getCouponPrice().multiply(jOrderTemp.getTotalPrice()).divide(orderTempChargeReq.getCost(),2,BigDecimal.ROUND_HALF_UP);
                     if (discount.compareTo(jOrderTemp.getTotalPrice())==1){
@@ -179,7 +192,7 @@ public class OrderTempController extends AutoMapperController{
                 jCustomerMapper.updateSelectiveById(jCustomer);
             }else {
                 /**支付服务器所需信息*/
-                PayCallBackObj payCallBackObj = new PayCallBackObj(jCustomer.getCustomerId(),jCustomer.getCustomerName(),jCustomer.getCustomerPhone(),jAdmin.getAdminId(),jShop.getShopName(),jShop.getShopId());
+                PayCallBackObj payCallBackObj = new PayCallBackObj(jCustomer.getCustomerId(),jCustomer.getCustomerName(),jCustomer.getCustomerPhone(),jAdmin.getAdminId(),"",0);
 
                 /**针对每个订单，更新折扣金额，支付金额，支付状态，优惠券id，新增对账单*/
                 for (JOrderTemp jOrderTemp : jOrderTempList) {
@@ -375,7 +388,8 @@ public class OrderTempController extends AutoMapperController{
         try {
             Map map = new HashMap();
             map.put("orderType",164);
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", ResponseUtil.List2Map(jGoodsContractMapper.selectByMap(map)));
+            map.put("isDel",16);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", ResponseUtil.List2Map(jGoodsContractMapper.selectByMap(map)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -393,7 +407,68 @@ public class OrderTempController extends AutoMapperController{
             List<OrderTempRes> orderTempResList = jOrderTempMapper.getTempList(orderTempReq);
             Map map = ResponseUtil.List2Map(orderTempResList);
             map.put("count",jOrderTempMapper.getTempCount(orderTempReq));
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !",map);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !",map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 订单关闭（如果订单已付款日程未签到，则提交退款申请至财务）
+     * @param jOrderTemp
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/close")
+    public Object close(@RequestBody JOrderTemp jOrderTemp,ServletRequest request) {
+        try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+            JOrderTemp jOrderTemp1 = jOrderTempMapper.selectById(Long.valueOf(jOrderTemp.getOrderId()));
+
+            Map map = new HashMap();
+            map.put("orderType",164);
+            map.put("orderId",jOrderTemp.getOrderId());
+            List<JOrderSchedule> jOrderScheduleList = jOrderScheduleMapper.selectByMap(map);
+            if (jOrderScheduleList.size()>0){
+                for (JOrderSchedule jOrderSchedule : jOrderScheduleList){
+                    /**已签到日程不准许关闭*/
+                    if (jOrderSchedule.getScheduleStatus()==153){
+                        return new ModelRes(ModelRes.Status.SUCCESS,"该订单已完工，不予关闭  !", jOrderSchedule);
+                    }
+                    /**待完工日程*/
+                    if (jOrderSchedule.getScheduleStatus()==152){
+                        /**订单已支付则生成退款申请*/
+                        if (jOrderTemp1.getPayStatus()==158){
+                            /**获取支付信息*/
+                            Map payMap = new HashMap();
+                            payMap.put("orderType",164);
+                            payMap.put("orderId",jOrderTemp.getOrderId());
+                            payMap.put("status",53);
+                            List<JCustomerStatment> jCustomerStatmentList = jCustomerStatmentMapper.selectByMap(payMap);
+                            Integer payWay = 0;
+                            if (jCustomerStatmentList.size()>0){
+                                payWay=jCustomerStatmentList.get(0).getChargeWay();
+                            }
+                            JOrderRefund jOrderRefund = new JOrderRefund(jOrderTemp1.getCustomerId(),164,jOrderTemp1.getOrderId(),jOrderSchedule.getScheduleId(),payWay,payWay,230,jOrderTemp1.getPayMoney(),"");
+                            jOrderRefundMapper.insertSelective(jOrderRefund);
+                        }
+                        jOrderSchedule.setCancelTime(new Date());
+                        jOrderSchedule.setScheduleStatus(155);
+                        jOrderSchedule.setCancelId(jAdmin.getAdminId());
+                        jOrderSchedule.setRemark(jOrderSchedule.getRemark()+"-关闭原因："+jOrderTemp.getRemark());
+                        jOrderScheduleMapper.updateBatchById(jOrderScheduleList);
+                    }
+                }
+            }
+
+            jOrderTemp1.setOrderCloseStatus(213);
+            jOrderTemp1.setModifyId(jAdmin.getAdminId());
+            jOrderTemp1.setModifyTime(new Date());
+            jOrderTemp1.setRemark(jOrderTemp1.getRemark()+"-"+jOrderTemp.getRemark());
+            jOrderTempMapper.updateSelectiveById(jOrderTemp1);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

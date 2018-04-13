@@ -30,6 +30,9 @@ public class JCustomerFeedback implements Serializable {
 	/** 客户 */
 	private Integer customerId;
 
+	private Integer orderId;
+	private Integer scheduleId;
+
 	/**  */
 	private Date createDate = new Date();
 
@@ -59,6 +62,22 @@ public class JCustomerFeedback implements Serializable {
 		this.content = content;
 		this.customerId = customerId;
 		this.noteAdmin = noteAdmin;
+	}
+
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public Integer getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(Integer scheduleId) {
+		this.scheduleId = scheduleId;
 	}
 
 	public Integer getFeedbackId() {

@@ -91,13 +91,14 @@
         SUM(jc.customerBalance) AS totalBalance
         FROM
         j_customer_statment j
+        LEFT JOIN j_customer_house jch ON jch.customerId=j.customerId
         LEFT JOIN j_shop js ON js.shopId = j.shopId
         LEFT JOIN j_customer jc ON jc.customerId = j.customerId
         WHERE
         j.statmentCustomerType = 38
         AND j.chargeDate &gt; #{map.startDate}
         AND j.chargeDate &lt; #{map.endDate}
-        AND j.shopId IN
+        AND jch.shopId IN
         <foreach collection="map.list" index="index" item="item" open="("
                  separator="," close=")">
             #{item}
@@ -112,11 +113,12 @@
         j_customer_statment j
         LEFT JOIN j_shop js ON js.shopId = j.shopId
         LEFT JOIN j_customer jc ON jc.customerId = j.customerId
+        LEFT JOIN j_customer_house jch ON jch.customerId=j.customerId
         WHERE
         j.statmentCustomerType = 38
         AND j.chargeDate &gt; #{map.startDate}
         AND j.chargeDate &lt; #{map.endDate}
-        AND j.shopId IN
+        AND jch.shopId IN
         <foreach collection="map.list" index="index" item="item" open="("
                  separator="," close=")">
             #{item}
@@ -124,7 +126,7 @@
     </select>
 
 
-    <select id="getCustomerRechargeDetail" parameterType="com.summ.model.request.CustomerStatmentReq"
+    <select id="getCustomerRechargeDetail" parameterType="java.util.Map"
             resultType="com.summ.model.response.CustomerStatmentRes">
         SELECT a.*,d2.INFO AS statmentCustomerTypeInfo,d3.INFO AS chargeWayInfo,d4.INFO AS
         terminalInfo,d5.INFO AS statusInfo,d6.customerName AS customerName,d6.customerPhone,d7.adminName AS adminName,js.shopName
@@ -136,9 +138,6 @@
         LEFT JOIN j_customer d6 ON d6.customerId = a.customerId
         LEFT JOIN j_admin d7 ON d7.adminId = a.adminId
         LEFT JOIN j_shop js ON js.shopId=a.shopId
-        <if test="0 == customerStatmentReq.shopId">
-            LEFT JOIN j_admin_shop jas2 ON jas2.shopId=a.shopId
-        </if>
         WHERE a.statmentCustomerType = 38
         AND d6.customerName LIKE concat(concat('%',#{customerStatmentReq.customerName}),'%')
         AND d6.customerPhone LIKE concat(concat('%',#{customerStatmentReq.customerPhone}),'%')
@@ -148,23 +147,22 @@
         <if test="0 != customerStatmentReq.customerId">
             AND a.customerId = #{customerStatmentReq.customerId}
         </if>
-        <if test="0 != customerStatmentReq.shopId">
             AND a.shopId = #{customerStatmentReq.shopId}
-        </if>
-        <if test="0 != customerStatmentReq.chargeWay">
-            AND a.chargeWay = #{customerStatmentReq.chargeWay}
-        </if>
-        <if test="0 != customerStatmentReq.terminal">
-            AND a.terminal = #{customerStatmentReq.terminal}
-        </if>
-        <if test="0 == customerStatmentReq.shopId">
-            AND jas2.adminId = #{customerStatmentReq.adminId}
-        </if>
+        AND a.chargeWay IN
+        <foreach collection="customerStatmentReq.chargeWay" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+        AND a.terminal IN
+        <foreach collection="customerStatmentReq.terminal" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
         ORDER BY a.chargeDate DESC
         LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}
     </select>
 
-    <select id="getCustomerRechargeDetailCount" parameterType="com.summ.model.request.CustomerStatmentReq"
+    <select id="getCustomerRechargeDetailCount" parameterType="java.util.Map"
             resultType="java.lang.Integer">
         SELECT COUNT(a.statmentId)
         FROM j_customer_statment a
@@ -187,18 +185,17 @@
         <if test="0 != customerStatmentReq.customerId">
             AND a.customerId = #{customerStatmentReq.customerId}
         </if>
-        <if test="0 != customerStatmentReq.shopId">
             AND a.shopId = #{customerStatmentReq.shopId}
-        </if>
-        <if test="0 != customerStatmentReq.chargeWay">
-            AND a.chargeWay = #{customerStatmentReq.chargeWay}
-        </if>
-        <if test="0 != customerStatmentReq.terminal">
-            AND a.terminal = #{customerStatmentReq.terminal}
-        </if>
-        <if test="0 == customerStatmentReq.shopId">
-            AND jas2.adminId = #{customerStatmentReq.adminId}
-        </if>
+        AND a.chargeWay IN
+        <foreach collection="customerStatmentReq.chargeWay" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+        AND a.terminal IN
+        <foreach collection="customerStatmentReq.terminal" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
 </mapper>

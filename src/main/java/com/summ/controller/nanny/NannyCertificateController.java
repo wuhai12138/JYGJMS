@@ -9,6 +9,7 @@ import com.summ.model.JNannyInfo;
 import com.summ.model.JNannyLanguage;
 import com.summ.model.response.ModelRes;
 import com.summ.model.response.NannyCertificateRes;
+import com.summ.utils.ResponseUtil;
 import com.summ.utils.StringUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,26 +61,29 @@ public class NannyCertificateController extends AutoMapperController {
 
     @ResponseBody
     @RequestMapping("/insert")
-    public Object insert(@RequestBody Map map) {
+    public Object insert(@RequestBody JNannyCertificate map,@RequestBody Map map1) {
         try {
-            Integer languageId = (Integer) map.get("id");
-            if(languageId==0){
+            Map map2 = new HashMap();
+            map2.put("certificateNumber",map.getCertificateNumber());
+            Integer certificateId =  map.getCertificateId();
+            if(certificateId==0){
                 //新增数据字典
                 JDictInfo jDictInfo = new JDictInfo();
                 jDictInfo.setTypecode(21);
-                jDictInfo.setInfo((String) map.get("info"));
+                jDictInfo.setInfo((String) map1.get("info"));
                 jDictInfoMapper.insert(jDictInfo);
 
                 //插入服务师技能表
-                JNannyCertificate jNannyCertificate = new JNannyCertificate();
-                jNannyCertificate.setNannyId((Integer) map.get("nannyId"));
-                jNannyCertificate.setCertificateId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS,"update NannyInfo success !",jNannyCertificateMapper.insert(jNannyCertificate));
+                map.setCertificateId(jDictInfo.getId());
+
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jNannyCertificateMapper.insertSelective(map));
             }else {
-                JNannyCertificate jNannyCertificate = new JNannyCertificate();
-                jNannyCertificate.setNannyId((Integer) map.get("nannyId"));
-                jNannyCertificate.setCertificateId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS,"update NannyInfo success !",jNannyCertificateMapper.insert(jNannyCertificate));
+                map2.put("certificateId",map.getCertificateId());
+                List<JNannyCertificate> jNannyCertificateList = jNannyCertificateMapper.selectByMap(map2);
+                if (jNannyCertificateList.size()>0){
+                    return new ModelRes(ModelRes.Status.FAILED,"证件重复 !", ResponseUtil.List2Map(jNannyCertificateList));
+                }
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jNannyCertificateMapper.insertSelective(map));
             }
         } catch (Exception e)
         {
@@ -96,7 +100,7 @@ public class NannyCertificateController extends AutoMapperController {
             String fileName = "NC"+System.currentTimeMillis()+".jpg";
             if(StringUtil.generateImage(jNannyCertificate.getPhoto(),Consts.nannyCertUrl + fileName)){
                 jNannyCertificate.setPhoto(fileName);
-                return new ModelRes(ModelRes.Status.SUCCESS,"add NannyInfo success !",jNannyCertificateMapper.updateSelectiveById(jNannyCertificate));
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jNannyCertificateMapper.updateSelectiveById(jNannyCertificate));
             }
             return new ModelRes(ModelRes.Status.FAILED, "photo err !");
         } catch (Exception e)

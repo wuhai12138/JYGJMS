@@ -51,15 +51,15 @@ public class JShop implements Serializable {
 	private Integer staring;
 
 	/**  */
-	private Integer isDel = 16;
+	private Integer isDel;
 
 	/**  */
-	private Date createTime=new Date();
+	private Date createTime;
 
 	/**  */
 	private Date modifyTime;
 
-	private double distance=0;
+	private double distance;
 
 	private String shopMobile;
 

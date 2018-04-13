@@ -13,6 +13,7 @@ import com.summ.utils.mongodb.model.MongoConfig;
 import com.sun.tools.internal.xjc.reader.dtd.bindinfo.BIAttribute;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -77,7 +78,6 @@ public class OrderScheduleController extends AutoMapperController {
                     //开工中
                     jOrderContractList.get(i).setOrderStatus(149);
                 }
-
 
                 Map mongoMap = new HashedMap();
                 mongoMap.put("serviceId", jOrderContractList.get(i).getServiceId());
@@ -393,7 +393,7 @@ public class OrderScheduleController extends AutoMapperController {
             //更新订单状态
             jOrderContractMapper.updateBatchById(jOrderContractList);
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "日程添加成功 !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -421,7 +421,7 @@ public class OrderScheduleController extends AutoMapperController {
             }
             Map map = ResponseUtil.List2Map(orderScheduleResList);
             map.put("count",jOrderScheduleMapper.getScheduleCount(orderScheduleReq));
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !",map);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !",map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -429,7 +429,7 @@ public class OrderScheduleController extends AutoMapperController {
     }
 
     /**
-     * 暂停
+     * 暂停（停用）
      * @return
      */
     @ResponseBody
@@ -446,32 +446,7 @@ public class OrderScheduleController extends AutoMapperController {
                 jOrderSchedule.setSuspendTime(new Date());
                 orderScheduleList.add(jOrderSchedule);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    /**
-     * 取消
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/cancel")
-    public Object cancel(@RequestBody Map<String,List<Integer>> jOrderScheduleList){
-        try {
-            List<Integer> list = jOrderScheduleList.get("list");
-            List<JOrderSchedule> orderScheduleList = new ArrayList<JOrderSchedule>();
-
-            for (int i=0;i<list.size();i++){
-                JOrderSchedule jOrderSchedule = new JOrderSchedule();
-                jOrderSchedule.setScheduleId(list.get(i));
-                jOrderSchedule.setScheduleStatus(155);
-                jOrderSchedule.setCancelTime(new Date());
-                orderScheduleList.add(jOrderSchedule);
-            }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -482,21 +457,100 @@ public class OrderScheduleController extends AutoMapperController {
      * 签到
      * @return
      */
+    @Transactional(rollbackFor = Exception.class)
     @ResponseBody
     @RequestMapping("/clock")
-    public Object clock(@RequestBody Map<String,List<Integer>> jOrderScheduleList){
+    public Object clock(@RequestBody Map<String,List<Integer>> jOrderScheduleList,ServletRequest request){
         try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+            /**查询日程列表*/
             List<Integer> list = jOrderScheduleList.get("list");
-            List<JOrderSchedule> orderScheduleList = new ArrayList<JOrderSchedule>();
+            List<OrderScheduleRes> orderScheduleResList =jOrderScheduleMapper.getScheduleListByList(list);
 
-            for (int i=0;i<list.size();i++){
-                JOrderSchedule jOrderSchedule = new JOrderSchedule();
-                jOrderSchedule.setScheduleId(list.get(i));
-                jOrderSchedule.setScheduleStatus(153);
-                jOrderSchedule.setClockTime(new Date());
-                orderScheduleList.add(jOrderSchedule);
+            for (OrderScheduleRes orderScheduleRes: orderScheduleResList){
+                if (orderScheduleRes.getScheduleStatus()==153){
+                    return new ModelRes(ModelRes.Status.FAILED, "有订单已签到 !", orderScheduleRes);
+                }
+                if (orderScheduleRes.getScheduleStatus()==155){
+                    return new ModelRes(ModelRes.Status.FAILED, "有订单已取消 !", orderScheduleRes);
+                }
+                //判断服务师工资是否为0，是则实时计算出服务师当前工资
+                if (orderScheduleRes.getCost().compareTo(new BigDecimal(0))==0){
+                    orderScheduleRes.setCost(new BigDecimal(orderScheduleRes.getNannyCurrentPayment()).multiply(new BigDecimal(String.valueOf((orderScheduleRes.getEndTime()-orderScheduleRes.getStartTime()) / 2f))).setScale(2));
+                }
+                orderScheduleRes.setUnitPrice(orderScheduleRes.getScheduleCurrentPrice());
+                //判断日程总价是否为0，是则实时计算出当前总价A
+                if (orderScheduleRes.getTotalPrice().compareTo(new BigDecimal(0))==0){
+                    orderScheduleRes.setTotalPrice(orderScheduleRes.getScheduleCurrentPrice().multiply(new BigDecimal(String.valueOf((orderScheduleRes.getEndTime()-orderScheduleRes.getStartTime()) / 2f))).setScale(2));
+                }
+
+                /**订单*/
+                JOrderContract jOrderContractBalance = jOrderContractMapper.selectById(Long.valueOf(orderScheduleRes.getOrderId()));
+                /**客户*/
+                JCustomer jCustomer = jCustomerMapper.selectById(Long.valueOf(jOrderContractBalance.getCustomerId()));
+                /**余额*/
+                BigDecimal customerBalance = jCustomer.getCustomerBalance();
+
+
+
+                Map map = new HashedMap();
+                map.put("scheduleId",orderScheduleRes.getScheduleId());
+                List<JScheduleNanny> jScheduleNannyList = jScheduleNannyMapper.selectByMap(map);
+                if (jScheduleNannyList.get(0).getSupplierId()==1){
+                    JNannyInfo jNannyInfo = jNannyInfoMapper.selectById(Long.valueOf(jScheduleNannyList.get(0).getNannyId()));
+                    if (jNannyInfo.getNannyStatus()!=56){
+                        return new ModelRes(ModelRes.Status.FAILED, "服务师未培训成功", jNannyInfo);
+                    }
+                }
+
+                String serviceTime = orderScheduleRes.getStartTimeValue()+"-"+orderScheduleRes.getEndTimeValue();
+                Double serviceTimeLength = Double.valueOf((orderScheduleRes.getEndTime() - orderScheduleRes.getStartTime()) / 2f);
+
+
+                /**新增服务师对账单*/
+                JNannyStatment jNannyStatment = new JNannyStatment(OrderUtil.generateStamentNumber(jCustomer.getCustomerId()),jScheduleNannyList.get(0).getNannyId(),
+                        orderScheduleRes.getScheduleId(),orderScheduleRes.getOrderId(),
+                        jOrderContractBalance.getShopId(),jOrderContractBalance.getHouseId(),jOrderContractBalance.getCustomerId(),
+                        162,orderScheduleRes.getCost(),163,jOrderContractBalance.getShopId(), serviceTime, serviceTimeLength,
+                        orderScheduleRes.getScheduleDate(),"");
+                jNannyStatmentMapper.insertSelective(jNannyStatment);
+
+                /**计算客户余额*/
+                customerBalance = customerBalance.subtract(orderScheduleRes.getTotalPrice());
+                if (customerBalance.compareTo(new BigDecimal(0))>0){
+                    /**新增客户对账单*/
+                    JCustomerStatment jCustomerStatment = new JCustomerStatment(OrderUtil.generateStamentNumber(jCustomer.getCustomerId()),
+                            jOrderContractBalance.getCustomerId(),jOrderContractBalance.getGoodsId(), jOrderContractBalance.getHouseId(),
+                            jOrderContractBalance.getOrderId(),163,orderScheduleRes.getScheduleId(),
+                            jOrderContractBalance.getShopId(), serviceTime, serviceTimeLength,
+                            orderScheduleRes.getScheduleDate(), new Date(), 39, orderScheduleRes.getTotalPrice(),
+                            48, jAdmin.getAdminId(), 49, 53, customerBalance,
+                            "", "");
+                    jCustomerStatmentMapper.insertSelective(jCustomerStatment);
+                    /**修改客户账户余额*/
+                    jCustomer.setCustomerBalance(customerBalance);
+                    jCustomerMapper.updateSelectiveById(jCustomer);
+
+                    /**修改日程状态*/
+                    JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                    jOrderSchedule.setScheduleId(orderScheduleRes.getScheduleId());
+                    /**日程支付状态为已支付*/
+                    jOrderSchedule.setPayStatus(158);
+                    jOrderSchedule.setClockId(jAdmin.getAdminId());
+                    jOrderSchedule.setClockTime(new Date());
+                    jOrderSchedule.setScheduleStatus(153);
+                    jOrderScheduleMapper.updateSelectiveById(jOrderSchedule);
+                }else {
+                    /**修改日程状态 不修改支付状态*/
+                    JOrderSchedule jOrderSchedule = new JOrderSchedule();
+                    jOrderSchedule.setScheduleId(orderScheduleRes.getScheduleId());
+                    jOrderSchedule.setClockId(jAdmin.getAdminId());
+                    jOrderSchedule.setClockTime(new Date());
+                    jOrderSchedule.setScheduleStatus(153);
+                    jOrderScheduleMapper.updateSelectiveById(jOrderSchedule);
+                }
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -504,7 +558,7 @@ public class OrderScheduleController extends AutoMapperController {
     }
 
     /**
-     * 完工日程并生成服务师对账单
+     * 完工日程并生成服务师对账单（停用）
      * @param list
      * @return
      */
@@ -576,7 +630,7 @@ public class OrderScheduleController extends AutoMapperController {
 
 
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -584,7 +638,7 @@ public class OrderScheduleController extends AutoMapperController {
     }
 
     /**
-     * 结算日程并生成客户对账单
+     * 结算日程并生成客户对账单（停用）
      * @return
      */
     @ResponseBody
@@ -604,9 +658,6 @@ public class OrderScheduleController extends AutoMapperController {
             for (int i =0;i<orderScheduleResList.size();i++){
                 if (orderScheduleResList.get(i).getPayStatus()==158){
                     return new ModelRes(ModelRes.Status.FAILED, "有日程已结算 !", orderScheduleResList.get(i));
-                }
-                if (orderScheduleResList.get(i).getScheduleStatus()==156){
-                    return new ModelRes(ModelRes.Status.FAILED, "有日程未完工 !", orderScheduleResList.get(i));
                 }
             }
 
@@ -629,15 +680,12 @@ public class OrderScheduleController extends AutoMapperController {
                 }
             }
 
-            //客户对账单列表
-            List<JCustomerStatment> jCustomerStatmentList = new ArrayList<JCustomerStatment>();
-
             for (int i=0;i<orderScheduleResList.size();i++){
 
                 //计算客户余额
                 customerBalance = customerBalance.subtract(orderScheduleResList.get(i).getTotalPrice());
                 if (customerBalance.compareTo(new BigDecimal(0))<0){
-                    return new ModelRes(ModelRes.Status.FAILED, "余额不足", null);
+                    return new ModelRes(ModelRes.Status.FAILED, "余额不足", orderScheduleResList.get(i));
                 }
 
                 //新增客户对账单
@@ -653,25 +701,21 @@ public class OrderScheduleController extends AutoMapperController {
                         orderScheduleResList.get(i).getScheduleDate(), new Date(), 39, orderScheduleResList.get(i).getTotalPrice(),
                         48, adminId, 49, 53, customerBalance,
                         "", "");
-                jCustomerStatmentList.add(jCustomerStatment);
-            }
-            jCustomerStatmentMapper.insertBatch(jCustomerStatmentList);
+                jCustomerStatmentMapper.insertSelective(jCustomerStatment);
 
-            //修改客户账户余额
-            jCustomer.setCustomerBalance(customerBalance);
-            jCustomerMapper.updateSelectiveById(jCustomer);
+                //修改客户账户余额
+                jCustomer.setCustomerBalance(customerBalance);
+                jCustomerMapper.updateSelectiveById(jCustomer);
 
-            //更新日程支付状态
-            List<JOrderSchedule> jOrderScheduleList = new ArrayList<JOrderSchedule>();
-            for (int i=0;i<orderScheduleResList.size();i++){
+                //更新日程支付状态
                 JOrderSchedule jOrderSchedule = new JOrderSchedule();
                 jOrderSchedule.setScheduleId(orderScheduleResList.get(i).getScheduleId());
                 jOrderSchedule.setPayStatus(158);
-                jOrderScheduleList.add(jOrderSchedule);
-            }
-            jOrderScheduleMapper.updateBatchById(jOrderScheduleList);
+                jOrderScheduleMapper.updateSelectiveById(jOrderSchedule);
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", null);
+            }
+
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

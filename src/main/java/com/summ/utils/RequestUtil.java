@@ -166,7 +166,7 @@ public class RequestUtil {
                 System.out.println("string Builder " + stringBuilder);
                 System.out.println("map str md5 " + StringUtil.getMd5Value(stringBuilder.toString()));
                 if (!StringUtil.getMd5Value(stringBuilder.toString()).equals(requestWrapper.getParameter("sign"))) {
-                    return "{\"code\":\"102\",\"msg\":\"request illegal !\"}";
+                    return "{\"code\":\"102\",\"msg\":\"请求不合法 !\"}";
                 }
                 return "";
             }return "";

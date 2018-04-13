@@ -31,15 +31,15 @@ public class JGoodsContract implements Serializable {
 	private BigDecimal price;
 
 	/** 结算方式 */
-	private String Settlement="1";
+	private String Settlement;
 
-	private Integer orderType=164;
+	private Integer orderType;
 
 	/**单位名称 */
 	private String unitName;
 
 	/** 表示产品上下架状态，16表示上架17表示下架 */
-	private Integer isDel=17;
+	private Integer isDel;
 
 	private Integer lowest;
 	private String summary;

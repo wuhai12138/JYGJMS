@@ -1,10 +1,7 @@
 package com.summ.controller.customer;
 
 import com.summ.controller.basic.AutoMapperController;
-import com.summ.model.JAdmin;
-import com.summ.model.JCustomerFeedback;
-import com.summ.model.JCustomerFeedbackDepartment;
-import com.summ.model.JCustomerFeedbackFollow;
+import com.summ.model.*;
 import com.summ.model.request.CustomerFeedbackReq;
 import com.summ.model.response.CustomerFeedbackFollowRes;
 import com.summ.model.response.CustomerFeedbackRes;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,21 +32,36 @@ public class CustomerFeedbackController extends AutoMapperController{
             JAdmin admin = (JAdmin) request.getAttribute("admin");
             String content = (String) map.get("content");
             Integer customerId = (Integer) map.get("customerId");
+            Integer orderId = (Integer) map.get("orderId");
+            Integer scheduleId = (Integer) map.get("scheduleId");
             List<Integer> list = (List<Integer>) map.get("department");
 
-            JCustomerFeedback jCustomerFeedback = new JCustomerFeedback();
-            jCustomerFeedback.setContent(content);
-            jCustomerFeedback.setCustomerId(customerId);
-            jCustomerFeedback.setNoteAdmin(admin.getAdminId());
-            jCustomerFeedbackMapper.insert(jCustomerFeedback);
+//            JCustomerFeedback jCustomerFeedback = new JCustomerFeedback();
+//            jCustomerFeedback.setContent(content);
+//            jCustomerFeedback.setCustomerId(customerId);
+//            jCustomerFeedback.setNoteAdmin(admin.getAdminId());
+//            jCustomerFeedback.setOrderId(orderId);
+//            jCustomerFeedback.setScheduleId(scheduleId);
+//            jCustomerFeedbackMapper.insert(jCustomerFeedback);
 
-            List<JCustomerFeedbackDepartment> jCustomerFeedbackList = new ArrayList<JCustomerFeedbackDepartment>();
+            JCustomerMessage jCustomerMessage = new JCustomerMessage(content,customerId,orderId,scheduleId,new Date(),170,217,admin.getAdminId(),16);
+            jCustomerMessageMapper.insertSelective(jCustomerMessage);
+
+//            List<JCustomerFeedbackDepartment> jCustomerFeedbackList = new ArrayList<JCustomerFeedbackDepartment>();
+//            for (Integer ii : list){
+//                JCustomerFeedbackDepartment jCustomerFeedbackDepartment = new JCustomerFeedbackDepartment(jCustomerFeedback.getFeedbackId(),ii);
+//                jCustomerFeedbackList.add(jCustomerFeedbackDepartment);
+//            }
+//            jCustomerFeedbackDepartmentMapper.insertBatch(jCustomerFeedbackList);
+
+            List<JCustomerMessageDepartment> jCustomerMessageDepartmentList = new ArrayList<JCustomerMessageDepartment>();
             for (Integer ii : list){
-                JCustomerFeedbackDepartment jCustomerFeedbackDepartment = new JCustomerFeedbackDepartment(jCustomerFeedback.getFeedbackId(),ii);
-                jCustomerFeedbackList.add(jCustomerFeedbackDepartment);
+                JCustomerMessageDepartment jCustomerMessageDepartment = new JCustomerMessageDepartment(jCustomerMessage.getMessageId(),ii);
+                jCustomerMessageDepartmentList.add(jCustomerMessageDepartment);
             }
-            jCustomerFeedbackDepartmentMapper.insertBatch(jCustomerFeedbackList);
-            return new ModelRes(ModelRes.Status.SUCCESS, "添加客户反馈 !",null);
+            jCustomerMessageDepartmentMapper.insertBatch(jCustomerMessageDepartmentList);
+
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -62,9 +75,13 @@ public class CustomerFeedbackController extends AutoMapperController{
             JAdmin admin = (JAdmin) request.getAttribute("admin");
             customerFeedbackRes.setPage((customerFeedbackRes.getPage()-1)*customerFeedbackRes.getSize());
             Map map = new HashedMap();
-            map.put("count",jCustomerFeedbackMapper.getCustomerFeedbackCount(customerFeedbackRes));
-            map.put("list",jCustomerFeedbackMapper.getCustomerFeedbackList(customerFeedbackRes));
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找客户反馈列表 !",map);
+            map.put("count",jCustomerMessageMapper.getCustomerFeedbackCount(customerFeedbackRes));
+            List<CustomerFeedbackRes> customerFeedbackResList =jCustomerMessageMapper.getCustomerFeedbackList(customerFeedbackRes);
+            for (CustomerFeedbackRes customerFeedbackRes1 : customerFeedbackResList){
+                customerFeedbackRes1.setCustomerFeedbackDepartmentResList(jCustomerMessageDepartmentMapper.getCustomerFeedbackDepartment(customerFeedbackRes1.getMessageId()));
+            }
+            map.put("list",customerFeedbackResList);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -73,9 +90,9 @@ public class CustomerFeedbackController extends AutoMapperController{
 
     @ResponseBody
     @RequestMapping(value = "/update")
-    public Object update(@RequestBody JCustomerFeedback jCustomerFeedback) {
+    public Object update(@RequestBody JCustomerMessage jCustomerMessage) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "更新客户反馈 !",jCustomerFeedbackMapper.updateSelectiveById(jCustomerFeedback));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",jCustomerMessageMapper.updateSelectiveById(jCustomerMessage));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -84,19 +101,20 @@ public class CustomerFeedbackController extends AutoMapperController{
 
     /**
      * 客户反馈详情以及管理员跟踪记录的列表
-     * @param jCustomerFeedback
+     * @param jCustomerMessage
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "/follow/find")
-    public Object detail(@RequestBody JCustomerFeedback jCustomerFeedback) {
+    public Object detail(@RequestBody JCustomerMessage jCustomerMessage) {
         try {
-            CustomerFeedbackRes customerFeedbackRes = jCustomerFeedbackMapper.getCustomerFeedbackDetail(jCustomerFeedback.getFeedbackId());
-            List<CustomerFeedbackFollowRes> list = jCustomerFeedbackFollowMapper.getCustomerFeedbackFollowList(jCustomerFeedback.getFeedbackId());
+            CustomerFeedbackRes customerFeedbackRes = jCustomerMessageMapper.getCustomerFeedbackDetail(jCustomerMessage.getMessageId());
+            List<CustomerFeedbackFollowRes> list = jCustomerMessageFollowMapper.getCustomerFeedbackFollowList(jCustomerMessage.getMessageId());
             if (list.size()>0){
                 customerFeedbackRes.setCustomerFeedbackFollowResList(list);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找客户反馈详情 !",customerFeedbackRes);
+            customerFeedbackRes.setCustomerFeedbackDepartmentResList(jCustomerMessageDepartmentMapper.getCustomerFeedbackDepartment(customerFeedbackRes.getMessageId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",customerFeedbackRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -109,7 +127,7 @@ public class CustomerFeedbackController extends AutoMapperController{
         try {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
             jCustomerFeedbackFollow.setAdminId(jAdmin.getAdminId());
-            return new ModelRes(ModelRes.Status.SUCCESS, "添加反馈跟踪 !",jCustomerFeedbackFollowMapper.insert(jCustomerFeedbackFollow));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",jCustomerFeedbackFollowMapper.insertSelective(jCustomerFeedbackFollow));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

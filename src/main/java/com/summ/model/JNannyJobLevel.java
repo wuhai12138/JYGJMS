@@ -30,7 +30,7 @@ public class JNannyJobLevel implements Serializable {
 	private Integer jobLevelId;
 
 	/**  */
-	private Integer isDel = 16;
+	private Integer isDel;
 
 
 	public Integer getNannyJobLevelId() {

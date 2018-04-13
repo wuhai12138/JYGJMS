@@ -29,6 +29,12 @@
 		<if test="0 != orderTempReq.payStatus">
 			AND jot.payStatus = #{orderTempReq.payStatus}
 		</if>
+		<if test="0 != orderTempReq.orderCloseStatus">
+			AND jot.orderCloseStatus = #{orderTempReq.orderCloseStatus}
+		</if>
+		<if test="0 != orderTempReq.createId">
+			AND jot.createId = #{orderTempReq.createId}
+		</if>
 		<if test="0 != orderTempReq.shopId">
 			AND jot.shopId = #{orderTempReq.shopId}
 		</if>
@@ -58,6 +64,12 @@
 		AND jch.houseAddress LIKE concat(concat('%',#{orderTempReq.houseAddress}),'%')
 		<if test="0 != orderTempReq.orderStatus">
 			AND jot.orderStatus = #{orderTempReq.orderStatus}
+		</if>
+		<if test="0 != orderTempReq.orderCloseStatus">
+			AND jot.orderCloseStatus = #{orderTempReq.orderCloseStatus}
+		</if>
+		<if test="0 != orderTempReq.createId">
+			AND jot.createId = #{orderTempReq.createId}
 		</if>
 		<if test="0 != orderTempReq.payStatus">
 			AND jot.payStatus = #{orderTempReq.payStatus}

@@ -45,7 +45,7 @@ public class AdminController extends AutoMapperController {
             map1.put("isDel",16);
             List<JAdmin> jAdminList = jAdminMapper.selectByMap(map1);
             if (jAdminList.size() < 1) {
-                return new ModelRes(ModelRes.Status.SUCCESS, "无此用户，请重新输入 !", null);
+                return new ModelRes(ModelRes.Status.FAILED, "无此用户，请重新输入 !", null);
             }
             JAdmin jAdmin = jAdminList.get(0);
             if (jAdmin.getAdminPassword().equals(admin.getAdminPassword())) {
@@ -89,7 +89,7 @@ public class AdminController extends AutoMapperController {
             if (jAdminMapper.selectByMap(map).size() > 0) {
                 return new ModelRes(ModelRes.Status.FAILED, "管理员姓名重复 !");
             } else {
-                return new ModelRes(ModelRes.Status.SUCCESS, "add administrator success !", jAdminMapper.insert(jAdmin));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", jAdminMapper.insertSelective(jAdmin));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,7 +129,7 @@ public class AdminController extends AutoMapperController {
     @RequestMapping("/delete")
     public Object delete(@RequestBody JAdmin jAdmin) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "delete administrator success !", jAdminMapper.deleteAdmin(jAdmin.getAdminId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jAdminMapper.deleteAdmin(jAdmin.getAdminId()));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

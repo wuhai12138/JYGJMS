@@ -30,7 +30,7 @@ public class JTeacherShop implements Serializable {
 	private Integer shopId;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 
 	public Integer getTeacherShopId() {

@@ -10,17 +10,13 @@ public class CustomerRes {
     private Integer customerId;
 
     /**  */
-    private Integer shopId;
-    private String shopIdInfo;
-
-    /**  */
     private String customerName;
 
     /**  */
     private String customerPhone;
 
     /** 用户类型1注册2会员3僵尸用户 */
-    private Integer customerType = 11;
+    private Integer customerType ;
     private String customerTypeInfo;
 
     /** 1男2女 */
@@ -31,21 +27,20 @@ public class CustomerRes {
     private BigDecimal customerBalance;
 
     /** 1警告2不警告 */
-    private Integer warnType = 15;
+    private Integer warnType;
     private String warnTypeInfo ;
 
     /**  */
     private String remark;
 
     /**  */
-    private Date createTime = new Date();
 
     /** 是否删除（1为已删除） */
-    private Integer isDel = 16;
+    private Integer isDel;
     private String isDelInfo;
 
     /** 1门店2电话咨询3ios4android */
-    private String memberOrigin;
+    private Integer memberOrigin;
 
     /**  */
     private Integer memberLevel;
@@ -53,28 +48,70 @@ public class CustomerRes {
     /**  */
     private Integer memberType;
 
+    /** 微信小程序openId */
+    private String WeiXinOpenId;
+
+    /** 支付宝小程序openId */
+    private String AlyOpenId;
+
+    /**  */
+    private Integer modifyId;
+
+    /**  */
+    private Date modifyTime;
+
+    /**  */
+    private Integer createId;
+
+    /**  */
+    private Date createTime;
+
+    public String getWeiXinOpenId() {
+        return WeiXinOpenId;
+    }
+
+    public void setWeiXinOpenId(String weiXinOpenId) {
+        WeiXinOpenId = weiXinOpenId;
+    }
+
+    public String getAlyOpenId() {
+        return AlyOpenId;
+    }
+
+    public void setAlyOpenId(String alyOpenId) {
+        AlyOpenId = alyOpenId;
+    }
+
+    public Integer getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(Integer modifyId) {
+        this.modifyId = modifyId;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public Integer getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
+
     public Integer getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
-    }
-
-    public Integer getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(Integer shopId) {
-        this.shopId = shopId;
-    }
-
-    public String getShopIdInfo() {
-        return shopIdInfo;
-    }
-
-    public void setShopIdInfo(String shopIdInfo) {
-        this.shopIdInfo = shopIdInfo;
     }
 
     public String getCustomerName() {
@@ -181,11 +218,11 @@ public class CustomerRes {
         this.isDelInfo = isDelInfo;
     }
 
-    public String getMemberOrigin() {
+    public Integer getMemberOrigin() {
         return memberOrigin;
     }
 
-    public void setMemberOrigin(String memberOrigin) {
+    public void setMemberOrigin(Integer memberOrigin) {
         this.memberOrigin = memberOrigin;
     }
 

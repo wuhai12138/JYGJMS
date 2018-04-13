@@ -64,6 +64,10 @@ public class NannyInfoRes {
 
     /**  */
     private String nannyIdCard;
+    /**
+     * 有效期
+     */
+    private Date idValidDate;
 
     /**  */
     private String nannyBirthday;
@@ -111,7 +115,13 @@ public class NannyInfoRes {
     /**
      * 中介费
      */
-    private String nannyAgencyFees;
+    private BigDecimal nannyAgencyFees;
+
+    /** 有效期 */
+    private Date agencyValidDate;
+
+    private Integer agencyPayStatus;
+    private String agencyPayStatusInfo;
 
     /**
      * 支付方式
@@ -119,10 +129,6 @@ public class NannyInfoRes {
     private int payment;
     private String paymentInfo;
 
-    /**
-     * 有效期
-     */
-    private Date validDate;
 
     /**  */
     private String remark;
@@ -151,6 +157,18 @@ public class NannyInfoRes {
     private List<NannyCharacterRes> nannyCharacterRes;
     private List<NannyCertificateRes> nannyCertificateRes;
     private List<NannyShopRes> nannyShopRes;
+
+    public String getAgencyPayStatusInfo() {
+        return agencyPayStatusInfo;
+    }
+
+    public void setAgencyPayStatusInfo(String agencyPayStatusInfo) {
+        this.agencyPayStatusInfo = agencyPayStatusInfo;
+    }
+
+    public BigDecimal getNannyAgencyFees() {
+        return nannyAgencyFees;
+    }
 
     public Date getDimissionTime() {
         return dimissionTime;
@@ -347,11 +365,7 @@ public class NannyInfoRes {
         this.isDelInfo = isDelInfo;
     }
 
-    public String getNannyAgencyFees() {
-        return nannyAgencyFees;
-    }
-
-    public void setNannyAgencyFees(String nannyAgencyFees) {
+    public void setNannyAgencyFees(BigDecimal nannyAgencyFees) {
         this.nannyAgencyFees = nannyAgencyFees;
     }
 
@@ -555,12 +569,28 @@ public class NannyInfoRes {
         this.paymentInfo = paymentInfo;
     }
 
-    public Date getValidDate() {
-        return this.validDate;
+    public Date getIdValidDate() {
+        return idValidDate;
     }
 
-    public void setValidDate(Date validDate) {
-        this.validDate = validDate;
+    public void setIdValidDate(Date idValidDate) {
+        this.idValidDate = idValidDate;
+    }
+
+    public Date getAgencyValidDate() {
+        return agencyValidDate;
+    }
+
+    public void setAgencyValidDate(Date agencyValidDate) {
+        this.agencyValidDate = agencyValidDate;
+    }
+
+    public Integer getAgencyPayStatus() {
+        return agencyPayStatus;
+    }
+
+    public void setAgencyPayStatus(Integer agencyPayStatus) {
+        this.agencyPayStatus = agencyPayStatus;
     }
 
     public String getRemark() {

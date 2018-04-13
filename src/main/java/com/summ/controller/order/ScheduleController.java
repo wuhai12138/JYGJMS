@@ -81,10 +81,10 @@ public class ScheduleController extends AutoMapperController {
                 }
                 Map map = ResponseUtil.List2Map(scheduleResList);
                 map.put("count", jOrderScheduleMapper.getAllTempScheduleListCount(scheduleReq));
-                return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", map);
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", map);
             }
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -95,8 +95,33 @@ public class ScheduleController extends AutoMapperController {
     @RequestMapping("/update")
     public Object update(@RequestBody Map<String,List<JOrderSchedule>> list){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"update coupon success !",jOrderScheduleMapper.updateBatchById(list.get("list")));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jOrderScheduleMapper.updateBatchById(list.get("list")));
         }catch (Exception e){
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 取消
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/cancel")
+    public Object cancel(@RequestBody Map jOrderScheduleList){
+        try {
+            List<Integer> list = (List<Integer>) jOrderScheduleList.get("list");
+            String reason = (String) jOrderScheduleList.get("reason");
+
+            for (int i=0;i<list.size();i++){
+                JOrderSchedule jOrderSchedule = jOrderScheduleMapper.selectById(Long.valueOf(list.get(i)));
+                jOrderSchedule.setScheduleStatus(155);
+                jOrderSchedule.setCancelTime(new Date());
+                jOrderSchedule.setRemark(jOrderSchedule.getRemark()+"-"+reason);
+                jOrderScheduleMapper.updateSelectiveById(jOrderSchedule);
+            }
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
+        } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
         }

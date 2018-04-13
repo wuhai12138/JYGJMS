@@ -8,10 +8,14 @@ public class CustomerReq {
     private String customerName;
     private String customerPhone;
     private Integer customerSex;
+    private Integer memberOrigin;
     private String remark;
 
     /**客户房产基本信息*/
     private Integer areaId;
+    private Integer propertyId;
+    private Integer shopId;
+    private Integer houseType;
     private String houseAddress;
     private Integer bedRoom;
     private Integer livingRoom;
@@ -20,6 +24,39 @@ public class CustomerReq {
 
     /**房产服务计划书信息*/
     private String serviceDetail;
+
+
+    public Integer getPropertyId() {
+        return propertyId;
+    }
+
+    public void setPropertyId(Integer propertyId) {
+        this.propertyId = propertyId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public Integer getMemberOrigin() {
+        return memberOrigin;
+    }
+
+    public void setMemberOrigin(Integer memberOrigin) {
+        this.memberOrigin = memberOrigin;
+    }
+
+    public Integer getHouseType() {
+        return houseType;
+    }
+
+    public void setHouseType(Integer houseType) {
+        this.houseType = houseType;
+    }
 
     public String getCustomerName() {
         return customerName;

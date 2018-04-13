@@ -43,16 +43,16 @@ public class JNannyCashPledgeRecord implements Serializable {
 	private BigDecimal money;
 
 	/**  */
-	private Date createDate=new Date();
+	private Date createDate;
 
 	/**  */
 	private BigDecimal cashPledgeBalance;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 	/**  */
-	private Integer status=53;
+	private Integer status;
 
 	/**  */
 	private String serialNumber;

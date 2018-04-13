@@ -28,6 +28,8 @@ public class ScheduleRes {
     /** 日程状态 */
     private Integer scheduleStatus;
 
+    private Integer scheduleType;
+
     /** 支付状态 */
     private Integer payStatus;
 
@@ -44,8 +46,15 @@ public class ScheduleRes {
     /** 时间值 */
     private Long timeValue;
 
+    /** 签到人id */
+    private Integer clockId;
+    private String clockName;
+
     /** 签到时间 */
     private Date clockTime;
+
+    /** 完工操作人id */
+    private Integer completedId;
 
     /** 完工时间 */
     private Date completedTime;
@@ -53,7 +62,11 @@ public class ScheduleRes {
     /** 暂停时间 */
     private Date suspendTime;
 
-    /** 暂停时间  */
+    /** 取消操作人id */
+    private Integer cancelId;
+    private String cancelName;
+
+    /** 取消时间  */
     private Date cancelTime;
 
     private String weekday;
@@ -63,6 +76,7 @@ public class ScheduleRes {
     private Integer serviceAmount;
 
     private String scheduleStatusInfo;
+    private String scheduleTypeInfo;
     private String payStatusInfo;
     private Integer customerId;
     private String customerName;
@@ -79,6 +93,62 @@ public class ScheduleRes {
     private BigDecimal scheduleCurrentPrice;
     /**服务师当前小时薪资*/
     private String nannyCurrentPayment;
+
+    public Integer getScheduleType() {
+        return scheduleType;
+    }
+
+    public void setScheduleType(Integer scheduleType) {
+        this.scheduleType = scheduleType;
+    }
+
+    public String getScheduleTypeInfo() {
+        return scheduleTypeInfo;
+    }
+
+    public void setScheduleTypeInfo(String scheduleTypeInfo) {
+        this.scheduleTypeInfo = scheduleTypeInfo;
+    }
+
+    public String getClockName() {
+        return clockName;
+    }
+
+    public void setClockName(String clockName) {
+        this.clockName = clockName;
+    }
+
+    public String getCancelName() {
+        return cancelName;
+    }
+
+    public void setCancelName(String cancelName) {
+        this.cancelName = cancelName;
+    }
+
+    public Integer getClockId() {
+        return clockId;
+    }
+
+    public void setClockId(Integer clockId) {
+        this.clockId = clockId;
+    }
+
+    public Integer getCompletedId() {
+        return completedId;
+    }
+
+    public void setCompletedId(Integer completedId) {
+        this.completedId = completedId;
+    }
+
+    public Integer getCancelId() {
+        return cancelId;
+    }
+
+    public void setCancelId(Integer cancelId) {
+        this.cancelId = cancelId;
+    }
 
     public Integer getOrderType() {
         return orderType;

@@ -1,5 +1,7 @@
 package com.summ.model.response;
 
+import java.util.Date;
+
 /**
  * Created by jygj_7500 on 17/12/14.
  */
@@ -14,6 +16,27 @@ public class NannyCertificateRes {
     private String certificateIdInfo;
     private String photo;
     private Integer certificateId;
+    /** 证件编号 */
+    private String certificateNumber;
+
+    /** 证件有效期 */
+    private Date validDate;
+
+    public String getCertificateNumber() {
+        return certificateNumber;
+    }
+
+    public void setCertificateNumber(String certificateNumber) {
+        this.certificateNumber = certificateNumber;
+    }
+
+    public Date getValidDate() {
+        return validDate;
+    }
+
+    public void setValidDate(Date validDate) {
+        this.validDate = validDate;
+    }
 
     public Integer getCertificateId() {
         return certificateId;

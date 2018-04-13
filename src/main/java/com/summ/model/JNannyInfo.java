@@ -35,13 +35,13 @@ public class JNannyInfo implements Serializable {
 	private Integer nannySex;
 
 	/**  */
-	private Integer nannyStatus = 55;
+	private Integer nannyStatus;
 
 	/**  */
 	private Integer nannyType;
 
 	/** 3星4星5星 */
-	private Integer nannyLevel = 84;
+	private Integer nannyLevel;
 
 	/**  */
 	private String nannyPhone;
@@ -63,6 +63,8 @@ public class JNannyInfo implements Serializable {
 	/**  */
 	private String nannyIdCard;
 
+	private Date idValidDate;
+
 	/**  */
 	private String nannyBirthday;
 
@@ -70,14 +72,14 @@ public class JNannyInfo implements Serializable {
 	private Integer nannyAge;
 
 	/** 属相 默认为暂无 */
-	private Integer nannyAnimalSign=126;
+	private Integer nannyAnimalSign;
 
 	/**  民族 默认为暂无 */
-	private Integer nannyNation=125;
+	private Integer nannyNation;
 
-	private Integer nannyOrigin=36;
+	private Integer nannyOrigin;
 
-	private Integer nannyEducation=101;
+	private Integer nannyEducation;
 
 	/**  */
 	private String nannyHeight;
@@ -95,13 +97,16 @@ public class JNannyInfo implements Serializable {
 	private BigDecimal expectSalary;
 
 	/** 中介费 */
-	private String nannyAgencyFees;
+	private BigDecimal nannyAgencyFees;
 
 	/** 支付方式 */
-	private int payment=127;
+	private int payment;
 
 	/** 有效期 */
-	private Date validDate;
+	private Date agencyValidDate;
+
+	private Integer agencyPayStatus;
+
 
 	/**  */
 	private String remark;
@@ -109,24 +114,27 @@ public class JNannyInfo implements Serializable {
 	/**  */
 	private Date createTime;
 
+	private Integer createId;
+	private Integer modifyId;
+
 	/**  */
-	private Date modifyTime = new Date();
+	private Date modifyTime;
 
 	/**离职时间*/
 	private Date dimissionTime;
 
 	/**  */
-	private Integer isDel =16;
+	private Integer isDel;
 
 	/** 服务师是否常用168（常用）169（不常用） */
-	private Integer hot=169;
+	private Integer hot;
 
 	/**服务师案件数量*/
-	private Integer caseload = 0;
+	private Integer caseload;
 
 
 	/** 服务师押金*/
-	private BigDecimal nannyCashPledge=new BigDecimal(0);
+	private BigDecimal nannyCashPledge;
 
 
 	public JNannyInfo() {
@@ -167,12 +175,35 @@ public class JNannyInfo implements Serializable {
 				", expectSalary=" + expectSalary +
 				", nannyAgencyFees='" + nannyAgencyFees + '\'' +
 				", payment=" + payment +
-				", validDate=" + validDate +
 				", remark='" + remark + '\'' +
 				", createTime=" + createTime +
 				", modifyTime=" + modifyTime +
 				", isDel=" + isDel +
 				'}';
+	}
+
+	public Integer getAgencyPayStatus() {
+		return agencyPayStatus;
+	}
+
+	public void setAgencyPayStatus(Integer agencyPayStatus) {
+		this.agencyPayStatus = agencyPayStatus;
+	}
+
+	public Integer getCreateId() {
+		return createId;
+	}
+
+	public void setCreateId(Integer createId) {
+		this.createId = createId;
+	}
+
+	public Integer getModifyId() {
+		return modifyId;
+	}
+
+	public void setModifyId(Integer modifyId) {
+		this.modifyId = modifyId;
 	}
 
 	public Date getDimissionTime() {
@@ -223,11 +254,11 @@ public class JNannyInfo implements Serializable {
 		this.streetId = streetId;
 	}
 
-	public String getNannyAgencyFees() {
+	public BigDecimal getNannyAgencyFees() {
 		return nannyAgencyFees;
 	}
 
-	public void setNannyAgencyFees(String nannyAgencyFees) {
+	public void setNannyAgencyFees(BigDecimal nannyAgencyFees) {
 		this.nannyAgencyFees = nannyAgencyFees;
 	}
 
@@ -423,12 +454,20 @@ public class JNannyInfo implements Serializable {
 		this.payment = payment;
 	}
 
-	public Date getValidDate() {
-		return this.validDate;
+	public Date getIdValidDate() {
+		return idValidDate;
 	}
 
-	public void setValidDate(Date validDate) {
-		this.validDate = validDate;
+	public void setIdValidDate(Date idValidDate) {
+		this.idValidDate = idValidDate;
+	}
+
+	public Date getAgencyValidDate() {
+		return agencyValidDate;
+	}
+
+	public void setAgencyValidDate(Date agencyValidDate) {
+		this.agencyValidDate = agencyValidDate;
 	}
 
 	public String getRemark() {

@@ -9,6 +9,16 @@ public class NannyWortTimeByOrderReq {
     private Integer nannyId;
     private Date startDate;
     private Date endDate;
+    /**订单类型，包年订单165则需判断服务师中介费*/
+    private Integer orderType;
+
+    public Integer getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(Integer orderType) {
+        this.orderType = orderType;
+    }
 
     public Integer getNannyId() {
         return nannyId;

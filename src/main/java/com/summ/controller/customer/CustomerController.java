@@ -27,6 +27,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,10 +53,13 @@ public class CustomerController extends AutoMapperController {
      * @return
      */
 
+    @Transactional(rollbackFor = Exception.class)
     @ResponseBody
     @RequestMapping("/insert")
     public Object insert(@RequestBody CustomerReq customerReq, ServletRequest request) {
         try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+
             Map<String, Double> baiduMap = BaiduAPIUtil.getLngAndLat("上海市" + customerReq.getHouseAddress());
             if (baiduMap == null) {
                 return new ModelRes(ModelRes.Status.FAILED, "获取不到该地址，请重新输入 !");
@@ -64,26 +68,33 @@ public class CustomerController extends AutoMapperController {
             JCustomer jCustomer = new JCustomer();
             jCustomer.setCustomerName(customerReq.getCustomerName());
             jCustomer.setCustomerSex(customerReq.getCustomerSex());
-            ;
             jCustomer.setCustomerPhone(customerReq.getCustomerPhone());
             jCustomer.setRemark(customerReq.getRemark());
-            jCustomerMapper.insert(jCustomer);
+            jCustomer.setCreateId(jAdmin.getAdminId());
+            jCustomer.setCreateTime(new Date());
+            jCustomer.setMemberOrigin(customerReq.getMemberOrigin());
+            jCustomerMapper.insertSelective(jCustomer);
 
 
-            JCustomerService jCustomerService = new JCustomerService();
-            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
-            jCustomerService.setAdminId(jAdmin.getAdminId());
-            jCustomerService.setCustomerId(jCustomer.getCustomerId());
-            jCustomerServiceMapper.insert(jCustomerService);
-            Map map = new HashedMap();
-            map.put("serviceDetail", customerReq.getServiceDetail());
-            map.put("serviceId", jCustomerService.getServiceId());
-            System.out.println("map>>>>>>>>>>>>>>>>>>>" + map.toString());
-            mongoDBUtil = MongoDBUtil.getInstance(mongoConfig);
-            mongoDBUtil.insert(map, "customer_service");
+            //此处不添加服务计划书
+//            JCustomerService jCustomerService = new JCustomerService();
+//
+//            jCustomerService.setAdminId(jAdmin.getAdminId());
+//            jCustomerService.setCreateTime(new Date());
+//            jCustomerService.setCustomerId(jCustomer.getCustomerId());
+//            jCustomerServiceMapper.insertSelective(jCustomerService);
+//            Map map = new HashedMap();
+//            map.put("serviceDetail", customerReq.getServiceDetail());
+//            map.put("serviceId", jCustomerService.getServiceId());
+//            System.out.println("map>>>>>>>>>>>>>>>>>>>" + map.toString());
+//            mongoDBUtil = MongoDBUtil.getInstance(mongoConfig);
+//            mongoDBUtil.insert(map, "customer_service");
 
             JCustomerHouse jCustomerHouse = new JCustomerHouse();
+            jCustomerHouse.setPropertyId(customerReq.getPropertyId());
+            jCustomerHouse.setShopId(customerReq.getShopId());
             jCustomerHouse.setCustomerId(jCustomer.getCustomerId());
+            jCustomerHouse.setHouseType(customerReq.getHouseType());
             jCustomerHouse.setBedRoom(customerReq.getBedRoom());
             jCustomerHouse.setLivingRoom(customerReq.getLivingRoom());
             jCustomerHouse.setRestRoom(customerReq.getRestRoom());
@@ -92,33 +103,33 @@ public class CustomerController extends AutoMapperController {
             jCustomerHouse.setHouseAddress(customerReq.getHouseAddress());
             jCustomerHouse.setLatitude(baiduMap.get("lat"));
             jCustomerHouse.setLongitude(baiduMap.get("lng"));
-            jCustomerHouse.setServiceId(jCustomerService.getServiceId());
-            jCustomerHouseMapper.insert(jCustomerHouse);
+            jCustomerHouse.setServiceId(0);
+            jCustomerHouse.setCreateId(jAdmin.getAdminId());
+            jCustomerHouse.setCreateTime(new Date());
+            jCustomerHouseMapper.insertSelective(jCustomerHouse);
 
-            List<JShop> shopList = jShopMapper.getAllShop();
-            List<JShop> shopListRes = new ArrayList<JShop>();
-            for (JShop jShop : shopList) {
-                double distance = BaiduAPIUtil.getDistance(jCustomerHouse.getLongitude(), jCustomerHouse.getLatitude(), jShop.getLongitude(), jShop.getLatitude());
-                if (distance < 2000) {
-                    jShop.setDistance((int) distance);
-                    shopListRes.add(jShop);
-                }
-            }
+//            List<JShop> shopList = jShopMapper.getAllShop();
+//            List<JShop> shopListRes = new ArrayList<JShop>();
+//            for (JShop jShop : shopList) {
+//                double distance = BaiduAPIUtil.getDistance(jCustomerHouse.getLongitude(), jCustomerHouse.getLatitude(), jShop.getLongitude(), jShop.getLatitude());
+//                jShop.setDistance((int) distance);
+//                shopListRes.add(jShop);
+//            }
             /**如果匹配不到门店则返回总部门店*/
-            if (shopListRes.size() == 0) {
-                for (JShop jShop : shopList) {
-                    if (jShop.getShopId() == 1) {
-                        double distance = BaiduAPIUtil.getDistance(jCustomerHouse.getLongitude(), jCustomerHouse.getLatitude(), jShop.getLongitude(), jShop.getLatitude());
-                        jShop.setDistance((int) distance);
-                        shopListRes.add(jShop);
-                    }
-                }
-            }
+//            if (shopListRes.size() == 0) {
+//                for (JShop jShop : shopList) {
+//                    if (jShop.getShopId() == 1) {
+//                        double distance = BaiduAPIUtil.getDistance(jCustomerHouse.getLongitude(), jCustomerHouse.getLatitude(), jShop.getLongitude(), jShop.getLatitude());
+//                        jShop.setDistance((int) distance);
+//                        shopListRes.add(jShop);
+//                    }
+//                }
+//            }
 
-            Map responseMap = new HashedMap();
-            responseMap.put("customerId", jCustomer.getCustomerId());
-            responseMap.put("list", shopListRes);
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", responseMap);
+//            Map responseMap = new HashedMap();
+//            responseMap.put("customerId", jCustomer.getCustomerId());
+//            responseMap.put("list", shopListRes);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", jCustomer);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -142,12 +153,12 @@ public class CustomerController extends AutoMapperController {
     @RequestMapping("/update")
     public Object update(@RequestBody JCustomer jCustomer) {
         try {
-            JCustomer jCustomer1 = jCustomerMapper.selectById(Long.valueOf(jCustomer.getCustomerId()));
-            if (!jCustomer.getShopId().equals(jCustomer1.getShopId())) {
-                System.out.println("通知管家客户门店变更！");
-                JShop jShop = jShopMapper.selectById(Long.valueOf(jCustomer.getShopId()));
-                SendSMSUtil.notifyShopCustomer(jCustomer.getCustomerId(), jShop.getShopMobile());
-            }
+//            JCustomer jCustomer1 = jCustomerMapper.selectById(Long.valueOf(jCustomer.getCustomerId()));
+//            if (!jCustomer.getShopId().equals(jCustomer1.getShopId())) {
+//                System.out.println("通知管家客户门店变更！");
+//                JShop jShop = jShopMapper.selectById(Long.valueOf(jCustomer.getShopId()));
+//                SendSMSUtil.notifyShopCustomer(jCustomer.getCustomerId(), jShop.getShopMobile());
+//            }
             return new ModelRes(ModelRes.Status.SUCCESS, "update customer success !", jCustomerMapper.updateSelectiveById(jCustomer));
         } catch (Exception e) {
             e.printStackTrace();
@@ -215,12 +226,11 @@ public class CustomerController extends AutoMapperController {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
             String serialNumber = (String) map.get("serialNumber");
             JCustomer jCustomer = jCustomerMapper.selectById(Long.valueOf(customerId));
-            JShop jShop = jShopMapper.selectById(Long.valueOf(jCustomer.getShopId()));
 
             JCustomerStatment jCustomerStatment = new JCustomerStatment();
             jCustomerStatment.setStatmentCustomer(OrderUtil.generateStamentNumber(customerId));
             jCustomerStatment.setCustomerId(customerId);
-            jCustomerStatment.setShopId(jCustomer.getShopId());
+            jCustomerStatment.setShopId(0);
             //38表示充值
             jCustomerStatment.setStatmentCustomerType(38);
             jCustomerStatment.setChargeDate(new Date());
@@ -233,7 +243,7 @@ public class CustomerController extends AutoMapperController {
             jCustomerStatment.setStatus(54);
 
             /**支付服务器所需信息*/
-            PayCallBackObj payCallBackObj = new PayCallBackObj(jCustomer.getCustomerId(), jCustomer.getCustomerName(), jCustomer.getCustomerPhone(), jAdmin.getAdminId(), jShop.getShopName(), jShop.getShopId());
+            PayCallBackObj payCallBackObj = new PayCallBackObj(jCustomer.getCustomerId(), jCustomer.getCustomerName(), jCustomer.getCustomerPhone(), jAdmin.getAdminId(), "", 0);
 
             /**支付宝支付*/
             if (chargeWay == Consts.zhifubao) {

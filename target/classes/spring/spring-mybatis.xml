@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.alibaba.com/schema/stat"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd">
+       http://www.springframework.org/schema/aop/spring-aop.xsd http://www.alibaba.com/schema/stat http://www.alibaba.com/schema/stat.xsd">
 
 
     <!-- 配置数据源 -->
@@ -76,31 +76,33 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- 事务管理 属性 -->
-    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="add*" propagation="REQUIRED"/>
-            <tx:method name="append*" propagation="REQUIRED"/>
-            <tx:method name="save*" propagation="REQUIRED"/>
-            <tx:method name="update*" propagation="REQUIRED"/>
-            <tx:method name="modify*" propagation="REQUIRED"/>
-            <tx:method name="edit*" propagation="REQUIRED"/>
-            <tx:method name="insert*" propagation="REQUIRED"/>
-            <tx:method name="delete*" propagation="REQUIRED"/>
-            <tx:method name="remove*" propagation="REQUIRED"/>
-            <tx:method name="repair" propagation="REQUIRED"/>
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+    <mvc:annotation-driven/>
+    <!--&lt;!&ndash; 事务管理 属性 &ndash;&gt;-->
+    <!--<tx:advice id="transactionAdvice" transaction-manager="transactionManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="add*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="append*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="save*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="update*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="modify*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="edit*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="insert*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="delete*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="remove*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="repair" propagation="REQUIRED"/>-->
 
-            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="load*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="search*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="datagrid*" propagation="REQUIRED" read-only="true"/>
+            <!--<tx:method name="get*" propagation="REQUIRED" read-only="true"/>-->
+            <!--<tx:method name="find*" propagation="REQUIRED" read-only="true"/>-->
+            <!--<tx:method name="load*" propagation="REQUIRED" read-only="true"/>-->
+            <!--<tx:method name="search*" propagation="REQUIRED" read-only="true"/>-->
+            <!--<tx:method name="datagrid*" propagation="REQUIRED" read-only="true"/>-->
 
-            <!--<tx:method name="*" propagation="REQUIRED" read-only="true"/>-->
-        </tx:attributes>
-    </tx:advice>
+            <!--&lt;!&ndash;<tx:method name="*" propagation="REQUIRED" read-only="true"/>&ndash;&gt;-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
 
-    <!-- 配置切面 -->
+    <!--&lt;!&ndash; 配置切面 &ndash;&gt;-->
     <!--<aop:config>-->
         <!--<aop:pointcut id="transactionPointcut" expression="execution(* com.summ.service..*.*(..))"/>-->
         <!--<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>-->

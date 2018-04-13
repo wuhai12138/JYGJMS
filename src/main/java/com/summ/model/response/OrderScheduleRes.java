@@ -34,6 +34,8 @@ public class OrderScheduleRes {
     /** 日程状态 */
     private Integer scheduleStatus;
 
+    private Integer scheduleType;
+
     /** 支付状态 */
     private Integer payStatus;
 
@@ -50,8 +52,14 @@ public class OrderScheduleRes {
     /** 时间值 */
     private Long timeValue;
 
+    /** 签到人id */
+    private Integer clockId;
+
     /** 签到时间 */
     private Date clockTime;
+
+    /** 完工操作人id */
+    private Integer completedId;
 
     /** 完工时间 */
     private Date completedTime;
@@ -59,12 +67,19 @@ public class OrderScheduleRes {
     /** 暂停时间 */
     private Date suspendTime;
 
-    /** 暂停时间  */
+    /** 取消操作人id */
+    private Integer cancelId;
+
+    /** 取消时间  */
     private Date cancelTime;
 
     private String weekday;
 
+    /**  */
+    private String remark;
+
     private String scheduleStatusInfo;
+    private String scheduleTypeInfo;
     private String payStatusInfo;
     private Integer nannyId;
     private Integer supplierId;
@@ -106,6 +121,54 @@ public class OrderScheduleRes {
                 ", scheduleCurrentPrice=" + scheduleCurrentPrice +
                 ", nannyCurrentPayment='" + nannyCurrentPayment + '\'' +
                 '}';
+    }
+
+    public String getScheduleTypeInfo() {
+        return scheduleTypeInfo;
+    }
+
+    public void setScheduleTypeInfo(String scheduleTypeInfo) {
+        this.scheduleTypeInfo = scheduleTypeInfo;
+    }
+
+    public Integer getScheduleType() {
+        return scheduleType;
+    }
+
+    public void setScheduleType(Integer scheduleType) {
+        this.scheduleType = scheduleType;
+    }
+
+    public Integer getClockId() {
+        return clockId;
+    }
+
+    public void setClockId(Integer clockId) {
+        this.clockId = clockId;
+    }
+
+    public Integer getCompletedId() {
+        return completedId;
+    }
+
+    public void setCompletedId(Integer completedId) {
+        this.completedId = completedId;
+    }
+
+    public Integer getCancelId() {
+        return cancelId;
+    }
+
+    public void setCancelId(Integer cancelId) {
+        this.cancelId = cancelId;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Integer getSupplierId() {

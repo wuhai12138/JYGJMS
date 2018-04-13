@@ -44,7 +44,7 @@ public class CustomerServiceController extends AutoMapperController{
     @RequestMapping("/house/list")
     public Object findServiceHouseList(@RequestBody JCustomerService jCustomerService){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !", ResponseUtil.List2Map(jCustomerServiceMapper.findServiceUnusedHouse(jCustomerService.getCustomerId())));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !", ResponseUtil.List2Map(jCustomerServiceMapper.findServiceUnusedHouse(jCustomerService.getCustomerId())));
         } catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -58,7 +58,7 @@ public class CustomerServiceController extends AutoMapperController{
             Map map = new HashedMap();
             map.put("customerId",jCustomerService.getCustomerId());
             List<CustomerServiceRes> jCustomerServiceRes = jCustomerServiceMapper.findServiceList(jCustomerService.getCustomerId());
-            return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !", ResponseUtil.List2Map(jCustomerServiceRes));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !", ResponseUtil.List2Map(jCustomerServiceRes));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -75,7 +75,7 @@ public class CustomerServiceController extends AutoMapperController{
             map.put("serviceId",jCustomerService.getServiceId());
             mongoDBUtil = MongoDBUtil.getInstance(mongoConfig);
             jCustomerServiceRes.setServiceDetail(mongoDBUtil.query("customer_service",map));
-            return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !",jCustomerServiceRes);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCustomerServiceRes);
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -132,7 +132,7 @@ public class CustomerServiceController extends AutoMapperController{
             jCustomerService.setServiceDetail(stringBufferServiceDetail.toString());
 
 
-            jCustomerServiceMapper.insert(jCustomerService);
+            jCustomerServiceMapper.insertSelective(jCustomerService);
 
             Map map = new HashedMap();
             map.put("serviceDetail",jCustomerService.getServiceDetail());
@@ -140,7 +140,7 @@ public class CustomerServiceController extends AutoMapperController{
             System.out.println("map>>>>>>>>>>>>>>>>>>>" + map.toString());
             mongoDBUtil = MongoDBUtil.getInstance(mongoConfig);
             mongoDBUtil.insert(map,"customer_service");
-            return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !",null);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",null);
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -152,7 +152,7 @@ public class CustomerServiceController extends AutoMapperController{
     public Object deleteHouse(@RequestBody JCustomerService jCustomerService){
         try {
             if("".equals(jCustomerService.getServiceDetail())){
-                return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
             }else {
                 Map map = new HashedMap();
                 map.put("serviceId",jCustomerService.getServiceId());
@@ -162,7 +162,7 @@ public class CustomerServiceController extends AutoMapperController{
                 mongoDBUtil.insert("customer_service",map);
 
                 jCustomerService.setServiceDetail("");
-                return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -179,7 +179,7 @@ public class CustomerServiceController extends AutoMapperController{
     @RequestMapping("/customer/confirm")
     public Object customerConfirm(@RequestBody JCustomerService jCustomerService){
         try {
-                return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -195,7 +195,7 @@ public class CustomerServiceController extends AutoMapperController{
     @RequestMapping("/admin/confirm")
     public Object adminConfirm(@RequestBody JCustomerService jCustomerService){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"search customer house info success !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",jCustomerServiceMapper.updateSelectiveById(jCustomerService));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

@@ -26,7 +26,7 @@ public class AccessController extends AutoMapperController{
     @RequestMapping("/insert")
     public Object insert(@RequestBody JAccess jAccess){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"add access success !",jAccessMapper.insert(jAccess));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !",jAccessMapper.insertSelective(jAccess));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -37,7 +37,7 @@ public class AccessController extends AutoMapperController{
     @RequestMapping("/delete")
     public Object delete(@RequestBody JAccess jAccess){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"delete access success !",jAccessMapper.deleteById(Long.valueOf(jAccess.getAccessId())));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !",jAccessMapper.deleteById(Long.valueOf(jAccess.getAccessId())));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -48,7 +48,7 @@ public class AccessController extends AutoMapperController{
     @RequestMapping("/update")
     public Object update(@RequestBody JAccess jAccess){
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS,"update access success !",jAccessMapper.updateSelectiveById(jAccess));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !",jAccessMapper.updateSelectiveById(jAccess));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -60,7 +60,7 @@ public class AccessController extends AutoMapperController{
     public Object find(@RequestBody JAccess jAccess){
         try {
             EntityWrapper<JAccess> entityWrapper = null;
-            return new ModelRes(ModelRes.Status.SUCCESS,"search administrator success !",jAccessMapper.getListOrderBySort());
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !",jAccessMapper.getListOrderBySort());
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

@@ -28,7 +28,7 @@ public class JCustomerFeedbackFollow implements Serializable {
 	private Integer feedbackId;
 
 	/**  */
-	private Date createDate=new Date();
+	private Date createDate;
 
 	/**  */
 	private String remark;
@@ -39,7 +39,7 @@ public class JCustomerFeedbackFollow implements Serializable {
 	private Integer followStatus;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 	public Integer getFollowStatus() {
 		return followStatus;

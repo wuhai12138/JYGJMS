@@ -30,7 +30,7 @@ public class JNannyReligion implements Serializable {
 	private Integer nannyId;
 
 	/**  */
-	private Integer isDel = 16;
+	private Integer isDel;
 
 
 	public Integer getNannyReligId() {

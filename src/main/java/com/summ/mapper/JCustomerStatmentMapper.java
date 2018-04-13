@@ -37,6 +37,6 @@ public interface JCustomerStatmentMapper extends AutoMapper<JCustomerStatment> {
     List<ReportCustomerRechargeRes> getReportCustomerRecharge(@Param("map") Map map);
     Integer getReportCustomerRechargeCount(@Param("map") Map map);
 
-    List<CustomerStatmentRes> getCustomerRechargeDetail(@Param("customerStatmentReq") CustomerStatmentReq customerStatmentReq);
-    Integer getCustomerRechargeDetailCount(@Param("customerStatmentReq") CustomerStatmentReq customerStatmentReq);
+    List<CustomerStatmentRes> getCustomerRechargeDetail(@Param("map") Map customerStatmentReq);
+    Integer getCustomerRechargeDetailCount(@Param("map") Map customerStatmentReq);
 }

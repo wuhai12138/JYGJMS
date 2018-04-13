@@ -1,8 +1,6 @@
 package com.summ.model;
 
 import java.io.Serializable;
-import java.security.Signature;
-import java.security.Timestamp;
 import java.util.Date;
 import java.math.BigDecimal;
 
@@ -28,37 +26,27 @@ public class JCustomer implements Serializable {
 	private Integer customerId;
 
 	/**  */
-	private Integer shopId=1;
-
-	/**  */
 	private String customerName;
 
 	/**  */
 	private String customerPhone;
 
-	/** 用户类型1注册2会员3僵尸用户 */
-	private Integer customerType = 11;
+	/**  */
+//	private Integer shopId;
+
+	/** 用户类型11注册12会员13僵尸用户 */
+	private Integer customerType;
 
 	/** 1男2女 */
 	private Integer customerSex;
 
 	/**  */
-	private BigDecimal customerBalance=new BigDecimal(0);
+	private BigDecimal customerBalance;
 
-	/** 1警告2不警告 */
-	private Integer warnType = 15;
+	/** 14警告15不警告 */
+	private Integer warnType;
 
-	/**  */
-	private String remark;
-
-	/**  */
-	private Date createTime;
-
-	/** 是否删除（1为已删除） */
-	private Integer isDel = 16;
-
-	/** 1门店2电话咨询3ios4android */
-	private String memberOrigin;
+	private Integer memberOrigin;
 
 	/**  */
 	private Integer memberLevel;
@@ -66,12 +54,34 @@ public class JCustomer implements Serializable {
 	/**  */
 	private Integer memberType;
 
+	/** 微信小程序openId */
+	private String WeiXinOpenId;
+
+	/** 支付宝小程序openId */
+	private String AlyOpenId;
+
+	/**  */
+	private Integer modifyId;
+
+	/**  */
+	private Date modifyTime;
+
+	/**  */
+	private Integer createId;
+
+	/**  */
+	private Date createTime;
+
+	/**  */
+	private String remark;
+
+	/** 是否删除（1为已删除） */
+	private Integer isDel;
 
 	@Override
 	public String toString() {
 		return "JCustomer{" +
 				"customerId=" + customerId +
-				", shopId=" + shopId +
 				", customerName='" + customerName + '\'' +
 				", customerPhone='" + customerPhone + '\'' +
 				", customerType=" + customerType +
@@ -87,31 +97,31 @@ public class JCustomer implements Serializable {
 				'}';
 	}
 
-    public JCustomer() {
-    }
+	public JCustomer() {
+	}
 
-    public JCustomer(Integer customerId, Integer shopId, String customerName, String customerPhone, Integer customerType, Integer customerSex, BigDecimal customerBalance, Integer warnType, String remark, Date createTime, Integer isDel, String memberOrigin, Integer memberLevel, Integer memberType) {
-        this.customerId = customerId;
-        this.shopId = shopId;
-        this.customerName = customerName;
-        this.customerPhone = customerPhone;
-        this.customerType = customerType;
-        this.customerSex = customerSex;
-        this.customerBalance = customerBalance;
-        this.warnType = warnType;
-        this.remark = remark;
-        this.createTime = createTime;
-        this.isDel = isDel;
-        this.memberOrigin = memberOrigin;
-        this.memberLevel = memberLevel;
-        this.memberType = memberType;
+	public JCustomer(Integer customerId, Integer shopId, String customerName, String customerPhone, Integer customerType, Integer customerSex, BigDecimal customerBalance, Integer warnType, String remark, Date createTime, Integer isDel, Integer memberOrigin, Integer memberLevel, Integer memberType) {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerPhone = customerPhone;
+		this.customerType = customerType;
+		this.customerSex = customerSex;
+		this.customerBalance = customerBalance;
+		this.warnType = warnType;
+		this.remark = remark;
+		this.createTime = createTime;
+		this.isDel = isDel;
+		this.memberOrigin = memberOrigin;
+		this.memberLevel = memberLevel;
+		this.memberType = memberType;
 
-    }
+	}
 
 	public JCustomer(Integer customerId, BigDecimal customerBalance) {
 		this.customerId = customerId;
 		this.customerBalance = customerBalance;
 	}
+
 
 	public Integer getCustomerId() {
 		return this.customerId;
@@ -119,14 +129,6 @@ public class JCustomer implements Serializable {
 
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
-	}
-
-	public Integer getShopId() {
-		return this.shopId;
-	}
-
-	public void setShopId(Integer shopId) {
-		this.shopId = shopId;
 	}
 
 	public String getCustomerName() {
@@ -144,6 +146,14 @@ public class JCustomer implements Serializable {
 	public void setCustomerPhone(String customerPhone) {
 		this.customerPhone = customerPhone;
 	}
+
+//	public Integer getShopId() {
+//		return this.shopId;
+//	}
+//
+//	public void setShopId(Integer shopId) {
+//		this.shopId = shopId;
+//	}
 
 	public Integer getCustomerType() {
 		return this.customerType;
@@ -177,35 +187,11 @@ public class JCustomer implements Serializable {
 		this.warnType = warnType;
 	}
 
-	public String getRemark() {
-		return this.remark;
+	public Integer getMemberOrigin() {
+		return memberOrigin;
 	}
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Integer getIsDel() {
-		return this.isDel;
-	}
-
-	public void setIsDel(Integer isDel) {
-		this.isDel = isDel;
-	}
-
-	public String getMemberOrigin() {
-		return this.memberOrigin;
-	}
-
-	public void setMemberOrigin(String memberOrigin) {
+	public void setMemberOrigin(Integer memberOrigin) {
 		this.memberOrigin = memberOrigin;
 	}
 
@@ -225,7 +211,68 @@ public class JCustomer implements Serializable {
 		this.memberType = memberType;
 	}
 
-	public static long getSerialVersionUID() {
-		return serialVersionUID;
+	public String getWeiXinOpenId() {
+		return this.WeiXinOpenId;
 	}
+
+	public void setWeiXinOpenId(String WeiXinOpenId) {
+		this.WeiXinOpenId = WeiXinOpenId;
+	}
+
+	public String getAlyOpenId() {
+		return this.AlyOpenId;
+	}
+
+	public void setAlyOpenId(String AlyOpenId) {
+		this.AlyOpenId = AlyOpenId;
+	}
+
+	public Integer getModifyId() {
+		return this.modifyId;
+	}
+
+	public void setModifyId(Integer modifyId) {
+		this.modifyId = modifyId;
+	}
+
+	public Date getModifyTime() {
+		return this.modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	public Integer getCreateId() {
+		return this.createId;
+	}
+
+	public void setCreateId(Integer createId) {
+		this.createId = createId;
+	}
+
+	public Date getCreateTime() {
+		return this.createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getRemark() {
+		return this.remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public Integer getIsDel() {
+		return this.isDel;
+	}
+
+	public void setIsDel(Integer isDel) {
+		this.isDel = isDel;
+	}
+
 }

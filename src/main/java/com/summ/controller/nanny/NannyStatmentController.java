@@ -50,7 +50,7 @@ public class NannyStatmentController extends AutoMapperController{
                 nannyStatmentRes.setTotalSalary(nannyStatmentRes.getOrderContractMoney().add(nannyStatmentRes.getOrderTempMoney()).add(nannyStatmentRes.getOrderGrouponMoney()));
                 nannyStatmentRes.setRealSalary(nannyStatmentRes.getTotalSalary().add(nannyStatmentRes.getReward()).subtract(nannyStatmentRes.getOrderRefund()));
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "get Nanny statment list success !", ResponseUtil.List2Map(nannyStatmentResList,200));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", ResponseUtil.List2Map(nannyStatmentResList,200));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -72,7 +72,7 @@ public class NannyStatmentController extends AutoMapperController{
             Map<String, Object> map = new HashedMap();
             map.put("count", jNannyStatmentMapper.getNannyStatmentDetailCount(nannyStatmentDetailReq));
             map.put("list", jNannyStatmentMapper.getNannyStatmentDetail(nannyStatmentDetailReq));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -86,7 +86,7 @@ public class NannyStatmentController extends AutoMapperController{
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
             jNannyStatment.setAdminId(jAdmin.getAdminId());
             jNannyStatment.setStatmentNanny(OrderUtil.generateStamentNumber(jNannyStatment.getNannyId()));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyStatmentMapper.insertSelective(jNannyStatment));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyStatmentMapper.insertSelective(jNannyStatment));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -106,7 +106,7 @@ public class NannyStatmentController extends AutoMapperController{
             map1.put("endDate",new Date((Long) map1.get("endDate")));
             map.put("count", jNannyStatmentMapper.getNannyStatmentRewardsAndPunishmentsDetailCount(map1));
             map.put("list", jNannyStatmentMapper.getNannyStatmentRewardsAndPunishmentsDetail(map1));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

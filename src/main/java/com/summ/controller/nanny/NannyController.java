@@ -43,6 +43,9 @@ public class NannyController extends AutoMapperController {
     @RequestMapping("/insert")
     public Object insert(@RequestBody JNannyInfo jNannyInfo, @RequestBody Map map, ServletRequest request) {
         try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+            jNannyInfo.setCreateTime(new Date());
+            jNannyInfo.setCreateId(jAdmin.getAdminId());
             //根据身份证判断服务师信息是否已录入
             Map idMap = new HashMap(1);
             idMap.put("nannyIdCard", jNannyInfo.getNannyIdCard());
@@ -71,12 +74,12 @@ public class NannyController extends AutoMapperController {
                     jNannyInfo.setNannyAvatar(fileName);
                     jNannyInfo.setCreateTime(new Date());
                     //新增服务师
-                    jNannyInfoMapper.insert(jNannyInfo);
+                    jNannyInfoMapper.insertSelective(jNannyInfo);
                     //给服务师添加管理员所属门店
                     JNannyShop jNannyShop = new JNannyShop();
                     jNannyShop.setShopId((Integer) map.get("shopId"));
                     jNannyShop.setNannyId(jNannyInfo.getNannyId());
-                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insert(jNannyShop));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insertSelective(jNannyShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, " avatar err !");
                 }
@@ -87,12 +90,12 @@ public class NannyController extends AutoMapperController {
                     jNannyInfo.setNannyAvatar(fileName);
                     jNannyInfo.setCreateTime(new Date());
                     //新增服务师
-                    jNannyInfoMapper.insert(jNannyInfo);
+                    jNannyInfoMapper.insertSelective(jNannyInfo);
                     //给服务师添加管理员所属门店
                     JNannyShop jNannyShop = new JNannyShop();
                     jNannyShop.setNannyId(jNannyInfo.getNannyId());
                     jNannyShop.setShopId((Integer) map.get("shopId"));
-                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insert(jNannyShop));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insertSelective(jNannyShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, "id card or avatar err !");
                 }

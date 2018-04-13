@@ -2,15 +2,34 @@ package com.summ.model.request;
 
 public class OrderTempReq {
     private Integer adminId;
+    private Integer createId;
     private Integer customerId;
     private String customerName;
     private String customerPhone;
     private String houseAddress;
     private Integer orderStatus;
+    private Integer orderCloseStatus;
     private Integer payStatus;
     private Integer shopId;
     private Integer page;
     private Integer size;
+
+
+    public Integer getOrderCloseStatus() {
+        return orderCloseStatus;
+    }
+
+    public void setOrderCloseStatus(Integer orderCloseStatus) {
+        this.orderCloseStatus = orderCloseStatus;
+    }
+
+    public Integer getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
 
     public Integer getAdminId() {
         return adminId;

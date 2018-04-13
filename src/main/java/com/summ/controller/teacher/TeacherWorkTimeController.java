@@ -155,7 +155,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
     public Object getHotNannyByOrder(@RequestBody NannyWortTimeByOrderReq nannyWortTimeByOrderReq) {
         try {
             //获取常用服务师基本信息列表
-            List<NannyHotWorkTImeRes> nannyHotWorkTImeResList = jNannyWorkTimeMapper.getHotNannyWorkTime();
+            List<NannyHotWorkTImeRes> nannyHotWorkTImeResList = jNannyWorkTimeMapper.getHotNannyWorkTime(nannyWortTimeByOrderReq);
             //循环每个常用服务师
             for (NannyHotWorkTImeRes nannyHotWorkTImeRes : nannyHotWorkTImeResList) {
                 //保存服务师工时
@@ -166,7 +166,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周一");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe(" ");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListMonday);
 
@@ -175,7 +175,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周二");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe(" ");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListTuesday);
 
@@ -184,7 +184,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周三");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe(" ");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListWednesday);
 
@@ -193,7 +193,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周四");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe(" ");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListThursday);
 
@@ -202,7 +202,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周五");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe(" ");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListFriday);
 
@@ -211,7 +211,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周六");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe(" ");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListSaturday);
 
@@ -220,7 +220,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周天");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe(" ");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListSunday);
 

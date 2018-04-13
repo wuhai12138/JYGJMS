@@ -52,7 +52,7 @@ public class TestController extends AutoMapperController{
         try {
             System.out.println(map.get("test"));
             System.out.println(shop.get("shop"));
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", null);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 ", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
@@ -70,7 +70,7 @@ public class TestController extends AutoMapperController{
         try {
             EntityWrapper<JShop> entityWrapper = new EntityWrapper<JShop>();
             List<JShop> shopList = jShopMapper.selectList(entityWrapper);
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", shopList);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 ", shopList);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
@@ -86,7 +86,7 @@ public class TestController extends AutoMapperController{
             AASql aaSql = new AASql();
             aaSql.setSql(sql);
             List<String> list = jNannyWorkTimeDicMapper.test(aaSql);
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找订单信息成功", list);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 ", list);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "查找订单信息失败");
@@ -123,7 +123,7 @@ public class TestController extends AutoMapperController{
             Map map = new HashMap();
             map.put("list", list);
             map.put("count", 6);
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找公告信息成功", map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 ", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "查找公告信息失败");
@@ -157,7 +157,7 @@ public class TestController extends AutoMapperController{
             System.out.println("》》》》》》》》》》》》》》》》》》" + hashMap);
 
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "查找管理员信息成功", hashMap);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 ", hashMap);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "查找管理员信息失败");

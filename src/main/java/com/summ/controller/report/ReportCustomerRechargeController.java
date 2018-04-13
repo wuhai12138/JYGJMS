@@ -3,6 +3,7 @@ package com.summ.controller.report;
 import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JAdmin;
 import com.summ.model.request.CustomerStatmentReq;
+import com.summ.model.request.ReportCustomerRechargeDetailReq;
 import com.summ.model.request.ReportCustomerRechargeReq;
 import com.summ.model.request.ScheduleReq;
 import com.summ.model.response.CustomerBalanceWarnRes;
@@ -62,14 +63,16 @@ public class ReportCustomerRechargeController extends AutoMapperController{
 
     @ResponseBody
     @RequestMapping("/recharge/detail")
-    public Object detail(@RequestBody CustomerStatmentReq customerStatmentReq, ServletRequest request) {
+    public Object detail(@RequestBody ReportCustomerRechargeDetailReq reportCustomerRechargeDetailReq, ServletRequest request) {
         try {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
-            customerStatmentReq.setAdminId(jAdmin.getAdminId());
-            customerStatmentReq.setPage(customerStatmentReq.getSize() * (customerStatmentReq.getPage() - 1));
+            reportCustomerRechargeDetailReq.setAdminId(jAdmin.getAdminId());
+            reportCustomerRechargeDetailReq.setPage(reportCustomerRechargeDetailReq.getSize() * (reportCustomerRechargeDetailReq.getPage() - 1));
 
-
-            return new ModelRes(ModelRes.Status.SUCCESS, "server err !", ResponseUtil.List2Map(jCustomerStatmentMapper.getCustomerRechargeDetail(customerStatmentReq),jCustomerStatmentMapper.getCustomerRechargeDetailCount(customerStatmentReq)));
+            Map map1 = JsonUtil.Obj2Map(reportCustomerRechargeDetailReq);
+            map1.put("startDate",new Date((Long) map1.get("startDate")));
+            map1.put("endDate",new Date((Long) map1.get("endDate")));
+            return new ModelRes(ModelRes.Status.SUCCESS, "server err !", ResponseUtil.List2Map(jCustomerStatmentMapper.getCustomerRechargeDetail(map1),jCustomerStatmentMapper.getCustomerRechargeDetailCount(map1)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

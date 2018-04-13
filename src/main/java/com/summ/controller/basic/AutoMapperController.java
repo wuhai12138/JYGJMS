@@ -122,4 +122,16 @@ public class AutoMapperController {
     public JNannyInsuranceMapper jNannyInsuranceMapper;
     @Autowired
     public JCustomerFeedbackDepartmentMapper jCustomerFeedbackDepartmentMapper;
+    @Autowired
+    public JCustomerMessageMapper jCustomerMessageMapper;
+    @Autowired
+    public JCustomerMessageDepartmentMapper jCustomerMessageDepartmentMapper;
+    @Autowired
+    public JCustomerMessageFollowMapper jCustomerMessageFollowMapper;
+    @Autowired
+    public JCustomerHousePropertyMapper jCustomerHousePropertyMapper;
+    @Autowired
+    public JOrderRefundMapper jOrderRefundMapper;
+    @Autowired
+    public JOrderYearsMapper jOrderYearsMapper;
 }

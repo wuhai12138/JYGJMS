@@ -76,7 +76,7 @@
     </select>
 
     <select id="getNannyBasic" parameterType="java.lang.Integer" resultType="com.summ.model.response.NannyInfoRes">
-		SELECT j.nannyId,j.nannyAvatar,j.createTime,j.nannyName,j.nannyIdCard,j.nannyPhone,j.nannyAge,j.nannySex,d1.INFO AS nannySexInfo,j.validDate,
+		SELECT j.nannyId,j.nannyAvatar,j.createTime,j.nannyName,j.nannyIdCard,j.nannyPhone,j.nannyAge,j.nannySex,d1.INFO AS nannySexInfo,j.idValidDate,
 				j.provinceId,d2.provinceName AS provinceIdInfo,j.cityId,d3.cityName AS cityIdInfo,j.areaId,d4.areaName AS areaIdInfo,j.streetId,d5.streetName AS streetIdInfo,j.nannyAddress,j.remark
 		FROM j_nanny_info j
 		LEFT JOIN j_dict_info d1 ON d1.ID = j.nannySex
@@ -90,12 +90,13 @@
 
     <select id="getJobData" resultType="com.summ.model.response.NannyInfoRes">
 		SELECT j.nannyId,j.nannyStatus,d1.INFO AS nannyStatusInfo,j.nannyLevel,d2.INFO AS nannyLevelInfo,j.nannyAgencyFees,j.payment,d3.INFO AS paymentInfo,
-				j.expectSalary,j.validDate,j.salaryCard,j.salaryBank,j.hot,d4.INFO AS hotInfo
+				j.expectSalary,j.agencyValidDate,j.salaryCard,j.salaryBank,j.hot,d4.INFO AS hotInfo,j.agencyPayStatus,d5.INFO AS agencyPayStatusInfo
 		FROM j_nanny_info j
 		LEFT JOIN j_dict_info d1 ON d1.ID = j.nannyStatus
 		LEFT JOIN j_dict_info d2 ON d2.ID = j.nannyLevel
 		LEFT JOIN j_dict_info d3 ON d3.ID = j.payment
 		LEFT JOIN j_dict_info d4 ON d4.ID = j.hot
+		LEFT JOIN j_dict_info d5 ON d5.ID = j.agencyPayStatus
 		WHERE j.nannyId = #{0}
 	</select>
 
@@ -137,7 +138,7 @@
 		WHERE j.nannyId=#{0}
 	</select>
     <select id="getNannyCertificate" resultType="com.summ.model.response.NannyCertificateRes">
-		SELECT j.nannyCertId,d1.INFO AS certificateIdInfo,j.photo,j.certificateId
+		SELECT j.nannyCertId,d1.INFO AS certificateIdInfo,j.photo,j.certificateId,j.certificateNumber,j.validDate
 		FROM j_nanny_certificate j
 		LEFT JOIN j_dict_info d1 ON d1.ID= j.certificateId
 		WHERE j.nannyId=#{0}

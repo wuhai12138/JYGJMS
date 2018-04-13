@@ -36,19 +36,22 @@ public class JOrderSchedule implements Serializable {
 	private Date scheduleDate;
 
 	/** 单价 */
-	private BigDecimal unitPrice=new BigDecimal(0);
+	private BigDecimal unitPrice;
 
 	/** 总价 */
-	private BigDecimal totalPrice=new BigDecimal(0);
+	private BigDecimal totalPrice;
 
 	/** 成本（取决于服务师） */
-	private BigDecimal cost=new BigDecimal(0);
+	private BigDecimal cost;
 
 	/** 日程状态 */
-	private Integer scheduleStatus=152;
+	private Integer scheduleStatus;
+
+	/** 日程类型 */
+	private Integer scheduleType;
 
 	/** 支付状态 */
-	private Integer payStatus=157;
+	private Integer payStatus;
 
 	/** 开始时间Id */
 	private Integer startTime;
@@ -63,8 +66,14 @@ public class JOrderSchedule implements Serializable {
 	/** 时间值 */
 	private Long timeValue;
 
+	/** 签到人id */
+	private Integer clockId;
+
 	/** 签到时间 */
 	private Date clockTime;
+
+	/** 完工操作人id */
+	private Integer completedId;
 
 	/** 完工时间 */
 	private Date completedTime;
@@ -72,10 +81,56 @@ public class JOrderSchedule implements Serializable {
 	/** 暂停时间 */
 	private Date suspendTime;
 
-	/** 暂停时间  */
+	/** 取消操作人id */
+	private Integer cancelId;
+
+	/** 取消时间  */
 	private Date cancelTime;
 
 	private String weekday;
+
+	/**  */
+	private String remark;
+
+	public Integer getScheduleType() {
+		return scheduleType;
+	}
+
+	public void setScheduleType(Integer scheduleType) {
+		this.scheduleType = scheduleType;
+	}
+
+	public Integer getClockId() {
+		return clockId;
+	}
+
+	public void setClockId(Integer clockId) {
+		this.clockId = clockId;
+	}
+
+	public Integer getCompletedId() {
+		return completedId;
+	}
+
+	public void setCompletedId(Integer completedId) {
+		this.completedId = completedId;
+	}
+
+	public Integer getCancelId() {
+		return cancelId;
+	}
+
+	public void setCancelId(Integer cancelId) {
+		this.cancelId = cancelId;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
 	public Integer getOrderType() {
 		return orderType;

@@ -44,14 +44,14 @@ public class JCustomerService implements Serializable {
 	private Integer shopId;
 
 	/**  */
-	private Integer adminConfirm = 136;
+	private Integer adminConfirm;
 
 	/**  */
-	private Integer customerConfirm = 136;
+	private Integer customerConfirm;
 
 	private String serviceDetail;
 
-	private Date createTime = new Date();
+	private Date createTime;
 
 	private String serviceName;
 

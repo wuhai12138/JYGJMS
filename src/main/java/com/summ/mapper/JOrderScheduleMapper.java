@@ -50,5 +50,11 @@ public interface JOrderScheduleMapper extends AutoMapper<JOrderSchedule> {
     Integer getCustomerScheduleSumCount(@Param("scheduleReq") ScheduleReq scheduleReq);
     List<CustomerBalanceWarnRes> getCustomerSchedule(@Param("scheduleReq") ScheduleReq scheduleReq);
 
-
+    /**
+     * 查找未结算的订单日程
+     * @param orderId
+     * @param orderType
+     * @return
+     */
+    List<JOrderSchedule> getOrderScheduleUnCheckOut(Integer orderId,Integer orderType);
 }

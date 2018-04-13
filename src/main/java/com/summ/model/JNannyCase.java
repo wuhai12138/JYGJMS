@@ -41,15 +41,15 @@ public class JNannyCase implements Serializable {
 	private BigDecimal payMoney;
 
 	/** 案件状态 */
-	private Integer caseStatus=171;
+	private Integer caseStatus;
 
 	/**  */
-	private Date createTime=new Date();
+	private Date createTime;
 
 	private Date modifyTime;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 	public Date getModifyTime() {
 		return modifyTime;

@@ -64,13 +64,14 @@
         j.startTimeValue AS start,
         j.endTimeValue AS 'end',
         j.weekday AS week,
-        jc.customerName AS 'describe'
+        concat(jc.customerName,"-",jc.customerPhone,"-",jch.houseAddress) AS 'describe'
         FROM
         j_order_schedule j
         LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = j.scheduleId
         LEFT JOIN j_order_contract joc ON j.orderId = joc.orderId
         LEFT JOIN j_goods_contract jgc ON joc.serviceId = jgc.goodsId
         LEFT JOIN j_customer jc ON  joc.customerId = jc.customerId
+        LEFT JOIN j_customer_house jch ON jch.houseId=joc.houseId
         WHERE
         j.scheduleDate &gt; #{startDate}
         AND j.scheduleDate &lt; #{endDate}
@@ -79,7 +80,7 @@
 
     </select>
 
-    <select id="getHotNannyWorkTime" resultType="com.summ.model.response.NannyHotWorkTImeRes">
+    <select id="getHotNannyWorkTime" resultType="com.summ.model.response.NannyHotWorkTImeRes" parameterType="com.summ.model.request.NannyWortTimeByOrderReq">
 		SELECT
 	      j.monday,
 	      j.tuesday,
@@ -96,6 +97,10 @@
 		LEFT JOIN j_nanny_info jni ON jni.nannyId = j.nannyId
 		WHERE
 	jni.hot = 168
+	<if test="165==nannyWortTimeByOrderReq.orderType">
+        AND jni.payStats=158
+        AND jni.agencyValidDate &gt; CURRENT_DATE
+    </if>
 	</select>
 
 </mapper>

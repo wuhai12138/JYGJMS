@@ -120,7 +120,7 @@ public class NannyOtherController extends AutoMapperController {
                 JNannyReligion jNannyReligion = new JNannyReligion();
                 jNannyReligion.setNannyId((Integer) map.get("nannyId"));
                 jNannyReligion.setReligionId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyReligionMapper.insert(jNannyReligion));
+                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyReligionMapper.insertSelective(jNannyReligion));
             } else {
                 JNannyReligion jNannyReligion = new JNannyReligion();
                 jNannyReligion.setNannyId((Integer) map.get("nannyId"));
@@ -193,12 +193,12 @@ public class NannyOtherController extends AutoMapperController {
                 JNannyLanguage jNannyLanguage = new JNannyLanguage();
                 jNannyLanguage.setNannyId((Integer) map.get("nannyId"));
                 jNannyLanguage.setLanguageId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.insert(jNannyLanguage));
+                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.insertSelective(jNannyLanguage));
             } else {
                 JNannyLanguage jNannyLanguage = new JNannyLanguage();
                 jNannyLanguage.setNannyId((Integer) map.get("nannyId"));
                 jNannyLanguage.setLanguageId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.insert(jNannyLanguage));
+                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.insertSelective(jNannyLanguage));
             }
         } catch (Exception e) {
             e.printStackTrace();

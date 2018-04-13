@@ -33,7 +33,7 @@ public class JDictInfo implements Serializable {
 	/**  */
 	private String info;
 
-	private Integer isDel=16;
+	private Integer isDel;
 
 	public Integer getIsDel() {
 		return isDel;

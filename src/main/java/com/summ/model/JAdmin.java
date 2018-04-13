@@ -43,10 +43,10 @@ public class JAdmin implements Serializable {
 	private Integer shopId;
 
 	/**  */
-	private Integer isDel = 16;
+	private Integer isDel;
 
 	/**  */
-	private Date createTime = new Date();
+	private Date createTime;
 
 
 	public Integer getAdminId() {

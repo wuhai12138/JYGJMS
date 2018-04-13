@@ -18,6 +18,9 @@ public class OrderTempRes {
     /** 订单状态 */
     private Integer orderStatus;
 
+    /** 订单关闭状态（默认未关闭） */
+    private Integer orderCloseStatus;
+
     /**  */
     private Integer goodsId;
 
@@ -57,7 +60,16 @@ public class OrderTempRes {
     private Integer payStatus;
 
     /**  */
+    private Integer createId;
+
+    /**  */
     private Date createTime;
+
+    /**  */
+    private Integer modifyId;
+
+    /**  */
+    private Date modifyTime;
 
     /**  */
     private String remark;
@@ -72,8 +84,49 @@ public class OrderTempRes {
     private String houseAddress;
     private String customerRemark;
     private String orderStatusInfo;
+    private String orderCloseStatusInfo;
     private String payStatusInfo;
     private String service;
+
+    public Integer getOrderCloseStatus() {
+        return orderCloseStatus;
+    }
+
+    public void setOrderCloseStatus(Integer orderCloseStatus) {
+        this.orderCloseStatus = orderCloseStatus;
+    }
+
+    public Integer getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
+
+    public Integer getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(Integer modifyId) {
+        this.modifyId = modifyId;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public String getOrderCloseStatusInfo() {
+        return orderCloseStatusInfo;
+    }
+
+    public void setOrderCloseStatusInfo(String orderCloseStatusInfo) {
+        this.orderCloseStatusInfo = orderCloseStatusInfo;
+    }
 
     public String getService() {
         return service;

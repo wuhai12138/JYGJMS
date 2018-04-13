@@ -147,7 +147,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                 }
             }
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "nanny is valid !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -159,7 +159,7 @@ public class NannyWorkTimeController extends AutoMapperController {
     public Object getHotNannyByOrder(@RequestBody NannyWortTimeByOrderReq nannyWortTimeByOrderReq) {
         try {
             //获取常用服务师基本信息列表
-            List<NannyHotWorkTImeRes> nannyHotWorkTImeResList = jNannyWorkTimeMapper.getHotNannyWorkTime();
+            List<NannyHotWorkTImeRes> nannyHotWorkTImeResList = jNannyWorkTimeMapper.getHotNannyWorkTime(nannyWortTimeByOrderReq);
             //循环每个常用服务师
             for (NannyHotWorkTImeRes nannyHotWorkTImeRes : nannyHotWorkTImeResList) {
                 //保存服务师工时
@@ -170,7 +170,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周一");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe("");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListMonday);
 
@@ -179,7 +179,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周二");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe("");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListTuesday);
 
@@ -188,7 +188,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周三");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe("");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListWednesday);
 
@@ -197,7 +197,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周四");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe("");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListThursday);
 
@@ -206,7 +206,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周五");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe("");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListFriday);
 
@@ -215,7 +215,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周六");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe("");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListSaturday);
 
@@ -224,7 +224,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                     timeAndWeekRes.setStart(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getStartId()));
                     timeAndWeekRes.setEnd(NannyWorkTimeUtil.id2Time(timeAndWeekRes.getEndId()));
                     timeAndWeekRes.setWeek("周天");
-                    timeAndWeekRes.setDescribe("服务师工时");
+                    timeAndWeekRes.setDescribe("");
                 }
                 timeAndWeekResList.addAll(timeAndWeekResListSunday);
 
@@ -236,7 +236,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                 List<TimeAndWeekRes> scheduleTimeAndWeekResList = jNannyWorkTimeMapper.getHotNannyScheduleTime(nannyWortTimeByOrderReq);
                 nannyHotWorkTImeRes.setNannyScheduleTime(scheduleTimeAndWeekResList);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "find hot nanny success !", ResponseUtil.List2Map(nannyHotWorkTImeResList));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", ResponseUtil.List2Map(nannyHotWorkTImeResList));
         } catch (Exception e) {
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
         }
@@ -294,7 +294,7 @@ public class NannyWorkTimeController extends AutoMapperController {
                 }
             }
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyWorkTimeMapper.insert(jNannyWorkTime));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyWorkTimeMapper.insertSelective(jNannyWorkTime));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -305,7 +305,7 @@ public class NannyWorkTimeController extends AutoMapperController {
     @RequestMapping("/delete")
     public Object delete(@RequestBody Map map) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyWorkTimeMapper.deleteByMap(map));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyWorkTimeMapper.deleteByMap(map));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

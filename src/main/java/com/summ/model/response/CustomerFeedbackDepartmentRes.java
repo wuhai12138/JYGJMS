@@ -27,6 +27,14 @@ public class CustomerFeedbackDepartmentRes implements Serializable {
 
 	private String departmentName;
 
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

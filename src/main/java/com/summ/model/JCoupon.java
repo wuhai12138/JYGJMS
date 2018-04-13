@@ -43,7 +43,7 @@ public class JCoupon implements Serializable {
 	private Integer couponOrigin;
 
 	/**  */
-	private Integer isDel = 16;
+	private Integer isDel;
 
 	/**  */
 	private Date createTime;

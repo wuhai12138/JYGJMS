@@ -74,7 +74,7 @@ public class NannyInfoInsertReq {
     private BigDecimal expectSalary;
 
     /** 中介费 */
-    private String nannyAgencyFees;
+    private BigDecimal nannyAgencyFees;
 
     /** 支付方式 */
     private int payment=127;
@@ -294,11 +294,11 @@ public class NannyInfoInsertReq {
         this.expectSalary = expectSalary;
     }
 
-    public String getNannyAgencyFees() {
+    public BigDecimal getNannyAgencyFees() {
         return nannyAgencyFees;
     }
 
-    public void setNannyAgencyFees(String nannyAgencyFees) {
+    public void setNannyAgencyFees(BigDecimal nannyAgencyFees) {
         this.nannyAgencyFees = nannyAgencyFees;
     }
 

@@ -37,22 +37,22 @@ public class JSupplier implements Serializable {
 	private String contect;
 
 	/**  */
-	private Integer supplierStatus=182;
+	private Integer supplierStatus;
 
 	/**  */
 	private String contacter;
 
 	/**  */
-	private Integer provinceId=1;
+	private Integer provinceId;
 
 	/**  */
-	private Integer cityId=1;
+	private Integer cityId;
 
 	/**  */
 	private Integer areaId;
 
 	/**  */
-	private String remark="";
+	private String remark;
 
 	/** 公司注册地址 */
 	private String registerAddress;
@@ -91,10 +91,10 @@ public class JSupplier implements Serializable {
 	private String idCardAfter;
 
 	/**  */
-	private Date createTime=new Date();
+	private Date createTime;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
 
 	public Date getBusinessStartDate() {
 		return businessStartDate;

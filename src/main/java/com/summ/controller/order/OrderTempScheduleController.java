@@ -46,7 +46,7 @@ public class OrderTempScheduleController extends AutoMapperController {
             String nannyName = (String) map.get("name");
 
             List<OrderTempNannyRes> list = jNannyInfoMapper.getOrderTempNannyList(orderId, nannyName);
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", ResponseUtil.List2Map(list));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", ResponseUtil.List2Map(list));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -68,7 +68,7 @@ public class OrderTempScheduleController extends AutoMapperController {
             Integer orderId = (Integer) map.get("orderId");
             String supplierName = (String) map.get("name");
             List<OrderTempSupplierRes> list = jGoodsCostMapper.getSupplierList(orderId, supplierName);
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", ResponseUtil.List2Map(list));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", ResponseUtil.List2Map(list));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -126,6 +126,9 @@ public class OrderTempScheduleController extends AutoMapperController {
                 //...
             }
             JOrderSchedule jOrderSchedule = new JOrderSchedule();
+            if (jOrderTemp.getPayStatus()==158){
+                jOrderSchedule.setPayStatus(158);
+            }
             jOrderSchedule.setOrderId(jOrderTemp.getOrderId());
             jOrderSchedule.setOrderType(164);
             jOrderSchedule.setScheduleDate(jOrderTemp.getOrderDate());
@@ -135,7 +138,7 @@ public class OrderTempScheduleController extends AutoMapperController {
             jOrderSchedule.setEndTimeValue(jOrderTemp.getEndTimeValue());
             jOrderSchedule.setTimeValue(NannyWorkTimeUtil.getTimeListValue(startTime, endTime));
             jOrderSchedule.setWeekday(DateUtil.dateAndday(jOrderTemp.getOrderDate()));
-            jOrderScheduleMapper.insert(jOrderSchedule);
+            jOrderScheduleMapper.insertSelective(jOrderSchedule);
 
             /**生成日程服务师*/
             jScheduleNanny.setNannyId(nannyId);
@@ -195,33 +198,7 @@ public class OrderTempScheduleController extends AutoMapperController {
             }
             Map map = ResponseUtil.List2Map(orderScheduleResList);
             map.put("count", jOrderScheduleMapper.getScheduleCount(orderScheduleReq));
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", map);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-        }
-    }
-
-    /**
-     * 取消
-     *
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/cancel")
-    public Object cancel(@RequestBody Map<String, List<Integer>> jOrderScheduleList) {
-        try {
-            List<Integer> list = jOrderScheduleList.get("list");
-            List<JOrderSchedule> orderScheduleList = new ArrayList<JOrderSchedule>();
-
-            for (int i = 0; i < list.size(); i++) {
-                JOrderSchedule jOrderSchedule = new JOrderSchedule();
-                jOrderSchedule.setScheduleStatus(155);
-                jOrderSchedule.setScheduleId(list.get(i));
-                jOrderSchedule.setCancelTime(new Date());
-                orderScheduleList.add(jOrderSchedule);
-            }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -248,7 +225,7 @@ public class OrderTempScheduleController extends AutoMapperController {
                 jOrderSchedule.setSuspendTime(new Date());
                 orderScheduleList.add(jOrderSchedule);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -275,7 +252,7 @@ public class OrderTempScheduleController extends AutoMapperController {
                 jOrderSchedule.setClockTime(new Date());
                 orderScheduleList.add(jOrderSchedule);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -302,7 +279,7 @@ public class OrderTempScheduleController extends AutoMapperController {
                 jOrderSchedule.setCompletedTime(new Date());
                 orderScheduleList.add(jOrderSchedule);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "add customer success !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", jOrderScheduleMapper.updateBatchById(orderScheduleList));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

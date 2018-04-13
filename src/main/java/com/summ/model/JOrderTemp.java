@@ -37,6 +37,9 @@ public class JOrderTemp implements Serializable {
 	/** 订单状态 */
 	private Integer orderStatus=142;
 
+	/** 订单关闭状态（默认未关闭） */
+	private Integer orderCloseStatus;
+
 	/**  */
 	private Integer goodsId;
 
@@ -81,10 +84,50 @@ public class JOrderTemp implements Serializable {
 	private Date createTime=new Date();
 
 	/**  */
+	private Integer createId;
+
+	/**  */
+	private Integer modifyId;
+
+	/**  */
+	private Date modifyTime;
+	/**  */
 	private String remark;
 
 	/**  */
 	private Integer isDel=16;
+
+	public Integer getOrderCloseStatus() {
+		return orderCloseStatus;
+	}
+
+	public void setOrderCloseStatus(Integer orderCloseStatus) {
+		this.orderCloseStatus = orderCloseStatus;
+	}
+
+	public Integer getCreateId() {
+		return createId;
+	}
+
+	public void setCreateId(Integer createId) {
+		this.createId = createId;
+	}
+
+	public Integer getModifyId() {
+		return modifyId;
+	}
+
+	public void setModifyId(Integer modifyId) {
+		this.modifyId = modifyId;
+	}
+
+	public Date getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
 
 	public Integer getCouponListId() {
 		return couponListId;

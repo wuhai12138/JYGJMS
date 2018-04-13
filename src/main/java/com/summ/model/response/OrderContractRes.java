@@ -20,6 +20,9 @@ public class OrderContractRes {
     /**  */
     private Integer orderStatus;
 
+    /** 订单关闭状态（默认未关闭） */
+    private Integer orderCloseStatus;
+
     /**  */
     private Date startDate;
 
@@ -35,7 +38,16 @@ public class OrderContractRes {
     private Integer teacherId;
 
     /**  */
+    private Integer createId;
+
+    /**  */
     private Date createTime;
+
+    /**  */
+    private Integer modifyId;
+
+    /**  */
+    private Date modifyTime;
 
     /**  */
     private String remark;
@@ -46,11 +58,52 @@ public class OrderContractRes {
     private String customerName;
     private String houseAddress;
     private String orderStatusInfo;
+    private String orderCloseStatusInfo;
     private String customerPhone;
     private String service;
     private Integer serviceId;
     private String needString;
     private String shopName;
+
+    public Integer getOrderCloseStatus() {
+        return orderCloseStatus;
+    }
+
+    public void setOrderCloseStatus(Integer orderCloseStatus) {
+        this.orderCloseStatus = orderCloseStatus;
+    }
+
+    public Integer getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
+
+    public Integer getModifyId() {
+        return modifyId;
+    }
+
+    public void setModifyId(Integer modifyId) {
+        this.modifyId = modifyId;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public String getOrderCloseStatusInfo() {
+        return orderCloseStatusInfo;
+    }
+
+    public void setOrderCloseStatusInfo(String orderCloseStatusInfo) {
+        this.orderCloseStatusInfo = orderCloseStatusInfo;
+    }
 
     public Integer getServiceId() {
         return serviceId;

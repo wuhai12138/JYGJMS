@@ -34,8 +34,9 @@ public class CustomerStatmentController extends AutoMapperController{
     public Object insert(@RequestBody JCustomerStatment jCustomerStatment, HttpServletRequest request){
         try {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+
             jCustomerStatment.setAdminId(jAdmin.getAdminId());
-            return new ModelRes(ModelRes.Status.SUCCESS,"add customer statment success !",jCustomerStatmentMapper.insert(jCustomerStatment));
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功!",jCustomerStatmentMapper.insertSelective(jCustomerStatment));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -50,7 +51,7 @@ public class CustomerStatmentController extends AutoMapperController{
             Map map = new HashedMap();
             map.put("count",jCustomerStatmentMapper.getCount(customerStatmentReq));
             map.put("list",jCustomerStatmentMapper.getStatmentList(customerStatmentReq));
-            return new ModelRes(ModelRes.Status.SUCCESS,"search customer statment success !",map);
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",map);
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

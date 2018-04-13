@@ -54,9 +54,9 @@ public class ReportNannySalaryController extends AutoMapperController{
                     reportSalaryRes.setIndividualIncomeTax((reportSalaryRes.getHourlySalary().add(reportSalaryRes.getRewards()).subtract(reportSalaryRes.getOrderRefund())).multiply(new BigDecimal(0.06)).setScale(2,BigDecimal.ROUND_HALF_UP));
                     reportSalaryRes.setRealSalary((reportSalaryRes.getHourlySalary().add(reportSalaryRes.getRewards()).subtract(reportSalaryRes.getOrderRefund())).multiply(new BigDecimal(0.94)).setScale(2,BigDecimal.ROUND_HALF_UP));
                 }
-                return new ModelRes(ModelRes.Status.SUCCESS,"get coupon list success !",ResponseUtil.List2Map(worktimeList));
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",ResponseUtil.List2Map(worktimeList));
             }else {
-                return new ModelRes(ModelRes.Status.SUCCESS,"get coupon list success !", ResponseUtil.List2Map(reportSalaryResList));
+                return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !", ResponseUtil.List2Map(reportSalaryResList));
 
             }
         }catch (Exception e){

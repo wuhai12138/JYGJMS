@@ -66,12 +66,12 @@ public class TeacherController extends AutoMapperController {
                     jTeacher.setTeacherAvatar(fileName);
                     jTeacher.setCreateTime(new Date());
                     //新增带教
-                    jTeacherMapper.insert(jTeacher);
+                    jTeacherMapper.insertSelective(jTeacher);
                     //给带教添加门店
                     JTeacherShop jTeacherShop = new JTeacherShop();
                     jTeacherShop.setShopId((Integer) map.get("shopId"));
                     jTeacherShop.setTeacherId(jTeacher.getTeacherId());
-                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jTeacherShopMapper.insert(jTeacherShop));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jTeacherShopMapper.insertSelective(jTeacherShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, " 身份证错误 !");
                 }

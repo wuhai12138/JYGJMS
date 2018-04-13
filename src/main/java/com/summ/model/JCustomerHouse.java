@@ -11,191 +11,242 @@ import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
  *
- * 
+ *
  *
  */
 @TableName("j_customer_house")
 public class JCustomerHouse implements Serializable {
 
-	@TableField(exist = false)
-	private static final long serialVersionUID = 1L;
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 
-	/**  */
-	@TableId(type = IdType.AUTO)
-	private Integer houseId;
+    /**  */
+    @TableId(type = IdType.AUTO)
+    private Integer houseId;
 
-	/**  */
-	private Integer customerId;
+    /**  */
+    private Integer customerId;
 
-	/**  */
-	private Integer serviceId=0;
+    /**物业id*/
+    private Integer propertyId;
 
-	/**  */
-	private Integer provinceId;
+    private Integer shopId;
+    /**  */
+    private Integer serviceId;
 
-	/**  */
-	private Integer cityId;
+    /**  */
+    private Integer provinceId;
 
-	/**  */
-	private Integer areaId;
+    /**  */
+    private Integer cityId;
 
-	/**  */
-	private Integer streetId;
+    /**  */
+    private Integer areaId;
 
-	/** 房产地址 */
-	private String houseAddress;
+    /**  */
+    private Integer streetId;
 
-	/** 地址经度 */
-	private Double longitude;
+    /**
+     * 房产地址
+     */
+    private String houseAddress;
 
-	/** 地址纬度 */
-	private Double latitude;
+    /**
+     * 地址经度
+     */
+    private Double longitude;
 
-	/**  */
-	private Integer bedRoom;
+    /**
+     * 地址纬度
+     */
+    private Double latitude;
 
-	/**  */
-	private Integer livingRoom;
+    /**  */
+    private Integer bedRoom;
 
-	/**  */
-	private Integer restRoom;
+    /**  */
+    private Integer livingRoom;
 
-	/** 面积 */
-	private String houseArea;
+    /**  */
+    private Integer restRoom;
 
-	/**  */
-	private Date createTime=new Date();
+    /**
+     * 面积
+     */
+    private String houseArea;
+    /**
+     * 房产类型
+     */
+    private Integer houseType;
 
-	/**  */
-	private Integer isDel=16;
+    /**  */
+    private Integer createId;
 
 
-	public Integer getHouseId() {
-		return this.houseId;
-	}
+    /**  */
+    private Date createTime;
 
-	public void setHouseId(Integer houseId) {
-		this.houseId = houseId;
-	}
+    /**  */
+    private Integer isDel;
 
-	public Integer getCustomerId() {
-		return this.customerId;
-	}
+    public Integer getPropertyId() {
+        return propertyId;
+    }
 
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
-	}
+    public void setPropertyId(Integer propertyId) {
+        this.propertyId = propertyId;
+    }
 
-	public Integer getServiceId() {
-		return this.serviceId;
-	}
+    public Integer getShopId() {
+        return shopId;
+    }
 
-	public void setServiceId(Integer serviceId) {
-		this.serviceId = serviceId;
-	}
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
 
-	public Integer getProvinceId() {
-		return this.provinceId;
-	}
+    public Integer getHouseType() {
+        return houseType;
+    }
 
-	public void setProvinceId(Integer provinceId) {
-		this.provinceId = provinceId;
-	}
+    public void setHouseType(Integer houseType) {
+        this.houseType = houseType;
+    }
 
-	public Integer getCityId() {
-		return this.cityId;
-	}
+    public Integer getCreateId() {
+        return createId;
+    }
 
-	public void setCityId(Integer cityId) {
-		this.cityId = cityId;
-	}
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
 
-	public Integer getAreaId() {
-		return this.areaId;
-	}
+    public Integer getHouseId() {
+        return this.houseId;
+    }
 
-	public void setAreaId(Integer areaId) {
-		this.areaId = areaId;
-	}
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
+    }
 
-	public Integer getStreetId() {
-		return this.streetId;
-	}
+    public Integer getCustomerId() {
+        return this.customerId;
+    }
 
-	public void setStreetId(Integer streetId) {
-		this.streetId = streetId;
-	}
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
 
-	public String getHouseAddress() {
-		return this.houseAddress;
-	}
+    public Integer getServiceId() {
+        return this.serviceId;
+    }
 
-	public void setHouseAddress(String houseAddress) {
-		this.houseAddress = houseAddress;
-	}
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
+    }
 
-	public Double getLongitude() {
-		return this.longitude;
-	}
+    public Integer getProvinceId() {
+        return this.provinceId;
+    }
 
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
+    public void setProvinceId(Integer provinceId) {
+        this.provinceId = provinceId;
+    }
 
-	public Double getLatitude() {
-		return this.latitude;
-	}
+    public Integer getCityId() {
+        return this.cityId;
+    }
 
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
+    }
 
-	public Integer getBedRoom() {
-		return this.bedRoom;
-	}
+    public Integer getAreaId() {
+        return this.areaId;
+    }
 
-	public void setBedRoom(Integer bedRoom) {
-		this.bedRoom = bedRoom;
-	}
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
+    }
 
-	public Integer getLivingRoom() {
-		return this.livingRoom;
-	}
+    public Integer getStreetId() {
+        return this.streetId;
+    }
 
-	public void setLivingRoom(Integer livingRoom) {
-		this.livingRoom = livingRoom;
-	}
+    public void setStreetId(Integer streetId) {
+        this.streetId = streetId;
+    }
 
-	public Integer getRestRoom() {
-		return this.restRoom;
-	}
+    public String getHouseAddress() {
+        return this.houseAddress;
+    }
 
-	public void setRestRoom(Integer restRoom) {
-		this.restRoom = restRoom;
-	}
+    public void setHouseAddress(String houseAddress) {
+        this.houseAddress = houseAddress;
+    }
 
-	public String getHouseArea() {
-		return this.houseArea;
-	}
+    public Double getLongitude() {
+        return this.longitude;
+    }
 
-	public void setHouseArea(String houseArea) {
-		this.houseArea = houseArea;
-	}
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
 
-	public Date getCreateTime() {
-		return this.createTime;
-	}
+    public Double getLatitude() {
+        return this.latitude;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
 
-	public Integer getIsDel() {
-		return this.isDel;
-	}
+    public Integer getBedRoom() {
+        return this.bedRoom;
+    }
 
-	public void setIsDel(Integer isDel) {
-		this.isDel = isDel;
-	}
+    public void setBedRoom(Integer bedRoom) {
+        this.bedRoom = bedRoom;
+    }
+
+    public Integer getLivingRoom() {
+        return this.livingRoom;
+    }
+
+    public void setLivingRoom(Integer livingRoom) {
+        this.livingRoom = livingRoom;
+    }
+
+    public Integer getRestRoom() {
+        return this.restRoom;
+    }
+
+    public void setRestRoom(Integer restRoom) {
+        this.restRoom = restRoom;
+    }
+
+    public String getHouseArea() {
+        return this.houseArea;
+    }
+
+    public void setHouseArea(String houseArea) {
+        this.houseArea = houseArea;
+    }
+
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Integer getIsDel() {
+        return this.isDel;
+    }
+
+    public void setIsDel(Integer isDel) {
+        this.isDel = isDel;
+    }
 
 }

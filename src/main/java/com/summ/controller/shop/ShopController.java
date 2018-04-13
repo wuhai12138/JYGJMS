@@ -1,14 +1,18 @@
 package com.summ.controller.shop;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JAdmin;
 import com.summ.model.JAdminShop;
 import com.summ.model.JAdminType;
 import com.summ.model.JShop;
+import com.summ.model.request.CustomerReq;
 import com.summ.model.request.ShopReq;
 import com.summ.model.response.ModelRes;
 import com.summ.model.response.ShopRes;
+import com.summ.utils.BaiduAPIUtil;
 import com.summ.utils.ResponseUtil;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +47,7 @@ public class ShopController extends AutoMapperController{
                 jAdminShopList.add(jAdminShop);
             }
             jAdminShopMapper.insertBatch(jAdminShopList);
-            return new ModelRes(ModelRes.Status.SUCCESS, "delete administrator success !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", null);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -56,7 +60,7 @@ public class ShopController extends AutoMapperController{
         try {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
             shopReq.setAdminId(jAdmin.getAdminId());
-            return new ModelRes(ModelRes.Status.SUCCESS, "delete administrator success !", ResponseUtil.List2Map(jShopMapper.getShopList(shopReq)));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", ResponseUtil.List2Map(jShopMapper.getShopList(shopReq)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -67,7 +71,48 @@ public class ShopController extends AutoMapperController{
     @RequestMapping("/update")
     public Object update(@RequestBody JShop jShop) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "delete administrator success !", jShopMapper.updateSelectiveById(jShop));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jShopMapper.updateSelectiveById(jShop));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/all")
+    public Object findAll(@RequestBody JShop jShop) {
+        try {
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jShopMapper.selectList(new EntityWrapper<JShop>()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
+     * 根据地址的经纬度查看该地址与各门店的距离
+     * @param customerReq
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/distance")
+    public Object distance(@RequestBody CustomerReq customerReq) {
+        try {
+            Map<String, Double> baiduMap = BaiduAPIUtil.getLngAndLat("上海市" + customerReq.getHouseAddress());
+            if (baiduMap == null) {
+                return new ModelRes(ModelRes.Status.FAILED, "获取不到该地址，请重新输入 !");
+            }
+            List<JShop> shopList = jShopMapper.getAllShop();
+            List<JShop> shopListRes = new ArrayList<JShop>();
+            for (JShop jShop : shopList) {
+                double distance = BaiduAPIUtil.getDistance(baiduMap.get("lng"), baiduMap.get("lat"), jShop.getLongitude(), jShop.getLatitude());
+                jShop.setDistance((int) distance);
+                shopListRes.add(jShop);
+            }
+            Map responseMap = new HashedMap();
+            responseMap.put("list", shopListRes);
+
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", responseMap);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

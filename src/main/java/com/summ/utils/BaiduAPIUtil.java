@@ -71,8 +71,8 @@ public class BaiduAPIUtil {
         double t2 = Math.cos(a1) * Math.sin(a2) * Math.cos(b1) * Math.sin(b2);
         double t3 = Math.sin(a1) * Math.sin(b1);
         double tt = Math.acos(t1 + t2 + t3);
-        System.out.println("两个地点距离:"+6366000 * tt + "米");
-        return 6366000 * tt;
+        System.out.println("两个地点距离:"+6366 * tt + "米");
+        return 6366 * tt;
     }
 
     public static void main(String[] args) {

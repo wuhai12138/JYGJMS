@@ -11,9 +11,7 @@ import java.util.List;
  */
 public class CustomerFeedbackRes {
 
-    /** 客户反馈表 */
-    @TableId(type = IdType.AUTO)
-    private Integer feedbackId;
+    private Integer messageId;
 
     /**  */
     private String content;
@@ -21,11 +19,17 @@ public class CustomerFeedbackRes {
     /** 客户 */
     private Integer customerId;
 
+    private Integer orderId;
+    private Integer scheduleId;
+
     /**  */
-    private Date createDate = new Date();
+    private Date createDate;
 
     /** 状态 */
-    private Integer status;
+    private Integer messageStatus;
+
+    /** 消息类型 */
+    private Integer messageType;
 
     /** 记录人id */
     private Integer noteAdmin;
@@ -35,10 +39,51 @@ public class CustomerFeedbackRes {
 
     private String customerName;
     private String customerPhone;
-    private String statusInfo;
+    private String messageStatusInfo;
+    private String department;
     List<CustomerFeedbackDepartmentRes> customerFeedbackDepartmentResList;
     private List<CustomerFeedbackFollowRes> customerFeedbackFollowResList;
 
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public Integer getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(Integer messageId) {
+        this.messageId = messageId;
+    }
+
+    public Integer getMessageStatus() {
+        return messageStatus;
+    }
+
+    public void setMessageStatus(Integer messageStatus) {
+        this.messageStatus = messageStatus;
+    }
+
+    public Integer getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(Integer messageType) {
+        this.messageType = messageType;
+    }
+
+    public String getMessageStatusInfo() {
+        return messageStatusInfo;
+    }
+
+    public void setMessageStatusInfo(String messageStatusInfo) {
+        this.messageStatusInfo = messageStatusInfo;
+    }
 
     public List<CustomerFeedbackDepartmentRes> getCustomerFeedbackDepartmentResList() {
         return customerFeedbackDepartmentResList;
@@ -56,13 +101,22 @@ public class CustomerFeedbackRes {
         this.customerFeedbackFollowResList = customerFeedbackFollowResList;
     }
 
-    public Integer getFeedbackId() {
-        return feedbackId;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setFeedbackId(Integer feedbackId) {
-        this.feedbackId = feedbackId;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
+
+    public Integer getScheduleId() {
+        return scheduleId;
+    }
+
+    public void setScheduleId(Integer scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
 
     public String getContent() {
         return content;
@@ -88,13 +142,6 @@ public class CustomerFeedbackRes {
         this.createDate = createDate;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
 
     public Integer getNoteAdmin() {
         return noteAdmin;
@@ -126,13 +173,5 @@ public class CustomerFeedbackRes {
 
     public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
-    }
-
-    public String getStatusInfo() {
-        return statusInfo;
-    }
-
-    public void setStatusInfo(String statusInfo) {
-        this.statusInfo = statusInfo;
     }
 }

@@ -7,12 +7,5 @@
 		followId, feedbackId, createDate, remark, adminId, isDel
 	</sql>
 
-	<select id="getCustomerFeedbackFollowList" parameterType="java.lang.Integer" resultType="com.summ.model.response.CustomerFeedbackFollowRes">
-		SELECT j.*,jd.adminName,jdi.INFO AS followStatusInfo
-		FROM j_customer_feedback_follow j
-		LEFT JOIN j_admin jd ON jd.adminId=j.adminId
-		LEFT JOIN j_dict_info jdi ON jdi.ID = j.followStatus
-		WHERE j.feedbackId=#{0}
-	</select>
 
 </mapper>

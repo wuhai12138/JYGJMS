@@ -1,6 +1,7 @@
 package com.summ.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.baomidou.mybatisplus.annotations.IdType;
 
@@ -32,9 +33,53 @@ public class JNannyCertificate implements Serializable {
 	/**  */
 	private Integer certificateId;
 
-	/**  */
-	private Integer isDel = 16;
+	/** 证件编号 */
+	private String certificateNumber;
 
+	/** 证件有效期 */
+	private Date validDate;
+
+	/**  */
+	private Integer createId;
+
+	/**  */
+	private Date createTime;
+
+	/**  */
+	private Integer isDel;
+
+
+	public String getCertificateNumber() {
+		return certificateNumber;
+	}
+
+	public void setCertificateNumber(String certificateNumber) {
+		this.certificateNumber = certificateNumber;
+	}
+
+	public Date getValidDate() {
+		return validDate;
+	}
+
+	public void setValidDate(Date validDate) {
+		this.validDate = validDate;
+	}
+
+	public Integer getCreateId() {
+		return createId;
+	}
+
+	public void setCreateId(Integer createId) {
+		this.createId = createId;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
 	public Integer getNannyCertId() {
 		return this.nannyCertId;

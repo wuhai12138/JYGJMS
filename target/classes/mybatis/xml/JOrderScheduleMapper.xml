@@ -29,13 +29,14 @@
             resultType="com.summ.model.response.OrderScheduleRes">
         SELECT jos.*,d1.INFO AS scheduleStatusInfo,d2.INFO AS
         payStatusInfo,jsn.nannyId,jni.nannyName,jni.nannyPhone,d3.INFO AS nannyCurrentPayment,jgc.price AS
-        scheduleCurrentPrice
+        scheduleCurrentPrice,d4.INFO AS scheduleTypeInfo
         FROM j_order_schedule jos
         LEFT JOIN j_dict_info d1 ON d1.ID = jos.scheduleStatus
         LEFT JOIN j_dict_info d2 ON d2.ID = jos.payStatus
         LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = jos.scheduleId
         LEFT JOIN j_nanny_info jni ON jni.nannyId = jsn.nannyId
         LEFT JOIN j_dict_info d3 ON d3.ID = jni.nannyLevel
+        LEFT JOIN j_dict_info d4 ON d4.ID = jos.scheduleType
         LEFT JOIN j_order_contract joc ON joc.orderId = jos.orderId
         LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joc.goodsId
         WHERE jos.orderId = #{orderScheduleReq.orderId}
@@ -55,11 +56,12 @@
     <select id="getScheduleListByList" parameterType="java.util.List"
             resultType="com.summ.model.response.OrderScheduleRes">
         SELECT jos.*,d1.INFO AS scheduleStatusInfo,d2.INFO AS
-        payStatusInfo,jsn.nannyId,jni.nannyName,jni.nannyPhone,d3.INFO AS nannyCurrentPayment,jgc.price AS
+        payStatusInfo,d4.INFO AS scheduleTypeInfo,jsn.nannyId,jni.nannyName,jni.nannyPhone,d3.INFO AS nannyCurrentPayment,jgc.price AS
         scheduleCurrentPrice
         FROM j_order_schedule jos
         LEFT JOIN j_dict_info d1 ON d1.ID = jos.scheduleStatus
         LEFT JOIN j_dict_info d2 ON d2.ID = jos.payStatus
+        LEFT JOIN j_dict_info d4 ON d4.ID = jos.scheduleType
         LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = jos.scheduleId
         LEFT JOIN j_nanny_info jni ON jni.nannyId = jsn.nannyId
         LEFT JOIN j_dict_info d3 ON d3.ID = jni.nannyLevel
@@ -94,12 +96,13 @@
 
     <select id="getTempScheduleList" parameterType="java.lang.Integer"
             resultType="com.summ.model.response.OrderScheduleRes">
-		SELECT j.*,jsn.nannyId,jsn.supplierId,d1.INFO AS scheduleStatusInfo,d2.INFO AS payStatusInfo
+		SELECT j.*,jsn.nannyId,jsn.supplierId,d1.INFO AS scheduleStatusInfo,d2.INFO AS payStatusInfo,d4.INFO AS scheduleTypeInfo
 		FROM j_order_schedule j
 		LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId=j.scheduleId
 		LEFT JOIN j_order_temp jot ON jot.orderId=j.orderId
 		LEFT JOIN j_dict_info d1 ON d1.ID = j.scheduleStatus
 		LEFT JOIN j_dict_info d2 ON d2.ID = jot.payStatus
+		LEFT JOIN j_dict_info d4 ON d4.ID = jos.scheduleType
 		WHERE j.orderId=#{0}
 		AND j.orderType=164
 	</select>
@@ -119,11 +122,12 @@
     <select id="getContractScheduleList" parameterType="com.summ.model.request.ScheduleReq"
             resultType="com.summ.model.response.ScheduleRes">
         SELECT jos.*,d1.INFO AS scheduleStatusInfo,d2.INFO AS
-        payStatusInfo,jsn.nannyId,jni.nannyName,jni.nannyPhone,d3.INFO AS nannyCurrentPayment,jgc.price AS
-        scheduleCurrentPrice,jc.customerId,jc.customerName,jc.customerPhone,jch.houseAddress,joc.goodsId,jsh.shopId,jsh.shopName
+        payStatusInfo,d4.INFO AS scheduleTypeInfo,jsn.nannyId,jni.nannyName,jni.nannyPhone,d3.INFO AS nannyCurrentPayment,jgc.price AS
+        scheduleCurrentPrice,jc.customerId,jc.customerName,jc.customerPhone,jch.houseAddress,joc.goodsId,jsh.shopId,jsh.shopName,ja1.adminName AS clockName,ja2.adminName AS cancelName
         FROM j_order_schedule jos
         LEFT JOIN j_dict_info d1 ON d1.ID = jos.scheduleStatus
         LEFT JOIN j_dict_info d2 ON d2.ID = jos.payStatus
+        LEFT JOIN j_dict_info d4 ON d4.ID = jos.scheduleType
         LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId = jos.scheduleId
         LEFT JOIN j_nanny_info jni ON jni.nannyId = jsn.nannyId
         LEFT JOIN j_dict_info d3 ON d3.ID = jni.nannyLevel
@@ -132,6 +136,8 @@
         LEFT JOIN j_customer jc ON jc.customerId = joc.customerId
         LEFT JOIN j_customer_house jch ON jch.houseId = joc.houseId
         LEFT JOIN j_shop jsh ON jsh.shopId = joc.shopId
+        left JOIN j_admin ja1 ON ja1.adminId = jos.clockId
+        left JOIN j_admin ja2 ON ja2.adminId = jos.cancelId
         <if test="0 == scheduleReq.shopId">
             LEFT JOIN j_admin_shop jas ON jas.shopId = joc.shopId
         </if>
@@ -216,7 +222,7 @@
     <select id="getAllTempScheduleList" parameterType="com.summ.model.request.ScheduleReq"
             resultType="com.summ.model.response.ScheduleRes">
         SELECT jos.*,jsn.nannyId,jsn.supplierId,d1.INFO AS scheduleStatusInfo,d2.INFO AS
-        payStatusInfo,jot.goodsId,jot.serviceAmount,jc.customerId,jc.customerName,jc.customerPhone,jch.houseAddress,jsh.shopId,jsh.shopName
+        payStatusInfo,d4.INFO AS scheduleTypeInfo,jot.goodsId,jot.serviceAmount,jc.customerId,jc.customerName,jc.customerPhone,jch.houseAddress,jsh.shopId,jsh.shopName
         <if test="1 == scheduleReq.supplierId">
             ,jni.nannyName,jni.nannyPhone
         </if>
@@ -230,6 +236,7 @@
         LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId=jos.scheduleId
         LEFT JOIN j_dict_info d1 ON d1.ID = jos.scheduleStatus
         LEFT JOIN j_dict_info d2 ON d2.ID = jos.payStatus
+        LEFT JOIN j_dict_info d4 ON d4.ID = jos.scheduleType
         LEFT JOIN j_order_temp jot ON jot.orderId = jos.orderId
         LEFT JOIN j_goods_contract jgc ON jgc.goodsId = jot.goodsId
         LEFT JOIN j_customer jc ON jc.customerId = jot.customerId
@@ -373,7 +380,7 @@
         j_order_schedule j
         LEFT JOIN j_order_contract joc ON joc.orderId = j.orderId
         LEFT JOIN j_customer jc ON jc.customerId = joc.customerId
-        LEFT JOIN j_shop js ON js.shopId = jc.shopId
+        LEFT JOIN j_shop js ON js.shopId = joc.shopId
         LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joc.goodsId
         <if test="0 == scheduleReq.shopId">
             LEFT JOIN j_admin_shop jas ON jas.shopId = joc.shopId
@@ -406,7 +413,7 @@
         j_order_schedule j
         LEFT JOIN j_order_contract joc ON joc.orderId = j.orderId
         LEFT JOIN j_customer jc ON jc.customerId = joc.customerId
-        LEFT JOIN j_shop js ON js.shopId = jc.shopId
+        LEFT JOIN j_shop js ON js.shopId = joc.shopId
         LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joc.goodsId
         <if test="0 == scheduleReq.shopId">
             LEFT JOIN j_admin_shop jas ON jas.shopId = joc.shopId
@@ -449,7 +456,7 @@
         j_order_schedule j
         LEFT JOIN j_order_contract joc ON joc.orderId = j.orderId
         LEFT JOIN j_customer jc ON jc.customerId = joc.customerId
-        LEFT JOIN j_shop js ON js.shopId = jc.shopId
+        LEFT JOIN j_shop js ON js.shopId = joc.shopId
         LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joc.goodsId
         <if test="0 == scheduleReq.shopId">
             LEFT JOIN j_admin_shop jas ON jas.shopId = joc.shopId
@@ -472,6 +479,14 @@
         </if>
         ORDER BY j.scheduleDate
         LIMIT #{scheduleReq.page},#{scheduleReq.size}
+    </select>
+
+    <select id="getOrderScheduleUnCheckOut" resultType="com.summ.model.JOrderSchedule">
+        SELECT j.*
+        FROM j_order_schedule j
+        WHERE j.orderId=#{0}
+        AND j.orderType=#{1}
+        AND j.payStatus=157
     </select>
 
 </mapper>
