@@ -2,14 +2,12 @@ package com.summ.controller.order;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.summ.controller.basic.AutoMapperController;
+import com.summ.mapper.JOrderContractMapper;
 import com.summ.model.*;
 import com.summ.model.request.OrderContractReq;
 import com.summ.model.response.ModelRes;
 import com.summ.model.response.OrderContractRes;
-import com.summ.utils.JsonUtil;
-import com.summ.utils.NannyWorkTimeUtil;
-import com.summ.utils.ResponseUtil;
-import com.summ.utils.SendSMSUtil;
+import com.summ.utils.*;
 import com.summ.utils.mongodb.MongoDBUtil;
 import com.summ.utils.mongodb.model.MongoConfig;
 import com.sun.org.apache.regexp.internal.RE;
@@ -181,18 +179,23 @@ public class OrderContractController extends AutoMapperController {
     /**
      * 管家查看订单，订单状态从待处理改至预约中
      *
-     * @param jOrderContract
+     * @param jOrderContract1
      * @return
      */
     @ResponseBody
     @RequestMapping("/dispose")
-    public Object dispose(@RequestBody JOrderContract jOrderContract, ServletRequest request) {
+    public Object dispose(@RequestBody JOrderContract jOrderContract1, ServletRequest request) {
         try {
-            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
-            jOrderContract.setOrderStatus(138);
-            jOrderContract.setModifyId(jAdmin.getAdminId());
-            jOrderContract.setModifyTime(new Date());
-            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", jOrderContractMapper.updateSelectiveById(jOrderContract));
+            JOrderContract jOrderContract = jOrderContractMapper.selectById(Long.valueOf(jOrderContract1.getOrderId()));
+            if (226==jOrderContract.getOrderStatus()){
+                JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+                jOrderContract.setOrderStatus(138);
+                jOrderContract.setModifyId(jAdmin.getAdminId());
+                jOrderContract.setModifyTime(new Date());
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", jOrderContractMapper.updateSelectiveById(jOrderContract));
+            }else {
+                return new ModelRes(ModelRes.Status.SUCCESS, "订单已处理  !",jOrderContract);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -219,7 +222,7 @@ public class OrderContractController extends AutoMapperController {
                     jOrderSchedule.setCancelTime(new Date());
                     jOrderSchedule.setCancelId(jAdmin.getAdminId());
                     jOrderSchedule.setScheduleStatus(155);
-                    jOrderSchedule.setRemark(jOrderSchedule.getRemark() + "-关闭原因：" + jOrderContract.getRemark());
+                    jOrderSchedule.setRemark(jOrderSchedule.getRemark() + " 关闭原因：" + jOrderContract.getRemark());
                 }
                 jOrderScheduleMapper.updateBatchById(jOrderScheduleList);
             }
@@ -227,7 +230,7 @@ public class OrderContractController extends AutoMapperController {
             jOrderContract1.setOrderCloseStatus(213);
             jOrderContract1.setModifyId(jAdmin.getAdminId());
             jOrderContract1.setModifyTime(new Date());
-            jOrderContract1.setRemark(jOrderContract1.getRemark() + "-" + jOrderContract.getRemark());
+            jOrderContract1.setRemark(StringUtil.isBlank(jOrderContract1.getRemark())?"关闭原因：" + jOrderContract.getRemark():jOrderContract1.getRemark()+",关闭原因：" + jOrderContract.getRemark());
             jOrderContractMapper.updateSelectiveById(jOrderContract1);
             return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", null);
         } catch (Exception e) {

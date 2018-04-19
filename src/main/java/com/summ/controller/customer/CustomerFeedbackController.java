@@ -123,11 +123,11 @@ public class CustomerFeedbackController extends AutoMapperController{
 
     @ResponseBody
     @RequestMapping(value = "/follow/insert")
-    public Object detail(@RequestBody JCustomerFeedbackFollow jCustomerFeedbackFollow,ServletRequest request) {
+    public Object detail(@RequestBody JCustomerMessageFollow jCustomerMessageFollow,ServletRequest request) {
         try {
             JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
-            jCustomerFeedbackFollow.setAdminId(jAdmin.getAdminId());
-            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",jCustomerFeedbackFollowMapper.insertSelective(jCustomerFeedbackFollow));
+            jCustomerMessageFollow.setAdminId(jAdmin.getAdminId());
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",jCustomerMessageFollowMapper.insertSelective(jCustomerMessageFollow));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

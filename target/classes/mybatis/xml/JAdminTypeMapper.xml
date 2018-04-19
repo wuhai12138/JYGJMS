@@ -7,11 +7,12 @@
 		id, adminId, adminTypeId
 	</sql>
 
-    <select id="getadminTypeById" resultType="com.summ.model.response.AdminTypeRes">
+    <select id="getAdminTypeById" resultType="com.summ.model.response.AdminTypeRes">
 		SELECT j.*,jdi.INFO AS adminTypeIdInfo
 		FROM j_admin_type j
 		LEFT JOIN j_dict_info jdi ON jdi.ID = j.adminTypeId
 		WHERE j.adminId = #{0}
+		AND jdi.isDel=16
 	</select>
 
 </mapper>

@@ -23,6 +23,11 @@ public class OrderTempRes {
 
     /**  */
     private Integer goodsId;
+    /**  */
+    private BigDecimal price;
+    private String Settlement;
+    /**单位名称 */
+    private String unitName;
 
 
     /** 订单日期 */
@@ -59,6 +64,9 @@ public class OrderTempRes {
     /** 支付状态 */
     private Integer payStatus;
 
+    private Date payTime;
+
+
     /**  */
     private Integer createId;
 
@@ -81,12 +89,53 @@ public class OrderTempRes {
     private String customerName;
     private String shopName;
     private String customerPhone;
+    private BigDecimal customerBalance;
     private String houseAddress;
     private String customerRemark;
     private String orderStatusInfo;
     private String orderCloseStatusInfo;
     private String payStatusInfo;
     private String service;
+
+    public Date getPayTime() {
+        return payTime;
+    }
+
+    public void setPayTime(Date payTime) {
+        this.payTime = payTime;
+    }
+
+    public BigDecimal getCustomerBalance() {
+        return customerBalance;
+    }
+
+    public void setCustomerBalance(BigDecimal customerBalance) {
+        this.customerBalance = customerBalance;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getSettlement() {
+        return Settlement;
+    }
+
+    public void setSettlement(String settlement) {
+        Settlement = settlement;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
 
     public Integer getOrderCloseStatus() {
         return orderCloseStatus;

@@ -25,7 +25,7 @@ public class CustomerCouponListRes {
     /**  */
     private Integer customerId;
 
-    private Integer couponStatus = 32;
+    private Integer couponStatus;
     private String couponStatusInfo;
 
 
@@ -33,10 +33,11 @@ public class CustomerCouponListRes {
     private Integer missionId;
 
     /**  */
-    private Date createTime = new Date();
+    private Date createTime;
+    private Date useTime;
 
     /**  */
-    private Integer isDel = 16;
+    private Integer isDel;
     private String isDelInfo;
 
     /**  */
@@ -55,6 +56,14 @@ public class CustomerCouponListRes {
     private String couponOrigin;
     private String couponOriginInfo;
 
+
+    public Date getUseTime() {
+        return useTime;
+    }
+
+    public void setUseTime(Date useTime) {
+        this.useTime = useTime;
+    }
 
     public Integer getCouponListId() {
         return couponListId;

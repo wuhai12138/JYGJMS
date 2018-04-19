@@ -43,7 +43,7 @@
 	</select>
 
 	<select id="getContractList" parameterType="com.summ.model.request.OrderContractReq" resultType="com.summ.model.response.OrderContractRes">
-		SELECT joc.*,jc.customerName,jch.houseAddress,jdi.INFO AS orderStatusInfo,jc.customerPhone,jgc.service,js.shopName,jcs.serviceDetail AS needString,jcs.serviceId,jdi2.INFO AS orderCloseStatusInfo
+		SELECT joc.*,jc.customerName,jch.houseAddress,jdi.INFO AS orderStatusInfo,jc.customerPhone,jgc.service,js.shopName,jcs.serviceDetail AS needString,jcs.serviceId,jdi2.INFO AS orderCloseStatusInfo,jc.customerBalance
 		FROM j_order_contract joc
 		LEFT JOIN j_shop js ON js.shopId = joc.shopId
 		LEFT JOIN j_customer jc ON jc.customerId = joc.customerId
@@ -51,7 +51,7 @@
 		LEFT JOIN j_dict_info jdi ON jdi.ID = joc.orderStatus
 		LEFT JOIN j_dict_info jdi2 ON jdi2.ID = joc.orderCloseStatus
 		LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joc.goodsId
-		LEFT JOIN j_customer_service jcs ON jcs.houseId = jch.houseId
+		LEFT JOIN j_customer_service jcs ON jcs.serviceId = joc.serviceId
 		<if test="0 == orderContractReq.shopId">
 			LEFT JOIN j_admin_shop jas ON jas.shopId = joc.shopId
 		</if>

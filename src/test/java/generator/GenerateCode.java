@@ -54,7 +54,7 @@ public class GenerateCode {
 		 * </p>
 		 */
         cg.setIdType(IdType.AUTO);
-        cg.setTableNames(new String[]{"j_order_years"});
+        cg.setTableNames(new String[]{"j_withdrawal"});
 //		cg.setTableNames(new String[]{"j_order_refund","j_customer_house_property"});
 
         /* 生成文件保存位置 */

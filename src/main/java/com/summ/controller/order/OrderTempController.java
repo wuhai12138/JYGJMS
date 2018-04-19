@@ -11,13 +11,11 @@ import com.summ.mapper.JOrderTempMapper;
 import com.summ.model.*;
 import com.summ.model.others.GetWXResult;
 import com.summ.model.others.PayCallBackObj;
+import com.summ.model.request.CustomerCouponReq;
 import com.summ.model.request.OrderContractReq;
 import com.summ.model.request.OrderTempChargeReq;
 import com.summ.model.request.OrderTempReq;
-import com.summ.model.response.ALIPayResult;
-import com.summ.model.response.ModelRes;
-import com.summ.model.response.OrderTempRes;
-import com.summ.model.response.PayDataRes;
+import com.summ.model.response.*;
 import com.summ.utils.*;
 import com.sun.tools.internal.jxc.ap.Const;
 import org.apache.commons.collections.map.HashedMap;
@@ -89,9 +87,11 @@ public class OrderTempController extends AutoMapperController{
         try {
             /**订单列表*/
             List<JOrderTemp> jOrderTempList = jOrderTempMapper.selectBatchIds(orderTempChargeReq.getOrderList());
+            List<String> goodsList = new ArrayList<String>();
 
             BigDecimal cost = new BigDecimal(0);
             for (JOrderTemp jOrderTemp : jOrderTempList){
+                goodsList.add(jOrderTemp.getGoodsId().toString());
                 if (!jOrderTemp.getCustomerId().equals(orderTempChargeReq.getCustomerId())){
                     return new ModelRes(ModelRes.Status.FAILED, "有多个客户的订单，请重选 !");
                 }else if (jOrderTemp.getPayStatus()==158){
@@ -102,9 +102,55 @@ public class OrderTempController extends AutoMapperController{
                 }
             }
 
+
+
+            List<CustomerCouponListRes> customerCouponListResListOld = jCouponListMapper.getListById(new CustomerCouponReq(orderTempChargeReq.getCustomerId(),32));
+            List<CustomerCouponListRes> customerCouponListResList = new ArrayList<CustomerCouponListRes>();
+            for (CustomerCouponListRes customerCouponListRes: customerCouponListResListOld){
+                if (customerCouponListRes.getValidTime().after(new Date())){
+                    customerCouponListResList.add(customerCouponListRes);
+                }
+            }
+            //不可使用优惠券列表
+            List<CustomerCouponListRes> unUseCouponList = new ArrayList<CustomerCouponListRes>();
+            //可使用优惠券列表
+            List<CustomerCouponListRes> usedCouponList = new ArrayList<CustomerCouponListRes>();
+
+            /**判断所有订单是不是同一产品*/
+            if (StringUtil.isRepeat(goodsList)){
+
+            }else {
+                unUseCouponList.addAll(customerCouponListResList);
+            }
+
+            for (CustomerCouponListRes customerCouponListRes : customerCouponListResList){
+                /**存放某个优惠券所适用的产品列表*/
+                List<String> couponGoods = new ArrayList<String>();
+                //优惠券产品列表
+                Map map = new HashMap();
+                map.put("couponId",customerCouponListRes.getCouponId());
+                List<JCouponGoods> couponGoodsList = jCouponGoodsMapper.selectByMap(map);
+                if (couponGoodsList.size()>0){
+                    for(JCouponGoods jCouponGoods : couponGoodsList){
+                        couponGoods.add(jCouponGoods.getGoodsId().toString());
+                    }
+                    /**加入此次支付的产品*/
+                    couponGoods.add(goodsList.get(0));
+                    /**判断重复*/
+                    if (StringUtil.isRepeat(couponGoods)){
+                        usedCouponList.add(customerCouponListRes);
+                    }else {
+                        unUseCouponList.add(customerCouponListRes);
+                    }
+                }else {
+                    unUseCouponList.add(customerCouponListRes);
+                }
+
+            }
+
             JCustomer jCustomer = jCustomerMapper.selectById(Long.valueOf(orderTempChargeReq.getCustomerId()));
             PayDataRes payDataRes = new PayDataRes(jCustomer.getCustomerId(),jCustomer.getCustomerName(),jCustomer.getCustomerPhone(),
-                    jCustomer.getCustomerBalance(),cost);
+                    jCustomer.getCustomerBalance(),cost,unUseCouponList,usedCouponList);
 
             return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", payDataRes);
         } catch (Exception e) {
@@ -169,6 +215,7 @@ public class OrderTempController extends AutoMapperController{
                     jOrderTemp.setDiscount(discount);
                     jOrderTemp.setPayMoney(jOrderTemp.getTotalPrice().subtract(jOrderTemp.getDiscount()));
                     jOrderTemp.setPayStatus(158);
+                    jOrderTemp.setPayTime(new Date());
                     jOrderTemp.setCouponListId(orderTempChargeReq.getCouponListId());
 
                     String serviceTime = jOrderTemp.getStartTimeValue()+"-"+jOrderTemp.getEndTimeValue();
@@ -287,6 +334,7 @@ public class OrderTempController extends AutoMapperController{
                 JCouponList jCouponList = new JCouponList();
                 jCouponList.setCouponListId(orderTempChargeReq.getCouponListId());
                 jCouponList.setCouponStatus(34);
+                jCouponList.setUseTime(new Date());
                 jCouponListMapper.updateSelectiveById(jCouponList);
             }
 
@@ -325,6 +373,7 @@ public class OrderTempController extends AutoMapperController{
                 JOrderTemp jOrderTemp = new JOrderTemp();
                 jOrderTemp.setOrderId(jCustomerStatment.getOrderId());
                 jOrderTemp.setPayStatus(158);
+                jOrderTemp.setPayTime(new Date());
 
                 jCustomerStatmentMapper.updateSelectiveById(jCustomerStatment);
                 jOrderTempMapper.updateSelectiveById(jOrderTemp);
@@ -368,6 +417,7 @@ public class OrderTempController extends AutoMapperController{
                 JOrderTemp jOrderTemp = new JOrderTemp();
                 jOrderTemp.setOrderId(jCustomerStatment.getOrderId());
                 jOrderTemp.setPayStatus(158);
+                jOrderTemp.setPayTime(new Date());
 
                 jCustomerStatmentMapper.updateSelectiveById(jCustomerStatment);
                 jOrderTempMapper.updateSelectiveById(jOrderTemp);
@@ -457,7 +507,7 @@ public class OrderTempController extends AutoMapperController{
                         jOrderSchedule.setCancelTime(new Date());
                         jOrderSchedule.setScheduleStatus(155);
                         jOrderSchedule.setCancelId(jAdmin.getAdminId());
-                        jOrderSchedule.setRemark(jOrderSchedule.getRemark()+"-关闭原因："+jOrderTemp.getRemark());
+                        jOrderSchedule.setRemark(StringUtil.isBlank(jOrderSchedule.getRemark())?" 关闭原因："+jOrderTemp.getRemark():jOrderSchedule.getRemark()+",关闭原因："+jOrderTemp.getRemark());
                         jOrderScheduleMapper.updateBatchById(jOrderScheduleList);
                     }
                 }
@@ -466,7 +516,7 @@ public class OrderTempController extends AutoMapperController{
             jOrderTemp1.setOrderCloseStatus(213);
             jOrderTemp1.setModifyId(jAdmin.getAdminId());
             jOrderTemp1.setModifyTime(new Date());
-            jOrderTemp1.setRemark(jOrderTemp1.getRemark()+"-"+jOrderTemp.getRemark());
+            jOrderTemp1.setRemark(StringUtil.isBlank(jOrderTemp1.getRemark())?"关闭原因："+jOrderTemp.getRemark():jOrderTemp1.getRemark()+",关闭原因："+jOrderTemp.getRemark());
             jOrderTempMapper.updateSelectiveById(jOrderTemp1);
             return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {

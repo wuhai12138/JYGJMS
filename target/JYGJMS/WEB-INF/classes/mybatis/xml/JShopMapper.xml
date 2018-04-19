@@ -13,12 +13,16 @@
 		ORDER BY staring DESC
 	</select>
 
-	<select id="getShopList" parameterType="com.summ.model.request.ShopReq" resultType="com.summ.model.JShop">
-		SELECT js.*
+	<select id="getShopList" parameterType="com.summ.model.request.ShopReq" resultType="com.summ.model.response.ShopRes">
+		SELECT js.*,d2.provinceName,d3.cityName,d4.areaName,d5.streetName
 		FROM j_shop js
 		<if test="0==shopReq.shopId">
 			LEFT JOIN j_admin_shop jas ON jas.shopId = js.shopId
 		</if>
+		LEFT JOIN j_province d2 ON d2.provinceId = js.provinceId
+		LEFT JOIN j_city d3 ON d3.cityId = js.cityId
+		LEFT JOIN j_area d4 ON d4.areaId = js.areaId
+		LEFT JOIN j_street d5 ON d5.streetId = js.streetId
 		WHERE js.isDel=16
 		AND js.shopName LIKE concat(concat('%',#{shopReq.shopName}),'%')
 		AND js.shopAddress LIKE concat(concat('%',#{shopReq.shopAddress}),'%')

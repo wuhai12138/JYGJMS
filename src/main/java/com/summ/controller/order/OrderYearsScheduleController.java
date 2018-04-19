@@ -142,14 +142,18 @@ public class OrderYearsScheduleController extends AutoMapperController {
             }
             serviceWeeksTimeReq.setWeekList(weekListTemp);
 
-            System.out.println(">>>>>>>>sql>>>>>>>>>>>>>" + JsonUtil.Obj2Map(serviceWeeksTimeReq).toString());
+            /**换算开始结束时间*/
+            Map map1 = JsonUtil.Obj2Map(serviceWeeksTimeReq);
+            map1.put("startDate",new Date((Long) map1.get("startDate")));
+            map1.put("endDate",new Date((Long) map1.get("endDate")));
+            System.out.println(">>>>>>>>sql>>>>>>>>>>>>>" + map1.toString());
             //判断该服务师的工时是否符合订单时间要求
-            List<JNannyInfo> signNannyWorkTime = jNannyWorkTimeMapper.signNannyWorkTime(JsonUtil.Obj2Map(serviceWeeksTimeReq));
+            List<JNannyInfo> signNannyWorkTime = jNannyWorkTimeMapper.signNannyWorkTime(map1);
             if (signNannyWorkTime.size() < 1) {
                 return new ModelRes(ModelRes.Status.FAILED, "服务师工时不匹配 ! !", null);
             }
             //判断该服务师的日程是否符合订单时间要求
-            List<JOrderSchedule> signNannySchedule = jOrderScheduleMapper.signNannySchedule(JsonUtil.Obj2Map(serviceWeeksTimeReq));
+            List<JOrderSchedule> signNannySchedule = jOrderScheduleMapper.signNannySchedule(map1);
             if (signNannySchedule.size() > 0) {
                 return new ModelRes(ModelRes.Status.FAILED, "服务师日程占用 ! !", ResponseUtil.List2Map(signNannySchedule));
             }
@@ -405,6 +409,7 @@ public class OrderYearsScheduleController extends AutoMapperController {
             for (int i = 0; i < list.size(); i++) {
                 JOrderSchedule jOrderSchedule = new JOrderSchedule();
                 jOrderSchedule.setScheduleStatus(153);
+                jOrderSchedule.setPayStatus(158);
                 jOrderSchedule.setScheduleId(list.get(i));
                 jOrderSchedule.setClockTime(new Date());
                 jOrderSchedule.setClockId(jAdmin.getAdminId());

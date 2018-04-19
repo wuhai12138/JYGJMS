@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.sql.rowset.JdbcRowSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,7 +89,7 @@ public class AdminTypeController extends AutoMapperController{
     public Object adminTypeFind(@RequestBody Map map) {
         try {
             Integer adminId= (Integer) map.get("adminId");
-            return new ModelRes(ModelRes.Status.SUCCESS, "", ResponseUtil.List2Map(jAdminTypeMapper.getadminTypeById(adminId)));
+            return new ModelRes(ModelRes.Status.SUCCESS, "", ResponseUtil.List2Map(jAdminTypeMapper.getAdminTypeById(adminId)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -101,8 +100,10 @@ public class AdminTypeController extends AutoMapperController{
     @RequestMapping("/delete")
     public Object delete(@RequestBody JDictInfo jDictInfo) {
         try {
+            /**逻辑删除字典表*/
             jDictInfo.setIsDel(17);
             jDictInfoMapper.updateSelectiveById(jDictInfo);
+            /**删除管理员角色表中关于此管理员的记录*/
             Map map = new HashMap();
             map.put("adminTypeId",jDictInfo.getId());
             jAdminTypeMapper.deleteByMap(map);

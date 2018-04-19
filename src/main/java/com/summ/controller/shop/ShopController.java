@@ -19,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.Collator;
+import java.util.*;
 
 /**
  * 门店增删改查
@@ -36,6 +34,12 @@ public class ShopController extends AutoMapperController{
     @RequestMapping("/insert")
     public Object insertShop(@RequestBody JShop jShop,ServletRequest request) {
         try {
+            Map<String, Double> baiduMap = BaiduAPIUtil.getLngAndLat("上海市" + jShop.getShopAddress());
+            if (baiduMap == null) {
+                return new ModelRes(ModelRes.Status.FAILED, "获取不到该地址，请重新输入 !");
+            }
+            jShop.setLatitude(baiduMap.get("lat"));
+            jShop.setLongitude(baiduMap.get("lng"));
             jShopMapper.insertSelective(jShop);
             /**给所有超级管理员添加这个门店权限*/
             Map map = new HashMap();
@@ -106,13 +110,19 @@ public class ShopController extends AutoMapperController{
             List<JShop> shopListRes = new ArrayList<JShop>();
             for (JShop jShop : shopList) {
                 double distance = BaiduAPIUtil.getDistance(baiduMap.get("lng"), baiduMap.get("lat"), jShop.getLongitude(), jShop.getLatitude());
-                jShop.setDistance((int) distance);
+                jShop.setDistance(distance);
                 shopListRes.add(jShop);
             }
-            Map responseMap = new HashedMap();
-            responseMap.put("list", shopListRes);
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", responseMap);
+            Collections.sort(shopListRes, new Comparator<JShop>() {
+                @Override
+                public int compare(JShop o1, JShop o2) {
+                    Collator collator = Collator.getInstance();
+                    return collator.compare(String.valueOf(o2.getDistance()), String.valueOf(o1.getDistance()));
+                }
+            });
+
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", ResponseUtil.List2Map(shopListRes));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

@@ -54,7 +54,7 @@ public class NannyOtherController extends AutoMapperController {
                     nannyInfoRes1.setNannyCharacterRes(nannyCharacterRes);
                 }
 
-                return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", nannyInfoRes1);
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", nannyInfoRes1);
             }
             //宗教信息
             List<NannyReligionRes> nannyReligionRes = jNannyInfoMapper.getNannyReligion(nannyId);
@@ -80,7 +80,7 @@ public class NannyOtherController extends AutoMapperController {
                 nannyInfoRes.setNannyCharacterRes(nannyCharacterRes);
             }
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", nannyInfoRes);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", nannyInfoRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -91,7 +91,7 @@ public class NannyOtherController extends AutoMapperController {
     @RequestMapping("/update")
     public Object updateJobData(@RequestBody JNannyInfo jNannyInfo) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -120,12 +120,12 @@ public class NannyOtherController extends AutoMapperController {
                 JNannyReligion jNannyReligion = new JNannyReligion();
                 jNannyReligion.setNannyId((Integer) map.get("nannyId"));
                 jNannyReligion.setReligionId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyReligionMapper.insertSelective(jNannyReligion));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyReligionMapper.insertSelective(jNannyReligion));
             } else {
                 JNannyReligion jNannyReligion = new JNannyReligion();
                 jNannyReligion.setNannyId((Integer) map.get("nannyId"));
                 jNannyReligion.setReligionId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyReligionMapper.insert(jNannyReligion));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyReligionMapper.insert(jNannyReligion));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,7 +139,7 @@ public class NannyOtherController extends AutoMapperController {
         try {
             Map map1 = new HashMap();
             map1.put("nannyReligId", map.get("id"));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyReligionMapper.deleteByMap(map1));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyReligionMapper.deleteByMap(map1));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -150,7 +150,7 @@ public class NannyOtherController extends AutoMapperController {
     @RequestMapping("/religion/find/selected")
     public Object findReligion(@RequestBody JNannyReligion jNannyReligion) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyReligionMapper.getSelectedReligion(jNannyReligion.getNannyId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyReligionMapper.getSelectedReligion(jNannyReligion.getNannyId()));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -164,7 +164,7 @@ public class NannyOtherController extends AutoMapperController {
             Integer nannyId = (Integer) map.get("nannyId");
             String name = (String) map.get("name");
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", JsonUtil.list2map(jNannyReligionMapper.getUnselectedReligion(nannyId, name)));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", JsonUtil.list2map(jNannyReligionMapper.getUnselectedReligion(nannyId, name)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -193,12 +193,12 @@ public class NannyOtherController extends AutoMapperController {
                 JNannyLanguage jNannyLanguage = new JNannyLanguage();
                 jNannyLanguage.setNannyId((Integer) map.get("nannyId"));
                 jNannyLanguage.setLanguageId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.insertSelective(jNannyLanguage));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyLanguageMapper.insertSelective(jNannyLanguage));
             } else {
                 JNannyLanguage jNannyLanguage = new JNannyLanguage();
                 jNannyLanguage.setNannyId((Integer) map.get("nannyId"));
                 jNannyLanguage.setLanguageId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.insertSelective(jNannyLanguage));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyLanguageMapper.insertSelective(jNannyLanguage));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -212,7 +212,7 @@ public class NannyOtherController extends AutoMapperController {
         try {
             Map map1 = new HashMap();
             map1.put("nannyLangId", map.get("id"));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.deleteByMap(map1));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyLanguageMapper.deleteByMap(map1));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -223,7 +223,7 @@ public class NannyOtherController extends AutoMapperController {
     @RequestMapping("/language/find/selected")
     public Object findLanguage(@RequestBody JNannyLanguage jNannyLanguage) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyLanguageMapper.getSelectedLanguage(jNannyLanguage.getNannyId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyLanguageMapper.getSelectedLanguage(jNannyLanguage.getNannyId()));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -236,7 +236,7 @@ public class NannyOtherController extends AutoMapperController {
         try {
             Integer nannyId = (Integer) map.get("nannyId");
             String name = (String) map.get("name");
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", JsonUtil.list2map(jNannyLanguageMapper.getUnselectedLanguage(nannyId, name)));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", JsonUtil.list2map(jNannyLanguageMapper.getUnselectedLanguage(nannyId, name)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -268,12 +268,12 @@ public class NannyOtherController extends AutoMapperController {
                 JNannySkill jNannySkill = new JNannySkill();
                 jNannySkill.setNannyId((Integer) map.get("nannyId"));
                 jNannySkill.setSkillId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannySkillMapper.insert(jNannySkill));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannySkillMapper.insert(jNannySkill));
             } else {
                 JNannySkill jNannySkill = new JNannySkill();
                 jNannySkill.setNannyId((Integer) map.get("nannyId"));
                 jNannySkill.setSkillId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannySkillMapper.insert(jNannySkill));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannySkillMapper.insert(jNannySkill));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -287,7 +287,7 @@ public class NannyOtherController extends AutoMapperController {
         try {
             Map map1 = new HashMap();
             map1.put("nannySkillId", map.get("id"));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannySkillMapper.deleteByMap(map1));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannySkillMapper.deleteByMap(map1));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -298,7 +298,7 @@ public class NannyOtherController extends AutoMapperController {
     @RequestMapping("/skill/find/selected")
     public Object findSkill(@RequestBody JNannySkill jNannySkill) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannySkillMapper.getSelectedSkill(jNannySkill.getNannyId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannySkillMapper.getSelectedSkill(jNannySkill.getNannyId()));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -311,7 +311,7 @@ public class NannyOtherController extends AutoMapperController {
         try {
             Integer nannyId = (Integer) map.get("nannyId");
             String name = (String) map.get("name");
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", JsonUtil.list2map(jNannySkillMapper.getUnselectedSkill(nannyId, name)));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", JsonUtil.list2map(jNannySkillMapper.getUnselectedSkill(nannyId, name)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -340,12 +340,12 @@ public class NannyOtherController extends AutoMapperController {
                 JNannyCharacter jNannyCharacter = new JNannyCharacter();
                 jNannyCharacter.setNannyId((Integer) map.get("nannyId"));
                 jNannyCharacter.setCharacterId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyCharacterMapper.insert(jNannyCharacter));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyCharacterMapper.insert(jNannyCharacter));
             } else {
                 JNannyCharacter jNannyCharacter = new JNannyCharacter();
                 jNannyCharacter.setNannyId((Integer) map.get("nannyId"));
                 jNannyCharacter.setCharacterId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyCharacterMapper.insert(jNannyCharacter));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyCharacterMapper.insert(jNannyCharacter));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -359,7 +359,7 @@ public class NannyOtherController extends AutoMapperController {
         try {
             Map map1 = new HashMap();
             map1.put("nannyChaId", map.get("id"));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyCharacterMapper.deleteByMap(map1));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyCharacterMapper.deleteByMap(map1));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -370,7 +370,7 @@ public class NannyOtherController extends AutoMapperController {
     @RequestMapping("/character/find/selected")
     public Object findCharacter(@RequestBody JNannyCharacter jNannyCharacter) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyCharacterMapper.getSelectedCharacter(jNannyCharacter.getNannyId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyCharacterMapper.getSelectedCharacter(jNannyCharacter.getNannyId()));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -383,7 +383,7 @@ public class NannyOtherController extends AutoMapperController {
         try {
             Integer nannyId = (Integer) map.get("nannyId");
             String name = (String) map.get("name");
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", JsonUtil.list2map(jNannyCharacterMapper.getUnselectedCharacter(nannyId, name)));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", JsonUtil.list2map(jNannyCharacterMapper.getUnselectedCharacter(nannyId, name)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

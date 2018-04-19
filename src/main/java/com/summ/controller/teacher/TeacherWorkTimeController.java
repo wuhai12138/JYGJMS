@@ -130,14 +130,20 @@ public class TeacherWorkTimeController extends AutoMapperController {
                 }
                 serviceWeeksTimeReq.setWeekList(weekListTemp);
 
+
+                /**换算开始结束时间*/
+                Map map1 = JsonUtil.Obj2Map(serviceWeeksTimeReq);
+                map1.put("startDate",new Date((Long) map1.get("startDate")));
+                map1.put("endDate",new Date((Long) map1.get("endDate")));
+
                 System.out.println(">>>>>>>>sql>>>>>>>>>>>>>" + JsonUtil.Obj2Map(serviceWeeksTimeReq).toString());
                 //判断该服务师的工时是否符合订单时间要求
-                List<JNannyInfo> signNannyWorkTime = jNannyWorkTimeMapper.signNannyWorkTime(JsonUtil.Obj2Map(serviceWeeksTimeReq));
+                List<JNannyInfo> signNannyWorkTime = jNannyWorkTimeMapper.signNannyWorkTime(map1);
                 if (signNannyWorkTime.size() < 1) {
                     return new ModelRes(ModelRes.Status.FAILED, "nanny work time not valid ! !", null);
                 }
                 //判断该服务师的日程是否符合订单时间要求
-                List<JOrderSchedule> signNannySchedule = jOrderScheduleMapper.signNannySchedule(JsonUtil.Obj2Map(serviceWeeksTimeReq));
+                List<JOrderSchedule> signNannySchedule = jOrderScheduleMapper.signNannySchedule(map1);
                 if (signNannySchedule.size() > 0) {
                     return new ModelRes(ModelRes.Status.FAILED, "nanny schedule not valid ! !", ResponseUtil.List2Map(signNannySchedule));
                 }
@@ -290,7 +296,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
 //                }
 //            }
 //
-//            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyWorkTimeMapper.insert(jNannyWorkTime));
+//            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyWorkTimeMapper.insert(jNannyWorkTime));
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //            return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -301,7 +307,7 @@ public class TeacherWorkTimeController extends AutoMapperController {
     @RequestMapping("/delete")
     public Object delete(@RequestBody Map map) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyWorkTimeMapper.deleteByMap(map));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyWorkTimeMapper.deleteByMap(map));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

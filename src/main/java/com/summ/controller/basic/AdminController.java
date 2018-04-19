@@ -1,14 +1,11 @@
 package com.summ.controller.basic;
 
-import com.summ.mapper.JAdminMapper;
 import com.summ.model.JAdmin;
 import com.summ.model.JAdminType;
 import com.summ.model.request.PaginateReq;
-import com.summ.model.response.AccessRes;
 import com.summ.model.response.ModelRes;
 import com.summ.utils.ResponseUtil;
 import org.apache.commons.collections.map.HashedMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +47,7 @@ public class AdminController extends AutoMapperController {
             JAdmin jAdmin = jAdminList.get(0);
             if (jAdmin.getAdminPassword().equals(admin.getAdminPassword())) {
                 Map map = new HashMap();
-                map.put("adminTypeList", jAdminTypeMapper.getadminTypeById(jAdmin.getAdminId()));
+                map.put("adminTypeList", jAdminTypeMapper.getAdminTypeById(jAdmin.getAdminId()));
 //            map.put("accessList",jAdminMapper.getAccess(jAdmin.getAdminId()));
                 map.put("admin", jAdmin);
                 return new ModelRes(ModelRes.Status.SUCCESS, "登陆成功 !", map);

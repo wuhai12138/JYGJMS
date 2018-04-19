@@ -48,6 +48,17 @@ public class JShop implements Serializable {
 	/**  */
 	private double latitude;
 
+	/**  */
+	private Integer provinceId;
+
+	/**  */
+	private Integer cityId;
+
+	/**  */
+	private Integer areaId;
+
+	private Integer streetId;
+
 	private Integer staring;
 
 	/**  */
@@ -74,6 +85,38 @@ public class JShop implements Serializable {
 	}
 
 	public JShop() {
+	}
+
+	public Integer getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(Integer provinceId) {
+		this.provinceId = provinceId;
+	}
+
+	public Integer getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
+
+	public Integer getAreaId() {
+		return areaId;
+	}
+
+	public void setAreaId(Integer areaId) {
+		this.areaId = areaId;
+	}
+
+	public Integer getStreetId() {
+		return streetId;
+	}
+
+	public void setStreetId(Integer streetId) {
+		this.streetId = streetId;
 	}
 
 	public String getShopMobile() {

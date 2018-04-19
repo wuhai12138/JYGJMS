@@ -11,11 +11,24 @@
 		SELECT j.*,jdi.INFO AS couponOriginInfo
 		FROM j_coupon j
 		LEFT JOIN j_dict_info jdi ON jdi.ID = j.couponOrigin
-		WHERE j.isDel=16
+		WHERE 1=1
 		<if test="0 != couponReq.couponOrigin">
 			and j.couponOrigin = #{couponReq.couponOrigin}
 		</if>
 		AND j.couponName LIKE concat("%",concat(#{couponReq.couponName},"%"))
+		limit #{couponReq.page},#{couponReq.size}
+	</select>
+
+	<select id="getUsefulCouponList" resultType="com.summ.model.response.CouponRes">
+		SELECT j.*,jdi.INFO AS couponOriginInfo
+		FROM j_coupon j
+		LEFT JOIN j_dict_info jdi ON jdi.ID = j.couponOrigin
+		WHERE 1=1
+		<if test="0 != couponReq.couponOrigin">
+			and j.couponOrigin = #{couponReq.couponOrigin}
+		</if>
+		AND j.isDel=16
+		AND j.validDate &gt; CURRENT_DATE
 		limit #{couponReq.page},#{couponReq.size}
 	</select>
 

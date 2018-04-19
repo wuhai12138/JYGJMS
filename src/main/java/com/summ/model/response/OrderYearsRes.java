@@ -76,6 +76,7 @@ public class OrderYearsRes {
     private String customerName;
 
     private String customerPhone;
+    private BigDecimal customerBalance;
     private String houseAddress;
     private String orderStatusInfo;
     private String orderCloseStatusInfo;
@@ -86,7 +87,13 @@ public class OrderYearsRes {
     private String serviceDetail;
     private String shopName;
 
+    public BigDecimal getCustomerBalance() {
+        return customerBalance;
+    }
 
+    public void setCustomerBalance(BigDecimal customerBalance) {
+        this.customerBalance = customerBalance;
+    }
 
     public String getServiceDetail() {
         return serviceDetail;

@@ -42,7 +42,7 @@ public class NannyJobController extends AutoMapperController {
                 if (jobLevelRes != null) {
                     nannyInfoRes1.setNannyJobLevelRes(jobLevelRes);
                 }
-                return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", nannyInfoRes1);
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", nannyInfoRes1);
             }
 
             List<NannyShopRes> nannyShopResList = jNannyInfoMapper.getNannyShop(jNannyInfo.getNannyId());
@@ -53,7 +53,7 @@ public class NannyJobController extends AutoMapperController {
             if (jobLevelRes != null) {
                 nannyInfoRes.setNannyJobLevelRes(jobLevelRes);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", nannyInfoRes);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", nannyInfoRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -76,9 +76,9 @@ public class NannyJobController extends AutoMapperController {
                         return new ModelRes(ModelRes.Status.FAILED, "服务师健康证、身份证未上传");
                     }
                 }
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
             } else {
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,7 +98,7 @@ public class NannyJobController extends AutoMapperController {
         try {
             jNannyInfo.setNannyStatus(57);
             jNannyInfo.setDimissionTime(new Date());
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -114,7 +114,7 @@ public class NannyJobController extends AutoMapperController {
     @RequestMapping("/levelUp")
     public Object levelUp(@RequestBody JNannyInfo jNannyInfo) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -146,7 +146,7 @@ public class NannyJobController extends AutoMapperController {
             map1.put("nannyId", nannyId);
             jNannyShopMapper.deleteByMap(map1);
             jNannyShopMapper.insertBatch(jNannyShopList);
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", null);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -176,12 +176,12 @@ public class NannyJobController extends AutoMapperController {
                 JNannyJobLevel jNannyJobLevel = new JNannyJobLevel();
                 jNannyJobLevel.setNannyId((Integer) map.get("nannyId"));
                 jNannyJobLevel.setJobLevelId(jDictInfo.getId());
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.insertSelective(jNannyJobLevel));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyJobLevelMapper.insertSelective(jNannyJobLevel));
             } else {
                 JNannyJobLevel jNannyJobLevel = new JNannyJobLevel();
                 jNannyJobLevel.setNannyId((Integer) map.get("nannyId"));
                 jNannyJobLevel.setJobLevelId((Integer) map.get("id"));
-                return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.insertSelective(jNannyJobLevel));
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyJobLevelMapper.insertSelective(jNannyJobLevel));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,7 +195,7 @@ public class NannyJobController extends AutoMapperController {
         try {
             Map map1 = new HashMap();
             map1.put("nannyJobLevelId", map.get("id"));
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.deleteByMap(map1));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyJobLevelMapper.deleteByMap(map1));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -212,7 +212,7 @@ public class NannyJobController extends AutoMapperController {
     @RequestMapping("/level/find/selected")
     public Object findLevel(@RequestBody JNannyJobLevel jNannyJobLevel) {
         try {
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyJobLevelMapper.getSelectedLevelList(jNannyJobLevel.getNannyId()));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyJobLevelMapper.getSelectedLevelList(jNannyJobLevel.getNannyId()));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -231,7 +231,7 @@ public class NannyJobController extends AutoMapperController {
         try {
             Integer nannyId = (Integer) map.get("nannyId");
             String name = (String) map.get("name");
-            return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", JsonUtil.list2map(jNannyJobLevelMapper.getUnselectedLevelList(nannyId, name)));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", JsonUtil.list2map(jNannyJobLevelMapper.getUnselectedLevelList(nannyId, name)));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

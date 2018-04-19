@@ -8,7 +8,7 @@
 	</sql>
 
 	<select id="getOrderYearsList" parameterType="com.summ.model.request.OrderYearsReq" resultType="com.summ.model.response.OrderYearsRes">
-		SELECT joy.*,jc.customerName,jch.houseAddress,jdi.INFO AS orderStatusInfo,jc.customerPhone,jgc.service,js.shopName,jcs.serviceDetail AS needString,jcs.serviceId,jdi2.INFO AS orderCloseStatusInfo,jdi3.INFO AS payStatusInfo
+		SELECT joy.*,jc.customerName,jch.houseAddress,jdi.INFO AS orderStatusInfo,jc.customerPhone,jgc.service,js.shopName,jcs.serviceDetail AS needString,jcs.serviceId,jdi2.INFO AS orderCloseStatusInfo,jdi3.INFO AS payStatusInfo,jc.customerBalance
 		FROM j_order_years joy
 		LEFT JOIN j_shop js ON js.shopId = joy.shopId
 		LEFT JOIN j_customer jc ON jc.customerId = joy.customerId
@@ -17,7 +17,7 @@
 		LEFT JOIN j_dict_info jdi2 ON jdi2.ID = joy.orderCloseStatus
 		LEFT JOIN j_dict_info jdi3 ON jdi3.ID = joy.payStatus
 		LEFT JOIN j_goods_contract jgc ON jgc.goodsId = joy.goodsId
-		LEFT JOIN j_customer_service jcs ON jcs.houseId = jch.houseId
+		LEFT JOIN j_customer_service jcs ON jcs.serviceId = joy.serviceId
 		<if test="''!=orderYearsReq.nannyName || 0!=orderYearsReq.nannyId">
 			LEFT JOIN j_order_schedule jos ON jos.orderId=joy.orderId
 			LEFT JOIN j_schedule_nanny jsn ON jsn.scheduleId=jos.scheduleId

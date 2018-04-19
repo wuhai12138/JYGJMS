@@ -1,5 +1,7 @@
 package com.summ.model.request;
 
+import java.util.Date;
+
 public class CouponReq {
     private String couponName;
     private Integer couponOrigin;

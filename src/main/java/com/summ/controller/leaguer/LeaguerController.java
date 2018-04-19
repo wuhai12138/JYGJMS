@@ -44,13 +44,13 @@ public class LeaguerController extends AutoMapperController{
     public Object findDetail(@RequestBody Map map) {
         try {
             LeaguerListRes leaguerListRes = jLeaguerMapper.getLeaguerDetail((Integer) map.get("leaguerId"));
-            if (null!=leaguerListRes.getBusinessLicense()){
+            if (!StringUtil.isBlank(leaguerListRes.getBusinessLicense())){
                 leaguerListRes.setBusinessLicense(Consts.leaguerBusinessLicenseUrlRes + leaguerListRes.getBusinessLicense());
             }
-            if (null!=leaguerListRes.getIdCardBefore()){
+            if (!StringUtil.isBlank(leaguerListRes.getIdCardBefore())){
                 leaguerListRes.setIdCardBefore(Consts.leaguerIdcardUrlRes + leaguerListRes.getIdCardBefore());
             }
-            if (null!=leaguerListRes.getIdCardAfter()){
+            if (!StringUtil.isBlank(leaguerListRes.getIdCardAfter())){
                 leaguerListRes.setIdCardAfter(Consts.leaguerIdcardUrlRes + leaguerListRes.getIdCardAfter());
             }
             return new ModelRes(ModelRes.Status.SUCCESS, "search customer house info success !", leaguerListRes);
@@ -102,7 +102,7 @@ public class LeaguerController extends AutoMapperController{
     public Object updateHouse(@RequestBody JLeaguer jLeaguer) {
         try {
             /**上传营业执照*/
-            if (!"".equals(jLeaguer.getBusinessLicense()) && null != jLeaguer.getBusinessLicense()) {
+            if (!StringUtil.isBlank(jLeaguer.getBusinessLicense())){
                 String fileName = "SBL" + System.currentTimeMillis() + ".jpg";
                 if (!StringUtil.generateImage(jLeaguer.getBusinessLicense(), Consts.leaguerBusinessLicenseUrl + fileName)) {
                     return new ModelRes(ModelRes.Status.FAILED, "供应商营业执照上传失败 !");
@@ -110,7 +110,7 @@ public class LeaguerController extends AutoMapperController{
                 jLeaguer.setBusinessLicense(fileName);
             }
             /**上传身份证正面*/
-            if (!"".equals(jLeaguer.getIdCardBefore()) && null != jLeaguer.getIdCardBefore()) {
+            if (!StringUtil.isBlank(jLeaguer.getIdCardBefore())){
                 String fileName = "SI" + System.currentTimeMillis() + ".jpg";
                 if (!StringUtil.generateImage(jLeaguer.getIdCardBefore(), Consts.leaguerIdcardUrl + fileName)) {
                     return new ModelRes(ModelRes.Status.FAILED, "供应商身份证正面上传失败 !");
@@ -118,14 +118,26 @@ public class LeaguerController extends AutoMapperController{
                 jLeaguer.setIdCardBefore(fileName);
             }
             /**上传身份证反面*/
-            if (!"".equals(jLeaguer.getIdCardAfter()) && null != jLeaguer.getIdCardAfter()) {
+            if (!StringUtil.isBlank(jLeaguer.getIdCardAfter())){
                 String fileName = "SI" + System.currentTimeMillis() + ".jpg";
                 if (!StringUtil.generateImage(jLeaguer.getIdCardAfter(), Consts.leaguerIdcardUrl + fileName)) {
                     return new ModelRes(ModelRes.Status.FAILED, "供应商身份证反面上传失败 !");
                 }
                 jLeaguer.setIdCardAfter(fileName);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "update customer house info success !", jLeaguerMapper.updateSelectiveById(jLeaguer));
+            jLeaguerMapper.updateSelectiveById(jLeaguer);
+
+            LeaguerListRes leaguerListRes = jLeaguerMapper.getLeaguerDetail(jLeaguer.getLeaguerId());
+            if (null!=leaguerListRes.getBusinessLicense()){
+                leaguerListRes.setBusinessLicense(Consts.leaguerBusinessLicenseUrlRes + leaguerListRes.getBusinessLicense());
+            }
+            if (null!=leaguerListRes.getIdCardBefore()){
+                leaguerListRes.setIdCardBefore(Consts.leaguerIdcardUrlRes + leaguerListRes.getIdCardBefore());
+            }
+            if (null!=leaguerListRes.getIdCardAfter()){
+                leaguerListRes.setIdCardAfter(Consts.leaguerIdcardUrlRes + leaguerListRes.getIdCardAfter());
+            }
+            return new ModelRes(ModelRes.Status.SUCCESS, "update customer house info success !", leaguerListRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

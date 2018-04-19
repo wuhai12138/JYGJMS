@@ -83,6 +83,7 @@ public class NannyCashPledgeController extends AutoMapperController{
             JNannyInfo jNannyInfo = jNannyInfoMapper.selectById(Long.valueOf(jNannyCashPledgeRecord.getNannyId()));
             jNannyCashPledgeRecord.setCashPledgeBalance(jNannyInfo.getNannyCashPledge().subtract(jNannyCashPledgeRecord.getMoney()));
             jNannyInfo.setNannyCashPledge(jNannyInfo.getNannyCashPledge().subtract(jNannyCashPledgeRecord.getMoney()));
+            jNannyCashPledgeRecord.setPaymentType(198);
 
             jNannyInfoMapper.updateSelectiveById(jNannyInfo);
             return new ModelRes(ModelRes.Status.SUCCESS, "upload success", jNannyCashPledgeRecordMapper.insertSelective(jNannyCashPledgeRecord));

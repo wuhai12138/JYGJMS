@@ -87,10 +87,6 @@ public class AutoMapperController {
     @Autowired
     public JNannyStatmentMapper jNannyStatmentMapper;
     @Autowired
-    public JCustomerFeedbackMapper jCustomerFeedbackMapper;
-    @Autowired
-    public JCustomerFeedbackFollowMapper jCustomerFeedbackFollowMapper;
-    @Autowired
     public JGoodsCostMapper jGoodsCostMapper;
     @Autowired
     public JSupplierMapper jSupplierMapper;
@@ -121,8 +117,6 @@ public class AutoMapperController {
     @Autowired
     public JNannyInsuranceMapper jNannyInsuranceMapper;
     @Autowired
-    public JCustomerFeedbackDepartmentMapper jCustomerFeedbackDepartmentMapper;
-    @Autowired
     public JCustomerMessageMapper jCustomerMessageMapper;
     @Autowired
     public JCustomerMessageDepartmentMapper jCustomerMessageDepartmentMapper;
@@ -134,4 +128,8 @@ public class AutoMapperController {
     public JOrderRefundMapper jOrderRefundMapper;
     @Autowired
     public JOrderYearsMapper jOrderYearsMapper;
+    @Autowired
+    public JCouponGoodsMapper jCouponGoodsMapper;
+    @Autowired
+    public JWithdrawalMapper jWithdrawalMapper;
 }

@@ -302,7 +302,7 @@ public class CustomerRechargeController extends AutoMapperController {
 
 
             String url = "http://www.jyguanjia.com:8080/jyguanjia/recharge?" +
-                    "admin_id="+admin_id+"&customer_id="+customer_id+"&charge_backup="+charge_backup+"&charge_money="+charge_money+"&charge_no="+charge_no+"&charge_way=1&charge_channel=1";
+                    "admin_id="+admin_id+"&customer_id="+customer_id+"&charge_backup="+charge_backup+"&charge_money="+charge_money+"&charge_no="+charge_no+"&charge_way="+charge_way+"&charge_channel="+charge_channel;
 //            String url = "http://www.jyguanjia.com:8081/jyguanjia/recharge?"+"admin_id="+admin_id+"&customer_id="+customer_id+"&charge_channel=1";
             System.out.println("请求2.0接口链接为："+ url);
 //            RequestUtil.doPost(url,map.toString());
@@ -356,7 +356,7 @@ public class CustomerRechargeController extends AutoMapperController {
             map.put("charge_no",charge_no);
             map.put("charge_channel",charge_channel);
             String url = "http://www.jyguanjia.com:8080/jyguanjia/recharge?" +
-                    "admin_id="+admin_id+"&customer_id="+customer_id+"&charge_backup="+charge_backup+"&charge_money="+charge_money+"&charge_no="+charge_no+"&charge_way=1&charge_channel=1";
+                    "admin_id="+admin_id+"&customer_id="+customer_id+"&charge_backup="+charge_backup+"&charge_money="+charge_money+"&charge_no="+charge_no+"&charge_way="+charge_way+"&charge_channel="+charge_channel;
             RequestUtil.doGet(url);
             return "PayResult";
         }

@@ -38,7 +38,7 @@ public class NannyCertificateController extends AutoMapperController {
                 list.get(i).setPhoto(Consts.nannyCertUrlRes + list.get(i).getPhoto());
             }
             map.put("certificate", list);
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -51,7 +51,7 @@ public class NannyCertificateController extends AutoMapperController {
         try {
             JNannyCertificate jNannyCertificate = new JNannyCertificate();
             jNannyCertificate.setNannyCertId((Integer) map.get("id"));
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyCertificateMapper.deleteSelective(jNannyCertificate));
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyCertificateMapper.deleteSelective(jNannyCertificate));
         } catch (Exception e) {
 
             e.printStackTrace();

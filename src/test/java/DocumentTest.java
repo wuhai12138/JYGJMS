@@ -69,55 +69,11 @@ public class DocumentTest {
 //        bodys.put("name", "张三");
 //        bodys.put("phoneNo", "13522221111");
 
-        List list1 =new ArrayList();
-        list1.add("1111");
-        list1.add("2222");
-        list1.add("3333");
+        List<String> list = new ArrayList<String>();
+        list.add("12");
+        list.add("22");
+        list.add("22");
 
-        List list2 =new ArrayList();
-        list2.add("3333");
-        list2.add("4444");
-        list2.add("5555");
-
-        //并集
-//        list1.addAll(list2);
-        //交集
-//        list1.retainAll(list2);
-        //差集
-        list1.removeAll(list2);
-        //无重复并集
-//        list2.removeAll(list1);
-//        list1.addAll(list2);
-
-        Iterator<String> it=list1.iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next());
-
-        }
-
-        List<Date> dateList = DateUtil.weekAndDay(4,new Date(Long.valueOf("1522684800000")),new Date(Long.valueOf("1522944000000")));
-        for (Date date :dateList){
-            System.out.println(date.getTime());
-        }
-
-
-        try {
-            /**
-             * 重要提示如下:
-             * HttpUtils请从
-             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java
-             * 下载
-             *
-             * 相应的依赖请参照
-             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
-             */
-//            HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
-//            System.out.println(response.toString());
-            //获取response的body
-            //System.out.println(EntityUtils.toString(response.getEntity()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }

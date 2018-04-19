@@ -97,6 +97,9 @@
 		LEFT JOIN j_nanny_info jni ON jni.nannyId = j.nannyId
 		WHERE
 	jni.hot = 168
+        <if test="0!=nannyWortTimeByOrderReq.nannyId">
+            AND j.nannyId=#{nannyWortTimeByOrderReq.nannyId}
+        </if>
 	<if test="165==nannyWortTimeByOrderReq.orderType">
         AND jni.payStats=158
         AND jni.agencyValidDate &gt; CURRENT_DATE

@@ -5,14 +5,14 @@ package com.summ.model.request;
  */
 public class OrderContractReq {
     private Integer adminId;
-    private Integer createId;
-    private Integer customerId;
-    private String customerName;
-    private String customerPhone;
-    private String houseAddress;
-    private Integer orderStatus;
-    private Integer orderCloseStatus;
-    private Integer shopId;
+    private Integer createId=0;
+    private Integer customerId=0;
+    private String customerName="";
+    private String customerPhone="";
+    private String houseAddress="";
+    private Integer orderStatus=0;
+    private Integer orderCloseStatus=0;
+    private Integer shopId=0;
     private Integer page;
     private Integer size;
 

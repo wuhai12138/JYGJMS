@@ -6,8 +6,8 @@ package com.summ.model.request;
 public class CustomerCouponReq {
     private int customerId;
     private int couponStatus;
-    private int page;
-    private int size;
+    private int page=0;
+    private int size=50;
 
     @Override
     public String toString() {
@@ -17,6 +17,14 @@ public class CustomerCouponReq {
                 ", page=" + page +
                 ", size=" + size +
                 '}';
+    }
+
+    public CustomerCouponReq() {
+    }
+
+    public CustomerCouponReq(int customerId, int couponStatus) {
+        this.customerId = customerId;
+        this.couponStatus = couponStatus;
     }
 
     public int getCustomerId() {

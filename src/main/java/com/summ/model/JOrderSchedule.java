@@ -36,22 +36,22 @@ public class JOrderSchedule implements Serializable {
 	private Date scheduleDate;
 
 	/** 单价 */
-	private BigDecimal unitPrice;
+	private BigDecimal unitPrice=new BigDecimal(0);
 
 	/** 总价 */
-	private BigDecimal totalPrice;
+	private BigDecimal totalPrice=new BigDecimal(0);
 
 	/** 成本（取决于服务师） */
-	private BigDecimal cost;
+	private BigDecimal cost=new BigDecimal(0);
 
 	/** 日程状态 */
-	private Integer scheduleStatus;
+	private Integer scheduleStatus=152;
 
 	/** 日程类型 */
 	private Integer scheduleType;
 
 	/** 支付状态 */
-	private Integer payStatus;
+	private Integer payStatus=157;
 
 	/** 开始时间Id */
 	private Integer startTime;
@@ -67,13 +67,13 @@ public class JOrderSchedule implements Serializable {
 	private Long timeValue;
 
 	/** 签到人id */
-	private Integer clockId;
+	private Integer clockId=0;
 
 	/** 签到时间 */
 	private Date clockTime;
 
 	/** 完工操作人id */
-	private Integer completedId;
+	private Integer completedId=0;
 
 	/** 完工时间 */
 	private Date completedTime;
@@ -82,7 +82,7 @@ public class JOrderSchedule implements Serializable {
 	private Date suspendTime;
 
 	/** 取消操作人id */
-	private Integer cancelId;
+	private Integer cancelId=0;
 
 	/** 取消时间  */
 	private Date cancelTime;

@@ -57,4 +57,5 @@ public interface JOrderScheduleMapper extends AutoMapper<JOrderSchedule> {
      * @return
      */
     List<JOrderSchedule> getOrderScheduleUnCheckOut(Integer orderId,Integer orderType);
+    List<JOrderSchedule> getOrderScheduleToBeFinished(Integer orderId,Integer orderType);
 }

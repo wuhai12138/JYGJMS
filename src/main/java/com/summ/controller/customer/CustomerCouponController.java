@@ -2,14 +2,20 @@ package com.summ.controller.customer;
 
 import com.summ.controller.basic.AutoMapperController;
 import com.summ.model.JCouponList;
+import com.summ.model.request.CouponReq;
 import com.summ.model.request.CustomerCouponReq;
+import com.summ.model.response.CustomerCouponListRes;
 import com.summ.model.response.ModelRes;
+import com.summ.utils.ResponseUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,19 +33,16 @@ public class CustomerCouponController extends AutoMapperController{
      * @return
      */
 
-//    @ResponseBody
-//    @RequestMapping("/list")
-//    public Object insert(@RequestBody Map<String,Integer> map){
-//        try {
-//            Map couponMap = new HashMap();
-//
-//            couponMap.put("list",jCouponMapper.getCouponList(map.get("couponOrigin"),map.get("couponName")));
-//            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",couponMap);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return new ModelRes(ModelRes.Status.ERROR, "server err !");
-//        }
-//    }
+    @ResponseBody
+    @RequestMapping("/list")
+    public Object insert(@RequestBody CouponReq couponReq){
+        try {
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",ResponseUtil.List2Map(jCouponMapper.getUsefulCouponList(couponReq)));
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
 
     @ResponseBody
     @RequestMapping("/insert")
@@ -84,10 +87,16 @@ public class CustomerCouponController extends AutoMapperController{
     public Object find(@RequestBody CustomerCouponReq customerCouponReq){
         try {
             customerCouponReq.setPage((customerCouponReq.getPage()-1)*customerCouponReq.getSize());
-            Map<String,Object> mapList = new HashedMap();
-            mapList.put("list",jCouponListMapper.getListById(customerCouponReq));
-            mapList.put("count",jCouponListMapper.getCount(customerCouponReq));
-            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !",mapList);
+            List<CustomerCouponListRes> customerCouponListResList = jCouponListMapper.getListById(customerCouponReq);
+            for (CustomerCouponListRes customerCouponListRes : customerCouponListResList){
+                if (customerCouponListRes.getCouponStatus()==32){
+                    if (customerCouponListRes.getValidTime().before(new Date())){
+                        customerCouponListRes.setCouponStatus(33);
+                        customerCouponListRes.setCouponStatusInfo("已过期");
+                    }
+                }
+            }
+            return new ModelRes(ModelRes.Status.SUCCESS,"操作成功 !", ResponseUtil.List2Map(customerCouponListResList,jCouponListMapper.getCount(customerCouponReq)));
         }catch (Exception e){
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

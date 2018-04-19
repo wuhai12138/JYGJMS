@@ -35,7 +35,7 @@ public class JOrderTemp implements Serializable {
 	private Integer houseId;
 
 	/** 订单状态 */
-	private Integer orderStatus=142;
+	private Integer orderStatus;
 
 	/** 订单关闭状态（默认未关闭） */
 	private Integer orderCloseStatus;
@@ -70,7 +70,7 @@ public class JOrderTemp implements Serializable {
 	private BigDecimal totalPrice;
 
 	/** 优惠金额 */
-	private BigDecimal discount=new BigDecimal(0);
+	private BigDecimal discount;
 
 	private Integer couponListId;
 
@@ -78,10 +78,12 @@ public class JOrderTemp implements Serializable {
 	private BigDecimal payMoney;
 
 	/** 支付状态 */
-	private Integer payStatus=157;
+	private Integer payStatus;
+
+	private Date payTime;
 
 	/**  */
-	private Date createTime=new Date();
+	private Date createTime;
 
 	/**  */
 	private Integer createId;
@@ -95,7 +97,15 @@ public class JOrderTemp implements Serializable {
 	private String remark;
 
 	/**  */
-	private Integer isDel=16;
+	private Integer isDel;
+
+	public Date getPayTime() {
+		return payTime;
+	}
+
+	public void setPayTime(Date payTime) {
+		this.payTime = payTime;
+	}
 
 	public Integer getOrderCloseStatus() {
 		return orderCloseStatus;

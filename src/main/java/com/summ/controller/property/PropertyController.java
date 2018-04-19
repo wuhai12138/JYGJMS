@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletRequest;
 
+/**
+ * 物业
+ */
 @Controller
 @RequestMapping("property")
 public class PropertyController extends AutoMapperController{

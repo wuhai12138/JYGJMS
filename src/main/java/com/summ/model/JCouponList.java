@@ -44,9 +44,19 @@ public class JCouponList implements Serializable {
 	/**  */
 	private Date createTime;
 
+	private Date useTime;
+
+
 	/**  */
 	private Integer isDel;
 
+	public Date getUseTime() {
+		return useTime;
+	}
+
+	public void setUseTime(Date useTime) {
+		this.useTime = useTime;
+	}
 
 	public Integer getCouponListId() {
 		return this.couponListId;

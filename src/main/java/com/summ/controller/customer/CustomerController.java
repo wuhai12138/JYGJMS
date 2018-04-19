@@ -64,6 +64,12 @@ public class CustomerController extends AutoMapperController {
             if (baiduMap == null) {
                 return new ModelRes(ModelRes.Status.FAILED, "获取不到该地址，请重新输入 !");
             }
+            Map map = new HashMap();
+            map.put("customerPhone",customerReq.getCustomerPhone());
+            List<JCustomer> jCustomerList=jCustomerMapper.selectByMap(map);
+            if (jCustomerList.size()>0){
+                return new ModelRes(ModelRes.Status.FAILED, "重复手机号 !",ResponseUtil.List2Map(jCustomerList));
+            }
 
             JCustomer jCustomer = new JCustomer();
             jCustomer.setCustomerName(customerReq.getCustomerName());
@@ -159,6 +165,15 @@ public class CustomerController extends AutoMapperController {
 //                JShop jShop = jShopMapper.selectById(Long.valueOf(jCustomer.getShopId()));
 //                SendSMSUtil.notifyShopCustomer(jCustomer.getCustomerId(), jShop.getShopMobile());
 //            }
+            JCustomer jCustomer1 = jCustomerMapper.selectById(Long.valueOf(jCustomer.getCustomerId()));
+            if (!jCustomer1.getCustomerPhone().equals(jCustomer.getCustomerPhone())){
+                Map map = new HashMap();
+                map.put("customerPhone",jCustomer.getCustomerPhone());
+                List<JCustomer> jCustomerList=jCustomerMapper.selectByMap(map);
+                if (jCustomerList.size()>0){
+                    return new ModelRes(ModelRes.Status.FAILED, "重复手机号 !",ResponseUtil.List2Map(jCustomerList));
+                }
+            }
             return new ModelRes(ModelRes.Status.SUCCESS, "update customer success !", jCustomerMapper.updateSelectiveById(jCustomer));
         } catch (Exception e) {
             e.printStackTrace();

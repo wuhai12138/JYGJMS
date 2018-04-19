@@ -28,6 +28,10 @@ public class JNannyCase implements Serializable {
 	/**  */
 	private Integer nannyId;
 
+	private Integer customerId;
+
+	private Integer scheduleId;
+
 	/** 案件内容 */
 	private String caseContent;
 
@@ -46,10 +50,46 @@ public class JNannyCase implements Serializable {
 	/**  */
 	private Date createTime;
 
+	private Integer createId;
+
 	private Date modifyTime;
+
+	private Integer modifyId;
 
 	/**  */
 	private Integer isDel;
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
+	public Integer getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(Integer scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+
+	public Integer getCreateId() {
+		return createId;
+	}
+
+	public void setCreateId(Integer createId) {
+		this.createId = createId;
+	}
+
+	public Integer getModifyId() {
+		return modifyId;
+	}
+
+	public void setModifyId(Integer modifyId) {
+		this.modifyId = modifyId;
+	}
 
 	public Date getModifyTime() {
 		return modifyTime;

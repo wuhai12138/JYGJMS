@@ -1,24 +1,8 @@
 package com.summ.controller.customer;
 
 import com.summ.controller.basic.AutoMapperController;
-import com.summ.model.JAdmin;
-import com.summ.model.JCustomerFeedback;
-import com.summ.model.JCustomerFeedbackDepartment;
-import com.summ.model.JCustomerFeedbackFollow;
-import com.summ.model.request.CustomerFeedbackReq;
-import com.summ.model.response.CustomerFeedbackFollowRes;
-import com.summ.model.response.CustomerFeedbackRes;
-import com.summ.model.response.ModelRes;
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.ServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by jygj_7500 on 18/1/27.

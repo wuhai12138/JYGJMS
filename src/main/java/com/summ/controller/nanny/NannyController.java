@@ -79,7 +79,7 @@ public class NannyController extends AutoMapperController {
                     JNannyShop jNannyShop = new JNannyShop();
                     jNannyShop.setShopId((Integer) map.get("shopId"));
                     jNannyShop.setNannyId(jNannyInfo.getNannyId());
-                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insertSelective(jNannyShop));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyShopMapper.insertSelective(jNannyShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, " avatar err !");
                 }
@@ -95,7 +95,7 @@ public class NannyController extends AutoMapperController {
                     JNannyShop jNannyShop = new JNannyShop();
                     jNannyShop.setNannyId(jNannyInfo.getNannyId());
                     jNannyShop.setShopId((Integer) map.get("shopId"));
-                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jNannyShopMapper.insertSelective(jNannyShop));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyShopMapper.insertSelective(jNannyShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, "id card or avatar err !");
                 }
@@ -132,7 +132,7 @@ public class NannyController extends AutoMapperController {
             Map<String, Object> map = new HashedMap();
             map.put("list", jNannyInfoMapper.getNannyInfoList(nannyInfoReq));
             map.put("count", jNannyInfoMapper.getCount(nannyInfoReq));
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", map);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

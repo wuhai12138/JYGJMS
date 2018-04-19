@@ -8,7 +8,7 @@
 	</sql>
 
 	<select id="getSupplierList" parameterType="com.summ.model.request.SupplierReq" resultType="com.summ.model.response.SupplierListRes">
-		SELECT js.supplierId,js.name,js.phone,js.supplierStatus,jdi.INFO AS supplierStatusInfo,js.remark
+		SELECT js.*,jdi.INFO AS supplierStatusInfo
 		FROM j_supplier js
 		LEFT JOIN j_dict_info jdi ON jdi.ID = js.supplierStatus
 		WHERE

@@ -17,6 +17,8 @@ public interface JCouponMapper extends AutoMapper<JCoupon> {
 
     List<CouponRes> getCouponList(@Param("couponReq") CouponReq couponReq);
 
+    List<CouponRes> getUsefulCouponList(@Param("couponReq") CouponReq couponReq);
+
     JCoupon getCouponByCouponListId(int couponListId);
 
 }

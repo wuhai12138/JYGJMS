@@ -115,10 +115,14 @@ public class ScheduleController extends AutoMapperController {
 
             for (int i=0;i<list.size();i++){
                 JOrderSchedule jOrderSchedule = jOrderScheduleMapper.selectById(Long.valueOf(list.get(i)));
-                jOrderSchedule.setScheduleStatus(155);
-                jOrderSchedule.setCancelTime(new Date());
-                jOrderSchedule.setRemark(jOrderSchedule.getRemark()+"-"+reason);
-                jOrderScheduleMapper.updateSelectiveById(jOrderSchedule);
+                if (152==jOrderSchedule.getScheduleStatus()){
+                    jOrderSchedule.setScheduleStatus(155);
+                    jOrderSchedule.setCancelTime(new Date());
+                    jOrderSchedule.setRemark(jOrderSchedule.getRemark()+"-"+reason);
+                    jOrderScheduleMapper.updateSelectiveById(jOrderSchedule);
+                }else {
+                    return new ModelRes(ModelRes.Status.FAILED,"该状态无法取消  !", jOrderSchedule);
+                }
             }
             return new ModelRes(ModelRes.Status.SUCCESS,"操作成功  !", null);
         } catch (Exception e) {

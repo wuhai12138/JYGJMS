@@ -42,7 +42,7 @@
         <init-param>
             <param-name>excludedPages</param-name>
             <param-value>
-                /admin/login,/customer/charge,/aliPay/callback,/WeiXin/callback,/order/temp/aliPay/callback,/order/temp/WeiXin/callback,/customer/aliPay/callback,/customer/WeiXin/callback,/cash/pledge/aliPay/callback,/cash/pledge/WeiXin/callback
+                /admin/login,/customer/charge,/aliPay/callback,/WeiXin/callback,/order/temp/aliPay/callback,/order/temp/WeiXin/callback,/customer/aliPay/callback,/customer/WeiXin/callback,/cash/pledge/aliPay/callback,/cash/pledge/WeiXin/callback,/nanny/certificate/upload
             </param-value>
         </init-param>
     </filter>

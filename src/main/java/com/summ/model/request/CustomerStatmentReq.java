@@ -10,6 +10,7 @@ public class CustomerStatmentReq {
     private String customerName;
     private String customerPhone;
     private String serialNumber;
+    private Integer status=53;
     private Date startDate;
     private Date endDate;
     private Integer shopId;
@@ -19,6 +20,30 @@ public class CustomerStatmentReq {
     private Integer page;
     private Integer size;
     private Integer adminId;
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setStatmentCustomerType(Integer statmentCustomerType) {
+        this.statmentCustomerType = statmentCustomerType;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
 
     public String getCustomerName() {
         return customerName;

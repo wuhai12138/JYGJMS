@@ -102,7 +102,7 @@
 		LEFT JOIN j_order_temp jot ON jot.orderId=j.orderId
 		LEFT JOIN j_dict_info d1 ON d1.ID = j.scheduleStatus
 		LEFT JOIN j_dict_info d2 ON d2.ID = jot.payStatus
-		LEFT JOIN j_dict_info d4 ON d4.ID = jos.scheduleType
+		LEFT JOIN j_dict_info d4 ON d4.ID = j.scheduleType
 		WHERE j.orderId=#{0}
 		AND j.orderType=164
 	</select>
@@ -487,6 +487,14 @@
         WHERE j.orderId=#{0}
         AND j.orderType=#{1}
         AND j.payStatus=157
+    </select>
+
+    <select id="getOrderScheduleToBeFinished" resultType="com.summ.model.JOrderSchedule">
+        SELECT j.*
+        FROM j_order_schedule j
+        WHERE j.orderId=#{0}
+        AND j.orderType=#{1}
+        AND j.scheduleStatus=152
     </select>
 
 </mapper>

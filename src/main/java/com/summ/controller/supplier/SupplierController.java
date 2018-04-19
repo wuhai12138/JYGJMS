@@ -50,13 +50,13 @@ public class SupplierController extends AutoMapperController {
     public Object findDetail(@RequestBody Map map) {
         try {
             SupplierListRes supplierListRes = jSupplierMapper.getSupplierDetail((Integer) map.get("supplierId"));
-            if (null!=supplierListRes.getBusinessLicense()){
+            if (!StringUtil.isBlank(supplierListRes.getBusinessLicense())){
                 supplierListRes.setBusinessLicense(Consts.supplierBusinessLicenseUrlRes + supplierListRes.getBusinessLicense());
             }
-            if (null!=supplierListRes.getIdCardBefore()){
+            if (!StringUtil.isBlank(supplierListRes.getIdCardBefore())){
                 supplierListRes.setIdCardBefore(Consts.supplierIdcardUrlRes + supplierListRes.getIdCardBefore());
             }
-            if (null!=supplierListRes.getIdCardAfter()){
+            if (!StringUtil.isBlank(supplierListRes.getIdCardAfter())){
                 supplierListRes.setIdCardAfter(Consts.supplierIdcardUrlRes + supplierListRes.getIdCardAfter());
             }
             return new ModelRes(ModelRes.Status.SUCCESS, "search customer house info success !", supplierListRes);
@@ -108,7 +108,7 @@ public class SupplierController extends AutoMapperController {
     public Object updateHouse(@RequestBody JSupplier jSupplier) {
         try {
             /**上传营业执照*/
-            if (!"".equals(jSupplier.getBusinessLicense()) && null != jSupplier.getBusinessLicense()) {
+            if (!StringUtil.isBlank(jSupplier.getBusinessLicense())){
                 String fileName = "SBL" + System.currentTimeMillis() + ".jpg";
                 if (!StringUtil.generateImage(jSupplier.getBusinessLicense(), Consts.supplierBusinessLicenseUrl + fileName)) {
                     return new ModelRes(ModelRes.Status.FAILED, "供应商营业执照上传失败 !");
@@ -116,7 +116,7 @@ public class SupplierController extends AutoMapperController {
                 jSupplier.setBusinessLicense(fileName);
             }
             /**上传身份证正面*/
-            if (!"".equals(jSupplier.getIdCardBefore()) && null != jSupplier.getIdCardBefore()) {
+            if (!StringUtil.isBlank(jSupplier.getIdCardBefore())){
                 String fileName = "SI" + System.currentTimeMillis() + ".jpg";
                 if (!StringUtil.generateImage(jSupplier.getIdCardBefore(), Consts.supplierIdcardUrl + fileName)) {
                     return new ModelRes(ModelRes.Status.FAILED, "供应商身份证正面上传失败 !");
@@ -124,14 +124,26 @@ public class SupplierController extends AutoMapperController {
                 jSupplier.setIdCardBefore(fileName);
             }
             /**上传身份证反面*/
-            if (!"".equals(jSupplier.getIdCardAfter()) && null != jSupplier.getIdCardAfter()) {
+            if (!StringUtil.isBlank(jSupplier.getIdCardAfter())){
                 String fileName = "SI" + System.currentTimeMillis() + ".jpg";
                 if (!StringUtil.generateImage(jSupplier.getIdCardAfter(), Consts.supplierIdcardUrl + fileName)) {
                     return new ModelRes(ModelRes.Status.FAILED, "供应商身份证反面上传失败 !");
                 }
                 jSupplier.setIdCardAfter(fileName);
             }
-            return new ModelRes(ModelRes.Status.SUCCESS, "update customer house info success !", jSupplierMapper.updateSelectiveById(jSupplier));
+            jSupplierMapper.updateSelectiveById(jSupplier);
+
+            SupplierListRes supplierListRes = jSupplierMapper.getSupplierDetail(jSupplier.getSupplierId());
+            if (!StringUtil.isBlank(supplierListRes.getBusinessLicense())){
+                supplierListRes.setBusinessLicense(Consts.supplierBusinessLicenseUrlRes + supplierListRes.getBusinessLicense());
+            }
+            if (!StringUtil.isBlank(supplierListRes.getIdCardBefore())){
+                supplierListRes.setIdCardBefore(Consts.supplierIdcardUrlRes + supplierListRes.getIdCardBefore());
+            }
+            if (!StringUtil.isBlank(supplierListRes.getIdCardAfter())){
+                supplierListRes.setIdCardAfter(Consts.supplierIdcardUrlRes + supplierListRes.getIdCardAfter());
+            }
+            return new ModelRes(ModelRes.Status.SUCCESS, "update customer house info success !", supplierListRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

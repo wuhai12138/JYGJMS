@@ -8,11 +8,13 @@
 	</sql>
 
 	<select id="getNannyCashPledgeList" resultType="com.summ.model.response.NannyCashPledgeRes">
-		SELECT a.*,js.shopName,jdi.INFO AS statusInfo,d2.INFO AS reasonInfo
+		SELECT a.*,js.shopName,jdi.INFO AS statusInfo,d2.INFO AS reasonInfo,d3.INFO AS paymentTypeInfo,d4.INFO AS operateTypeInfo
 		FROM j_nanny_cash_pledge_record a
 		LEFT JOIN j_shop js ON js.shopId=a.shopId
 		left JOIN  j_dict_info jdi ON jdi.ID=a.status
 		left JOIN  j_dict_info d2 ON d2.ID=a.reason
+		left JOIN  j_dict_info d3 ON d3.ID=a.paymentType
+		left JOIN  j_dict_info d4 ON d4.ID=a.operateType
 		WHERE a.nannyId=#{0}
 	</select>
 

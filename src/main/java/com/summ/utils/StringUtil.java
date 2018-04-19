@@ -9,6 +9,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static com.baomidou.mybatisplus.toolkit.StringUtils.isNotEmpty;
 
@@ -39,6 +42,25 @@ public class StringUtil {
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     *
+     *判断数组中是否有重复值
+     */
+    public static boolean isRepeat(List<String> list){
+        //List转String
+        String[] array = list.toArray(new String[list.size()]);
+
+        Set<String> set = new HashSet<String>();
+        for(String str : array){
+            set.add(str);
+        }
+        if(set.size() == 1){
+            return true;//所有元素都一样
+        }else{
+            return false;//有元素不一样
         }
     }
 

@@ -1,5 +1,6 @@
 package com.summ.model.response;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -60,10 +61,19 @@ public class OrderContractRes {
     private String orderStatusInfo;
     private String orderCloseStatusInfo;
     private String customerPhone;
+    private BigDecimal customerBalance;
     private String service;
     private Integer serviceId;
     private String needString;
     private String shopName;
+
+    public BigDecimal getCustomerBalance() {
+        return customerBalance;
+    }
+
+    public void setCustomerBalance(BigDecimal customerBalance) {
+        this.customerBalance = customerBalance;
+    }
 
     public Integer getOrderCloseStatus() {
         return orderCloseStatus;

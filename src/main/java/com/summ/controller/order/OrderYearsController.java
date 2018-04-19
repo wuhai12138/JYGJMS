@@ -184,20 +184,60 @@ public class OrderYearsController extends AutoMapperController{
     }
 
     /**
+     * 包年订单关闭（暂不做退款）
+     * @param jOrderYears
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/close")
+    public Object close(@RequestBody JOrderYears jOrderYears, ServletRequest request) {
+        try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+
+            List<JOrderSchedule> jOrderScheduleList = jOrderScheduleMapper.getOrderScheduleToBeFinished(jOrderYears.getOrderId(), 165);
+            if (jOrderScheduleList.size() > 0) {
+                for (JOrderSchedule jOrderSchedule : jOrderScheduleList) {
+                    jOrderSchedule.setCancelTime(new Date());
+                    jOrderSchedule.setCancelId(jAdmin.getAdminId());
+                    jOrderSchedule.setRemark(StringUtil.isBlank(jOrderSchedule.getRemark())?"关闭原因：" + jOrderYears.getRemark():jOrderSchedule.getRemark() + ",关闭原因：" + jOrderYears.getRemark());
+                    jOrderSchedule.setScheduleStatus(155);
+                }
+                jOrderScheduleMapper.updateBatchById(jOrderScheduleList);
+            }
+            JOrderYears jOrderYears1 = jOrderYearsMapper.selectById(Long.valueOf(jOrderYears.getOrderId()));
+            jOrderYears1.setOrderCloseStatus(213);
+            jOrderYears1.setModifyId(jAdmin.getAdminId());
+            jOrderYears1.setModifyTime(new Date());
+            jOrderYears1.setRemark(StringUtil.isBlank(jOrderYears1.getRemark())?"关闭原因：" + jOrderYears.getRemark():jOrderYears1.getRemark() + ",关闭原因：" + jOrderYears.getRemark());
+            jOrderYearsMapper.updateSelectiveById(jOrderYears1);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    /**
      * 管家查看订单，订单状态从待处理改至预约中
      *
-     * @param jOrderYears
+     * @param jOrderYears1
      * @return
      */
     @ResponseBody
     @RequestMapping("/dispose")
-    public Object dispose(@RequestBody JOrderYears jOrderYears, ServletRequest request) {
+    public Object dispose(@RequestBody JOrderYears jOrderYears1, ServletRequest request) {
         try {
-            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
-            jOrderYears.setModifyId(jAdmin.getAdminId());
-            jOrderYears.setOrderStatus(138);
-            jOrderYears.setModifyTime(new Date());
-            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", jOrderYearsMapper.updateSelectiveById(jOrderYears));
+            JOrderYears jOrderYears = jOrderYearsMapper.selectById(Long.valueOf(jOrderYears1.getOrderId()));
+            if (226==jOrderYears.getOrderStatus()){
+                JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+                jOrderYears.setModifyId(jAdmin.getAdminId());
+                jOrderYears.setOrderStatus(138);
+                jOrderYears.setModifyTime(new Date());
+                return new ModelRes(ModelRes.Status.SUCCESS, "操作成功  !", jOrderYearsMapper.updateSelectiveById(jOrderYears));
+            }else {
+                return new ModelRes(ModelRes.Status.SUCCESS, "订单已处理  !", jOrderYears);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

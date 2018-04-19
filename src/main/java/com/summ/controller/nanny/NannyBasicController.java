@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author jygj_7500
@@ -26,6 +28,22 @@ public class NannyBasicController extends AutoMapperController {
     @RequestMapping("/update")
     public Object update(@RequestBody JNannyInfo jNannyInfo) {
         try {
+            JNannyInfo jNannyInfo1 = jNannyInfoMapper.selectById(Long.valueOf(jNannyInfo.getNannyId()));
+            if (!jNannyInfo.getNannyIdCard().equals(jNannyInfo1.getNannyIdCard())){
+                Map map = new HashMap();
+                map.put("nannyIdCard",jNannyInfo.getNannyIdCard());
+                if (jNannyInfoMapper.selectByMap(map).size()>0){
+                    return new ModelRes(ModelRes.Status.SUCCESS, "身份证重复 !");
+                }
+            }
+            if (!jNannyInfo.getNannyPhone().equals(jNannyInfo1.getNannyPhone())){
+                Map map = new HashMap();
+                map.put("nannyPhone",jNannyInfo.getNannyPhone());
+                if (jNannyInfoMapper.selectByMap(map).size()>0){
+                    return new ModelRes(ModelRes.Status.SUCCESS, "手机号重复 !");
+                }
+            }
+
             //判断身份证是否有效
             if(IdCardUtil.isValidatedAllIdcard(jNannyInfo.getNannyIdCard())){
                 if (!"".equals(jNannyInfo.getNannyAvatar())) {
@@ -37,15 +55,15 @@ public class NannyBasicController extends AutoMapperController {
                     String fileName = System.currentTimeMillis() + ".jpg";
                     //判断身份证是否合法以及照片上传是否成功
                     if (!StringUtil.generateImage(jNannyInfo.getNannyAvatar(), Consts.nannyAvatarUrl + fileName)) {
-                        return new ModelRes(ModelRes.Status.SUCCESS, "avatar upload err !", "");
+                        return new ModelRes(ModelRes.Status.SUCCESS, "头像上传错误 !", "");
                     }
-                    return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
                 }else {
                     jNannyInfo.setNannyAvatar(jNannyInfoMapper.getNannyBasic(jNannyInfo.getNannyId()).getNannyAvatar());
-                    return new ModelRes(ModelRes.Status.SUCCESS, "update NannyInfo success !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jNannyInfoMapper.updateSelectiveById(jNannyInfo));
                 }
             }else {
-                return new ModelRes(ModelRes.Status.SUCCESS, "ID card invalid !", "");
+                return new ModelRes(ModelRes.Status.SUCCESS, "身份证无效 !", "");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,7 +78,7 @@ public class NannyBasicController extends AutoMapperController {
         try {
             NannyInfoRes nannyInfoRes = jNannyInfoMapper.getNannyBasic(jNannyInfo.getNannyId());
             nannyInfoRes.setNannyAvatar(Consts.nannyAvatarUrlRes + nannyInfoRes.getNannyAvatar());
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", nannyInfoRes);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", nannyInfoRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");

@@ -18,6 +18,9 @@
         <if test="0 != customerStatmentReq.statmentCustomerType">
             AND statmentCustomerType = #{customerStatmentReq.statmentCustomerType}
         </if>
+        <if test="0 != customerStatmentReq.status">
+            AND status = #{customerStatmentReq.status}
+        </if>
     </select>
 
     <select id="getStatmentList" parameterType="com.summ.model.request.CustomerStatmentReq"
@@ -37,6 +40,9 @@
         </if>
         <if test="0 != customerStatmentReq.statmentCustomerType">
             AND a.statmentCustomerType = #{customerStatmentReq.statmentCustomerType}
+        </if>
+        <if test="0 != customerStatmentReq.status">
+            AND a.status = #{customerStatmentReq.status}
         </if>
         ORDER BY a.chargeDate DESC
         LIMIT #{customerStatmentReq.page},#{customerStatmentReq.size}

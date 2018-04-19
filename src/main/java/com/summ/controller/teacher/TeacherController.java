@@ -8,6 +8,7 @@ import com.summ.model.request.TeacherReq;
 import com.summ.model.response.ModelRes;
 import com.summ.model.response.TeacherRes;
 import com.summ.utils.IdCardUtil;
+import com.summ.utils.ResponseUtil;
 import com.summ.utils.StringUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
@@ -71,7 +72,7 @@ public class TeacherController extends AutoMapperController {
                     JTeacherShop jTeacherShop = new JTeacherShop();
                     jTeacherShop.setShopId((Integer) map.get("shopId"));
                     jTeacherShop.setTeacherId(jTeacher.getTeacherId());
-                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jTeacherShopMapper.insertSelective(jTeacherShop));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jTeacherShopMapper.insertSelective(jTeacherShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, " 身份证错误 !");
                 }
@@ -87,7 +88,7 @@ public class TeacherController extends AutoMapperController {
                     JTeacherShop jTeacherShop = new JTeacherShop();
                     jTeacherShop.setTeacherId(jTeacher.getTeacherId());
                     jTeacherShop.setShopId((Integer) map.get("shopId"));
-                    return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", jTeacherShopMapper.insert(jTeacherShop));
+                    return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jTeacherShopMapper.insert(jTeacherShop));
                 } else {
                     return new ModelRes(ModelRes.Status.FAILED, "id card or avatar err !");
                 }
@@ -108,7 +109,38 @@ public class TeacherController extends AutoMapperController {
             Map<String, Object> map = new HashedMap();
             map.put("list", jTeacherMapper.getTeacherList(teacherReq));
             map.put("count", jTeacherMapper.getCount(teacherReq));
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", map);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ModelRes(ModelRes.Status.ERROR, "server err !");
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/update")
+    public Object update(@RequestBody JTeacher jTeacher, ServletRequest request) {
+        try {
+            JAdmin jAdmin = (JAdmin) request.getAttribute("admin");
+
+            JTeacher jTeacher1 = jTeacherMapper.selectById(Long.valueOf(jTeacher.getTeacherId()));
+            if (!jTeacher.getTeacherIdCard().equals(jTeacher1.getTeacherIdCard())){
+                Map idMap = new HashMap();
+                idMap.put("teacherIdCard",jTeacher.getTeacherIdCard());
+                List<JTeacher> idTeacherList = jTeacherMapper.selectByMap(idMap);
+                if (idTeacherList.size()>0){
+                    return new ModelRes(ModelRes.Status.FAILED, "身份证已占用 !", ResponseUtil.List2Map(idTeacherList));
+                }
+            }
+            if (!jTeacher.getTeacherPhone().equals(jTeacher1.getTeacherPhone())){
+                Map phoneMap = new HashMap();
+                phoneMap.put("teacherPhone",jTeacher.getTeacherPhone());
+                List<JTeacher> phoneTeacherList = jTeacherMapper.selectByMap(phoneMap);
+                if (phoneTeacherList.size()>0){
+                    return new ModelRes(ModelRes.Status.FAILED, "手机号已占用 !", ResponseUtil.List2Map(phoneTeacherList));
+                }
+            }
+            jTeacher.setModifyTime(new Date());
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", jTeacherMapper.updateSelectiveById(jTeacher));
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -122,7 +154,7 @@ public class TeacherController extends AutoMapperController {
             TeacherRes teacherRes = jTeacherMapper.getTeacherById(jTeacher.getTeacherId());
             teacherRes.setTeacherAvatar(Consts.nannyAvatarUrlRes + teacherRes.getTeacherAvatar());
             teacherRes.setShopResList(jTeacherMapper.getTeacherShop(jTeacher.getTeacherId()));
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", teacherRes);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", teacherRes);
         } catch (Exception e) {
             e.printStackTrace();
             return new ModelRes(ModelRes.Status.ERROR, "server err !");
@@ -155,7 +187,7 @@ public class TeacherController extends AutoMapperController {
             jTeacherShopMapper.deleteByMap(map1);
             jTeacherShopMapper.insertBatch(jTeacherShopList);
 
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !",null );
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !",null );
 
         } catch (Exception e) {
             e.printStackTrace();

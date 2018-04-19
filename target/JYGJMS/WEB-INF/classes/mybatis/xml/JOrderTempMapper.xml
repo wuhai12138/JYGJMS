@@ -47,13 +47,14 @@
 	</select>
 
 	<select id="getTempList" parameterType="com.summ.model.request.OrderTempReq" resultType="com.summ.model.response.OrderTempRes">
-		SELECT jot.*,jc.customerName,jch.houseAddress,jdi.INFO AS orderStatusInfo,jc.customerPhone,jgc.service,js.shopName,jc.remark AS customerRemark,jdi1.INFO AS payStatusInfo
+		SELECT jot.*,jc.customerName,jch.houseAddress,jdi.INFO AS orderStatusInfo,jc.customerPhone,jgc.service,jgc.unitName,js.shopName,jc.remark AS customerRemark,jdi1.INFO AS payStatusInfo,jdi2.INFO AS orderCloseStatusInfo,jc.customerBalance
 		FROM j_order_temp jot
 		LEFT JOIN j_shop js ON js.shopId = jot.shopId
 		LEFT JOIN j_customer jc ON jc.customerId = jot.customerId
 		LEFT JOIN j_customer_house jch ON jch.houseId = jot.houseId
 		LEFT JOIN j_dict_info jdi ON jdi.ID = jot.orderStatus
 		LEFT JOIN j_dict_info jdi1 ON jdi1.ID = jot.payStatus
+		LEFT JOIN j_dict_info jdi2 ON jdi2.ID = jot.orderCloseStatus
 		LEFT JOIN j_goods_contract jgc ON jgc.goodsId = jot.goodsId
 		<if test="0 == orderTempReq.shopId">
 			LEFT JOIN j_admin_shop jas ON jas.shopId = jot.shopId

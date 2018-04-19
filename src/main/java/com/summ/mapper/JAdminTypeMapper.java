@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface JAdminTypeMapper extends AutoMapper<JAdminType> {
 
-    List<AdminTypeRes> getadminTypeById(int adminId);
+    List<AdminTypeRes> getAdminTypeById(int adminId);
 
 
 }

@@ -9,7 +9,7 @@
 
     <select id="getCount" parameterType="java.lang.String" resultType="java.lang.Integer">
         SELECT
-        COUNT(*)
+        COUNT(DISTINCT a.customerId)
         FROM j_customer a
         LEFT JOIN j_customer_house jch ON a.customerId=jch.customerId
         <if test="0 == customerPagReq.shopId">
@@ -69,6 +69,7 @@
         <if test="'' != customerPagReq.customerName">
             AND a.customerName LIKE concat(concat('%',#{customerPagReq.customerName}),'%')
         </if>
+        GROUP BY a.customerId
         ORDER BY a.createTime DESC
         LIMIT #{customerPagReq.page},#{customerPagReq.size}
     </select>

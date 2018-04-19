@@ -53,7 +53,7 @@ public class LeaguerShopController extends AutoMapperController{
             map1.put("leaguerId", leaguerId);
             jLeaguerShopMapper.deleteByMap(map1);
             jLeaguerShopMapper.insertBatch(jLeaguerShopList);
-            return new ModelRes(ModelRes.Status.SUCCESS, "search NannyInfo success !", null);
+            return new ModelRes(ModelRes.Status.SUCCESS, "操作成功 !", null);
 
         } catch (Exception e) {
             e.printStackTrace();
