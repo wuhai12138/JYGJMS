@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper2.SuggestMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		suggest_id AS suggestId, createtime, modifytime, isDel, customer_id AS customerId, suggest_type AS suggestType, suggest_content AS suggestContent, shop_id AS shopId, suggest_status AS suggestStatus, nanny_id AS nannyId
+	</sql>
+
+</mapper>

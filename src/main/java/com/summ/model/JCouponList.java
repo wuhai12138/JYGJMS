@@ -21,7 +21,7 @@ public class JCouponList implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**  */
-	@TableId(type = IdType.AUTO)
+	@TableId(type = IdType.INPUT)
 	private Integer couponListId;
 
 	/**  */
@@ -46,9 +46,17 @@ public class JCouponList implements Serializable {
 
 	private Date useTime;
 
-
+	private String remark;
 	/**  */
 	private Integer isDel;
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
 	public Date getUseTime() {
 		return useTime;

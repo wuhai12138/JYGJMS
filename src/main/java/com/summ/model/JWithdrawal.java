@@ -1,6 +1,7 @@
 package com.summ.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotations.IdType;
@@ -36,6 +37,7 @@ public class JWithdrawal implements Serializable {
 	private String withdrawalCard;
 	/**  */
 	private String withdrawalIdAddress;
+	private BigDecimal money;
 	/** 申请人类别 */
 	private Integer applyTpe;
 	/** 申请人编号 */
@@ -57,6 +59,14 @@ public class JWithdrawal implements Serializable {
 	/**  */
 	private Integer isDel;
 
+
+	public BigDecimal getMoney() {
+		return money;
+	}
+
+	public void setMoney(BigDecimal money) {
+		this.money = money;
+	}
 
 	public Integer getWithdrawalId() {
 		return this.withdrawalId;

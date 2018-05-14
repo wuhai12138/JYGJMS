@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper2.NannyInfoMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		nanny_id AS nannyId, nanny_name AS nannyName, nanny_sex AS nannySex, nanny_phone AS nannyPhone, nanny_address AS nannyAddress, nanny_birthday AS nannyBirthday, nanny_year AS nannyYear, nanny_root AS nannyRoot, nanny_nation AS nannyNation, nanny_zodiac AS nannyZodiac, nanny_language AS nannyLanguage, nanny_height AS nannyHeight, nanny_weight AS nannyWeight, train_id AS trainId, nanny_status AS nannyStatus, nanny_level AS nannyLevel, nanny_type AS nannyType, nanny_qualification AS nannyQualification, nanny_certificate AS nannyCertificate, nanny_id_card AS nannyIdCard, nanny_id_address AS nannyIdAddress, nanny_exp AS nannyExp, nanny_skill AS nannySkill, nanny_character AS nannyCharacter, createtime, modifytime, remark, createid, modifyid, isDel, nanny_head AS nannyHead, nanny_card_front AS nannyCardFront, nanny_card_reverse AS nannyCardReverse, nanny_religion AS nannyReligion, expect_salary AS expectSalary, startdate, hrcheck, bank, bankno, buyhour, buytime
+	</sql>
+
+</mapper>

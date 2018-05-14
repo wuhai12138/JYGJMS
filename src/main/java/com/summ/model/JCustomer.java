@@ -22,7 +22,7 @@ public class JCustomer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**  */
-	@TableId(type = IdType.AUTO)
+	@TableId(type = IdType.INPUT)
 	private Integer customerId;
 
 	/**  */
@@ -35,7 +35,7 @@ public class JCustomer implements Serializable {
 //	private Integer shopId;
 
 	/** 用户类型11注册12会员13僵尸用户 */
-	private Integer customerType;
+	private Integer customerType=11;
 
 	/** 1男2女 */
 	private Integer customerSex;
@@ -46,13 +46,13 @@ public class JCustomer implements Serializable {
 	/** 14警告15不警告 */
 	private Integer warnType;
 
-	private Integer memberOrigin;
+	private Integer memberOrigin=227;
 
 	/**  */
-	private Integer memberLevel;
+	private Integer memberLevel=0;
 
 	/**  */
-	private Integer memberType;
+	private Integer memberType=0;
 
 	/** 微信小程序openId */
 	private String WeiXinOpenId;

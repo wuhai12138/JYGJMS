@@ -28,11 +28,16 @@ public class GenerateCode {
         /* 配置 Mybatis-Plus 代码生成器 */
         ConfigGenerator cg = new ConfigGenerator();
 
-        /* Mysql 数据库相关配置 */
+//        /* Mysql 数据库相关配置 */
+//        cg.setDbDriverName("com.mysql.jdbc.Driver");
+//        cg.setDbUrl(props.getProperty("jdbc_url_"));
+//        cg.setDbUser(props.getProperty("jdbc_username"));
+//        cg.setDbPassword(props.getProperty("jdbc_password"));
+        /* 2.0 Mysql 数据库相关配置 */
         cg.setDbDriverName("com.mysql.jdbc.Driver");
-        cg.setDbUrl(props.getProperty("jdbc_url"));
-        cg.setDbUser(props.getProperty("jdbc_username"));
-        cg.setDbPassword(props.getProperty("jdbc_password"));
+        cg.setDbUrl(props.getProperty("jdbc_url_2.0"));
+        cg.setDbUser(props.getProperty("jdbc_username_2.0"));
+        cg.setDbPassword(props.getProperty("jdbc_password_2.0"));
 
         /* 设置数据库前缀（例如`mp_user`生成实体类，false 为 MpUser.java , true 为 User.java）*/
         cg.setDbPrefix(false);
@@ -54,17 +59,20 @@ public class GenerateCode {
 		 * </p>
 		 */
         cg.setIdType(IdType.AUTO);
-        cg.setTableNames(new String[]{"j_withdrawal"});
-//		cg.setTableNames(new String[]{"j_order_refund","j_customer_house_property"});
+//        cg.setTableNames(new String[]{"admin"});
+		cg.setTableNames(new String[]{"admin","coupon","couponlist","customer","customer_account","customer_house","customer_info","customer_share","customer_statement",
+                "nanny_family","nanny_info","nanny_photo_file","nanny_statement","nanny_work_time","nanny_work_time_dic","news",
+                "order_big","order_small","order_small_nanny",
+                "phone_msg","prepaid","price","push_msg","re_visit_order","report_charge","report_red","shareholder","shareholder_shop","suggest","training","version"});
 
         /* 生成文件保存位置 */
-        cg.setSaveDir("E:\\summ\\MybatisPlusGeneratorModel");
+        cg.setSaveDir("E:\\summ\\MybatisPlusGeneratorModel2.0");
 
         /* 生成代码包路径 */
-        cg.setEntityPackage(PACKAGE_NAME + ".model"); //entity 实体包路径
-        cg.setMapperPackage(PACKAGE_NAME + ".mapper"); //mapper 映射文件路径
+        cg.setEntityPackage(PACKAGE_NAME + ".model2"); //entity 实体包路径
+        cg.setMapperPackage(PACKAGE_NAME + ".mapper2"); //mapper 映射文件路径
         cg.setXmlPackage("/"); //xml层路径
-        cg.setServicePackage(PACKAGE_NAME + ".service"); //service 层路径
+        cg.setServicePackage(PACKAGE_NAME + ".service2"); //service 层路径
 
         /* 生成代码 */
         AutoGenerator.run(cg);

@@ -28,7 +28,7 @@
 			and j.couponOrigin = #{couponReq.couponOrigin}
 		</if>
 		AND j.isDel=16
-		AND j.validDate &gt; CURRENT_DATE
+		AND j.validTime &gt; CURRENT_DATE
 		limit #{couponReq.page},#{couponReq.size}
 	</select>
 

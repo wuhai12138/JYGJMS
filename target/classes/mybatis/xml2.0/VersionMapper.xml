@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.summ.mapper2.VersionMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 version_code AS versionCode, version_name AS versionName, download_url AS downloadUrl, backup, createtime, isDel, version_type AS versionType, version_platform AS versionPlatform,versionid
+	</sql>
+
+</mapper>

@@ -40,6 +40,7 @@ public class CustomerCouponListRes {
     private Integer isDel;
     private String isDelInfo;
 
+    private String remark;
     /**  */
     private String couponName;
 
@@ -56,6 +57,14 @@ public class CustomerCouponListRes {
     private String couponOrigin;
     private String couponOriginInfo;
 
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public Date getUseTime() {
         return useTime;

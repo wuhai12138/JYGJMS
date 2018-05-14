@@ -71,6 +71,7 @@ public class NannyController extends AutoMapperController {
                 if (IdCardUtil.isValidatedAllIdcard(jNannyInfo.getNannyIdCard())) {
                     //根据身份证生成年龄
                     jNannyInfo.setNannyAge(IdCardUtil.getAgeByIdCard(jNannyInfo.getNannyIdCard()));
+                    jNannyInfo.setNannyBirthday(IdCardUtil.getBirthByIdCard(jNannyInfo.getNannyIdCard()));
                     jNannyInfo.setNannyAvatar(fileName);
                     jNannyInfo.setCreateTime(new Date());
                     //新增服务师

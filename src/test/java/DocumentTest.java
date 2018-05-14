@@ -7,6 +7,7 @@ import com.summ.utils.DateUtil;
 import com.summ.utils.NannyWorkTimeUtil;
 import com.summ.utils.RequestUtil;
 import com.summ.utils.StringUtil;
+import com.summ.utils.dbUtil.DBMoveUtil;
 import com.sun.deploy.net.HttpUtils;
 import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.apache.http.HttpResponse;
@@ -69,11 +70,11 @@ public class DocumentTest {
 //        bodys.put("name", "张三");
 //        bodys.put("phoneNo", "13522221111");
 
-        List<String> list = new ArrayList<String>();
-        list.add("12");
-        list.add("22");
-        list.add("22");
-
+        String roomType="室二厅一厨二卫";
+        List<Integer> list =DBMoveUtil.getHouse(roomType);
+        for (Integer integer : list){
+            System.out.println(integer);
+        }
     }
 
 }
