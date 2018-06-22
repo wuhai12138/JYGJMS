@@ -7,4 +7,9 @@
 		house_id AS houseId, customer_id AS customerId, house_address AS houseAddress, room_type AS roomType, house_area AS houseArea, createid, modifyid, createtime, modifytime, isDel, longitude, latitude, share
 	</sql>
 
+	<select id="getCutomerHouse" resultType="com.summ.model2.response.CustomerHouseRes">
+		SELECT  ch.*,ci.shop_id
+		FROM customer_house ch
+		LEFT JOIN customer_info ci ON ci.customer_id=ch.customer_id
+	</select>
 </mapper>

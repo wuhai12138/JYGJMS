@@ -1,14 +1,14 @@
 package com.summ.model;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotations.IdType;
-
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  *
@@ -47,6 +47,12 @@ public class JNannyStatment implements Serializable {
 
 	/** 服务师对账单类型 */
 	private Integer statmentNannyType;
+	/** 服务师当前实时星级84、85、86 */
+	private Integer nannyCurrentJobLevel;
+	/** 服务师当前小时薪资 */
+	private BigDecimal nannyCurrentUnitPrice;
+	/** 标记订单是否为自定义价格（即手动修改的价格,1表示手动修改） */
+	private Integer orderPriceType;
 
 	/** 金额 */
 	private BigDecimal statmentMoney;
@@ -75,13 +81,23 @@ public class JNannyStatment implements Serializable {
 	private Integer reason;
 
 	private Integer adminId;
+	private Integer isDel;
 
+	public Integer getIsDel() {
+		return isDel;
+	}
+
+	public void setIsDel(Integer isDel) {
+		this.isDel = isDel;
+	}
 
 
 	public JNannyStatment() {
 	}
 
-	public JNannyStatment(String statmentNanny, Integer nannyId, Integer scheduleId, Integer orderId, Integer shopId, Integer houseId, Integer customerId, Integer statmentNannyType, BigDecimal statmentMoney, Integer orderType, Integer goodsId, String serviceTime, Double serviceTimeLength, Date serviceDate, String remark) {
+	public JNannyStatment(String statmentNanny, Integer nannyId, Integer scheduleId, Integer orderId, Integer shopId, Integer houseId, Integer customerId,
+                          Integer statmentNannyType, BigDecimal statmentMoney, Integer orderType, Integer goodsId, String serviceTime, Double serviceTimeLength,
+                          Date serviceDate, String remark, Integer adminId, Integer nannyCurrentJobLevel, BigDecimal nannyCurrentUnitPrice, Integer orderPriceType) {
 		this.statmentNanny = statmentNanny;
 		this.nannyId = nannyId;
 		this.scheduleId = scheduleId;
@@ -97,6 +113,52 @@ public class JNannyStatment implements Serializable {
 		this.serviceTimeLength = serviceTimeLength;
 		this.serviceDate = serviceDate;
 		this.remark = remark;
+		this.adminId=adminId;
+		this.nannyCurrentJobLevel=nannyCurrentJobLevel;
+		this.nannyCurrentUnitPrice=nannyCurrentUnitPrice;
+		this.orderPriceType=orderPriceType;
+	}
+
+	public JNannyStatment(String statmentNanny, Integer nannyId, Integer scheduleId, Integer orderId, Integer shopId, Integer houseId, Integer customerId, Integer statmentNannyType, BigDecimal statmentMoney,Integer orderType, Integer goodsId, String serviceTime, Double serviceTimeLength, Date serviceDate, String remark) {
+		this.statmentNanny = statmentNanny;
+		this.nannyId = nannyId;
+		this.scheduleId = scheduleId;
+		this.orderId = orderId;
+		this.shopId = shopId;
+		this.houseId = houseId;
+		this.customerId = customerId;
+		this.statmentNannyType = statmentNannyType;
+		this.statmentMoney = statmentMoney;
+		this.goodsId = goodsId;
+		this.orderType=orderType;
+		this.serviceTime = serviceTime;
+		this.serviceTimeLength = serviceTimeLength;
+		this.serviceDate = serviceDate;
+		this.remark = remark;
+	}
+
+	public Integer getNannyCurrentJobLevel() {
+		return nannyCurrentJobLevel;
+	}
+
+	public void setNannyCurrentJobLevel(Integer nannyCurrentJobLevel) {
+		this.nannyCurrentJobLevel = nannyCurrentJobLevel;
+	}
+
+	public BigDecimal getNannyCurrentUnitPrice() {
+		return nannyCurrentUnitPrice;
+	}
+
+	public void setNannyCurrentUnitPrice(BigDecimal nannyCurrentUnitPrice) {
+		this.nannyCurrentUnitPrice = nannyCurrentUnitPrice;
+	}
+
+	public Integer getOrderPriceType() {
+		return orderPriceType;
+	}
+
+	public void setOrderPriceType(Integer orderPriceType) {
+		this.orderPriceType = orderPriceType;
 	}
 
 	public Integer getAdminId() {

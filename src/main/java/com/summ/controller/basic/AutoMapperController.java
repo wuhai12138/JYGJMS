@@ -17,6 +17,8 @@ public class AutoMapperController {
     public MongoConfig mongoConfig = new MongoConfig();
 
     @Autowired
+    public JNannyEmergencyContactMapper jNannyEmergencyContactMapper;
+    @Autowired
     public JAdminTypeMapper jAdminTypeMapper;
     @Autowired
     public JAccessDictMapper jAccessDictMapper;
@@ -70,6 +72,8 @@ public class AutoMapperController {
     public JAdminShopMapper jAdminShopMapper;
     @Autowired
     public JCustomerServiceMapper jCustomerServiceMapper;
+    @Autowired
+    public JOrderMonthMapper jOrderMonthMapper;
     @Autowired
     public JOrderContractMapper jOrderContractMapper;
     @Autowired

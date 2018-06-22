@@ -2,9 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.summ.mapper2.OrderBigMapper">
 
-	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
 		order_id AS orderId, order_start_date AS orderStartDate, order_end_date AS orderEndDate, order_type AS orderType, order_status AS orderStatus, backup, createid, modifyid, createtime, modifytime, isDel, house_id AS houseId, need_json AS needJson, price, total_price AS totalPrice, shop_id AS shopId, train_id AS trainId, service_cycle AS serviceCycle, month_number AS monthNumber, teacher, contact, deposit, deposit_status AS depositStatus, order_cost AS orderCost
 	</sql>
+
+    <select id="getOrderList" resultType="com.summ.model2.OrderBig">
+		SELECT
+			ch.customer_id AS customerId,
+			ob.order_type AS orderType,
+	a.price_id AS priceId,
+	ob.order_id AS orderId,
+	ob.shop_id AS shopId,
+	ob.house_id AS houseId,
+	ob.order_status AS orderStatus,
+	ob.order_start_date AS orderStartDate,
+	ob.order_end_date AS orderEndDate,
+	ob.teacher AS teacher,
+	ob.createid AS createid,
+	ob.createtime AS createtime,
+	ob.modifyid AS modifyid,
+	ob.modifytime AS modifytime,
+	ob.`backup` AS backup,
+	ob.isDel AS isDel,
+	ob.price,
+	ob.total_price AS totalPrice,
+	ob.month_number,
+	ob.order_cost as orderCost,
+	ob.deposit
+		FROM
+		(
+		SELECT
+			j.price_id,
+			j.order_id
+		FROM
+			order_small j
+		GROUP BY
+			j.order_id
+	) AS a
+		LEFT JOIN order_big ob ON ob.order_id = a.order_id
+		LEFT JOIN customer_house ch ON ch.house_id = ob.house_id
+	</select>
 
 </mapper>

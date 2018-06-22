@@ -22,7 +22,7 @@ public class NannyStatement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**  */
-	@TableId(value = "statement_id", type = IdType.AUTO)
+	@TableId(value = "statement_id", type = IdType.INPUT)
 	private Integer statementId;
 
 	/** 服务师id */

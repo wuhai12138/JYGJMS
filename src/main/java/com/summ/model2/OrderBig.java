@@ -107,6 +107,26 @@ public class OrderBig implements Serializable {
 	@TableField(value = "order_cost")
 	private BigDecimal orderCost;
 
+	@TableField(value = "customer_id")
+	private Integer customerId;
+	@TableField(value = "price_id")
+	private Integer priceId;
+
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
+	public Integer getPriceId() {
+		return priceId;
+	}
+
+	public void setPriceId(Integer priceId) {
+		this.priceId = priceId;
+	}
 
 	public Integer getOrderId() {
 		return this.orderId;

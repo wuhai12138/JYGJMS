@@ -21,7 +21,7 @@ public class JCustomerHouseProperty implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 物业表 */
-	@TableId(type = IdType.AUTO)
+	@TableId(type = IdType.INPUT)
 	private Integer propertyId;
 
 	/**  */
